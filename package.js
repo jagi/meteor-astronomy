@@ -31,6 +31,7 @@ Package.onUse(function(api) {
   api.addFiles('lib/behaviors/nestedset/node.js', ['client', 'server']);
   api.addFiles('lib/behaviors/nestedset/nestedset.js', ['client', 'server']);
   api.addFiles('lib/behaviors/sort/sort.js', ['client', 'server']);
+  api.addFiles('lib/behaviors/timestamp/timestamp.js', ['client', 'server']);
 
   api.export(['Astro', 'Astronomy'], ['client', 'server']);
 });
