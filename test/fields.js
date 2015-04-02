@@ -1,4 +1,4 @@
-Tinytest.add('Class fields', function (test) {
+Tinytest.add('Class fields', function(test) {
   var Parent = Astronomy.Model({
     name: 'Parent',
     fields: {
