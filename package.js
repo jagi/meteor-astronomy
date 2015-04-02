@@ -16,6 +16,7 @@ Package.onUse(function(api) {
   api.addFiles('lib/global.js', ['client', 'server']);
 
   // Schema.
+  api.addFiles('lib/utils.js', ['client', 'server']);
   api.addFiles('lib/schema/schema.js', ['client', 'server']);
   api.addFiles('lib/schema/fields.js', ['client', 'server']);
   api.addFiles('lib/schema/methods.js', ['client', 'server']);
