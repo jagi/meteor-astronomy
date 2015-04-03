@@ -1,9 +1,7 @@
 # Meteor Astronomy
 
-Model layer for Meteor
-
 **Table of Contents**
-
+- [About](#about)
 - [Functionalities](#functionalities)
 - [Installation](#installation)
 - [Key Concepts](#key-concepts)
@@ -26,6 +24,12 @@ Model layer for Meteor
 - [Writing behaviors](#writing-behaviors)
 - [Contribution](#contribution)
 - [License](#license)
+
+## About
+
+Meteor Astronomy is model layer (in [MVC](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) pattern) for Meteor.
+
+Why the name Meteor Astronomy? As almost everything related to the Meteor is named with some cosmological term, so this one couldn't be an exception. The model layer in MVC pattern is the description of real objects and the science describing astronomical objects is [Astronomy](http://en.wikipedia.org/wiki/Astronomy).
 
 ## Functionalities
 
@@ -60,6 +64,14 @@ Let's take a look at basic example of schema creation.
 
 ```js
 Post = Astronomy.Class({
+  name: 'Post'
+});
+```
+
+There is also `Astro` alias for `Astronomy` object.
+
+```js
+Post = Astro.Class({
   name: 'Post'
 });
 ```
