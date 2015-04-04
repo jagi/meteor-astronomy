@@ -22,6 +22,7 @@
       - [Sort](#sort)
       - [Timestamp](#timestamp)
 - [Writing behaviors](#writing-behaviors)
+- [Extending Astronomy](#extending-astronomy)
 - [Contribution](#contribution)
 - [License](#license)
 
@@ -366,11 +367,8 @@ Parent = Astronomy.Class({
   fields: ['parentField']
 });
 
-Child = Astronomy.Class({
+Child = Parent.extend({
   name: 'Child',
-  collection: Collection,
-  transform: true,
-  extend: Parent,
   fields: ['childField']
 });
 
@@ -557,6 +555,71 @@ Astronomy.Behavior({
 ```
 
 As you can see, the behavior definition is similar to the model definition. We have here mandatory `name` attribute and standard attributes of the model definition: `fields`, `methods`, `events`.
+
+## Extending Astronomy
+
+Meteor Astronomy is highly modularized. Any developer can write its own modules that extends Astronomy functionality. Developer can easily hook into process of initialization of schema. Let's take a look how methods feature had been implemented.
+
+First, we define some extra methods on schema prototype.
+
+```js
+var prototype = Astronomy.Schema.prototype;
+
+prototype.getMethod = function(methodName) {
+  /* ... */
+};
+
+prototype.getMethods = function() {
+  /* ... */
+};
+
+prototype.addMethod = function(methodName, method) {
+  if (!_.isString(methodName)) {
+    return;
+  }
+  if (!_.isFunction(method)) {
+    return;
+  }
+
+  this._methods[methodName] = method;
+  this.getClass().prototype[methodName] = method;
+};
+
+prototype.addMethods = function(methods) {
+  /* ... */
+};
+```
+
+As you can see in the `addMethod` function, we add method to methods list stored in the private `this._methods` object.
+
+```js
+this._methods[methodName] = method;
+```
+
+We also get class for the schema and extend its prototype with the given method.
+
+```js
+this.getClass().prototype[methodName] = method;
+```
+
+In another file we define our `Methods` module.
+
+```js
+Astronomy.Module({
+  name: 'Methods',
+  initSchema: function(Class, definition) {
+    this._methods = {};
+
+    if (_.has(definition, 'methods')) {
+      this.addMethods(definition.methods);
+    }
+  }
+});
+```
+
+We have to name the module - `Methods` in our example. Next thing we do is hooking into schema initialization process. We create private `this._methods` object and add methods from schema definition that user has provided.
+
+In fact almost every Astronomy feature had been written as a module.
 
 ## Contribution
 
