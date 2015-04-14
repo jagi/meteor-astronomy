@@ -13,7 +13,7 @@
     - [Methods](#methods)
     - [Getting modified fields](#getting-modified-fields)
     - [Cloning](#cloning)
-    - [Reloading](#reloading)
+    - [Reactivity and reloading](#reactivity-and-reloading)
     - [Saving, updating and removing](#saving-updating-and-removing)
     - [Events](#events)
     - [Validators](#validators)
@@ -402,13 +402,49 @@ var clone = post.clone({
 }, true); // Autosave
 ```
 
-#### Reloading
+#### Reactivity and reloading
 
-There are situation when you want to make sure that document's state is the same as the one stored in the collection. You can always update document to its most recent version by executing `reload` method.
+As you may know the collection's `find` method returns Mongo cursor which is reactive. The Meteor Astronomy library doesn't change anything here - cursors are still reactive.
 
 ```js
-var post = Posts.find();
-post.reload();
+Template.main.helpers({
+  posts: function() {
+    var cursor = Posts.find(); // Get reactive cursor in the reactive context.
+    return cursor;
+  }
+});
+```
+
+Now take a look at the code below. This code is also reactive beacuse it's called in the reactive context (helper function). In fact, it doesn't matter if you use Meteor Astronomy or not, the below code will be reactive.
+
+```js
+Template.main.helpers({
+  posts: function() {
+    var doc = Posts.findOne(); // Get document in the reactive context.
+    return doc;
+  }
+});
+```
+
+However there are situations when you get an object from the collection outside of the reactive context. If anyone will modify this document in the database, we won't be notified about that change. There are situation when you want to make sure that the document's state is the same as the one stored in the collection on the server. You can always update given document to its most recent version by executing the `reload` method.
+
+```js
+var post = Posts.findOne(); // Get document outside of the reactive context.
+post.reload(); // Update document to its most recent state.
+```
+
+Standard JavaScript documents/object as well as Meteor Astronomy documents/objects are not reactive. When getting such object not from the reactive Mongo cursor (example code below) it won't update UI reactively.
+
+```js
+Template.main.helpers({
+  post: function() {
+    // The document had been just created and there was no reactive cursor
+    // associated with the collection. The document is not reactive even though
+    // it was used in the reactive context.
+    var post = new Post();
+    return post;
+  }
+});
 ```
 
 #### Saving, updating and removing
