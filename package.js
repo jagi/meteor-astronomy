@@ -39,6 +39,9 @@ Package.onUse(function(api) {
   api.addFiles('lib/modules/behaviors/module.js', ['client', 'server']);
   // Validators.
   api.addFiles('lib/validators/number.js', ['client', 'server']);
+  api.addFiles('lib/validators/string.js', ['client', 'server']);
+  api.addFiles('lib/validators/regex.js', ['client', 'server']);
+  api.addFiles('lib/validators/email.js', ['client', 'server']);
   // Behaviors.
   api.addFiles('lib/behaviors/nestedset/node.js', ['client', 'server']);
   api.addFiles('lib/behaviors/nestedset/nestedset.js', ['client', 'server']);
