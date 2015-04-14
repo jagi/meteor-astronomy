@@ -3,6 +3,7 @@
 **Table of Contents**
 - [About](#about)
 - [Functionalities](#functionalities)
+- [Examples](#examples)
 - [Installation](#installation)
 - [Key Concepts](#key-concepts)
   - [Defining schema](#defining-schema)
@@ -48,6 +49,98 @@ Why the name Meteor Astronomy? As almost everything related to the Meteor is nam
 - Validators (soon)
 - Relations definition (soon)
 - Automatic related object fetching (soon)
+
+## Examples
+
+At the beginning let's take a look at simple example showing how to use Meteor Astronomy and later we will describe in details how it works.
+
+**Example 1: Basic operations**
+
+```js
+// Create global (no var keyword) Mongo collection.
+Posts = new Mongo.Collection('posts');
+
+// Create global (no var keyword) class (model).
+Post = Astronomy.Class({
+  name: 'Post', // Name model.
+  collection: Posts, // Associate collection with the model.
+  transform: true, // Auto transform objects fetched from collection.
+  fields: {
+    'title': String, // Define "title" field of String type.
+    'votes': {
+      type: Number, // Define "votes" field of Number type.
+      default: 0 // Set default "votes" field value to 0.
+    }
+  },
+  methods: { // Define few methods.
+    voteUp: function () {
+      this.votes++;
+    },
+    voteDown: function () {
+      this.votes--;
+    }
+  },
+  behaviors: ['Timestamp'] // Add "timestamp" behavior that adds "createdAt" and "updatedAt" fields.
+});
+
+// Create object of our class.
+var post = new Post({
+  title: 'New post'
+});
+// Save object in the collection
+post.save();
+
+// Change title
+post.title = 'Post title changed';
+// Get modified fields.
+post.getModified(); // Returns {title: "Post title changed"}
+// Update object (save changes into collection).
+post.save();
+
+// Remove object from the collection.
+post.remove();
+```
+
+**Example 1: Using model with the templates**
+
+```js
+if (Meteor.isClient) {
+  Template.Posts.helpers({ // Provide "posts" cursor for all posts in the collection.
+    posts: function() {
+      return Posts.find();
+    }
+  });
+
+  // Voting up and down for post is as easy as calling "voteUp" or "voteDown" method on the object.
+  // The "this" keyword in the event listener is an object of our "Post" class.
+  Template.Posts.events({
+    'click .up': function() {
+      this.voteUp();
+      this.save();
+    },
+    'click .down': function() {
+      this.voteDown();
+      this.save();
+    }
+  });
+}
+```
+
+```handlebars
+<head>
+  <title>Posts</title>
+</head>
+
+<body>
+  {{> Posts}}
+</body>
+
+<template name="Posts">
+  {{#each posts}}
+    <p>{{title}} <a class="up">Vote Up</a> | <a class="down">Vote Down</a> | <b>({{votes}})</b></p>
+  {{/each}}
+</template>
+```
 
 ## Installation
 
