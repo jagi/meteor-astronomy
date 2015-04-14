@@ -101,7 +101,7 @@ post.save();
 post.remove();
 ```
 
-**Example 1: Using model with the templates**
+**Example 2: Using model with the templates**
 
 ```js
 if (Meteor.isClient) {
@@ -126,7 +126,7 @@ if (Meteor.isClient) {
 }
 ```
 
-```handlebars
+```hbs
 <head>
   <title>Posts</title>
 </head>
@@ -140,6 +140,78 @@ if (Meteor.isClient) {
     <p>{{title}} <a class="up">Vote Up</a> | <a class="down">Vote Down</a> | <b>({{votes}})</b></p>
   {{/each}}
 </template>
+```
+
+**Example 3: More on working with templates**
+
+You can access document's fields the same way you would do it without Meteor Astronomy.
+
+```hbs
+<div>
+  <p><a href="/post/{{post._id}}">{{post.title}}</a></p>
+  <div>{{post.votes}}</div>
+</div>
+```
+
+You can also call document's methods like you would do normally.
+
+```js
+Post.schema.addMethods({
+  getMessage: function() {
+    return 'Post title: ' + this.title;
+  }
+});
+```
+
+```hbs
+<div>{{post.getMessage}}</div>
+```
+
+**Example 4: Using Meteor Astronomy with Iron Router**
+
+When working with Iron Router, we may want to create link redirecting us to given route using document's id. Let's take a look at routes defined below. We have route for all posts list and route for displaying individual post. The path consists of `/post/` prefix and document id.
+
+```js
+Router.route('/', {
+  name: 'posts',
+  template: 'Posts'
+});
+
+Router.route('/post/:_id', {
+  name: 'post'
+});
+```
+
+Now, we define helper on our template that returns cursor for all posts.
+
+```js
+if (Meteor.isClient) {
+  Template.Posts.helpers({ // Provide "posts" cursor for all posts in the collection.
+    posts: function() {
+      return Posts.find();
+    }
+  });
+}
+```
+
+The first thing you may try to do when creating link to the post is writing code similar to the one posted below.
+
+```hbs
+<div>
+  {{#each posts}}
+    <p><a href="{{pathFor 'post'}}">{{title}}</a></p>
+  {{/each}}
+</div>
+```
+
+This code will not work. Iron Router looks for `_id` field directly on the level of the document. However, the `_id` field is not there. The `_id` is stored in the internal object `_values` and we have getter defined for the document that takes care of getting the `_id` field. Fortunately, we have the `get` function that gets pure values (simple JavaScript object). The correct code will look like follows.
+
+```hbs
+<div>
+  {{#each posts}}
+    <p><a href="{{pathFor 'post' data=this.get}}">{{title}}</a></p>
+  {{/each}}
+</div>
 ```
 
 ## Installation
