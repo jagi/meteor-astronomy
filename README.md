@@ -126,6 +126,22 @@ if (Meteor.isClient) {
 }
 ```
 
+```handlebars
+<head>
+  <title>Posts</title>
+</head>
+
+<body>
+  {{> Posts}}
+</body>
+
+<template name="Posts">
+  {{#each posts}}
+    <p>{{title}} <a class="up">Vote Up</a> | <a class="down">Vote Down</a> | <b>({{votes}})</b></p>
+  {{/each}}
+</template>
+```
+
 ## Installation
 
 ```sh
