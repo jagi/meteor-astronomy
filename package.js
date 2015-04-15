@@ -26,30 +26,6 @@ Package.onUse(function(api) {
   // Events module.
   api.addFiles('lib/modules/events/schema.js', ['client', 'server']);
   api.addFiles('lib/modules/events/module.js', ['client', 'server']);
-  // Validators module.
-  api.addFiles('lib/modules/validators/global.js', ['client', 'server']);
-  api.addFiles('lib/modules/validators/schema.js', ['client', 'server']);
-  api.addFiles('lib/modules/validators/error.js', ['client', 'server']);
-  api.addFiles('lib/modules/validators/validator.js', ['client', 'server']);
-  api.addFiles('lib/modules/validators/module.js', ['client', 'server']);
-  // Behaviors module.
-  api.addFiles('lib/modules/behaviors/global.js', ['client', 'server']);
-  api.addFiles('lib/modules/behaviors/schema.js', ['client', 'server']);
-  api.addFiles('lib/modules/behaviors/behavior.js', ['client', 'server']);
-  api.addFiles('lib/modules/behaviors/module.js', ['client', 'server']);
-  // Validators.
-  api.addFiles('lib/validators/number.js', ['client', 'server']);
-  api.addFiles('lib/validators/string.js', ['client', 'server']);
-  api.addFiles('lib/validators/regex.js', ['client', 'server']);
-  api.addFiles('lib/validators/email.js', ['client', 'server']);
-  api.addFiles('lib/validators/date.js', ['client', 'server']);
-  api.addFiles('lib/validators/choice.js', ['client', 'server']);
-  api.addFiles('lib/validators/compare.js', ['client', 'server']);
-  // Behaviors.
-  api.addFiles('lib/behaviors/nestedset/node.js', ['client', 'server']);
-  api.addFiles('lib/behaviors/nestedset/nestedset.js', ['client', 'server']);
-  api.addFiles('lib/behaviors/sort/sort.js', ['client', 'server']);
-  api.addFiles('lib/behaviors/timestamp/timestamp.js', ['client', 'server']);
 
   api.export(['Astro', 'Astronomy'], ['client', 'server']);
 });

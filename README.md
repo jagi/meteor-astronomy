@@ -16,14 +16,11 @@
     - [Reactivity and reloading](#reactivity-and-reloading)
     - [Saving, updating and removing](#saving-updating-and-removing)
     - [Events](#events)
-    - [Validators](#validators)
     - [Inheritance](#inheritance)
+  - [Modules](#modules)
+    - [Validators](#validators)
     - [Behaviors](#behaviors)
-      - [NestedSet](#nestedset)
-      - [Sort](#sort)
-      - [Timestamp](#timestamp)
-- [Writing behaviors](#writing-behaviors)
-- [Extending Astronomy](#extending-astronomy)
+    - [Writing Astronomy modules](#writing-astronomy-modules)
 - [Contribution](#contribution)
 - [License](#license)
 
@@ -46,7 +43,7 @@ Why the name Meteor Astronomy? As almost everything related to the Meteor is nam
 - Built in behaviors (NestedSet, Sort, Timestamp)
 - Possibility to extend functionality through custom behaviors
 - Setters and getters (partially implemented)
-- Validators (soon)
+- Validators
 - Relations definition (soon)
 - Automatic related object fetching (soon)
 
@@ -383,11 +380,11 @@ if (Meteor.isServer) {
     type: Number,
     default: 10
   });
-  
+
   Post.schema.addField('serverOnlyFieldB', String);
-  
+
   Post.schema.addField('serverOnlyFieldC');
-  
+
   Post.schema.addFields(['serverOnlyFieldD', 'serverOnlyFieldE', 'serverOnlyFieldF']);
 }
 ```
@@ -552,10 +549,6 @@ Post = Astronomy.Class({
 });
 ```
 
-#### Validators
-
-Soon...
-
 #### Inheritance
 
 Inheritance is as simple as telling what model definition to extend. Documents of child and parent classes are stored in the same collection. The distinction what document is of which type is done by looking at the special `_type` attribute that is automatically defined on inherited documents. You shoudn't make any changes to this attribute.
@@ -582,182 +575,33 @@ child.save();
 console.log(child._type); // Prints out 'Child`
 ```
 
+### Modules
+
+#### Validators
+
+Validators are nice way of checking fields values' validity. We can for example check whether given field value is an email string or match given regular expression. You can also write your own validators.
+
+Validators have been implemented as Meteor Astronomy module. You can add it to your Meteor project using following command.
+
+```sh
+$ meteor add jagi:astronomy-validators
+```
+
+To read more about Meteor Astronomy Validators go to module [repository](https://github.com/jagi/meteor-astronomy-validators).
+
 #### Behaviors
 
-Behaviors aare a nice way of modularizing some features. There are situations where we need the same features in several models. Instead repeating the same code, we can create behavior that implements given feature. Later, we can use such behavior in any model. There are three built in behaviors (more to come) [NestedSet](#nestedset), [Sort](#sort), [Timestamp](#timestamp).
+Behaviors are nice way of reusing your code for more than one model. If you have similar features in two or more schemas, you should consider creating behavior for such feature. An example of good behavior can be `createdAt` and `updateAt` fields which should be filled with the current date on document save and on every document update. And it's why we've created `Timestamp` behavior for that.
 
-Let's see how to add behavior to our model.
+Behaviors have been implemented as Meteor Astronomy module. You can add it to your Meteor project using following command.
 
-```js
-Post = Astronomy.Class({
-  name: 'Post',
-  collection: Posts,
-  transform: true,
-  fields: ['title'],
-  behaviors: ['Timestamp']
-});
+```sh
+$ meteor add jagi:astronomy-behaviors
 ```
 
-We can also pass options to behavior, if it accepts any.
+To read more about Meteor Astronomy Behaviors go to module [repository](https://github.com/jagi/meteor-astronomy-behaviors).
 
-Post = Astronomy.Class({
-  name: 'Post',
-  collection: Posts,
-  transform: true,
-  fields: ['title'],
-  behaviors: {
-    'Timestamp': {}
-  }
-});
-
-*Right now passing option to behavior is not implemented. In the future you will be able to tell behavior how it should behave, what fields should it create etc.*
-
-##### NestedSet
-
-The NestedSet behavior is responsible for creating tree structures withing collection. You can read more about Nested Sets on the [Wikipedia](http://en.wikipedia.org/wiki/Nested_set_model). Behavior provides only one method `getNode` that returns node object that takes care of all tree management. It has many methods but you will use only few of them.
-
-`getDoc`
-
-`isValidNode`
-
-`isRoot`
-
-`isLeaf`
-
-`hasChildren`
-
-`hasParent`
-
-`getParent`
-
-`hasPrevSibling`
-
-`hasNextSibling`
-
-`getPrevSibling`
-
-`getNextSibling`
-
-`getSiblings`
-
-`getDescendants`
-
-`getChildren`
-
-`getLeftValue`
-
-`setLeftValue`
-
-`getRightValue`
-
-`setRightValue`
-
-`getDepthValue`
-
-`setDepthValue`
-
-`getRootValue`
-
-`setRootValue`
-
-`makeRoot`
-
-`addChild`
-
-`remove`
-
-`insertAsLastChildOf`
-
-`moveAsLastChildOf`
-
-`moveAsPrevSiblingOf`
-
-`moveAsNextSiblingOf`
-
-##### Sort
-
-The Sort behavior helps with the process of sorting documents. It delivers several useful methods to manage sorting.
-
-The `takeOut` method takes document out of the sorted list.
-
-```js
-var post = Posts.findOne();
-post.takeOut();
-```
-
-The `insertAt` method inserts document on the given position in the list.
-
-```js
-var post = Posts.findOne();
-post.insert(0); // Insert at the beginning of the list
-```
-
-The `moveBy` method moves document up or down by given distance.
-
-```js
-var post = Posts.findOne();
-post.moveBy(2); // Move up by 2
-post.moveBy(-2); // Move down by 2
-```
-
-The `moveTo` method moves document to given position.
-
-```js
-var post = Posts.findOne();
-post.moveTo(10); // Moves document to position 10
-```
-
-The `moveUp` and `moveDown` methods move document up or down by given distance.
-
-```js
-var post = Posts.findOne();
-post.moveUp(2); // Move up by 2
-post.moveDown(2); // Move down by 2
-```
-
-The `moveToTop` and `moveToBottom` methods move document to the top or bottom of the list.
-
-```js
-var post = Posts.findOne();
-post.moveTop(); // Move to up
-post.moveBottom(); // Move to bottom
-```
-
-##### Timestamp
-
-This behavior adds to fields to the schema `createdAt` and `updatedAt`. Those fields will be automatically filled with the current date on document insertion and update.
-
-```js
-var post = new Post();
-post.save();
-console.log(post.createdAt); // Prints out date of document saving
-```
-
-## Writing behaviors
-
-We will describe process of creating behavior on the simplest one `Timestamp`. In the listing below there is the whole code of this behavior.
-
-```js
-Astronomy.Behavior({
-  name: 'Timestamp',
-  fields: {
-    createdAt: null,
-    updatedAt: null
-  },
-  events: {
-    beforeInsert: function() {
-      this.createdAt = new Date();
-    },
-    beforeUpdate: function() {
-      this.updatedAt = new Date();
-    }
-  }
-});
-```
-
-As you can see, the behavior definition is similar to the model definition. We have here mandatory `name` attribute and standard attributes of the model definition: `fields`, `methods`, `events`.
-
-## Extending Astronomy
+#### Writing Astronomy modules
 
 Meteor Astronomy is highly modularized. Any developer can write its own modules that extends Astronomy functionality. Developer can easily hook into process of initialization of schema. Let's take a look how methods feature had been implemented.
 
