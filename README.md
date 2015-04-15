@@ -20,7 +20,7 @@
   - [Modules](#modules)
     - [Validators](#validators)
     - [Behaviors](#behaviors)
-    - [Writing Astronomy modules](#writing-astronomy-modules)
+    - [Writing modules](#writing-modules)
 - [Contribution](#contribution)
 - [License](#license)
 
@@ -577,9 +577,11 @@ console.log(child._type); // Prints out 'Child`
 
 ### Modules
 
+Almost every Astronomy feature had been written as a module. Such approach gives a lot of flexibility when creating applications. We can choose what features do we need and add them to the project. Thanks to that, we can minimize application size and load time. Let's discuss some external modules that are not the part of core Meteor Astronomy package.
+
 #### Validators
 
-Validators are nice way of checking fields values' validity. We can for example check whether given field value is an email string or match given regular expression. You can also write your own validators.
+Validators are nice way of checking fields values' validity. For instance, we can check whether given field value is an email string or matches given regular expression. You can also write your own validators.
 
 Validators have been implemented as Meteor Astronomy module. You can add it to your Meteor project using following command.
 
@@ -601,9 +603,9 @@ $ meteor add jagi:astronomy-behaviors
 
 To read more about Meteor Astronomy Behaviors go to module [repository](https://github.com/jagi/meteor-astronomy-behaviors).
 
-#### Writing Astronomy modules
+#### Writing modules
 
-Meteor Astronomy is highly modularized. Any developer can write its own modules that extends Astronomy functionality. Developer can easily hook into process of initialization of schema. Let's take a look how methods feature had been implemented.
+Meteor Astronomy is highly modularized. Any developer can write its own modules that extends Astronomy functionality. Developer can easily hook into process of initialization of schema. Let's take a look how `methods` feature had been implemented.
 
 First, we define some extra methods on schema prototype.
 
@@ -635,6 +637,15 @@ prototype.addMethods = function(methods) {
 };
 ```
 
+Thanks to the above code we can write.
+
+```js
+Post = Astronomy.Class(/* ... */);
+Post.schema.addMethods({
+  /* ... */
+});
+```
+
 As you can see in the `addMethod` function, we add method to methods list stored in the private `this._methods` object.
 
 ```js
@@ -662,9 +673,9 @@ Astronomy.Module({
 });
 ```
 
-We have to name the module - `Methods` in our example. Next thing we do is hooking into schema initialization process. We create private `this._methods` object and add methods from schema definition that user has provided.
+We have to name the module. In our example it's `Methods`.
 
-In fact almost every Astronomy feature had been written as a module.
+Next thing we do is hooking into schema initialization process. We create private `this._methods` object and add methods from schema definition that user has provided. As you can see `initSchema` function is called in the context of the current class schema (in other words `this` is class schema).
 
 ## Contribution
 
