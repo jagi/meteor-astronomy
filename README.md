@@ -28,6 +28,47 @@
 
 Meteor Astronomy is model layer (in [MVC](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) pattern) for Meteor.
 
+When fetching objects from Mongo Collections you get simple JavaScript objects without any logic. You have to implement logic, validate attributes, check what fields have changed, save only modified fields, transform fields types when reading data from forms etc. in every place you are using them. Wouldn't it be great if you could write just like below?
+```js
+var post = Posts.findOne();
+// Increase votes count by one.
+post.voteUp();
+// Auto convert string input value to number.
+post.count = tmpl.find('input[name=count]').value;
+// Check if all attributes are valid.
+if (post.validate()) {
+  // Updates document with only fields that have changed.
+  post.save();
+}
+```
+And that's exactly what Meteor Astronomy is doing.
+
+How would it look like without Meteor Astronomy?
+```js
+var post = Posts.findOne();
+// Access fields manually without possibility to do some extra action.
+// You have to do extra action in every place you are increasing votes count.
+post.votes++;
+// Manual types conversion. You have to remember to do it every time you update fields.
+post.count = parseInt(tmpl.find('input[name=count]').value, 10);
+// Implement some custom validation logic in every place.
+if (post.count > post.votes) {
+  // Implement error messages system.
+  throw new Error("Votes field's value has to be at least equal " + post.count);
+} else {
+  // Decide what fields have change and update only them.
+  Posts.update({
+    _id: post._id
+  }, {
+    $set: {
+      votes: post.votes,
+      count: post.count
+    }
+  });
+}
+```
+What approach is simpler? I think the answer is obvious :).
+
 Why the name Meteor Astronomy? As almost everything related to the Meteor is named with some cosmological term, so this one couldn't be an exception. The model layer in MVC pattern is the description of real objects and the science describing astronomical objects is [Astronomy](http://en.wikipedia.org/wiki/Astronomy).
 
 ## Functionalities
