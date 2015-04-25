@@ -4,7 +4,7 @@
 - [About](#about)
 - [Installation](#installation)
 - [Features](#features)
-- [Planned features](#features)
+- [Planned features](#planned-features)
 - [Examples](#examples)
 - [Key concepts](#key-concepts)
   - [Defining schema](#defining-schema)
