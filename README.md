@@ -2,10 +2,11 @@
 
 **Table of Contents**
 - [About](#about)
-- [Functionalities](#functionalities)
-- [Examples](#examples)
 - [Installation](#installation)
-- [Key Concepts](#key-concepts)
+- [Features](#features)
+- [Planned features](#features)
+- [Examples](#examples)
+- [Key concepts](#key-concepts)
   - [Defining schema](#defining-schema)
     - [Transformation](#transformation)
     - [Constructor](#constructor)
@@ -71,22 +72,31 @@ What approach is simpler? I think the answer is obvious :).
 
 Why the name Meteor Astronomy? As almost everything related to the Meteor is named with some cosmological term, so this one couldn't be an exception. The model layer in MVC pattern is the description of real objects and the science describing astronomical objects is [Astronomy](http://en.wikipedia.org/wiki/Astronomy).
 
-## Functionalities
+## Installation
+
+```sh
+$ meteor add jagi:astronomy
+```
+
+## Features
 
 - Automatic documents transformation
 - Fields definition (type, default value)
 - Methods definition
-- Events (before/after save, update, insert and remove)
+- Events (before/after: save, update, insert and remove)
+- Setters and getters
 - Modified fields getter
 - Documents cloning
 - Documents reloading
 - Inheritance
-- Built in behaviors (NestedSet, Sort, Timestamp)
-- Possibility to extend functionality through custom behaviors
-- Setters and getters (partially implemented)
-- Validators
-- Relations definition (soon)
-- Automatic related object fetching (soon)
+- Possibility to extend functionality using behaviors ([`jagi:astronomy-behaviors` package](https://github.com/jagi/meteor-astronomy-behaviors))
+- Validators([`jagi:astronomy-validators` package](https://github.com/jagi/meteor-astronomy-validators))
+
+## Planned features
+
+- Custom field types working with EJSON format
+- Relations definition
+- Automatic related object fetching
 
 ## Examples
 
@@ -252,13 +262,7 @@ This code will not work. Iron Router looks for `_id` field directly on the level
 </div>
 ```
 
-## Installation
-
-```sh
-$ meteor add jagi:astronomy
-```
-
-## Key Concepts
+## Key concepts
 
 ### Defining schema
 
