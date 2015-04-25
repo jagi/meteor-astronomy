@@ -1,5 +1,5 @@
 Tinytest.add('Class fields', function(test) {
-  var Parent = Astronomy.Model({
+  var Parent = Astro.Class({
     name: 'Parent',
     fields: {
       parentFieldA: null,
@@ -9,9 +9,8 @@ Tinytest.add('Class fields', function(test) {
     }
   });
 
-  var Child = Astronomy.Model({
+  var Child = Parent.extend({
     name: 'Child',
-    extend: Parent,
     fields: {
       childFieldA: null,
       childFieldB: null,
@@ -20,7 +19,7 @@ Tinytest.add('Class fields', function(test) {
     }
   });
 
-  var Item = Astronomy.Model({
+  var Item = Astro.Class({
     name: 'Item',
     fields: {
       itemFieldA: null,
