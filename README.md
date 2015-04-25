@@ -589,7 +589,15 @@ Validators have been implemented as Meteor Astronomy module. You can add it to y
 $ meteor add jagi:astronomy-validators
 ```
 
-To read more about Meteor Astronomy Validators go to module [repository](https://github.com/jagi/meteor-astronomy-validators).
+To read more about Meteor Astronomy Validators go to the module [repository](https://github.com/jagi/meteor-astronomy-validators).
+
+There is also a way of adding validators in the form of string rules which is more concise but in the same time less flexible. The package that provides such feature is called Meteor Astronomy Simple Validators and can be added to the projec using following command.
+
+```sh
+$ meteor add jagi:astronomy-simple-validators
+```
+
+To read more about Meteor Astronomy Simple Validators go to the module [repository](https://github.com/jagi/meteor-astronomy-simple-validators).
 
 #### Behaviors
 
