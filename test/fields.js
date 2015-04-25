@@ -1,8 +1,6 @@
 Tinytest.add('Class fields', function(test) {
-  var Parents = new Mongo.Collection();
   var Parent = Astro.Class({
     name: 'Parent',
-    collection: Parents,
     fields: {
       parentFieldA: null,
       parentFieldB: null,
