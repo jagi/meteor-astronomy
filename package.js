@@ -18,8 +18,12 @@ Package.onUse(function(api) {
   api.addFiles('lib/module.js', ['client', 'server']);
   api.addFiles('lib/class.js', ['client', 'server']);
   // Fields module.
+  api.addFiles('lib/modules/fields/global.js', ['client', 'server']);
+  api.addFiles('lib/modules/fields/methods.js', ['client', 'server']);
+  api.addFiles('lib/modules/fields/type.js', ['client', 'server']);
   api.addFiles('lib/modules/fields/schema.js', ['client', 'server']);
   api.addFiles('lib/modules/fields/module.js', ['client', 'server']);
+  api.addFiles('lib/modules/fields/types.js', ['client', 'server']);
   // Methods module.
   api.addFiles('lib/modules/methods/schema.js', ['client', 'server']);
   api.addFiles('lib/modules/methods/module.js', ['client', 'server']);
