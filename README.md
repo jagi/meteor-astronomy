@@ -97,6 +97,12 @@ $ meteor add jagi:astronomy
 - Custom field types working with EJSON format
 - Relations definition
 - Automatic related object fetching
+- Form -> Object, Object -> Form conversion
+- Object stringification to EJSON
+- Transaction implementation
+- Behaviors
+  - Vote
+  - I18n
 
 ## Examples
 
