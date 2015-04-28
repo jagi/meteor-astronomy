@@ -629,6 +629,35 @@ Post = Astronomy.Class({
     }
   }
 });
+
+var post = new Post();
+post.save(); // The "beforeSave" event will be invoked.
+```
+
+There are also four events related with setting and getting fields' values: `beforeSet`, `beforeGet`, `afterSet`, `afterGet`. Take a look at the example of using them.
+
+```js
+Post = Astronomy.Class({
+  name: 'Post',
+  collection: Posts,
+  transform: true,
+  fields: ['title', 'slug'],
+  events: {
+    afterSet: function(fieldName, value) {
+      if (fieldName === 'title') {
+        this.slug = value
+          .toLowerCase()
+          .replace(/\s+/g, '-')
+          .replace(/[^\w-]+/g, '');
+      }
+    }
+  }
+});
+
+var post = new Post();
+post.title = 'This is the title';
+
+console.log(post.slug); // Will print "this-is-the-title".
 ```
 
 #### Inheritance
