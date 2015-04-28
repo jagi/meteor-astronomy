@@ -1,6 +1,7 @@
 # Meteor Astronomy
 
 **Table of Contents**
+
 - [About](#about)
 - [Installation](#installation)
 - [Features](#features)
@@ -11,6 +12,8 @@
     - [Transformation](#transformation)
     - [Constructor](#constructor)
     - [Fields](#fields)
+      - [Types](#types)
+      - [Custom types](#custom-types)
     - [Methods](#methods)
     - [Getting modified fields](#getting-modified-fields)
     - [Cloning](#cloning)
@@ -120,9 +123,9 @@ Post = Astronomy.Class({
   collection: Posts, // Associate collection with the model.
   transform: true, // Auto transform objects fetched from collection.
   fields: {
-    'title': String, // Define "title" field of String type.
-    'votes': {
-      type: Number, // Define "votes" field of Number type.
+    title: 'string', // Define "title" field of String type.
+    votes: {
+      type: 'number', // Define "votes" field of Number type.
       default: 0 // Set default "votes" field value to 0.
     }
   },
@@ -382,9 +385,9 @@ Post = Astronomy.Class({
   collection: Posts,
   transform: true,
   fields: {
-    'title': String,
-    'createdAt': Date,
-    'commentsCount': Number
+    title: 'string',
+    createdAt: 'date',
+    commentsCount: 'number'
   }
 });
 
@@ -402,16 +405,16 @@ Post = Astronomy.Class({
   collection: Posts,
   transform: true,
   fields: {
-    'title': {
-      type: String,
+    title: {
+      type: 'string',
       default: ''
     },
-    'createdAt': {
-      type: Date,
+    createdAt: {
+      type: 'date',
       default: null
     },
-    'commentsCount': {
-      type: Number,
+    commentsCount: {
+      type: 'number',
       default: 0
     }
   }
@@ -428,17 +431,45 @@ There are situation when we want to add some fields for the schema that is alrea
 ```js
 if (Meteor.isServer) {
   Post.schema.addField('serverOnlyFieldA', {
-    type: Number,
+    type: 'number',
     default: 10
   });
 
-  Post.schema.addField('serverOnlyFieldB', String);
+  Post.schema.addField('serverOnlyFieldB', 'string');
 
   Post.schema.addField('serverOnlyFieldC');
 
   Post.schema.addFields(['serverOnlyFieldD', 'serverOnlyFieldE', 'serverOnlyFieldF']);
 }
 ```
+
+##### Types
+
+There are few predefined types of fields that you can use to define you class schema. They are:
+
+- `'string'`
+- `'number'`
+- `'boolean'`
+- `'object'`
+- `'array'`
+- `'date'`
+
+Each type has its own casting function that will try to parse any value to a given type. For example when you pass a numerical value into the field of the `'date'` type it will be treated as a timestamp.
+
+##### Custom types
+
+You can easily create you own custom field type. Let's take an example.
+
+```js
+Astronomy.Type({
+  name: 'string',
+  cast: function(value) {
+    return String(value);
+  }
+});
+```
+
+As you can see, we use `Astronomy.Type` method that gets type definition as the only parameter. You have to provide two required attributes in this definition. The first one is the name of the type, that will be used in the field definition. The second one is the cast function, that have to return converted value.
 
 #### Methods
 
