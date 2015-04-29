@@ -600,7 +600,7 @@ Template.main.helpers({
 
 #### Saving, updating and removing
 
-Let's move on to the very important process of storing documents in the collection. We manage it by using just two functions `save` and `remove`. Save method knows if given object has already been stored in the collection and if it needs updating or if it's new object and we have to insert it.
+Let's move on to the very important process of storing documents in the collection. We manage it by using just two functions `save` and `remove`. The `save` method knows if the given object has already been stored in the collection. It knows, if it needs updating or it's a new object to insert.
 
 ```js
 var post = new Post();
@@ -611,6 +611,18 @@ post.title = 'New title';
 post.save(); // Updates document (updates only modified fields)
 
 post.remove(); // Remove document from collection
+```
+
+We can also pass a callback function like we could normally do when using `insert`, `update` or `remove` methods.
+
+```js
+var post = new Post();
+post.title = 'Title';
+post.save(function(err, id) {
+  if (!err) {
+    alert('Document inserted with the ID: ' + id);
+  }
+});
 ```
 
 #### Events
