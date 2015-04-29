@@ -1,18 +1,23 @@
 # Meteor Astronomy
 
 **Table of Contents**
+
 - [About](#about)
 - [Installation](#installation)
 - [Features](#features)
 - [Planned features](#planned-features)
+- [Change log](#change-log)
 - [Examples](#examples)
 - [Key concepts](#key-concepts)
   - [Defining schema](#defining-schema)
     - [Transformation](#transformation)
     - [Constructor](#constructor)
     - [Fields](#fields)
+      - [Types](#types)
+      - [Custom types](#custom-types)
+      - [Setters and getters](#setters-and-getters)
+      - [Modified fields](#modified-fields)
     - [Methods](#methods)
-    - [Getting modified fields](#getting-modified-fields)
     - [Cloning](#cloning)
     - [Reactivity and reloading](#reactivity-and-reloading)
     - [Saving, updating and removing](#saving-updating-and-removing)
@@ -94,15 +99,19 @@ $ meteor add jagi:astronomy
 
 ## Planned features
 
-- Custom field types working with EJSON format
+- ~~Custom field types~~
+- Schema migration
 - Relations definition
 - Automatic related object fetching
 - Form -> Object, Object -> Form conversion
-- Object stringification to EJSON
-- Transaction implementation
+- Transactions
 - Behaviors
   - Vote
   - I18n
+
+## Change log
+
+Change log can be found in the HISTORY.md file.
 
 ## Examples
 
@@ -120,9 +129,9 @@ Post = Astronomy.Class({
   collection: Posts, // Associate collection with the model.
   transform: true, // Auto transform objects fetched from collection.
   fields: {
-    'title': String, // Define "title" field of String type.
-    'votes': {
-      type: Number, // Define "votes" field of Number type.
+    title: 'string', // Define "title" field of String type.
+    votes: {
+      type: 'number', // Define "votes" field of Number type.
       default: 0 // Set default "votes" field value to 0.
     }
   },
@@ -316,20 +325,33 @@ var post = new Post({ // Initialize document with some data
 
 #### Transformation
 
-Right now fetching documents from the `Posts` collection will return simple objects. We can change that and tell collection to return instances of our `Post` class.
+Objects returned from collections that had been set in the class schema definition will be automatically converted to the instance of the proper class. However
+
+```js
+Posts = new Mongo.Collection('posts');
+Post = Astronomy.Class({
+  name: 'Post',
+  collection: Posts
+});
+
+var post = Posts.findOne(); // Get instance of Post class
+```
+
+However you can turn off that feature by setting `transform` flag to `false` in the class schema.
 
 ```js
 Posts = new Mongo.Collection('posts');
 Post = Astronomy.Class({
   name: 'Post',
   collection: Posts,
-  transform: true
+  transform: false
 });
 
 var post = Posts.findOne(); // Get instance of Post class
 ```
 
-If you ever need to get plain object you can force that for particular query.
+If you don't set `transform` flag to `false` and you need to get a plain object you can force that for particular query.
+
 ```js
 var plainPostDoc = Posts.findOne({}, {
   transform: null // Pass null to disable transformation
@@ -344,7 +366,6 @@ We can define class constructor that will be executed every time the new object 
 Post = Astronomy.Class({
   name: 'Post',
   collection: Posts,
-  transform: true,
   init: function(attrs) { // Constructor
     alert('Creating instance!');
   }
@@ -363,7 +384,6 @@ The model schema is useless without fields definition. We have several ways of d
 Post = Astronomy.Class({
   name: 'Post',
   collection: Posts,
-  transform: true,
   fields: ['title', 'createdAt', 'commentsCount']
 });
 
@@ -380,11 +400,10 @@ In the example above we have defined three fields. Their types has not been defi
 Post = Astronomy.Class({
   name: 'Post',
   collection: Posts,
-  transform: true,
   fields: {
-    'title': String,
-    'createdAt': Date,
-    'commentsCount': Number
+    title: 'string',
+    createdAt: 'date',
+    commentsCount: 'number'
   }
 });
 
@@ -400,18 +419,17 @@ post.title = 123; // Correct assignment but numerical value will be converted to
 Post = Astronomy.Class({
   name: 'Post',
   collection: Posts,
-  transform: true,
   fields: {
-    'title': {
-      type: String,
+    title: {
+      type: 'string',
       default: ''
     },
-    'createdAt': {
-      type: Date,
+    createdAt: {
+      type: 'date',
       default: null
     },
-    'commentsCount': {
-      type: Number,
+    commentsCount: {
+      type: 'number',
       default: 0
     }
   }
@@ -428,16 +446,108 @@ There are situation when we want to add some fields for the schema that is alrea
 ```js
 if (Meteor.isServer) {
   Post.schema.addField('serverOnlyFieldA', {
-    type: Number,
+    type: 'number',
     default: 10
   });
 
-  Post.schema.addField('serverOnlyFieldB', String);
+  Post.schema.addField('serverOnlyFieldB', 'string');
 
   Post.schema.addField('serverOnlyFieldC');
 
   Post.schema.addFields(['serverOnlyFieldD', 'serverOnlyFieldE', 'serverOnlyFieldF']);
 }
+```
+
+##### Types
+
+There are few predefined types of fields that you can use to define you class schema. They are:
+
+- `'string'`
+- `'number'`
+- `'boolean'`
+- `'object'`
+- `'array'`
+- `'date'`
+
+Each type has its own casting function that will try to parse any value to a given type. For example when you pass a numerical value into the field of the `'date'` type it will be treated as a timestamp.
+
+##### Custom types
+
+You can easily create you own custom field type. Let's take an example.
+
+```js
+Astronomy.Type({
+  name: 'string',
+  cast: function(value) {
+    return String(value);
+  }
+});
+```
+
+As you can see, we use `Astronomy.Type` method that gets type definition as the only parameter. You have to provide two required attributes in this definition. The first one is the name of the type, that will be used in the field definition. The second one is the cast function, that have to return converted value.
+
+##### Setters and getters
+
+Each fields defined in the schema has its own setter and getter functions. Let's take example.
+
+```js
+Post = Astronomy.Class({
+  name: 'Post',
+  collection: Posts,
+  fields: ['title', 'commentsCount']
+});
+
+var post = new Post();
+post.title = 'Title'; // Call field setter.
+alert(post.title); // Call field getter.
+```
+
+But you can also call setter and getter function directly.
+
+```js
+post.set('title', 'New title');
+alert(post.get('title'));
+```
+
+Setter and getter functions are more powerful. They can take many different arguments and return different data. Let's examine them.
+
+In the example below, we set multiple fields at once.
+
+```js
+post.set({
+  title: 'The newest title',
+  commentsCount: 5
+});
+```
+
+Now let's move on to the getter function. In the following example we get all the fields of the class instance.
+
+```js
+// Returns object with all fields: "_id", "title" and "commentsCount".
+post.get();
+```
+
+We can also tell `get` method fields we want to get.
+
+```js
+// Return only "title" and "commentsCount" fields' values.
+post.get(['title', 'commentsCount']);
+```
+
+##### Modified fields
+
+Values being set on an instance of our model are not directly saved into object. In fact, there are two private objects `_modified` and `_values` that are responsible for storing modified and actually stored in the collection values. When setting some property value, at first it is stored in the `_modified` object. Thanks to that we can do two things. The first one is the ability to determine what fields have been modified from last save and the second one is not updating unnecessary field. For given document, we only update those fields that had been modified.
+
+```js
+var post = Posts.findOne();
+post.getModified(); // Returns empty object {}
+console.log(post.title); // Prints out 'Hello World!'
+
+post.title = 'New title';
+post.getModified(); // Returns {title: 'New title'}
+
+// Get old values for modified fields
+post.getModified(true); // Returns {title: 'Hello World!'}
 ```
 
 #### Methods
@@ -448,7 +558,6 @@ Adding methods to model is even simpler then fields.
 Post = Astronomy.Class({
   name: 'Post',
   collection: Posts,
-  transform: true,
   fields: ['title'],
   methods: {
     read: function() {
@@ -477,22 +586,6 @@ Post.schema.addMethods({
     // Do something
   }
 });
-```
-
-#### Getting modified fields
-
-Values being set on an instance of our model are not directly saved into object. In fact, there are two private objects `_modified` and `_values` that are responsible for storing modified and actually stored in the collection values. When setting some property value, at first it is stored in the `_modified` object. Thanks to that we can do two things. The first one is the ability to determine what fields have been modified from last save and the second one is not updating unnecessary field. For given document, we only update those fields that had been modified.
-
-```js
-var post = Posts.findOne();
-post.getModified(); // Returns empty object {}
-console.log(post.title); // Prints out 'Hello World!'
-
-post.title = 'New title';
-post.getModified(); // Returns {title: 'New title'}
-
-// Get old values for modified fields
-post.getModified(true); // Returns {title: 'Hello World!'}
 ```
 
 #### Cloning
@@ -569,7 +662,7 @@ Template.main.helpers({
 
 #### Saving, updating and removing
 
-Let's move on to the very important process of storing documents in the collection. We manage it by using just two functions `save` and `remove`. Save method knows if given object has already been stored in the collection and if it needs updating or if it's new object and we have to insert it.
+Let's move on to the very important process of storing documents in the collection. We manage it by using just two functions `save` and `remove`. The `save` method knows if the given object has already been stored in the collection. It knows, if it needs updating or it's a new object to insert.
 
 ```js
 var post = new Post();
@@ -582,6 +675,18 @@ post.save(); // Updates document (updates only modified fields)
 post.remove(); // Remove document from collection
 ```
 
+We can also pass a callback function like we could normally do when using `insert`, `update` or `remove` methods.
+
+```js
+var post = new Post();
+post.title = 'Title';
+post.save(function(err, id) {
+  if (!err) {
+    alert('Document inserted with the ID: ' + id);
+  }
+});
+```
+
 #### Events
 
 There are eight events that are called when we do operation on the collection: `beforeSave`, `beforeInsert`, `beforeUpdate`, `beforeRemove`, `afterSave`, `afterInsert`, `afterUpdate`, `afterRemove`. Their names are self explanatory. We can hook into process of saving, inserting, updating and removing of the document.
@@ -590,7 +695,6 @@ There are eight events that are called when we do operation on the collection: `
 Post = Astronomy.Class({
   name: 'Post',
   collection: Posts,
-  transform: true,
   fields: ['title'],
   events: {
     beforeSave: function () {
@@ -598,6 +702,34 @@ Post = Astronomy.Class({
     }
   }
 });
+
+var post = new Post();
+post.save(); // The "beforeSave" event will be invoked.
+```
+
+There are also four events related with setting and getting fields' values: `beforeSet`, `beforeGet`, `afterSet`, `afterGet`. Take a look at the example of using them.
+
+```js
+Post = Astronomy.Class({
+  name: 'Post',
+  collection: Posts,
+  fields: ['title', 'slug'],
+  events: {
+    afterSet: function(fieldName, value) {
+      if (fieldName === 'title') {
+        this.slug = value
+          .toLowerCase()
+          .replace(/\s+/g, '-')
+          .replace(/[^\w-]+/g, '');
+      }
+    }
+  }
+});
+
+var post = new Post();
+post.title = 'This is the title';
+
+console.log(post.slug); // Will print "this-is-the-title".
 ```
 
 #### Inheritance
@@ -608,7 +740,6 @@ Inheritance is as simple as telling what model definition to extend. Documents o
 Parent = Astronomy.Class({
   name: 'Parent',
   collection: Collection,
-  transform: true,
   fields: ['parentField']
 });
 
