@@ -25,3 +25,20 @@ Post = Astro.Class({
   }
 });
 ```
+
+- Documents transformation into class instances is now set to `true` by default.
+
+```js
+// Before
+Post = Astro.Class({
+  /* ... */
+  transform: true
+});
+
+// After
+Post = Astro.Class({
+  /* ... */
+  // Don't have to write "transform: true" anymore.
+});
+
+```
