@@ -1,81 +1,125 @@
-Tinytest.add('Class fields', function(test) {
-  var Parent = Astro.Class({
-    name: 'Parent',
-    fields: {
-      parentFieldA: null,
-      parentFieldB: null,
-      parentFieldC: null,
-      parentFieldD: null
+Tinytest.add('Fields definition', function(test) {
+  var ItemA = Astro.Class({
+    name: 'ItemA',
+    fields: ['defaultField']
+  });
+  test.equal(_.size(ItemA.schema.getFields()), 2,
+    'The "ItemA" class should have 2 fields'
+  );
+
+  ItemA.schema.addField('defaultField2');
+  test.equal(_.size(ItemA.schema.getFields()), 3,
+    'The "ItemA" class should have 3 fields'
+  );
+
+  ItemA.schema.addField('stringField', 'string');
+  test.equal(_.size(ItemA.schema.getFields()), 4,
+    'The "ItemA" class should have 4 fields'
+  );
+
+  ItemA.schema.addField('numberField', {
+    type: 'number',
+    default: 5
+  });
+  test.equal(_.size(ItemA.schema.getFields()), 5,
+    'The "ItemA" class should have 5 fields'
+  );
+
+  ItemA.schema.addFields({
+    booleanField: {
+      type: 'boolean',
+      default: true
     }
   });
+  test.equal(_.size(ItemA.schema.getFields()), 6,
+    'The "ItemA" class should have 6 fields'
+  );
+});
 
-  var Child = Parent.extend({
-    name: 'Child',
+Tinytest.add('Default values', function(test) {
+  var ItemB = Astro.Class({
+    name: 'ItemB',
     fields: {
-      childFieldA: null,
-      childFieldB: null,
-      childFieldC: null,
-      childFieldD: null
+      stringField: {
+        type: 'string',
+        default: 'string'
+      },
+      numberField: {
+        type: 'number',
+        default: 123
+      },
+      booleanField: {
+        type: 'boolean',
+        default: true
+      },
+      dateField: {
+        type: 'date',
+        default: new Date(2000, 0, 1)
+      }
     }
   });
+  var itemB = new ItemB();
 
-  var Item = Astro.Class({
-    name: 'Item',
+  test.equal(itemB.stringField, 'string',
+    'The "stringField" field\'s default value should be "string"'
+  );
+  test.equal(itemB.numberField, 123,
+    'The "numberField" field\'s default value should be 123'
+  );
+  test.isTrue(itemB.booleanField,
+    'The "booleanField" field\'s default value should be null'
+  );
+  test.equal(itemB.dateField, new Date(2000, 0, 1),
+    'The "dateField" field\'s default value should be date "2000-01-01"'
+  );
+});
+
+Tinytest.add('Types casting', function(test) {
+  var ItemC = Astro.Class({
+    name: 'ItemC',
     fields: {
-      itemFieldA: null,
-      itemFieldB: null,
-      itemFieldC: null,
-      itemFieldD: null
+      stringField: {
+        type: 'string'
+      },
+      numberField: {
+        type: 'number'
+      },
+      booleanField: {
+        type: 'boolean'
+      },
+      dateField: {
+        type: 'date'
+      }
     }
   });
+  var itemC = new ItemC();
 
-  test.equal(Item.schema.getFieldsNames().length, 5,
-    'Non inherited class should should have 5 (4 defined + `_id`) fields'
+  itemC.stringField = 123;
+  test.equal(itemC.stringField, '123',
+    'The "stringField" field\'s set value 123 should become "123"'
   );
-  test.equal(Child.schema.getFieldsNames().length, 6,
-    'Child class should should have 6 (4 defined + `_type`, `_id`) fields'
+  itemC.numberField = '123';
+  test.equal(itemC.numberField, 123,
+    'The "numberField" field\'s set value "123" should become 123'
   );
-  test.equal(Child.schema.getFieldsNames(true).length, 10,
-    'Child class should should have 10 (4 defined in child + 4 defined in parent + `_type`, `_id`) fields'
+  itemC.booleanField = '';
+  test.isFalse(itemC.booleanField,
+    'The "booleanField" field\'s set value "" should become false'
   );
-
-  // Add fields to non inherited class.
-  Item.schema.addField('itemFieldE', null);
-  test.equal(Item.schema.getFieldsNames().length, 6,
-    'After addField(fieldName, null) non inherited class should have 6 (5 defined + `_id`) fields'
+  itemC.booleanField = '123';
+  test.isTrue(itemC.booleanField,
+    'The "booleanField" field\'s set value "123" should become true'
   );
-  Item.schema.addField('itemFieldF');
-  test.equal(Item.schema.getFieldsNames().length, 7,
-    'After addField(fieldName) non inherited class should have 7 (6 defined + `_id`) fields'
+  itemC.booleanField = 0;
+  test.isFalse(itemC.booleanField,
+    'The "booleanField" field\'s set value 0 should become false'
   );
-  Item.schema.addFields({
-    'itemFieldG': null
-  });
-  test.equal(Item.schema.getFieldsNames().length, 8,
-    'After addFields({}) non inherited class should have 8 (7 defined + `_id`) fields'
+  itemC.booleanField = 1;
+  test.isTrue(itemC.booleanField,
+    'The "booleanField" field\'s set value 1 should become true'
   );
-  Item.schema.addFields(['itemFieldH']);
-  test.equal(Item.schema.getFieldsNames().length, 9,
-    'After addFields([]) non inherited class should have 9 (8 defined + `_id`) fields'
-  );
-
-  // Add fields to parent class.
-  Parent.schema.addField('parentFieldE', null);
-  test.equal(Child.schema.getFieldsNames(true).length, 11,
-    'After addField(fieldName, null) on parent class, child class should have 11 (4 defined in child + 5 defined in parent + `_type`, `_id`) fields'
-  );
-  Parent.schema.addField('parentFieldF');
-  test.equal(Child.schema.getFieldsNames(true).length, 12,
-    'After addField(fieldName) on parent class, child class should have 12 (4 defined in child + 6 defined in parent + `_type`, `_id`) fields'
-  );
-  Parent.schema.addFields({
-    'parentFieldG': null
-  });
-  test.equal(Child.schema.getFieldsNames(true).length, 13,
-    'After addFields({}) on parent class, child class should have 13 (4 defined in child + 7 defined in parent + `_type`, `_id`) fields'
-  );
-  Parent.schema.addFields(['parentFieldH']);
-  test.equal(Child.schema.getFieldsNames(true).length, 14,
-    'After addFields([]) on parent class, child class should have 14 (4 defined in child + 8 defined in parent + `_type`, `_id`) fields'
+  itemC.dateField = (new Date(2000, 0, 1, 0, 0, 0)).getTime();
+  test.equal(itemC.dateField, new Date(2000, 0, 1, 0, 0, 0),
+    'The "dateField" field\'s set value "" should become false'
   );
 });
