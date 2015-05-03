@@ -1,40 +1,74 @@
 Tinytest.add('EventsOrder order', function(test) {
+  var events;
+
   var EventsOrders = new Mongo.Collection(null);
   var EventsOrder = Astro.Class({
     name: 'EventsOrder',
     collection: EventsOrders,
     transform: true,
     fields: {
-      events: {
-        type: 'array',
-        default: []
+      field: {
+        type: 'string',
+        default: null
       }
     },
     events: {
       beforeSave: function() {
-        this.field.push('beforeSave');
+        events.push('beforeSave');
       },
       afterSave: function() {
-        this.field.push('afterSave');
+        events.push('afterSave');
       },
       beforeInsert: function() {
-        this.field.push('beforeInsert');
+        events.push('beforeInsert');
       },
       afterInsert: function() {
-        this.field.push('afterInsert');
+        events.push('afterInsert');
       },
       beforeUpdate: function() {
-        this.field.push('beforeUpdate');
+        events.push('beforeUpdate');
       },
       afterUpdate: function() {
-        this.field.push('afterUpdate');
+        events.push('afterUpdate');
       },
     }
   });
   var eventsOrder = new EventsOrder();
+  events = [];
   eventsOrder.save();
 
-  // test.equal(eventsOrder.events, '123',
-  //   'The "events" field\'s value should be "123"'
-  // );
+  test.equal(events, [
+    'beforeSave',
+    'beforeInsert',
+    'afterInsert',
+    'afterSave'
+  ],
+    'At insert events order should be: "beforeSave", "beforeInsert", ' +
+    '"afterInsert", "afterSave"'
+  );
+
+  events = [];
+  eventsOrder.save();
+
+  test.equal(events, [
+    'beforeSave',
+    'beforeUpdate'
+  ],
+    'At update without a change events order should be: "beforeSave", ' +
+    '"beforeUpdate"'
+  );
+
+  events = [];
+  eventsOrder.field = 'update';
+  eventsOrder.save();
+
+  test.equal(events, [
+    'beforeSave',
+    'beforeUpdate',
+    'afterUpdate',
+    'afterSave'
+  ],
+    'At update with a change events order should be: "beforeSave", ' +
+    '"beforeUpdate", "afterUpdate", "afterSave"'
+  );
 });
