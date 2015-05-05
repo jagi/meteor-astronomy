@@ -48,6 +48,7 @@ Package.onTest(function(api) {
 
   api.addFiles('lib/global.js', ['client', 'server']);
   api.addFiles('lib/utils.js', ['client', 'server']);
+  api.addFiles('lib/event_manager.js', ['client', 'server']);
   api.addFiles('lib/schema.js', ['client', 'server']);
   api.addFiles('lib/module.js', ['client', 'server']);
   api.addFiles('lib/class.js', ['client', 'server']);
