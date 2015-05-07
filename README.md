@@ -95,7 +95,7 @@ $ meteor add jagi:astronomy
 - Documents reloading
 - Inheritance
 - Possibility to extend functionality using behaviors ([`jagi:astronomy-behaviors` package](https://github.com/jagi/meteor-astronomy-behaviors))
-- Validators([`jagi:astronomy-validators` package](https://github.com/jagi/meteor-astronomy-validators))
+- Validators ([`jagi:astronomy-validators` package](https://github.com/jagi/meteor-astronomy-validators))
 
 ## Planned features
 
@@ -325,7 +325,7 @@ var post = new Post({ // Initialize document with some data
 
 #### Transformation
 
-Objects returned from collections that had been set in the class schema definition will be automatically converted to the instance of the proper class. However
+Objects returned from collections, which had been set in the class schema definition, will be automatically converted to the instance of the proper class.
 
 ```js
 Posts = new Mongo.Collection('posts');
@@ -337,7 +337,7 @@ Post = Astronomy.Class({
 var post = Posts.findOne(); // Get instance of Post class
 ```
 
-However you can turn off that feature by setting `transform` flag to `false` in the class schema.
+However you can turn off that behavior by setting `transform` flag to `false` in the class schema.
 
 ```js
 Posts = new Mongo.Collection('posts');
@@ -350,7 +350,7 @@ Post = Astronomy.Class({
 var post = Posts.findOne(); // Get instance of Post class
 ```
 
-If you don't set `transform` flag to `false` and you need to get a plain object you can force that for particular query.
+If you want to have automatic documents transformation turned on and you need to get a plain object you can force that for a particular query by passing `null` as a value of the `transform` option.
 
 ```js
 var plainPostDoc = Posts.findOne({}, {
@@ -795,12 +795,12 @@ To read more about Meteor Astronomy Behaviors go to module [repository](https://
 
 #### Writing modules
 
-Meteor Astronomy is highly modularized. Any developer can write its own modules that extends Astronomy functionality. Developer can easily hook into process of initialization of schema. Let's take a look how `methods` feature had been implemented.
+Meteor Astronomy is highly modularized. Any developer can write its own modules that extends Astronomy functionality. Developer can easily hook into process of initialization of schema, class and instance of given class. Let's take a look how the `methods` feature had been implemented.
 
-First, we define some extra methods on schema prototype.
+First, we define some extra methods on the schema prototype.
 
 ```js
-var prototype = Astronomy.Schema.prototype;
+var prototype = Astro.Schema.prototype;
 
 prototype.getMethod = function(methodName) {
   /* ... */
@@ -827,7 +827,7 @@ prototype.addMethods = function(methods) {
 };
 ```
 
-Thanks to the above code we can write.
+Now, thanks to that, we can create a class and add some methods accessing its schema as in the example below.
 
 ```js
 Post = Astronomy.Class(/* ... */);
@@ -836,13 +836,7 @@ Post.schema.addMethods({
 });
 ```
 
-As you can see in the `addMethod` function, we add method to methods list stored in the private `this._methods` object.
-
-```js
-this._methods[methodName] = method;
-```
-
-We also get class for the schema and extend its prototype with the given method.
+As you can see in the `addMethod` function, we add a method to the methods list stored in the private `this._methods` object. To this point methods are only stored in the schema but we can't invoke them. In the next line, we add this method to our class's prototype.
 
 ```js
 this.getClass().prototype[methodName] = method;
@@ -865,7 +859,21 @@ Astronomy.Module({
 
 We have to name the module. In our example it's `Methods`.
 
-Next thing we do is hooking into schema initialization process. We create private `this._methods` object and add methods from schema definition that user has provided. As you can see `initSchema` function is called in the context of the current class schema (in other words `this` is class schema).
+We can define few useful methods in the module definition. They are:
+
+- `initSchema`
+- `initClass`
+- `initInstance`
+
+Each method is executed in different context. The invocation context is related with the name of method.
+
+- `initSchema` - `this` points to class's schema
+- `initClass` - `this` points to the class
+- `initInstance` - `this` points to class's instance (document being created)
+
+As you can see in the `Methods` module definition we have the `initSchema` function defined. We create the private `this._methods` object in the class's schema and add methods from the schema definition that a user has provided. As you can see the `initSchema` function is called in the context of the current class schema (in other words `this` is the class schema).
+
+The best way to learn how to write own modules is investigating existing modules.
 
 ## Contribution
 

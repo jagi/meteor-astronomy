@@ -1,3 +1,7 @@
+# 0.4.0 (2015-05-07)
+
+- New events system
+
 # 0.4.0 (2015-04-29)
 
 - The field type definition in the form of string instead casting function.

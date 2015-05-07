@@ -26,18 +26,22 @@ Package.onUse(function(api) {
   // Fields module.
   api.addFiles('lib/modules/fields/global.js', ['client', 'server']);
   api.addFiles('lib/modules/fields/utils.js', ['client', 'server']);
-  api.addFiles('lib/modules/fields/methods.js', ['client', 'server']);
-  api.addFiles('lib/modules/fields/schema.js', ['client', 'server']);
+  api.addFiles('lib/modules/fields/init.js', ['client', 'server']);
+  api.addFiles('lib/modules/fields/init_schema.js', ['client', 'server']);
+  api.addFiles('lib/modules/fields/init_class.js', ['client', 'server']);
+  api.addFiles('lib/modules/fields/init_instance.js', ['client', 'server']);
   api.addFiles('lib/modules/fields/module.js', ['client', 'server']);
   api.addFiles('lib/modules/fields/type.js', ['client', 'server']);
   api.addFiles('lib/modules/fields/types.js', ['client', 'server']);
 
   // Methods module.
-  api.addFiles('lib/modules/methods/schema.js', ['client', 'server']);
+  api.addFiles('lib/modules/methods/init.js', ['client', 'server']);
+  api.addFiles('lib/modules/methods/init_schema.js', ['client', 'server']);
   api.addFiles('lib/modules/methods/module.js', ['client', 'server']);
 
   // Events module.
-  api.addFiles('lib/modules/events/schema.js', ['client', 'server']);
+  api.addFiles('lib/modules/events/init.js', ['client', 'server']);
+  api.addFiles('lib/modules/events/init_schema.js', ['client', 'server']);
   api.addFiles('lib/modules/events/module.js', ['client', 'server']);
 
   api.export(['Astro', 'Astronomy'], ['client', 'server']);
@@ -64,18 +68,22 @@ Package.onTest(function(api) {
   // Fields module.
   api.addFiles('lib/modules/fields/global.js', ['client', 'server']);
   api.addFiles('lib/modules/fields/utils.js', ['client', 'server']);
-  api.addFiles('lib/modules/fields/methods.js', ['client', 'server']);
-  api.addFiles('lib/modules/fields/schema.js', ['client', 'server']);
+  api.addFiles('lib/modules/fields/init.js', ['client', 'server']);
+  api.addFiles('lib/modules/fields/init_schema.js', ['client', 'server']);
+  api.addFiles('lib/modules/fields/init_class.js', ['client', 'server']);
+  api.addFiles('lib/modules/fields/init_instance.js', ['client', 'server']);
   api.addFiles('lib/modules/fields/module.js', ['client', 'server']);
   api.addFiles('lib/modules/fields/type.js', ['client', 'server']);
   api.addFiles('lib/modules/fields/types.js', ['client', 'server']);
 
   // Methods module.
-  api.addFiles('lib/modules/methods/schema.js', ['client', 'server']);
+  api.addFiles('lib/modules/methods/init.js', ['client', 'server']);
+  api.addFiles('lib/modules/methods/init_schema.js', ['client', 'server']);
   api.addFiles('lib/modules/methods/module.js', ['client', 'server']);
 
   // Events module.
-  api.addFiles('lib/modules/events/schema.js', ['client', 'server']);
+  api.addFiles('lib/modules/events/init.js', ['client', 'server']);
+  api.addFiles('lib/modules/events/init_schema.js', ['client', 'server']);
   api.addFiles('lib/modules/events/module.js', ['client', 'server']);
 
   api.export(['Astro', 'Astronomy'], ['client', 'server']);
