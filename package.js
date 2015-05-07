@@ -51,11 +51,15 @@ Package.onTest(function(api) {
   api.use('underscore');
 
   api.addFiles('lib/global.js', ['client', 'server']);
-  api.addFiles('lib/utils.js', ['client', 'server']);
-  api.addFiles('lib/event_manager.js', ['client', 'server']);
   api.addFiles('lib/schema.js', ['client', 'server']);
   api.addFiles('lib/module.js', ['client', 'server']);
   api.addFiles('lib/class.js', ['client', 'server']);
+
+  // Utils.
+  api.addFiles('lib/utils/utils.js', ['client', 'server']);
+  api.addFiles('lib/utils/transform.js', ['client', 'server']);
+  api.addFiles('lib/utils/event_manager.js', ['client', 'server']);
+  api.addFiles('lib/utils/event_data.js', ['client', 'server']);
 
   // Fields module.
   api.addFiles('lib/modules/fields/global.js', ['client', 'server']);
