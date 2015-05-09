@@ -1,6 +1,6 @@
 Package.describe({
   summary: 'Model layer for Meteor',
-  version: '0.5.1',
+  version: '0.6.0',
   name: 'jagi:astronomy',
   git: 'https://github.com/jagi/meteor-astronomy.git'
 });
@@ -23,10 +23,13 @@ Package.onUse(function(api) {
   api.addFiles('lib/utils/event_manager.js', ['client', 'server']);
   api.addFiles('lib/utils/event_data.js', ['client', 'server']);
 
+  // Initialize Astronomy.
+  api.addFiles('lib/init.js', ['client', 'server']);
+
   // Fields module.
   api.addFiles('lib/modules/fields/global.js', ['client', 'server']);
   api.addFiles('lib/modules/fields/utils.js', ['client', 'server']);
-  api.addFiles('lib/modules/fields/init.js', ['client', 'server']);
+  api.addFiles('lib/modules/fields/init_module.js', ['client', 'server']);
   api.addFiles('lib/modules/fields/init_schema.js', ['client', 'server']);
   api.addFiles('lib/modules/fields/init_class.js', ['client', 'server']);
   api.addFiles('lib/modules/fields/init_instance.js', ['client', 'server']);
@@ -35,12 +38,12 @@ Package.onUse(function(api) {
   api.addFiles('lib/modules/fields/types.js', ['client', 'server']);
 
   // Methods module.
-  api.addFiles('lib/modules/methods/init.js', ['client', 'server']);
+  api.addFiles('lib/modules/methods/init_module.js', ['client', 'server']);
   api.addFiles('lib/modules/methods/init_schema.js', ['client', 'server']);
   api.addFiles('lib/modules/methods/module.js', ['client', 'server']);
 
   // Events module.
-  api.addFiles('lib/modules/events/init.js', ['client', 'server']);
+  api.addFiles('lib/modules/events/init_module.js', ['client', 'server']);
   api.addFiles('lib/modules/events/init_schema.js', ['client', 'server']);
   api.addFiles('lib/modules/events/module.js', ['client', 'server']);
 
@@ -64,6 +67,9 @@ Package.onTest(function(api) {
   api.addFiles('lib/utils/transform.js', ['client', 'server']);
   api.addFiles('lib/utils/event_manager.js', ['client', 'server']);
   api.addFiles('lib/utils/event_data.js', ['client', 'server']);
+
+  // Initialize Astronomy.
+  api.addFiles('lib/init.js', ['client', 'server']);
 
   // Fields module.
   api.addFiles('lib/modules/fields/global.js', ['client', 'server']);
