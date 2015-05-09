@@ -1,3 +1,17 @@
+# 0.6.0 (2015-05-07)
+
+- Global events system 
+
+```js
+Astro.eventManager.on('validationerror', function(e) {
+  return 'Custom error message';
+});
+```
+
+# 0.5.1 (2015-05-07)
+
+- Better modified fields detection
+
 # 0.4.0 (2015-05-07)
 
 - New events system
