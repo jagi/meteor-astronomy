@@ -1,4 +1,4 @@
-# 0.6.0 (2015-05-07)
+# 0.6.0 (2015-05-09)
 
 - Global events system 
 
@@ -8,7 +8,7 @@ Astro.eventManager.on('validationerror', function(e) {
 });
 ```
 
-# 0.5.1 (2015-05-07)
+# 0.5.1 (2015-05-09)
 
 - Better modified fields detection
 
