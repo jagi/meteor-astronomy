@@ -689,7 +689,7 @@ post.save(function(err, id) {
 
 #### Events
 
-There are eight events that are called when we do operation on the collection: `beforeSave`, `beforeInsert`, `beforeUpdate`, `beforeRemove`, `afterSave`, `afterInsert`, `afterUpdate`, `afterRemove`. Their names are self explanatory. We can hook into process of saving, inserting, updating and removing of the document.
+There are eight events that are called when we do operation on the collection: `beforesave`, `beforeinsert`, `beforeupdate`, `beforeremove`, `aftersave`, `afterinsert`, `afterupdate`, `afterremove`. Their names are self explanatory. We can hook into process of saving, inserting, updating and removing of the document.
 
 ```js
 Post = Astronomy.Class({
@@ -697,17 +697,17 @@ Post = Astronomy.Class({
   collection: Posts,
   fields: ['title'],
   events: {
-    beforeSave: function () {
+    beforesave: function () {
       this.title += '!';
     }
   }
 });
 
 var post = new Post();
-post.save(); // The "beforeSave" event will be invoked.
+post.save(); // The "beforesave" event will be invoked.
 ```
 
-There are also four events related with setting and getting fields' values: `beforeSet`, `beforeGet`, `afterSet`, `afterGet`. Take a look at the example of using them.
+There are also four events related with setting and getting fields' values: `beforeset`, `beforeget`, `afterset`, `afterget`. Take a look at the example of using them.
 
 ```js
 Post = Astronomy.Class({
@@ -715,7 +715,7 @@ Post = Astronomy.Class({
   collection: Posts,
   fields: ['title', 'slug'],
   events: {
-    afterSet: function(fieldName, value) {
+    afterset: function(fieldName, value) {
       if (fieldName === 'title') {
         this.slug = value
           .toLowerCase()
@@ -795,39 +795,41 @@ To read more about Meteor Astronomy Behaviors go to module [repository](https://
 
 #### Writing modules
 
-Meteor Astronomy is highly modularized. Any developer can write its own modules that extends Astronomy functionality. Developer can easily hook into process of initialization of schema, class and instance of given class. Let's take a look how the `methods` feature had been implemented.
+Meteor Astronomy is highly modularized. Any developer can write its own modules that extends Astronomy functionality. Developer can easily hook into the process of initialization of module, schema, class and instance of given class. Let's take a look how the `methods` feature had been implemented.
 
-First, we define some extra methods on the schema prototype.
+First, we define some extra methods in the schema prototype.
 
 ```js
-var prototype = Astro.Schema.prototype;
+onInitModule = function() {
+  var prototype = Astro.Schema.prototype;
 
-prototype.getMethod = function(methodName) {
-  /* ... */
-};
+  prototype.getMethod = function(methodName) {
+    /* ... */
+  };
 
-prototype.getMethods = function() {
-  /* ... */
-};
+  prototype.getMethods = function() {
+    /* ... */
+  };
 
-prototype.addMethod = function(methodName, method) {
-  if (!_.isString(methodName)) {
-    return;
-  }
-  if (!_.isFunction(method)) {
-    return;
-  }
+  prototype.addMethod = function(methodName, method) {
+    if (!_.isString(methodName)) {
+      return;
+    }
+    if (!_.isFunction(method)) {
+      return;
+    }
 
-  this._methods[methodName] = method;
-  this.getClass().prototype[methodName] = method;
-};
+    this._methods[methodName] = method;
+    this.getClass().prototype[methodName] = method;
+  };
 
-prototype.addMethods = function(methods) {
-  /* ... */
+  prototype.addMethods = function(methods) {
+    /* ... */
+  };
 };
 ```
 
-Now, thanks to that, we can create a class and add some methods accessing its schema as in the example below.
+Thanks to that, we can create a class and add some methods accessing its schema as in the example below.
 
 ```js
 Post = Astronomy.Class(/* ... */);
@@ -842,18 +844,24 @@ As you can see in the `addMethod` function, we add a method to the methods list 
 this.getClass().prototype[methodName] = method;
 ```
 
-In another file we define our `Methods` module.
+In another file we define `onInitSchema` function...
+
+```js
+onInitSchema = function(Class, definition) {
+  this._methods = {};
+
+  if (_.has(definition, 'methods')) {
+    this.addMethods(definition.methods);
+  }
+};
+```
+... and `Methods` module that joins everything together.
 
 ```js
 Astronomy.Module({
   name: 'Methods',
-  initSchema: function(Class, definition) {
-    this._methods = {};
-
-    if (_.has(definition, 'methods')) {
-      this.addMethods(definition.methods);
-    }
-  }
+  oninitmodule: onInitModule,
+  oninitschema: onInitSchema
 });
 ```
 
@@ -861,17 +869,19 @@ We have to name the module. In our example it's `Methods`.
 
 We can define few useful methods in the module definition. They are:
 
-- `initSchema`
-- `initClass`
-- `initInstance`
+- `oninitmodule`
+- `oninitschema`
+- `oninitclass`
+- `oninitinstance`
 
-Each method is executed in different context. The invocation context is related with the name of method.
+Each method is executed in different context. The invocation context is related to the name of method.
 
-- `initSchema` - `this` points to class's schema
-- `initClass` - `this` points to the class
-- `initInstance` - `this` points to class's instance (document being created)
+- `oninitmodule` - `this` points to `window` object
+- `oninitschema` - `this` points to class's schema
+- `oninitclass` - `this` points to the class
+- `oninitinstance` - `this` points to class's instance (document being created)
 
-As you can see in the `Methods` module definition we have the `initSchema` function defined. We create the private `this._methods` object in the class's schema and add methods from the schema definition that a user has provided. As you can see the `initSchema` function is called in the context of the current class schema (in other words `this` is the class schema).
+As you can see in the `Methods` module definition we have the `oninitschema` function defined. We create the private `this._methods` object in the class's schema and add methods from the schema definition that a user has provided. As you can see the `oninitschema` function is called in the context of the current class schema (in other words `this` is the class schema).
 
 The best way to learn how to write own modules is investigating existing modules.
 
