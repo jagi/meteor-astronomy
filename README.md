@@ -536,7 +536,7 @@ post.get(['title', 'commentsCount']);
 
 ##### Modified fields
 
-Values being set on an instance of our model are not directly saved into object. In fact, there are two private objects `_modified` and `_values` that are responsible for storing modified and actually stored in the collection values. When setting some property value, at first it is stored in the `_modified` object. Thanks to that we can do two things. The first one is the ability to determine what fields have been modified from last save and the second one is not updating unnecessary field. For given document, we only update those fields that had been modified.
+There are two internal object in each Astronomy document. They are `_values` and `_original`. At the beginning (after fetching or creating new document) both objects are the same (the `_original` object contains copies, not references, of all values in the `_values` object). Modification of any field causes setting new value for that field in the `_values` internal object. Thanks to that, we can compare values in the `_original` and `_values` object and decide what fields had been modified.
 
 ```js
 var post = Posts.findOne();
