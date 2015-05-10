@@ -22,6 +22,10 @@
     - [Reactivity and reloading](#reactivity-and-reloading)
     - [Saving, updating and removing](#saving-updating-and-removing)
     - [Events](#events)
+      - [Storage events](#storage-events)
+      - [Field events](#field-events)
+      - [Global events](#global-events)
+      - [Events propagation](#events-propagation)
     - [Inheritance](#inheritance)
   - [Modules](#modules)
     - [Validators](#validators)
@@ -552,7 +556,7 @@ post.getModified(true); // Returns {title: 'Hello World!'}
 
 #### Methods
 
-Adding methods to model is even simpler then fields.
+Adding methods to model is even simpler.
 
 ```js
 Post = Astronomy.Class({
@@ -689,7 +693,9 @@ post.save(function(err, id) {
 
 #### Events
 
-There are eight events that are called when we do operation on the collection: `beforesave`, `beforeinsert`, `beforeupdate`, `beforeremove`, `aftersave`, `afterinsert`, `afterupdate`, `afterremove`. Their names are self explanatory. We can hook into process of saving, inserting, updating and removing of the document.
+##### Storage events
+
+There are eight events that can be called during the operations on collections: `beforesave`, `beforeinsert`, `beforeupdate`, `beforeremove`, `aftersave`, `afterinsert`, `afterupdate`, `afterremove`. Their names are self explanatory. We can hook into process of saving, inserting, updating and removing of a document.
 
 ```js
 Post = Astronomy.Class({
@@ -707,6 +713,8 @@ var post = new Post();
 post.save(); // The "beforesave" event will be invoked.
 ```
 
+##### Field events
+
 There are also four events related with setting and getting fields' values: `beforeset`, `beforeget`, `afterset`, `afterget`. Take a look at the example of using them.
 
 ```js
@@ -715,7 +723,10 @@ Post = Astronomy.Class({
   collection: Posts,
   fields: ['title', 'slug'],
   events: {
-    afterset: function(fieldName, value) {
+    afterset: function(e) {
+      var fieldName = e.data.field;
+      var value = e.data.value;
+
       if (fieldName === 'title') {
         this.slug = value
           .toLowerCase()
@@ -730,6 +741,93 @@ var post = new Post();
 post.title = 'This is the title';
 
 console.log(post.slug); // Will print "this-is-the-title".
+```
+
+##### Global events
+
+We can also define global events that will be executed in the context of any created document. Let's take a look at the example.
+
+```js
+Astro.on('afterset', function(e) {
+  console.log('The "' + e.data.field + '" had been set to "' + e.data.value + '" on the object of the "' + this.constructor.schema.getName() + '" class');
+});
+
+var post = new Post();
+post.title = 'title'; // The "afterset" event triggered.
+
+var item = new Item();
+item.name = 'name'; // The "afterset" event triggered.
+
+var car = new Car();
+car.wheels = 4; // The "afterset" event triggered.
+```
+
+##### Events propagation
+
+Meteor Astronomy events work almost like the regular JavaScript events and you can also stop their propagation. Every event handler receives `EventData` object as its first arguments. The event data object has `stopPropagation` method that stops execution of any further events of given type on given object util the next event occurrence.
+
+```js
+Post = Astro.Class({
+  name: 'Post',
+  collection: Posts,
+  fields: ['title'],
+  events: {
+    beforesave: function(e) {
+      console.log('First event executed');
+      e.stopPropagation();
+    }
+  }
+});
+
+Post.schema.addEvent('beforesave', function(e) {
+  console.log('Second event that will not be executed because of the stopped event propagation');
+});
+
+var post = new Post();
+post.save(); // Only first event handle will be executed.
+```
+
+It is also important in which order event propagation occurs.
+
+1. At first event is triggered on the document that caused event to occur.
+2. When the event's propagation hadn't been stopped then we check if given document has any parent class. If it does then we invoke the event on a parent class if it has an event handler defined for the given event name.
+3. We repeat step 2 until we reach the last parent class.
+4. Lastly a global event is invoked (if defined).
+
+Take a look at the example.
+
+```js
+Parent = Astro.Class({
+  name: 'Parent',
+  collection: Items,
+  fields: ['parent'],
+  events: {
+    beforesave: function() {
+      console.log('Parent.beforesave');
+    }
+  }
+});
+
+Child = Astro.Class({
+  name: 'Child',
+  fields: ['child'],
+  events: {
+    beforesave: function() {
+      console.log('Child.beforesave');
+    }
+  }
+});
+
+Astro.on('beforesave', function() {
+  console.log('Global.beforesave');
+});
+
+var child = new Child();
+child.save();
+// Events will be executed in the following order:
+// 1. Child.beforesave
+// 2. Parent.beforesave
+// 3. Global.beforesave
 ```
 
 #### Inheritance
