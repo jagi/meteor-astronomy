@@ -1,6 +1,11 @@
+# 0.6.1 (2015-05-10)
+
+- Rewrite events system and introduce events propagation
+- Rename validation helpers
+
 # 0.6.0 (2015-05-09)
 
-- Global events system 
+- Global events system
 
 ```js
 Astro.eventManager.on('validationerror', function(e) {
