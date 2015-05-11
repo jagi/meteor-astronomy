@@ -1,4 +1,4 @@
-Tinytest.add('ParentEventOrder order', function(test) {
+Tinytest.add('Events order', function(test) {
   var events;
   var expectedOrder;
 
@@ -14,68 +14,68 @@ Tinytest.add('ParentEventOrder order', function(test) {
     },
     events: {
       beforeset: function() {
-        events.push('1. beforeset on parent');
+        events.push('beforeset 1 on parent');
       },
       afterset: function() {
-        events.push('1. afterset on parent');
+        events.push('afterset 1 on parent');
       },
       beforeget: function() {
-        events.push('1. beforeget on parent');
+        events.push('beforeget 1 on parent');
       },
       afterget: function() {
-        events.push('1. afterget on parent');
+        events.push('afterget 1 on parent');
       },
       beforesave: function() {
-        events.push('1. beforesave on parent');
+        events.push('beforesave 1 on parent');
       },
       aftersave: function() {
-        events.push('1. aftersave on parent');
+        events.push('aftersave 1 on parent');
       },
       beforeinsert: function() {
-        events.push('1. beforeinsert on parent');
+        events.push('beforeinsert 1 on parent');
       },
       afterinsert: function() {
-        events.push('1. afterinsert on parent');
+        events.push('afterinsert 1 on parent');
       },
       beforeupdate: function() {
-        events.push('1. beforeupdate on parent');
+        events.push('beforeupdate 1 on parent');
       },
       afterupdate: function() {
-        events.push('1. afterupdate on parent');
+        events.push('afterupdate 1 on parent');
       }
     }
   });
 
   ParentEventOrder.schema.addEvents({
     beforeset: function() {
-      events.push('2. beforeset on parent');
+      events.push('beforeset 2 on parent');
     },
     afterset: function() {
-      events.push('2. afterset on parent');
+      events.push('afterset 2 on parent');
     },
     beforeget: function() {
-      events.push('2. beforeget on parent');
+      events.push('beforeget 2 on parent');
     },
     afterget: function() {
-      events.push('2. afterget on parent');
+      events.push('afterget 2 on parent');
     },
     beforesave: function() {
-      events.push('2. beforesave on parent');
+      events.push('beforesave 2 on parent');
     },
     aftersave: function() {
-      events.push('2. aftersave on parent');
+      events.push('aftersave 2 on parent');
     },
     beforeinsert: function() {
-      events.push('2. beforeinsert on parent');
+      events.push('beforeinsert 2 on parent');
     },
     afterinsert: function() {
-      events.push('2. afterinsert on parent');
+      events.push('afterinsert 2 on parent');
     },
     beforeupdate: function() {
-      events.push('2. beforeupdate on parent');
+      events.push('beforeupdate 2 on parent');
     },
     afterupdate: function() {
-      events.push('2. afterupdate on parent');
+      events.push('afterupdate 2 on parent');
     }
   });
 
@@ -89,251 +89,196 @@ Tinytest.add('ParentEventOrder order', function(test) {
     },
     events: {
       beforeset: function() {
-        events.push('1. beforeset on child');
+        events.push('beforeset 1 on child');
       },
       afterset: function() {
-        events.push('1. afterset on child');
+        events.push('afterset 1 on child');
       },
       beforeget: function() {
-        events.push('1. beforeget on child');
+        events.push('beforeget 1 on child');
       },
       afterget: function() {
-        events.push('1. afterget on child');
+        events.push('afterget 1 on child');
       },
       beforesave: function() {
-        events.push('1. beforesave on child');
+        events.push('beforesave 1 on child');
       },
       aftersave: function() {
-        events.push('1. aftersave on child');
+        events.push('aftersave 1 on child');
       },
       beforeinsert: function() {
-        events.push('1. beforeinsert on child');
+        events.push('beforeinsert 1 on child');
       },
       afterinsert: function() {
-        events.push('1. afterinsert on child');
+        events.push('afterinsert 1 on child');
       },
       beforeupdate: function() {
-        events.push('1. beforeupdate on child');
+        events.push('beforeupdate 1 on child');
       },
       afterupdate: function() {
-        events.push('1. afterupdate on child');
+        events.push('afterupdate 1 on child');
       }
     }
   });
 
   ChildEventOrder.schema.addEvents({
     beforeset: function() {
-      events.push('2. beforeset on child');
+      events.push('beforeset 2 on child');
     },
     afterset: function() {
-      events.push('2. afterset on child');
+      events.push('afterset 2 on child');
     },
     beforeget: function() {
-      events.push('2. beforeget on child');
+      events.push('beforeget 2 on child');
     },
     afterget: function() {
-      events.push('2. afterget on child');
+      events.push('afterget 2 on child');
     },
     beforesave: function() {
-      events.push('2. beforesave on child');
+      events.push('beforesave 2 on child');
     },
     aftersave: function() {
-      events.push('2. aftersave on child');
+      events.push('aftersave 2 on child');
     },
     beforeinsert: function() {
-      events.push('2. beforeinsert on child');
+      events.push('beforeinsert 2 on child');
     },
     afterinsert: function() {
-      events.push('2. afterinsert on child');
+      events.push('afterinsert 2 on child');
     },
     beforeupdate: function() {
-      events.push('2. beforeupdate on child');
+      events.push('beforeupdate 2 on child');
     },
     afterupdate: function() {
-      events.push('2. afterupdate on child');
+      events.push('afterupdate 2 on child');
     }
   });
 
   Astro.on('beforeset', function() {
-    events.push('global beforeset');
+    events.push('beforeset global');
   });
   Astro.on('afterset', function() {
-    events.push('global afterset');
+    events.push('afterset global');
   });
   Astro.on('beforeget', function() {
-    events.push('global beforeget');
+    events.push('beforeget global');
   });
   Astro.on('afterget', function() {
-    events.push('global afterget');
+    events.push('afterget global');
   });
   Astro.on('beforesave', function() {
-    events.push('global beforesave');
+    events.push('beforesave global');
   });
   Astro.on('aftersave', function() {
-    events.push('global aftersave');
+    events.push('aftersave global');
   });
   Astro.on('beforeinsert', function() {
-    events.push('global beforeinsert');
+    events.push('beforeinsert global');
   });
   Astro.on('afterinsert', function() {
-    events.push('global afterinsert');
+    events.push('afterinsert global');
   });
   Astro.on('beforeupdate', function() {
-    events.push('global beforeupdate');
+    events.push('beforeupdate global');
   });
   Astro.on('afterupdate', function() {
-    events.push('global afterupdate');
+    events.push('afterupdate global');
   });
   Astro.on('beforeremove', function() {
-    events.push('global beforeremove');
+    events.push('beforeremove global');
   });
   Astro.on('afterremove', function() {
-    events.push('global afterremove');
+    events.push('afterremove global');
   });
 
-  // 1. parent test.
+  // 1.
   events = [];
   expectedOrder = [
-    '1. beforeget on parent',
-    '2. beforeget on parent',
-    'global beforeget',
-    '1. afterget on parent',
-    '2. afterget on parent',
-    'global afterget',
-    '1. beforeget on parent',
-    '2. beforeget on parent',
-    'global beforeget',
-    '1. afterget on parent',
-    '2. afterget on parent',
-    'global afterget',
-    '1. beforesave on parent',
-    '2. beforesave on parent',
-    'global beforesave',
-    '1. beforeinsert on parent',
-    '2. beforeinsert on parent',
-    'global beforeinsert',
-    '1. afterinsert on parent',
-    '2. afterinsert on parent',
-    'global afterinsert',
-    '1. aftersave on parent',
-    '2. aftersave on parent',
-    'global aftersave'
+    'beforesave 1 on parent',
+    'beforesave 2 on parent',
+    'beforesave global',
+    'beforeinsert 1 on parent',
+    'beforeinsert 2 on parent',
+    'beforeinsert global',
+    'afterinsert 1 on parent',
+    'afterinsert 2 on parent',
+    'afterinsert global',
+    'aftersave 1 on parent',
+    'aftersave 2 on parent',
+    'aftersave global'
   ];
   var parentEventOrder = new ParentEventOrder();
   parentEventOrder.save();
   test.equal(events, expectedOrder,
-    '1. Wrong events order on a parent document insert'
+    'Wrong 1 events order on a parent document insert'
   );
 
-  // 2. parent test.
+  // 2.
   events = [];
   expectedOrder = [];
   parentEventOrder.save();
   test.equal(events, expectedOrder,
-    '2. Wrong events order on a parent document update without a change'
+    'Wrong 2 events order on a parent document update without a change'
   );
 
-  // 3. parent test.
+  // 3.
   events = [];
   expectedOrder = [
-    '1. beforeset on parent',
-    '2. beforeset on parent',
-    'global beforeset',
-    '1. afterset on parent',
-    '2. afterset on parent',
-    'global afterset',
-    '1. beforesave on parent',
-    '2. beforesave on parent',
-    'global beforesave',
-    '1. beforeupdate on parent',
-    '2. beforeupdate on parent',
-    'global beforeupdate',
-    '1. afterupdate on parent',
-    '2. afterupdate on parent',
-    'global afterupdate',
-    '1. aftersave on parent',
-    '2. aftersave on parent',
-    'global aftersave'
+    'beforeset 1 on parent',
+    'beforeset 2 on parent',
+    'beforeset global',
+    'afterset 1 on parent',
+    'afterset 2 on parent',
+    'afterset global',
+    'beforeget 1 on parent',
+    'beforeget 2 on parent',
+    'beforeget global',
+    'afterget 1 on parent',
+    'afterget 2 on parent',
+    'afterget global',
+    'beforesave 1 on parent',
+    'beforesave 2 on parent',
+    'beforesave global',
+    'beforeupdate 1 on parent',
+    'beforeupdate 2 on parent',
+    'beforeupdate global',
+    'afterupdate 1 on parent',
+    'afterupdate 2 on parent',
+    'afterupdate global',
+    'aftersave 1 on parent',
+    'aftersave 2 on parent',
+    'aftersave global'
   ];
   parentEventOrder.parentField = 'update';
+  parentEventOrder.parentField;
   parentEventOrder.save();
   test.equal(events, expectedOrder,
     '3. Wrong events order on a parent document update after a change'
   );
 
-  // 4. child test.
+  // 4.
   events = [];
   expectedOrder = [
-    '1. beforeget on child',
-    '2. beforeget on child',
-    '1. beforeget on parent',
-    '2. beforeget on parent',
-    'global beforeget',
-    '1. afterget on child',
-    '2. afterget on child',
-    '1. afterget on parent',
-    '2. afterget on parent',
-    'global afterget',
-    '1. beforeget on child',
-    '2. beforeget on child',
-    '1. beforeget on parent',
-    '2. beforeget on parent',
-    'global beforeget',
-    '1. afterget on child',
-    '2. afterget on child',
-    '1. afterget on parent',
-    '2. afterget on parent',
-    'global afterget',
-    '1. beforeget on child',
-    '2. beforeget on child',
-    '1. beforeget on parent',
-    '2. beforeget on parent',
-    'global beforeget',
-    '1. afterget on child',
-    '2. afterget on child',
-    '1. afterget on parent',
-    '2. afterget on parent',
-    'global afterget',
-    '1. beforeget on child',
-    '2. beforeget on child',
-    '1. beforeget on parent',
-    '2. beforeget on parent',
-    'global beforeget',
-    '1. afterget on child',
-    '2. afterget on child',
-    '1. afterget on parent',
-    '2. afterget on parent',
-    'global afterget',
-    '1. beforeget on child',
-    '2. beforeget on child',
-    '1. beforeget on parent',
-    '2. beforeget on parent',
-    'global beforeget',
-    '1. afterget on child',
-    '2. afterget on child',
-    '1. afterget on parent',
-    '2. afterget on parent',
-    'global afterget',
-    '1. beforesave on child',
-    '2. beforesave on child',
-    '1. beforesave on parent',
-    '2. beforesave on parent',
-    'global beforesave',
-    '1. beforeinsert on child',
-    '2. beforeinsert on child',
-    '1. beforeinsert on parent',
-    '2. beforeinsert on parent',
-    'global beforeinsert',
-    '1. afterinsert on child',
-    '2. afterinsert on child',
-    '1. afterinsert on parent',
-    '2. afterinsert on parent',
-    'global afterinsert',
-    '1. aftersave on child',
-    '2. aftersave on child',
-    '1. aftersave on parent',
-    '2. aftersave on parent',
-    'global aftersave'
+    'beforesave 1 on child',
+    'beforesave 2 on child',
+    'beforesave 1 on parent',
+    'beforesave 2 on parent',
+    'beforesave global',
+    'beforeinsert 1 on child',
+    'beforeinsert 2 on child',
+    'beforeinsert 1 on parent',
+    'beforeinsert 2 on parent',
+    'beforeinsert global',
+    'afterinsert 1 on child',
+    'afterinsert 2 on child',
+    'afterinsert 1 on parent',
+    'afterinsert 2 on parent',
+    'afterinsert global',
+    'aftersave 1 on child',
+    'aftersave 2 on child',
+    'aftersave 1 on parent',
+    'aftersave 2 on parent',
+    'aftersave global'
   ];
   var childEventOrder = new ChildEventOrder();
   childEventOrder.save();
@@ -341,7 +286,7 @@ Tinytest.add('ParentEventOrder order', function(test) {
     '4. Wrong events order on a child document insert'
   );
 
-  // 5. child test.
+  // 5.
   events = [];
   expectedOrder = [];
   childEventOrder.save();
@@ -349,41 +294,52 @@ Tinytest.add('ParentEventOrder order', function(test) {
     '5. Wrong events order on a child document update without a change'
   );
 
-  // 6. child test.
+  // 6.
   events = [];
   expectedOrder = [
-    '1. beforeset on child',
-    '2. beforeset on child',
-    '1. beforeset on parent',
-    '2. beforeset on parent',
-    'global beforeset',
-    '1. afterset on child',
-    '2. afterset on child',
-    '1. afterset on parent',
-    '2. afterset on parent',
-    'global afterset',
-    '1. beforesave on child',
-    '2. beforesave on child',
-    '1. beforesave on parent',
-    '2. beforesave on parent',
-    'global beforesave',
-    '1. beforeupdate on child',
-    '2. beforeupdate on child',
-    '1. beforeupdate on parent',
-    '2. beforeupdate on parent',
-    'global beforeupdate',
-    '1. afterupdate on child',
-    '2. afterupdate on child',
-    '1. afterupdate on parent',
-    '2. afterupdate on parent',
-    'global afterupdate',
-    '1. aftersave on child',
-    '2. aftersave on child',
-    '1. aftersave on parent',
-    '2. aftersave on parent',
-    'global aftersave'
+    'beforeset 1 on child',
+    'beforeset 2 on child',
+    'beforeset 1 on parent',
+    'beforeset 2 on parent',
+    'beforeset global',
+    'afterset 1 on child',
+    'afterset 2 on child',
+    'afterset 1 on parent',
+    'afterset 2 on parent',
+    'afterset global',
+    'beforeget 1 on child',
+    'beforeget 2 on child',
+    'beforeget 1 on parent',
+    'beforeget 2 on parent',
+    'beforeget global',
+    'afterget 1 on child',
+    'afterget 2 on child',
+    'afterget 1 on parent',
+    'afterget 2 on parent',
+    'afterget global',
+    'beforesave 1 on child',
+    'beforesave 2 on child',
+    'beforesave 1 on parent',
+    'beforesave 2 on parent',
+    'beforesave global',
+    'beforeupdate 1 on child',
+    'beforeupdate 2 on child',
+    'beforeupdate 1 on parent',
+    'beforeupdate 2 on parent',
+    'beforeupdate global',
+    'afterupdate 1 on child',
+    'afterupdate 2 on child',
+    'afterupdate 1 on parent',
+    'afterupdate 2 on parent',
+    'afterupdate global',
+    'aftersave 1 on child',
+    'aftersave 2 on child',
+    'aftersave 1 on parent',
+    'aftersave 2 on parent',
+    'aftersave global'
   ];
   childEventOrder.childField = 'update';
+  childEventOrder.childField;
   childEventOrder.save();
   test.equal(events, expectedOrder,
     '6. Wrong events order on a child document update after a change'
