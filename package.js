@@ -11,6 +11,7 @@ Package.onUse(function(api) {
   api.use('mongo');
   api.use('minimongo');
   api.use('underscore');
+  api.use('ejson');
 
   api.addFiles('lib/global.js', ['client', 'server']);
   api.addFiles('lib/event_manager.js', ['client', 'server']);
@@ -44,6 +45,11 @@ Package.onUse(function(api) {
   api.addFiles('lib/modules/methods/init_module.js', ['client', 'server']);
   api.addFiles('lib/modules/methods/init_schema.js', ['client', 'server']);
   api.addFiles('lib/modules/methods/module.js', ['client', 'server']);
+
+  // EJSON module.
+  api.addFiles('lib/modules/ejson/init_module.js', ['client', 'server']);
+  api.addFiles('lib/modules/ejson/init_schema.js', ['client', 'server']);
+  api.addFiles('lib/modules/ejson/module.js', ['client', 'server']);
 
   api.export(['Astro', 'Astronomy'], ['client', 'server']);
 });
@@ -54,6 +60,7 @@ Package.onTest(function(api) {
   api.use('mongo');
   api.use('minimongo');
   api.use('underscore');
+  api.use('ejson');
 
   api.addFiles('lib/global.js', ['client', 'server']);
   api.addFiles('lib/event_manager.js', ['client', 'server']);
@@ -87,6 +94,10 @@ Package.onTest(function(api) {
   api.addFiles('lib/modules/methods/init_module.js', ['client', 'server']);
   api.addFiles('lib/modules/methods/init_schema.js', ['client', 'server']);
   api.addFiles('lib/modules/methods/module.js', ['client', 'server']);
+
+  // EJSON module.
+  api.addFiles('lib/modules/ejson/init_schema.js', ['client', 'server']);
+  api.addFiles('lib/modules/ejson/module.js', ['client', 'server']);
 
   api.export(['Astro', 'Astronomy'], ['client', 'server']);
 
