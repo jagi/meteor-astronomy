@@ -106,8 +106,10 @@ $ meteor add jagi:astronomy
 ## Planned features
 
 - ~~Custom field types~~
-- Schema migration
+- EJSONinification of documents
 - Relations definition
+- Integration with [Orion CMS](https://github.com/orionjs/orion/)
+- Schema migration
 - Automatic related object fetching
 - Form -> Object, Object -> Form conversion
 - Transactions
