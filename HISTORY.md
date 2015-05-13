@@ -1,3 +1,7 @@
+# 0.7.0 (2015-05-13)
+
+- EJSON-ification of Astronomy objects
+
 # 0.6.1 (2015-05-10)
 
 - Rewrite events system and introduce events propagation
