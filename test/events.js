@@ -210,15 +210,22 @@ Tinytest.add('Events order', function(test) {
   var parentEventOrder = new ParentEventOrder();
   parentEventOrder.save();
   test.equal(events, expectedOrder,
-    'Wrong 1 events order on a parent document insert'
+    '1. Wrong events order on a parent document insert'
   );
 
   // 2.
   events = [];
-  expectedOrder = [];
+  expectedOrder = [
+    'beforesave 1 on parent',
+    'beforesave 2 on parent',
+    'beforesave global',
+    'beforeupdate 1 on parent',
+    'beforeupdate 2 on parent',
+    'beforeupdate global'
+  ];
   parentEventOrder.save();
   test.equal(events, expectedOrder,
-    'Wrong 2 events order on a parent document update without a change'
+    '2. Wrong events order on a parent document update without a change'
   );
 
   // 3.
@@ -288,7 +295,18 @@ Tinytest.add('Events order', function(test) {
 
   // 5.
   events = [];
-  expectedOrder = [];
+  expectedOrder = [
+    'beforesave 1 on child',
+    'beforesave 2 on child',
+    'beforesave 1 on parent',
+    'beforesave 2 on parent',
+    'beforesave global',
+    'beforeupdate 1 on child',
+    'beforeupdate 2 on child',
+    'beforeupdate 1 on parent',
+    'beforeupdate 2 on parent',
+    'beforeupdate global'
+  ];
   childEventOrder.save();
   test.equal(events, expectedOrder,
     '5. Wrong events order on a child document update without a change'
