@@ -295,6 +295,24 @@ var post = Posts.findOne();
 Meteor.call('/user/method', post);
 ```
 
+**Example 6: Applying model to the Meteor.users collection**
+
+It's possible to apply an Astronomy model to the `Meteor.users` collection. The minimal class schema looks like one below.
+
+```js
+User = Astro.Class({
+  name: 'User',
+  collection: Meteor.users,
+  fields: {
+    emails: 'array',
+    services: 'object',
+    createdAt: 'date'
+  }
+});
+```
+
+Of course you will have to add to the schema any extra field that you want to publish. The example above works with the `accounts-password` package.
+
 ## Key concepts
 
 ### Defining schema
