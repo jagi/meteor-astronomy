@@ -21,6 +21,7 @@
       - [Modified fields](#modified-fields)
     - [Methods](#methods)
     - [Cloning](#cloning)
+    - [EJSON-ification](#ejson-ification)
     - [Reactivity and reloading](#reactivity-and-reloading)
     - [Saving, updating and removing](#saving-updating-and-removing)
     - [Events](#events)
@@ -172,7 +173,7 @@ post.save();
 post.remove();
 ```
 
-**Example 2: Using model with the templates**
+**Example 2: Using model with templates**
 
 ```js
 if (Meteor.isClient) {
@@ -238,7 +239,7 @@ Post.schema.addMethods({
 <div>{{post.getMessage}}</div>
 ```
 
-**Example 4: Using Meteor Astronomy with Iron Router**
+**Example 4: Using Astronomy with Iron Router**
 
 When working with Iron Router, we may want to create link redirecting us to given route using document's id. Let's take a look at routes defined below. We have route for all posts list and route for displaying individual post. The path consists of `/post/` prefix and document id.
 
@@ -277,12 +278,21 @@ The first thing you may try to do when creating link to the post is writing code
 
 This code will not work. Iron Router looks for `_id` field directly on the level of the document. However, the `_id` field is not there. The `_id` is stored in the internal object `_values` and we have getter defined for the document that takes care of getting the `_id` field. Fortunately, we have the `get` function that gets pure values (simple JavaScript object). The correct code will look like follows.
 
-```hbs
-<div>
-  {{#each posts}}
-    <p><a href="{{pathFor 'post' data=this.get}}">{{title}}</a></p>
-  {{/each}}
-</div>
+**Example 5: Passing Astronomy objects to Meteor methods**
+
+The Astronomy objects can be passed to Meteor methods without any modifications. All Astronomy classes are EJSON-able. It means that they can be transfered from client to server (and vice versa) using the DDP protocol.
+
+```js
+Meteor.methods({
+  '/user/method': function(post) {
+    if (post.validate()) {
+      post.save();
+    }
+  }
+});
+
+var post = Posts.findOne();
+Meteor.call('/user/method', post);
 ```
 
 ## Key concepts
@@ -598,30 +608,66 @@ Post.schema.addMethods({
 
 #### Cloning
 
-Cloning documents is as easy as executing `clone` function on the object.
+To clone a document you have to execute `copy` function on the object.
 
 ```js
 var post = Posts.findOne();
-var clone = post.clone();
+var copy = post.copy();
 ```
 
-However, we can modify object during the cloning process.
+If original document had already been saved into collection then its copy will have the `_id` attribute cleared. Thanks to that we will be able to save the copy as a new record in the collection.
 
 ```js
 var post = Posts.findOne();
-var clone = post.clone({
-  title: 'New title value'
-});
+var copy = post.copy();
+console.log(copy._id); // Prints out "undefined".
+copy.save(); // Prints out id of the inserted document.
 ```
 
-We can also automatically save object by setting second argument to `true`.
+We can also automatically save copied document by passing `true` as the first argument of the `copy` function.
 
 ```js
 var post = Posts.findOne();
-var clone = post.clone({
-  title: 'New title value'
-}, true); // Autosave
+var copy = post.copy(true); // Auto save cloned document.
 ```
+
+We can also create copy of a document using the `EJSON.clone` function but in this case the `_id` attribute won't be cleared.
+
+```js
+var post = Posts.findOne();
+var copy = EJSON.clone(post);
+console.log(copy._id === post._id); // Prints out "true".
+```
+
+#### EJSON-ification
+
+The Astronomy objects are registered as a custom EJSON type. It means that every object can be sent from client to server (and vice versa) using the DDP protocol. An example use of this feature was described in the [Examples](#examples) section.
+
+The EJSON-ification of Astronomy objects requires special treatment. The default implementation has to convert an object into the JSON type and allow the object's recreation when it's needed. We do it by storing some important informations:
+
+- the class name that was used to create object's instance
+- internal `_original` and `_values` objects
+
+These informations are minimum and every module written for Meteor Astronomy should take EJSON-ification into account and store an additional data if it's needed to recreated the object in its original state. We can do it thanks to a special events, that we can hook into. There are two main functions dealing with EJSON-inification [`toJSONValue`](http://docs.meteor.com/#/full/ejson_type_toJSONValue) and [`fromJSONValue`](http://docs.meteor.com/#/full/ejson_add_type). You can read more about them in the Meteor [documentation](http://docs.meteor.com/#/full/ejson).
+
+Let's take an example module that add some extra data during the process of EJSON-ification.
+
+```js
+var onToJSONValue = function(e) {
+  e.data.errors = this._errors;
+};
+
+var onFromJSONValue = function(e) {
+  this._errors = e.data.errors;
+};
+
+Astro.on('tojsonvalue', onToJSONValue);
+Astro.on('fromjsonvalue', onFromJSONValue);
+```
+
+As you can see each event receives the event object that contains the "data" attribute. This is the main object with which we will be working. Let's talk about the `onToJSONValue` function first. We want to convert our object into the JSON format. The `e.data` object already stores some information generated by the default `toJSONValue` method. It contains three values `class`, `original` and `values`. We can extend this object with some extra data. We have some private errors object stored in `this._errors`. We want these errors to be passed through the DDP protocole. To do that, we have to extend the `e.data` object like in the example.
+
+We've done with this function half of the job. Now, we have to recover object from the JSON format. It's the opposite operation which you can see implemented in the `onFromJSONValue` function. We take the `e.data.errors` attribute and put back in our object (`this`) on its place `this._errors = e.data.errors`.
 
 #### Reactivity and reloading
 
