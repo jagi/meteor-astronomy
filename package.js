@@ -96,6 +96,7 @@ Package.onTest(function(api) {
   api.addFiles('lib/modules/methods/module.js', ['client', 'server']);
 
   // EJSON module.
+  api.addFiles('lib/modules/ejson/init_module.js', ['client', 'server']);
   api.addFiles('lib/modules/ejson/init_schema.js', ['client', 'server']);
   api.addFiles('lib/modules/ejson/module.js', ['client', 'server']);
 
