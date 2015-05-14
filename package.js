@@ -51,6 +51,13 @@ Package.onUse(function(api) {
   api.addFiles('lib/modules/ejson/init_schema.js', ['client', 'server']);
   api.addFiles('lib/modules/ejson/module.js', ['client', 'server']);
 
+  // Relations module.
+  api.addFiles('lib/modules/relations/init_module.js', ['client', 'server']);
+  api.addFiles('lib/modules/relations/init_schema.js', ['client', 'server']);
+  api.addFiles('lib/modules/relations/init_class.js', ['client', 'server']);
+  api.addFiles('lib/modules/relations/init_instance.js', ['client', 'server']);
+  api.addFiles('lib/modules/relations/module.js', ['client', 'server']);
+
   api.export(['Astro', 'Astronomy'], ['client', 'server']);
 });
 
