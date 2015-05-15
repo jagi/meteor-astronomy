@@ -17,6 +17,7 @@ Package.onUse(function(api) {
   api.addFiles('lib/event_manager.js', ['client', 'server']);
   api.addFiles('lib/event_list.js', ['client', 'server']);
   api.addFiles('lib/event_data.js', ['client', 'server']);
+  api.addFiles('lib/base_class.js', ['client', 'server']);
   api.addFiles('lib/schema.js', ['client', 'server']);
   api.addFiles('lib/module.js', ['client', 'server']);
   api.addFiles('lib/class.js', ['client', 'server']);
