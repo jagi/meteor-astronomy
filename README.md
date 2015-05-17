@@ -40,9 +40,10 @@
 
 ## About
 
-Meteor Astronomy is model layer (in [MVC](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) pattern) for Meteor.
+The Astronomy package allows schema creation for you Mongo documents. In other words it's a model layer (in [MVC](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) pattern) for Meteor.
 
-When fetching objects from Mongo Collections you get simple JavaScript objects without any logic. You have to implement logic, validate attributes, check what fields have changed, save only modified fields, transform fields types when reading data from forms etc. in every place you are using them. Wouldn't it be great if you could write just like below?
+When fetching objects from Mongo Collections you get a simple JavaScript objects without any logic. You have to implement logic, validate attributes, check what fields have changed, save only modified fields, transform fields types when reading data from forms etc. in every place you are using them. Wouldn't it be great if you could write just like below?
+
 ```js
 var post = Posts.findOne();
 // Increase votes count by one.
@@ -55,9 +56,9 @@ if (post.validate()) {
   post.save();
 }
 ```
-And that's exactly what Meteor Astronomy is doing.
 
-How would it look like without Meteor Astronomy?
+And that's exactly what Meteor Astronomy is doing. How would it look like without Meteor Astronomy?
+
 ```js
 var post = Posts.findOne();
 // Access fields manually without possibility to do some extra action.
@@ -81,9 +82,10 @@ if (post.count > post.votes) {
   });
 }
 ```
-What approach is simpler? I think the answer is obvious :).
 
-Why the name Meteor Astronomy? As almost everything related to the Meteor is named with some cosmological term, so this one couldn't be an exception. The model layer in MVC pattern is the description of real objects and the science describing astronomical objects is [Astronomy](http://en.wikipedia.org/wiki/Astronomy).
+Which approach is simpler? I think the answer is obvious :).
+
+Why the name Meteor Astronomy? As almost everything related with Meteor is named with some cosmological term, so this one couldn't be an exception. The model layer in MVC pattern is the description of real objects and the science describing astronomical objects is [Astronomy](http://en.wikipedia.org/wiki/Astronomy).
 
 ## Installation
 
@@ -1006,7 +1008,7 @@ To read more about Meteor Astronomy Simple Validators go to the module [reposito
 
 #### Behaviors
 
-Behaviors are nice way of reusing your code for more than one model. If you have similar features in two or more schemas, you should consider creating behavior for such feature. An example of good behavior can be `createdAt` and `updateAt` fields which should be filled with the current date on document save and on every document update. And it's why we've created `Timestamp` behavior for that.
+Behaviors are nice way of reusing your code for more than one model. If you have similar features in two or more classes, you should consider creating behavior for such feature. An example of good behavior can be `createdAt` and `updateAt` fields which should be filled with the current date on document save and on every document update. And it's why we've created `Timestamp` behavior for that.
 
 Behaviors have been implemented as Meteor Astronomy module. You can add it to your Meteor project using following command.
 
