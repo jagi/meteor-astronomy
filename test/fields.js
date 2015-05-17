@@ -3,35 +3,35 @@ Tinytest.add('Fields definition', function(test) {
     name: 'ItemA',
     fields: ['defaultField']
   });
-  test.equal(_.size(ItemA.schema.getFields()), 2,
+  test.equal(_.size(ItemA.getFields()), 2,
     'The "ItemA" class should have 2 fields'
   );
 
-  ItemA.schema.addField('defaultField2');
-  test.equal(_.size(ItemA.schema.getFields()), 3,
+  ItemA.addField('defaultField2');
+  test.equal(_.size(ItemA.getFields()), 3,
     'The "ItemA" class should have 3 fields'
   );
 
-  ItemA.schema.addField('stringField', 'string');
-  test.equal(_.size(ItemA.schema.getFields()), 4,
+  ItemA.addField('stringField', 'string');
+  test.equal(_.size(ItemA.getFields()), 4,
     'The "ItemA" class should have 4 fields'
   );
 
-  ItemA.schema.addField('numberField', {
+  ItemA.addField('numberField', {
     type: 'number',
     default: 5
   });
-  test.equal(_.size(ItemA.schema.getFields()), 5,
+  test.equal(_.size(ItemA.getFields()), 5,
     'The "ItemA" class should have 5 fields'
   );
 
-  ItemA.schema.addFields({
+  ItemA.addFields({
     booleanField: {
       type: 'boolean',
       default: true
     }
   });
-  test.equal(_.size(ItemA.schema.getFields()), 6,
+  test.equal(_.size(ItemA.getFields()), 6,
     'The "ItemA" class should have 6 fields'
   );
 });

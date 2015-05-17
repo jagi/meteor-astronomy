@@ -108,7 +108,7 @@ $ meteor add jagi:astronomy
 
 - ~~Custom field types~~
 - ~~EJSONinification of documents~~
-- Relations definition
+- ~~Relations definition~~ (Partial)
 - Integration with [Orion CMS](https://github.com/orionjs/orion/)
 - Schema migration
 - Automatic related object fetching
@@ -228,7 +228,7 @@ You can access document's fields the same way you would do it without Meteor Ast
 You can also call document's methods like you would do normally.
 
 ```js
-Post.schema.addMethods({
+Post.addMethods({
   getMessage: function() {
     return 'Post title: ' + this.title;
   }
@@ -412,7 +412,7 @@ var post = new Post(); // Shows alert 'Creating instance!'
 
 #### Fields
 
-The model schema is useless without fields definition. We have several ways of defining fields. Let's examine each one.
+The class schema is useless without fields definition. We have several ways of defining fields. Let's examine each one.
 
 **Simple list of fields:**
 
@@ -481,16 +481,16 @@ There are situation when we want to add some fields for the schema that is alrea
 
 ```js
 if (Meteor.isServer) {
-  Post.schema.addField('serverOnlyFieldA', {
+  Post.addField('serverOnlyFieldA', {
     type: 'number',
     default: 10
   });
 
-  Post.schema.addField('serverOnlyFieldB', 'string');
+  Post.addField('serverOnlyFieldB', 'string');
 
-  Post.schema.addField('serverOnlyFieldC');
+  Post.addField('serverOnlyFieldC');
 
-  Post.schema.addFields(['serverOnlyFieldD', 'serverOnlyFieldE', 'serverOnlyFieldF']);
+  Post.addFields(['serverOnlyFieldD', 'serverOnlyFieldE', 'serverOnlyFieldF']);
 }
 ```
 
@@ -610,11 +610,11 @@ post.read(); // Shows alert 'Hello World!'
 We also have here several ways of adding methods to already defined schema.
 
 ```js
-Post.schema.addMethod('methodName', function() {
+Post.addMethod('methodName', function() {
   // Do something
 });
 
-Post.schema.addMethods({
+Post.addMethods({
   'methodNameA': function() {
     // Do something
   },
@@ -817,7 +817,7 @@ We can also define global events that will be executed in the context of any cre
 
 ```js
 Astro.on('afterset', function(e) {
-  console.log('The "' + e.data.field + '" had been set to "' + e.data.value + '" on the object of the "' + this.constructor.schema.getName() + '" class');
+  console.log('The "' + e.data.field + '" had been set to "' + e.data.value + '" on the object of the "' + this.constructor.getName() + '" class');
 });
 
 var post = new Post();
@@ -847,7 +847,7 @@ Post = Astro.Class({
   }
 });
 
-Post.schema.addEvent('beforesave', function(e) {
+Post.addEvent('beforesave', function(e) {
   console.log('Second event that will not be executed because of the stopped event propagation');
 });
 
@@ -961,73 +961,88 @@ To read more about Meteor Astronomy Behaviors go to module [repository](https://
 
 #### Writing modules
 
-Meteor Astronomy is highly modularized. Any developer can write its own modules that extends Astronomy functionality. Developer can easily hook into the process of initialization of module, schema, class and instance of given class. Let's take a look how the `methods` feature had been implemented.
-
-First, we define some extra methods in the schema prototype.
+Meteor Astronomy is highly modularized. Any developer can write its own modules that extends Astronomy functionality. Developer can easily hook into the process of initialization of module, class and instance of the given class. Let's take a look how the `methods` feature had been implemented. The `methods` module is responsible for adding methods to our classes.
 
 ```js
-onInitModule = function() {
-  var prototype = Astro.Schema.prototype;
-
-  prototype.getMethod = function(methodName) {
-    /* ... */
-  };
-
-  prototype.getMethods = function() {
-    /* ... */
-  };
-
-  prototype.addMethod = function(methodName, method) {
-    if (!_.isString(methodName)) {
-      return;
-    }
-    if (!_.isFunction(method)) {
-      return;
-    }
-
-    this._methods[methodName] = method;
-    this.getClass().prototype[methodName] = method;
-  };
-
-  prototype.addMethods = function(methods) {
-    /* ... */
-  };
-};
-```
-
-Thanks to that, we can create a class and add some methods accessing its schema as in the example below.
-
-```js
-Post = Astronomy.Class(/* ... */);
-Post.schema.addMethods({
+Post = Astronomy.Class(
   /* ... */
+  methods: {
+    /* Your methods */
+  }
+);
+
+// Or.
+
+Post.addMethods({
+  /* Your methods */
 });
 ```
 
-As you can see in the `addMethod` function, we add a method to the methods list stored in the private `this._methods` object. To this point methods are only stored in the schema but we can't invoke them. In the next line, we add this method to our class's prototype.
+Below is almost entire code of the `methods` module. We will investigate what it does.
 
 ```js
-this.getClass().prototype[methodName] = method;
-```
+var methods = {};
 
-In another file we define `onInitSchema` function...
+methods.hasMethod = function(methodName) {
+  // Check if the method name is a string.
+  checks.methodName.call(this, methodName);
 
-```js
-onInitSchema = function(Class, definition) {
-  this._methods = {};
+  return _.has(this.schema.methods, methodName);
+};
 
-  if (_.has(definition, 'methods')) {
-    this.addMethods(definition.methods);
+methods.getMethod = function(methodName) {
+  // Check if the method name is a string.
+  checks.methodName.call(this, methodName);
+
+  return this.schema.methods[methodName];
+};
+
+methods.getMethods = function() {
+  return this.schema.methods;
+};
+
+methods.addMethod = function(methodName, method) {
+  // Check if the method name is a string.
+  checks.methodName.call(this, methodName);
+  // Check if method is a function.
+  checks.method.call(this, methodName, method);
+
+  this.schema.methods[methodName] = method;
+  this.prototype[methodName] = method;
+};
+
+methods.addMethods = function(methods) {
+  checks.methods.call(this, methods);
+
+  _.each(methods, function(method, methodName) {
+    this.addMethod(methodName, method);
+  }, this);
+};
+
+methodsOnInitClass = function(schemaDefinition) {
+  var Class = this;
+
+  _.extend(Class, methods);
+
+  // Add the "methods" attribute to the schema.
+  Class.schema.methods = {};
+
+  if (_.has(schemaDefinition, 'methods')) {
+    Class.addMethods(schemaDefinition.methods);
   }
 };
 ```
-... and `Methods` module that joins everything together.
+
+As you can see, we define bunch of methods that are added to the `Class` by extending it `_.extend(Class, methods);`. Thanks to that we will be able to write `Class.addMethod()`.
+
+What does the `addMethod` function do? It adds given method to the class's prototype (`this.prototype[methodName] = method;`) and to the schema (`this.schema.methods[methodName] = method;`). And that it, that's everything it does.
+
+Of course we need to define our module. We do it in separate file.
 
 ```js
 Astronomy.Module({
   name: 'Methods',
-  oninitmodule: onInitModule,
-  oninitschema: onInitSchema
+  oninitclass: methodsOnInitClass
 });
 ```
 
@@ -1036,18 +1051,14 @@ We have to name the module. In our example it's `Methods`.
 We can define few useful methods in the module definition. They are:
 
 - `oninitmodule`
-- `oninitschema`
 - `oninitclass`
 - `oninitinstance`
 
 Each method is executed in different context. The invocation context is related to the name of method.
 
 - `oninitmodule` - `this` points to `window` object
-- `oninitschema` - `this` points to class's schema
 - `oninitclass` - `this` points to the class
 - `oninitinstance` - `this` points to class's instance (document being created)
-
-As you can see in the `Methods` module definition we have the `oninitschema` function defined. We create the private `this._methods` object in the class's schema and add methods from the schema definition that a user has provided. As you can see the `oninitschema` function is called in the context of the current class schema (in other words `this` is the class schema).
 
 The best way to learn how to write own modules is investigating existing modules.
 
