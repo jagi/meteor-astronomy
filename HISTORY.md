@@ -1,3 +1,8 @@
+# 0.8.0 (2015-05-17)
+
+- Relations
+- Moving all methods from Schema to Class
+
 # 0.7.0 (2015-05-13)
 
 - EJSON-ification of Astronomy objects

@@ -46,7 +46,7 @@ Tinytest.add('Events order', function(test) {
     }
   });
 
-  ParentEventOrder.schema.addEvents({
+  ParentEventOrder.addEvents({
     beforeset: function() {
       events.push('beforeset 2 on parent');
     },
@@ -121,7 +121,7 @@ Tinytest.add('Events order', function(test) {
     }
   });
 
-  ChildEventOrder.schema.addEvents({
+  ChildEventOrder.addEvents({
     beforeset: function() {
       events.push('beforeset 2 on child');
     },
