@@ -30,6 +30,7 @@
       - [Global events](#global-events)
       - [Events propagation](#events-propagation)
     - [Inheritance](#inheritance)
+    - [Relations](#relations)
   - [Modules](#modules)
     - [Validators](#validators)
     - [Behaviors](#behaviors)
@@ -922,6 +923,62 @@ child.save();
 
 console.log(child._type); // Prints out 'Child`
 ```
+
+#### Relations
+
+Relations allows easy fetching of related documents.
+
+Let's say we have two classes `User` and `Address` and we want to create one to many relation. It means that one user can have many addresses related with it. Take a look at definition of the `Address` class.
+
+```js
+Addresses = new Mongo.Collection('addresses');
+
+Address = Astro.Class({
+  name: 'Address',
+  collection: Addresses,
+  fields: {
+    city: 'string',
+    state: 'string',
+    memberId: 'string'
+  }
+});
+```
+
+And now the `User` class with defined relations.
+
+```js
+Users = new Mongo.Collection('users');
+
+User = Astro.Class({
+  name: 'User',
+  collection: Users,
+  fields: {
+    firstName: 'string',
+    lastName: 'string'
+  },
+  relations: {
+    addresses: {
+      type: 'many',
+      class: 'Address',
+      local: '_id',
+      foreign: 'memberId'
+    }
+  }
+});
+```
+
+As you can see, we defined the `addresses` relation which points to `Address` class. Now it will be possible to execute following code.
+
+```js
+var user = Users.findOne();
+users.addresses.forEach(function(address) {
+  /* Do something with the address */
+});
+```
+
+In the `many` relation alias `addresses` returns Mongo cursor and the `one` relations return single document.
+
+We also have here two extra attributes `local` and `foreign`. The `local` attribute says that any `Address` is related with `User` by `User`'s  `_id` attribute and value of `_id` attribute will be stored in the `memberId` field of the instance of the `Address` document.
 
 ### Modules
 
