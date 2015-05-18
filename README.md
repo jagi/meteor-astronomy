@@ -8,7 +8,7 @@
 - [Installation](#installation)
 - [Features](#features)
 - [Planned features](#planned-features)
-- [Change log](#change-log)
+- [Changelog](#changelog)
 - [Examples](#examples)
 - [Key concepts](#key-concepts)
   - [Defining schema](#defining-schema)
@@ -40,7 +40,7 @@
 
 ## About
 
-The Astronomy package allows schema creation for you Mongo documents. In other words it's a model layer (in [MVC](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) pattern) for Meteor.
+The Astronomy package allows creation of a schema for your Mongo documents. In other words, it's a model layer (in [MVC](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) pattern) for Meteor.
 
 When fetching objects from Mongo Collections you get a simple JavaScript objects without any logic. You have to implement logic, validate attributes, check what fields have changed, save only modified fields, transform fields types when reading data from forms etc. in every place you are using them. Wouldn't it be great if you could write just like below?
 
@@ -48,7 +48,7 @@ When fetching objects from Mongo Collections you get a simple JavaScript objects
 var post = Posts.findOne();
 // Increase votes count by one.
 post.voteUp();
-// Auto convert string input value to number.
+// Auto convert a string input value to a number.
 post.count = tmpl.find('input[name=count]').value;
 // Check if all attributes are valid.
 if (post.validate()) {
@@ -61,8 +61,8 @@ And that's exactly what Meteor Astronomy is doing. How would it look like withou
 
 ```js
 var post = Posts.findOne();
-// Access fields manually without possibility to do some extra action.
-// You have to do extra action in every place you are increasing votes count.
+// Access fields manually without a possibility to do some extra action.
+// You have to do an extra action in every place you are increasing votes count.
 post.votes++;
 // Manual types conversion. You have to remember to do it every time you update fields.
 post.count = parseInt(tmpl.find('input[name=count]').value, 10);
@@ -85,7 +85,7 @@ if (post.count > post.votes) {
 
 Which approach is simpler? I think the answer is obvious :).
 
-Why the name Meteor Astronomy? As almost everything related with Meteor is named with some cosmological term, so this one couldn't be an exception. The model layer in MVC pattern is the description of real objects and the science describing astronomical objects is [Astronomy](http://en.wikipedia.org/wiki/Astronomy).
+Why the name **Meteor Astronomy**? As almost everything related with Meteor is named with some cosmological term, so this one couldn't be an exception. The model layer in the MVC pattern is a description of real objects. While the science describing astronomical objects is [Astronomy](http://en.wikipedia.org/wiki/Astronomy).
 
 ## Installation
 
@@ -121,13 +121,13 @@ $ meteor add jagi:astronomy
   - Vote
   - I18n
 
-## Change log
+## Changelog
 
-Change log can be found in the HISTORY.md file.
+Changelog can be found in the HISTORY.md file.
 
 ## Examples
 
-At the beginning let's take a look at simple example showing how to use Meteor Astronomy and later we will describe in details how it works.
+In the beginning, let's take a look at a simple example showing how to use Meteor Astronomy. We will describe it in details in the following sections of this documentation.
 
 **Example 1: Basic operations**
 
@@ -172,7 +172,7 @@ post.getModified(); // Returns {title: "Post title changed"}
 // Update object (save changes into collection).
 post.save();
 
-// Remove object from the collection.
+// Remove the object from the collection.
 post.remove();
 ```
 
@@ -244,7 +244,7 @@ Post.addMethods({
 
 **Example 4: Using Astronomy with Iron Router**
 
-When working with Iron Router, we may want to create link redirecting us to given route using document's id. Let's take a look at routes defined below. We have route for all posts list and route for displaying individual post. The path consists of `/post/` prefix and document id.
+When working with Iron Router, we may want to create a link redirecting us to the given route using a document's id. Let's take a look at routes defined below. We have the route for all posts list and the route for displaying an individual post. The path consists of the `/post/` prefix and a document's id.
 
 ```js
 Router.route('/', {
@@ -257,7 +257,7 @@ Router.route('/post/:_id', {
 });
 ```
 
-Now, we define helper on our template that returns cursor for all posts.
+Now, we define the helper on our template that returns a cursor for all posts.
 
 ```js
 if (Meteor.isClient) {
@@ -269,7 +269,7 @@ if (Meteor.isClient) {
 }
 ```
 
-The first thing you may try to do when creating link to the post is writing code similar to the one posted below.
+The first thing you may try to do when creating a link to the post is writing a code similar to the one posted below.
 
 ```hbs
 <div>
@@ -279,11 +279,11 @@ The first thing you may try to do when creating link to the post is writing code
 </div>
 ```
 
-This code will not work. Iron Router looks for `_id` field directly on the level of the document. However, the `_id` field is not there. The `_id` is stored in the internal object `_values` and we have getter defined for the document that takes care of getting the `_id` field. Fortunately, we have the `get` function that gets pure values (simple JavaScript object). The correct code will look like follows.
+This code will not work. Iron Router looks for the `_id` field directly on the level of the document. However, the `_id` field is not there. The `_id` is stored in the internal object `_values` and we have the getter function defined for a document that takes care of getting the `_id` field. Fortunately, we have the `get` function that gets pure values (a simple JavaScript object). The correct code will look like follows.
 
 **Example 5: Passing Astronomy objects to Meteor methods**
 
-The Astronomy objects can be passed to Meteor methods without any modifications. All Astronomy classes are EJSON-able. It means that they can be transfered from client to server (and vice versa) using the DDP protocol.
+The Astronomy objects can be passed to Meteor methods without any modifications. All Astronomy classes are EJSON-able. It means that they can be transfered from the client to the server (and vice versa) using the DDP protocol.
 
 ```js
 Meteor.methods({
@@ -300,7 +300,7 @@ Meteor.call('/user/method', post);
 
 **Example 6: Applying model to the Meteor.users collection**
 
-It's possible to apply an Astronomy model to the `Meteor.users` collection. The minimal class schema looks like one below.
+It's possible to apply an Astronomy model to the `Meteor.users` collection. The minimal class schema looks like the one below.
 
 ```js
 User = Astro.Class({
@@ -320,9 +320,9 @@ Of course you will have to add to the schema any extra field that you want to pu
 
 ### Defining schema
 
-To get started, we have to create a model by defining its schema. Schema is a description of model / class. The schema creation is inspired by Doctrine library for Symfony (PHP) framework, so anyone that had ever worked with it should feel familiar when using Meteor Astronomy.
+To get started, we have to create a model by defining its schema. Schema is a description of model / class. The schema creation is inspired by the Doctrine library for the Symfony (PHP) framework, so anyone that had ever worked with it should feel familiar when using Meteor Astronomy.
 
-Let's take a look at basic example of schema creation.
+Let's take a look at basic example of a schema creation.
 
 ```js
 Post = Astronomy.Class({
@@ -330,7 +330,7 @@ Post = Astronomy.Class({
 });
 ```
 
-There is also `Astro` alias for `Astronomy` object.
+There is also the `Astro` alias for the `Astronomy` object.
 
 ```js
 Post = Astro.Class({
@@ -338,23 +338,24 @@ Post = Astro.Class({
 });
 ```
 
-The only required field is `name` that is mostly used for inheritance purpose. However having model without storing its objects in the database is not big deal, so lets bind it with the Mongo collection.
+There are two required attributes `name` and `fields`. The `name` attribute is mostly used for an inheritance purpose. However having a model without storing its objects in the database is not a big deal, so lets bind it with a Mongo collection.
 
 ```js
 Posts = new Mongo.Collection('posts');
 Post = Astronomy.Class({
   name: 'Post',
-  collection: Posts
+  collection: Posts,
+  fields: ['title']
 });
 ```
 
-From now you can create objects of defined class.
+From now you can create objects of the defined class.
 
 ```js
 var post = new Post(); // Create empty object
 ```
 
-You can also pass an object to the class constructor to initialize it with the given values. However, we haven't defined any fields in our schema, so it will have no effect.
+You can also pass an object to the class constructor to initialize it with the given values.
 
 ```js
 var post = new Post({ // Initialize document with some data
@@ -376,7 +377,7 @@ Post = Astronomy.Class({
 var post = Posts.findOne(); // Get instance of Post class
 ```
 
-However you can turn off that behavior by setting `transform` flag to `false` in the class schema.
+However you can turn off that behavior by setting the `transform` flag to `false` in the class schema.
 
 ```js
 Posts = new Mongo.Collection('posts');
@@ -389,7 +390,7 @@ Post = Astronomy.Class({
 var post = Posts.findOne(); // Get instance of Post class
 ```
 
-If you want to have automatic documents transformation turned on and you need to get a plain object you can force that for a particular query by passing `null` as a value of the `transform` option.
+If you want to have the automatic documents transformation turned on and you need to get a plain object you can force that for a particular query by passing `null` as a value of the `transform` option.
 
 ```js
 var plainPostDoc = Posts.findOne({}, {
@@ -399,7 +400,7 @@ var plainPostDoc = Posts.findOne({}, {
 
 #### Constructor
 
-We can define class constructor that will be executed every time the new object of our class is created. The constructor function receives all the arguments passed to it. During the process of fetching document from collection, the first argument is plain mongo document.
+We can define a class constructor that will be executed every time the new object of our class is created. The constructor function receives all the arguments passed to it. During the process of document fetching from a collection, the first argument is a plain mongo document.
 
 ```js
 Post = Astronomy.Class({
@@ -415,7 +416,7 @@ var post = new Post(); // Shows alert 'Creating instance!'
 
 #### Fields
 
-The class schema is useless without fields definition. We have several ways of defining fields. Let's examine each one.
+The class schema is useless without definition of the fields. We have several ways of defining fields. Let's examine each one.
 
 **Simple list of fields:**
 
@@ -475,12 +476,12 @@ Post = Astronomy.Class({
 });
 
 var post = new Post();
-console.log(post.title); // Prints out empty string '' not null.
+console.log(post.title); // Prints out an empty string.
 ```
 
 **Adding fields to already defined schema:**
 
-There are situation when we want to add some fields for the schema that is already defined. It can happen when we want to have different set of fields in the client and server.
+There are situation when we want to add some fields for the schema that is already defined. It can happen when we want to have different set of fields in the client and the server.
 
 ```js
 if (Meteor.isServer) {
@@ -499,7 +500,7 @@ if (Meteor.isServer) {
 
 ##### Types
 
-There are few predefined types of fields that you can use to define you class schema. They are:
+There are few predefined types of fields that you can use to define a class schema. They are:
 
 - `'string'`
 - `'number'`
@@ -523,11 +524,11 @@ Astronomy.Type({
 });
 ```
 
-As you can see, we use `Astronomy.Type` method that gets type definition as the only parameter. You have to provide two required attributes in this definition. The first one is the name of the type, that will be used in the field definition. The second one is the cast function, that have to return converted value.
+As you can see, we use the `Astronomy.Type` method that gets a type definition as the only parameter. You have to provide two required attributes in this definition. The first one is the name of the type, that will be used in the field definition. The second one is the cast function, that have to return a converted value.
 
 ##### Setters and getters
 
-Each fields defined in the schema has its own setter and getter functions. Let's take example.
+Each fields defined in the schema has its own setter and getter functions. Let's take an example.
 
 ```js
 Post = Astronomy.Class({
@@ -541,14 +542,14 @@ post.title = 'Title'; // Call field setter.
 alert(post.title); // Call field getter.
 ```
 
-But you can also call setter and getter function directly.
+But you can also call the setter and getter functions directly.
 
 ```js
 post.set('title', 'New title');
 alert(post.get('title'));
 ```
 
-Setter and getter functions are more powerful. They can take many different arguments and return different data. Let's examine them.
+The setter and getter functions are more powerful. They can take many different arguments and return a different data. Let's examine them.
 
 In the example below, we set multiple fields at once.
 
@@ -566,7 +567,7 @@ Now let's move on to the getter function. In the following example we get all th
 post.get();
 ```
 
-We can also tell `get` method fields we want to get.
+We can also define the list of fields that we want to get using the `get` method.
 
 ```js
 // Return only "title" and "commentsCount" fields' values.
@@ -575,7 +576,7 @@ post.get(['title', 'commentsCount']);
 
 ##### Modified fields
 
-There are two internal object in each Astronomy document. They are `_values` and `_original`. At the beginning (after fetching or creating new document) both objects are the same (the `_original` object contains copies, not references, of all values in the `_values` object). Modification of any field causes setting new value for that field in the `_values` internal object. Thanks to that, we can compare values in the `_original` and `_values` object and decide what fields had been modified.
+There are two internal objects in each Astronomy document. They are `_values` and `_original`. In the beginning (after fetching or creating a new document) both internal objects are the same (the `_original` object contains copies, not references, of all the values in the `_values` object). Modification of any field causes setting a new value for that field in the `_values` internal object. Thanks to that, we can compare values in the `_original` and `_values` objects and decide what fields had been modified.
 
 ```js
 var post = Posts.findOne();
@@ -591,7 +592,7 @@ post.getModified(true); // Returns {title: 'Hello World!'}
 
 #### Methods
 
-Adding methods to model is even simpler.
+Adding methods to a model is even simpler.
 
 ```js
 Post = Astronomy.Class({
@@ -629,14 +630,14 @@ Post.addMethods({
 
 #### Cloning
 
-To clone a document you have to execute `copy` function on the object.
+To clone a document you have to execute the `copy` function on the object.
 
 ```js
 var post = Posts.findOne();
 var copy = post.copy();
 ```
 
-If original document had already been saved into collection then its copy will have the `_id` attribute cleared. Thanks to that we will be able to save the copy as a new record in the collection.
+If an original document had already been saved into collection then its copy will have the `_id` attribute cleared. Thanks to that we will be able to save the copy as a new record in the collection.
 
 ```js
 var post = Posts.findOne();
@@ -645,14 +646,14 @@ console.log(copy._id); // Prints out "undefined".
 copy.save(); // Prints out id of the inserted document.
 ```
 
-We can also automatically save copied document by passing `true` as the first argument of the `copy` function.
+We can also automatically save the copied document by passing `true` as the first argument of the `copy` method.
 
 ```js
 var post = Posts.findOne();
 var copy = post.copy(true); // Auto save cloned document.
 ```
 
-We can also create copy of a document using the `EJSON.clone` function but in this case the `_id` attribute won't be cleared.
+We can also create a copy of a document using the `EJSON.clone` function but in this case the `_id` attribute won't be cleared.
 
 ```js
 var post = Posts.findOne();
@@ -662,14 +663,14 @@ console.log(copy._id === post._id); // Prints out "true".
 
 #### EJSON-ification
 
-The Astronomy objects are registered as a custom EJSON type. It means that every object can be sent from client to server (and vice versa) using the DDP protocol. An example use of this feature was described in the [Examples](#examples) section.
+The Astronomy objects are registered as a custom EJSON type. It means that every object can be sent from the client to the server (and vice versa) using the DDP protocol. An example use of this feature was described in the [Examples](#examples) section.
 
-The EJSON-ification of Astronomy objects requires special treatment. The default implementation has to convert an object into the JSON type and allow the object's recreation when it's needed. We do it by storing some important informations:
+The EJSON-ification of Astronomy objects requires special treatment. The default implementation has to convert an object into the JSON type and allow an object's recreation when it's needed. We do it by storing some important informations:
 
-- the class name that was used to create object's instance
+- the class name that was used to create an object's instance
 - internal `_original` and `_values` objects
 
-These informations are minimum and every module written for Meteor Astronomy should take EJSON-ification into account and store an additional data if it's needed to recreated the object in its original state. We can do it thanks to a special events, that we can hook into. There are two main functions dealing with EJSON-inification [`toJSONValue`](http://docs.meteor.com/#/full/ejson_type_toJSONValue) and [`fromJSONValue`](http://docs.meteor.com/#/full/ejson_add_type). You can read more about them in the Meteor [documentation](http://docs.meteor.com/#/full/ejson).
+These informations are minimum and every module written for Meteor Astronomy should take EJSON-ification into account and store an additional data if it's needed to recreated the object in its original state. We can do it thanks to the special events, that we can hook into. There are two main functions dealing with EJSON-inification [`toJSONValue`](http://docs.meteor.com/#/full/ejson_type_toJSONValue) and [`fromJSONValue`](http://docs.meteor.com/#/full/ejson_add_type). You can read more about them in the Meteor [documentation](http://docs.meteor.com/#/full/ejson).
 
 Let's take an example module that add some extra data during the process of EJSON-ification.
 
@@ -686,13 +687,13 @@ Astro.on('tojsonvalue', onToJSONValue);
 Astro.on('fromjsonvalue', onFromJSONValue);
 ```
 
-As you can see each event receives the event object that contains the "data" attribute. This is the main object with which we will be working. Let's talk about the `onToJSONValue` function first. We want to convert our object into the JSON format. The `e.data` object already stores some information generated by the default `toJSONValue` method. It contains three values `class`, `original` and `values`. We can extend this object with some extra data. We have some private errors object stored in `this._errors`. We want these errors to be passed through the DDP protocole. To do that, we have to extend the `e.data` object like in the example.
+As you can see each event receives the event object that contains the "data" attribute. This is the main object with which we will be working. Let's talk about the `onToJSONValue` function first. We want to convert our object into the JSON format. The `e.data` object already stores some information generated by the default `toJSONValue` method. It contains three values `class`, `original` and `values`. We can extend this object with some extra data. We have some private errors object stored in the `this._errors` attribute. We want these errors to be passed through the DDP protocole. To do that, we have to extend the `e.data` object like in the example above.
 
-We've done with this function half of the job. Now, we have to recover object from the JSON format. It's the opposite operation which you can see implemented in the `onFromJSONValue` function. We take the `e.data.errors` attribute and put back in our object (`this`) on its place `this._errors = e.data.errors`.
+With this function, we've done half of the job. Now, we have to recover an object from the JSON format. It's the opposite operation which you can see implemented in the `onFromJSONValue` function. We take the `e.data.errors` attribute and put back in our object (`this`) on its place `this._errors = e.data.errors`.
 
 #### Reactivity and reloading
 
-As you may know the collection's `find` method returns Mongo cursor which is reactive. The Meteor Astronomy library doesn't change anything here - cursors are still reactive.
+As you may know the collection's `find` method returns a Mongo cursor which is reactive. The Meteor Astronomy library doesn't change anything here - cursors are still reactive.
 
 ```js
 Template.main.helpers({
@@ -714,14 +715,14 @@ Template.main.helpers({
 });
 ```
 
-However there are situations when you get an object from the collection outside of the reactive context. If anyone will modify this document in the database, we won't be notified about that change. There are situation when you want to make sure that the document's state is the same as the one stored in the collection on the server. You can always update given document to its most recent version by executing the `reload` method.
+However there are situations when you get an object from the collection outside of the reactive context. If anyone will modify this document in the database, we won't be notified about that change. There are situation when you want to make sure that the document's state is the same as the one stored in the collection on the server. You can always update the document to its most recent version by executing the `reload` method.
 
 ```js
 var post = Posts.findOne(); // Get document outside of the reactive context.
 post.reload(); // Update document to its most recent state.
 ```
 
-Standard JavaScript documents/object as well as Meteor Astronomy documents/objects are not reactive. When getting such object not from the reactive Mongo cursor (example code below) it won't update UI reactively.
+Standard JavaScript documents/object as well as Meteor Astronomy documents/objects are not reactive. When getting such an object not from the reactive Mongo cursor (example code below) it won't update UI reactively.
 
 ```js
 Template.main.helpers({
@@ -750,7 +751,7 @@ post.save(); // Updates document (updates only modified fields)
 post.remove(); // Remove document from collection
 ```
 
-We can also pass a callback function like we could normally do when using `insert`, `update` or `remove` methods.
+We can also pass a callback function like we could normally do when using the `insert`, `update` or `remove` methods.
 
 ```js
 var post = new Post();
@@ -766,7 +767,7 @@ post.save(function(err, id) {
 
 ##### Storage events
 
-There are eight events that can be called during the operations on collections: `beforesave`, `beforeinsert`, `beforeupdate`, `beforeremove`, `aftersave`, `afterinsert`, `afterupdate`, `afterremove`. Their names are self explanatory. We can hook into process of saving, inserting, updating and removing of a document.
+There are eight events that can be called during operations on collections: `beforesave`, `beforeinsert`, `beforeupdate`, `beforeremove`, `aftersave`, `afterinsert`, `afterupdate`, `afterremove`. Their names are self explanatory. We can hook into process of saving, inserting, updating and removing of a document.
 
 ```js
 Post = Astronomy.Class({
@@ -835,7 +836,7 @@ car.wheels = 4; // The "afterset" event triggered.
 
 ##### Events propagation
 
-Meteor Astronomy events work almost like the regular JavaScript events and you can also stop their propagation. Every event handler receives `EventData` object as its first arguments. The event data object has `stopPropagation` method that stops execution of any further events of given type on given object util the next event occurrence.
+Meteor Astronomy events work almost like the regular JavaScript events and you can also stop their propagation. Every event handler receives an instance of the `EventData` object as its first arguments. The event data object has the `stopPropagation` method that stops execution of any further events of given type on the object util the next event occurrence.
 
 ```js
 Post = Astro.Class({
@@ -858,12 +859,12 @@ var post = new Post();
 post.save(); // Only first event handle will be executed.
 ```
 
-It is also important in which order event propagation occurs.
+It is also important in which order the event propagation occurs.
 
-1. At first event is triggered on the document that caused event to occur.
-2. When the event's propagation hadn't been stopped then we check if given document has any parent class. If it does then we invoke the event on a parent class if it has an event handler defined for the given event name.
-3. We repeat step 2 until we reach the last parent class.
-4. Lastly a global event is invoked (if defined).
+1. At first, an event is triggered on a document that caused the event to occur.
+2. When the event's propagation hadn't been stopped, then we check if the document has a parent class. If it does then we invoke the event on the parent class (only if defined).
+3. We repeat the step 2 until we reach the last parent class.
+4. In the end, a global event is invoked (only if defined).
 
 Take a look at the example.
 
@@ -903,7 +904,7 @@ child.save();
 
 #### Inheritance
 
-Inheritance is as simple as telling what model definition to extend. Documents of child and parent classes are stored in the same collection. The distinction what document is of which type is done by looking at the special `_type` attribute that is automatically defined on inherited documents. You shoudn't make any changes to this attribute.
+Inheritance is as simple as telling what model definition to extend. Documents of the child and parent classes are stored in the same collection. The distinction what document is of which type is done by looking at the special `_type` field that is automatically defined on the inherited documents. You shouldn't make any changes to this attribute.
 
 ```js
 Parent = Astronomy.Class({
@@ -969,7 +970,7 @@ User = Astro.Class({
 });
 ```
 
-As you can see, we defined the `addresses` relation which points to `Address` class. Now it will be possible to execute following code.
+As you can see, we defined the `addresses` relation which points to `Address` class. Now it will be possible to execute the following code.
 
 ```js
 var user = Users.findOne();
@@ -978,49 +979,49 @@ users.addresses.forEach(function(address) {
 });
 ```
 
-In the `many` relation alias `addresses` returns Mongo cursor and the `one` relations return single document.
+In the `many` relation, the `addresses` alias returns a Mongo cursor and the `one` relation returns a single document.
 
-We also have here two extra attributes `local` and `foreign`. The `local` attribute says that any `Address` is related with `User` by `User`'s  `_id` attribute and value of `_id` attribute will be stored in the `memberId` field of the instance of the `Address` document.
+We also have here two extra attributes `local` and `foreign`. The `local` attribute says that any `Address` is related with the `User` by the `User`'s  `_id` attribute. While a value of the `_id` attribute will be stored in the `memberId` field, in an instance of the `Address` document.
 
 ### Modules
 
-Almost every Astronomy feature had been written as a module. Such approach gives a lot of flexibility when creating applications. We can choose what features do we need and add them to the project. Thanks to that, we can minimize application size and load time. Let's discuss some external modules that are not the part of core Meteor Astronomy package.
+Almost every Astronomy feature had been written as a module. Such approach gives a lot of flexibility when creating applications. We can choose what features do we need and add them to the project. Thanks to that, we can minimize an application size and a load time. Let's discuss some external modules that are not a part of the core Meteor Astronomy package.
 
 #### Validators
 
-Validators are nice way of checking fields values' validity. For instance, we can check whether given field value is an email string or matches given regular expression. You can also write your own validators.
+Validators are a nice way of checking fields values' validity. For instance, we can check whether the given field's value is an email string or matches a regular expression. You can also write your own validators.
 
-Validators have been implemented as Meteor Astronomy module. You can add it to your Meteor project using following command.
+Validators have been implemented as the Meteor Astronomy module. You can add it to your Meteor project using the following command.
 
 ```sh
 $ meteor add jagi:astronomy-validators
 ```
 
-To read more about Meteor Astronomy Validators go to the module [repository](https://github.com/jagi/meteor-astronomy-validators).
+To read more about the Meteor Astronomy Validators go to the module's [repository](https://github.com/jagi/meteor-astronomy-validators).
 
-There is also a way of adding validators in the form of string rules which is more concise but in the same time less flexible. The package that provides such feature is called Meteor Astronomy Simple Validators and can be added to the projec using following command.
+There is also a way of adding validators in the form of string rules which is more concise, but less flexible. The package that provides such a feature is called the Meteor Astronomy Simple Validators and can be added to the project using the following command.
 
 ```sh
 $ meteor add jagi:astronomy-simple-validators
 ```
 
-To read more about Meteor Astronomy Simple Validators go to the module [repository](https://github.com/jagi/meteor-astronomy-simple-validators).
+To read more about Meteor Astronomy Simple Validators go to the module's [repository](https://github.com/jagi/meteor-astronomy-simple-validators).
 
 #### Behaviors
 
-Behaviors are nice way of reusing your code for more than one model. If you have similar features in two or more classes, you should consider creating behavior for such feature. An example of good behavior can be `createdAt` and `updateAt` fields which should be filled with the current date on document save and on every document update. And it's why we've created `Timestamp` behavior for that.
+Behaviors are a nice way of reusing your code for more than one model. If you have similar features in two or more classes, you should consider creating a behavior for such a feature. An example of a good behavior can be `createdAt` and `updateAt` fields which should be filled with the current date on a document save and on every document update. And it's why we've created the `timestamp` behavior for that.
 
-Behaviors have been implemented as Meteor Astronomy module. You can add it to your Meteor project using following command.
+Behaviors have been implemented as Meteor Astronomy module. You can add it to your Meteor project using the following command.
 
 ```sh
 $ meteor add jagi:astronomy-behaviors
 ```
 
-To read more about Meteor Astronomy Behaviors go to module [repository](https://github.com/jagi/meteor-astronomy-behaviors).
+To read more about Meteor Astronomy Behaviors go to module's [repository](https://github.com/jagi/meteor-astronomy-behaviors).
 
 #### Writing modules
 
-Meteor Astronomy is highly modularized. Any developer can write its own modules that extends Astronomy functionality. Developer can easily hook into the process of initialization of module, class and instance of the given class. Let's take a look how the `methods` feature had been implemented. The `methods` module is responsible for adding methods to our classes.
+Meteor Astronomy is highly modularized. Any developer can write its own modules that extend Astronomy functionality. A developer can easily hook into the process of an initialization of a module, a class and instance of the given class. Let's take a look at how the `methods` feature had been implemented. The `methods` module is responsible for adding methods to our classes.
 
 ```js
 Post = Astronomy.Class(
@@ -1094,9 +1095,9 @@ methodsOnInitClass = function(schemaDefinition) {
 
 As you can see, we define bunch of methods that are added to the `Class` by extending it `_.extend(Class, methods);`. Thanks to that we will be able to write `Class.addMethod()`.
 
-What does the `addMethod` function do? It adds given method to the class's prototype (`this.prototype[methodName] = method;`) and to the schema (`this.schema.methods[methodName] = method;`). And that it, that's everything it does.
+What does the `addMethod` function do? It adds the given method to the class's prototype (`this.prototype[methodName] = method;`) and to the schema (`this.schema.methods[methodName] = method;`). And that's everything it does.
 
-Of course we need to define our module. We do it in separate file.
+Of course we need to define our module. We do it in the separate file.
 
 ```js
 Astronomy.Module({
@@ -1113,17 +1114,17 @@ We can define few useful methods in the module definition. They are:
 - `oninitclass`
 - `oninitinstance`
 
-Each method is executed in different context. The invocation context is related to the name of method.
+Each method is executed in a different context. The invocation context is related to the name of a method.
 
-- `oninitmodule` - `this` points to `window` object
-- `oninitclass` - `this` points to the class
-- `oninitinstance` - `this` points to class's instance (document being created)
+- `oninitmodule` - `this` points to the `window` object
+- `oninitclass` - `this` points to the the class
+- `oninitinstance` - `this` points to the class's instance (document being created)
 
 The best way to learn how to write own modules is investigating existing modules.
 
 ## Contribution
 
-If you have any suggestions or want to write new features or behaviors please contact me, or just create issue or pull request.
+If you have any suggestions or want to write new features or behaviors please contact me, or just create an issue or a pull request.
 
 ## License
 
