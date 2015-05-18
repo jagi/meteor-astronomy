@@ -2,6 +2,8 @@
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jagi/meteor-astronomy?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge)
 
+<img src="http://astronomy.meteor.com/images/logo.png" />
+
 **Table of Contents**
 
 - [About](#about)
