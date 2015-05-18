@@ -1,4 +1,4 @@
-# Meteor Astronomy
+# Astronomy for Meteor
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jagi/meteor-astronomy?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge)
 
@@ -59,7 +59,7 @@ if (post.validate()) {
 }
 ```
 
-And that's exactly what Meteor Astronomy is doing. How would it look like without Meteor Astronomy?
+And that's exactly what Astronomy is doing. How would it look like without Astronomy?
 
 ```js
 var post = Posts.findOne();
@@ -87,7 +87,7 @@ if (post.count > post.votes) {
 
 Which approach is simpler? I think the answer is obvious :).
 
-Why the name **Meteor Astronomy**? As almost everything related with Meteor is named with some cosmological term, so this one couldn't be an exception. The model layer in the MVC pattern is a description of real objects. While the science describing astronomical objects is [Astronomy](http://en.wikipedia.org/wiki/Astronomy).
+Why the name **Astronomy**? As almost everything related with Meteor is named with some cosmological term, so this one couldn't be an exception. The model layer in the MVC pattern is a description of real objects. While the science describing astronomical objects is [Astronomy](http://en.wikipedia.org/wiki/Astronomy).
 
 ## Installation
 
@@ -129,7 +129,7 @@ Changelog can be found in the HISTORY.md file.
 
 ## Examples
 
-In the beginning, let's take a look at a simple example showing how to use Meteor Astronomy. We will describe it in details in the following sections of this documentation.
+In the beginning, let's take a look at a simple example showing how to use Astronomy. We will describe it in details in the following sections of this documentation.
 
 **Example 1: Basic operations**
 
@@ -221,7 +221,7 @@ if (Meteor.isClient) {
 
 **Example 3: More on working with templates**
 
-You can access document's fields the same way you would do it without Meteor Astronomy.
+You can access document's fields the same way you would do it without Astronomy.
 
 ```hbs
 <div>
@@ -322,7 +322,7 @@ Of course you will have to add to the schema any extra field that you want to pu
 
 ### Defining schema
 
-To get started, we have to create a model by defining its schema. Schema is a description of model / class. The schema creation is inspired by the Doctrine library for the Symfony (PHP) framework, so anyone that had ever worked with it should feel familiar when using Meteor Astronomy.
+To get started, we have to create a model by defining its schema. Schema is a description of model / class. The schema creation is inspired by the Doctrine library for the Symfony (PHP) framework, so anyone that had ever worked with it should feel familiar when using Astronomy.
 
 Let's take a look at basic example of a schema creation.
 
@@ -672,7 +672,7 @@ The EJSON-ification of Astronomy objects requires special treatment. The default
 - the class name that was used to create an object's instance
 - internal `_original` and `_values` objects
 
-These informations are minimum and every module written for Meteor Astronomy should take EJSON-ification into account and store an additional data if it's needed to recreated the object in its original state. We can do it thanks to the special events, that we can hook into. There are two main functions dealing with EJSON-inification [`toJSONValue`](http://docs.meteor.com/#/full/ejson_type_toJSONValue) and [`fromJSONValue`](http://docs.meteor.com/#/full/ejson_add_type). You can read more about them in the Meteor [documentation](http://docs.meteor.com/#/full/ejson).
+These informations are minimum and every module written for Astronomy should take EJSON-ification into account and store an additional data if it's needed to recreated the object in its original state. We can do it thanks to the special events, that we can hook into. There are two main functions dealing with EJSON-inification [`toJSONValue`](http://docs.meteor.com/#/full/ejson_type_toJSONValue) and [`fromJSONValue`](http://docs.meteor.com/#/full/ejson_add_type). You can read more about them in the Meteor [documentation](http://docs.meteor.com/#/full/ejson).
 
 Let's take an example module that add some extra data during the process of EJSON-ification.
 
@@ -695,7 +695,7 @@ With this function, we've done half of the job. Now, we have to recover an objec
 
 #### Reactivity and reloading
 
-As you may know the collection's `find` method returns a Mongo cursor which is reactive. The Meteor Astronomy library doesn't change anything here - cursors are still reactive.
+As you may know the collection's `find` method returns a Mongo cursor which is reactive. The Astronomy library doesn't change anything here - cursors are still reactive.
 
 ```js
 Template.main.helpers({
@@ -706,7 +706,7 @@ Template.main.helpers({
 });
 ```
 
-Now take a look at the code below. This code is also reactive beacuse it's called in the reactive context (helper function). In fact, it doesn't matter if you use Meteor Astronomy or not, the below code will be reactive.
+Now take a look at the code below. This code is also reactive beacuse it's called in the reactive context (helper function). In fact, it doesn't matter if you use Astronomy or not, the below code will be reactive.
 
 ```js
 Template.main.helpers({
@@ -724,7 +724,7 @@ var post = Posts.findOne(); // Get document outside of the reactive context.
 post.reload(); // Update document to its most recent state.
 ```
 
-Standard JavaScript documents/object as well as Meteor Astronomy documents/objects are not reactive. When getting such an object not from the reactive Mongo cursor (example code below) it won't update UI reactively.
+Standard JavaScript documents/object as well as Astronomy documents/objects are not reactive. When getting such an object not from the reactive Mongo cursor (example code below) it won't update UI reactively.
 
 ```js
 Template.main.helpers({
@@ -838,7 +838,7 @@ car.wheels = 4; // The "afterset" event triggered.
 
 ##### Events propagation
 
-Meteor Astronomy events work almost like the regular JavaScript events and you can also stop their propagation. Every event handler receives an instance of the `EventData` object as its first arguments. The event data object has the `stopPropagation` method that stops execution of any further events of given type on the object util the next event occurrence.
+Astronomy events work almost like the regular JavaScript events and you can also stop their propagation. Every event handler receives an instance of the `EventData` object as its first arguments. The event data object has the `stopPropagation` method that stops execution of any further events of given type on the object util the next event occurrence.
 
 ```js
 Post = Astro.Class({
@@ -987,43 +987,43 @@ We also have here two extra attributes `local` and `foreign`. The `local` attrib
 
 ### Modules
 
-Almost every Astronomy feature had been written as a module. Such approach gives a lot of flexibility when creating applications. We can choose what features do we need and add them to the project. Thanks to that, we can minimize an application size and a load time. Let's discuss some external modules that are not a part of the core Meteor Astronomy package.
+Almost every Astronomy feature had been written as a module. Such approach gives a lot of flexibility when creating applications. We can choose what features do we need and add them to the project. Thanks to that, we can minimize an application size and a load time. Let's discuss some external modules that are not a part of the core Astronomy package.
 
 #### Validators
 
 Validators are a nice way of checking fields values' validity. For instance, we can check whether the given field's value is an email string or matches a regular expression. You can also write your own validators.
 
-Validators have been implemented as the Meteor Astronomy module. You can add it to your Meteor project using the following command.
+Validators have been implemented as the Astronomy module. You can add it to your Meteor project using the following command.
 
 ```sh
 $ meteor add jagi:astronomy-validators
 ```
 
-To read more about the Meteor Astronomy Validators go to the module's [repository](https://github.com/jagi/meteor-astronomy-validators).
+To read more about the Astronomy Validators go to the module's [repository](https://github.com/jagi/meteor-astronomy-validators).
 
-There is also a way of adding validators in the form of string rules which is more concise, but less flexible. The package that provides such a feature is called the Meteor Astronomy Simple Validators and can be added to the project using the following command.
+There is also a way of adding validators in the form of string rules which is more concise, but less flexible. The package that provides such a feature is called the Astronomy Simple Validators and can be added to the project using the following command.
 
 ```sh
 $ meteor add jagi:astronomy-simple-validators
 ```
 
-To read more about Meteor Astronomy Simple Validators go to the module's [repository](https://github.com/jagi/meteor-astronomy-simple-validators).
+To read more about Astronomy Simple Validators go to the module's [repository](https://github.com/jagi/meteor-astronomy-simple-validators).
 
 #### Behaviors
 
 Behaviors are a nice way of reusing your code for more than one model. If you have similar features in two or more classes, you should consider creating a behavior for such a feature. An example of a good behavior can be `createdAt` and `updateAt` fields which should be filled with the current date on a document save and on every document update. And it's why we've created the `timestamp` behavior for that.
 
-Behaviors have been implemented as Meteor Astronomy module. You can add it to your Meteor project using the following command.
+Behaviors have been implemented as Astronomy module. You can add it to your Meteor project using the following command.
 
 ```sh
 $ meteor add jagi:astronomy-behaviors
 ```
 
-To read more about Meteor Astronomy Behaviors go to module's [repository](https://github.com/jagi/meteor-astronomy-behaviors).
+To read more about Astronomy Behaviors go to module's [repository](https://github.com/jagi/meteor-astronomy-behaviors).
 
 #### Writing modules
 
-Meteor Astronomy is highly modularized. Any developer can write its own modules that extend Astronomy functionality. A developer can easily hook into the process of an initialization of a module, a class and instance of the given class. Let's take a look at how the `methods` feature had been implemented. The `methods` module is responsible for adding methods to our classes.
+Astronomy is highly modularized. Any developer can write its own modules that extend Astronomy functionality. A developer can easily hook into the process of an initialization of a module, a class and instance of the given class. Let's take a look at how the `methods` feature had been implemented. The `methods` module is responsible for adding methods to our classes.
 
 ```js
 Post = Astronomy.Class(
