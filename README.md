@@ -99,8 +99,9 @@ $ meteor add jagi:astronomy
 
 - Automatic documents transformation
 - Fields definition (type, default value)
+- EJSON-ification of documents (sending documents over DDP protocol)
 - Methods definition
-- Events (before/after: save, update, insert and remove)
+- Events (before/after: save, update, insert, remove, set, get)
 - Setters and getters
 - Modified fields getter
 - Documents cloning
@@ -108,6 +109,7 @@ $ meteor add jagi:astronomy
 - Inheritance
 - Possibility to extend functionality using behaviors ([`jagi:astronomy-behaviors` package](https://github.com/jagi/meteor-astronomy-behaviors))
 - Validators ([`jagi:astronomy-validators` package](https://github.com/jagi/meteor-astronomy-validators))
+- Relations definition
 
 ## Planned features
 
@@ -115,6 +117,7 @@ $ meteor add jagi:astronomy
 - ~~EJSONinification of documents~~
 - ~~Relations definition~~ (Partial)
 - Integration with [Orion CMS](https://github.com/orionjs/orion/)
+- Query builder
 - Schema migration
 - Automatic related object fetching
 - Form -> Object, Object -> Form conversion
