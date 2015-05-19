@@ -120,8 +120,13 @@ $ meteor add jagi:astronomy
 - Form -> Object, Object -> Form conversion
 - Transactions
 - Behaviors
-  - Vote
-  - I18n
+  - Slug (creates slug from the given field)
+  - Version (stores multiple versions of the given document)
+  - SoftRemove (sets the "softRemoved" flag on a document instead removing it)
+  - Tag (adds the "tags" field with ability to easily add and remove tags)
+  - Sign (adds createdBy, updatedBy, removedBy fields storing user id)
+  - Vote (adds "votes" field with ability to vote on document)
+  - I18n (stores multiple language versions of the given field)
 
 ## Changelog
 
