@@ -30,6 +30,8 @@
       - [Storage events](#storage-events)
       - [Field events](#field-events)
       - [Global events](#global-events)
+      - [Class event](#class-event)
+      - [Instance event](#instance-event)
       - [Events propagation](#events-propagation)
     - [Inheritance](#inheritance)
     - [Relations](#relations)
@@ -37,6 +39,7 @@
     - [Validators](#validators)
     - [Behaviors](#behaviors)
     - [Writing modules](#writing-modules)
+  - [Advanced](#advanced)
 - [Contribution](#contribution)
 - [License](#license)
 
@@ -146,7 +149,7 @@ In the beginning, let's take a look at a simple example showing how to use Astro
 Posts = new Mongo.Collection('posts');
 
 // Create global (no var keyword) class (model).
-Post = Astronomy.Class({
+Post = Astro.Class({
   name: 'Post', // Name model.
   collection: Posts, // Associate collection with the model.
   transform: true, // Auto transform objects fetched from collection.
@@ -335,6 +338,14 @@ To get started, we have to create a model by defining its schema. Schema is a de
 Let's take a look at basic example of a schema creation.
 
 ```js
+Post = Astronomy.createClass({
+  name: 'Post'
+});
+```
+
+You can also use the `Class` alias. We will be using it throughout this documentation. 
+
+```js
 Post = Astronomy.Class({
   name: 'Post'
 });
@@ -352,7 +363,7 @@ There are two required attributes `name` and `fields`. The `name` attribute is m
 
 ```js
 Posts = new Mongo.Collection('posts');
-Post = Astronomy.Class({
+Post = Astro.Class({
   name: 'Post',
   collection: Posts,
   fields: ['title']
@@ -379,7 +390,7 @@ Objects returned from collections, which had been set in the class schema defini
 
 ```js
 Posts = new Mongo.Collection('posts');
-Post = Astronomy.Class({
+Post = Astro.Class({
   name: 'Post',
   collection: Posts
 });
@@ -391,7 +402,7 @@ However you can turn off that behavior by setting the `transform` flag to `false
 
 ```js
 Posts = new Mongo.Collection('posts');
-Post = Astronomy.Class({
+Post = Astro.Class({
   name: 'Post',
   collection: Posts,
   transform: false
@@ -413,7 +424,7 @@ var plainPostDoc = Posts.findOne({}, {
 We can define a class constructor that will be executed every time the new object of our class is created. The constructor function receives all the arguments passed to it. During the process of document fetching from a collection, the first argument is a plain mongo document.
 
 ```js
-Post = Astronomy.Class({
+Post = Astro.Class({
   name: 'Post',
   collection: Posts,
   init: function(attrs) { // Constructor
@@ -431,7 +442,7 @@ The class schema is useless without definition of the fields. We have several wa
 **Simple list of fields:**
 
 ```js
-Post = Astronomy.Class({
+Post = Astro.Class({
   name: 'Post',
   collection: Posts,
   fields: ['title', 'createdAt', 'commentsCount']
@@ -447,7 +458,7 @@ In the example above we have defined three fields. Their types has not been defi
 **Lists of fields with types:**
 
 ```js
-Post = Astronomy.Class({
+Post = Astro.Class({
   name: 'Post',
   collection: Posts,
   fields: {
@@ -466,7 +477,7 @@ post.title = 123; // Correct assignment but numerical value will be converted to
 **List of fields with types and default values:**
 
 ```js
-Post = Astronomy.Class({
+Post = Astro.Class({
   name: 'Post',
   collection: Posts,
   fields: {
@@ -526,7 +537,7 @@ Each type has its own casting function that will try to parse any value to a giv
 You can easily create you own custom field type. Let's take an example.
 
 ```js
-Astronomy.Type({
+Astro.createType({
   name: 'string',
   cast: function(value) {
     return String(value);
@@ -534,14 +545,14 @@ Astronomy.Type({
 });
 ```
 
-As you can see, we use the `Astronomy.Type` method that gets a type definition as the only parameter. You have to provide two required attributes in this definition. The first one is the name of the type, that will be used in the field definition. The second one is the cast function, that have to return a converted value.
+As you can see, we use the `Astro.createType` method that gets a type definition as the only parameter. You have to provide two required attributes in this definition. The first one is the name of the type, that will be used in the field definition. The second one is the cast function, that have to return a converted value.
 
 ##### Setters and getters
 
 Each fields defined in the schema has its own setter and getter functions. Let's take an example.
 
 ```js
-Post = Astronomy.Class({
+Post = Astro.Class({
   name: 'Post',
   collection: Posts,
   fields: ['title', 'commentsCount']
@@ -605,7 +616,7 @@ post.getModified(true); // Returns {title: 'Hello World!'}
 Adding methods to a model is even simpler.
 
 ```js
-Post = Astronomy.Class({
+Post = Astro.Class({
   name: 'Post',
   collection: Posts,
   fields: ['title'],
@@ -780,7 +791,7 @@ post.save(function(err, id) {
 There are eight events that can be called during operations on collections: `beforesave`, `beforeinsert`, `beforeupdate`, `beforeremove`, `aftersave`, `afterinsert`, `afterupdate`, `afterremove`. Their names are self explanatory. We can hook into process of saving, inserting, updating and removing of a document.
 
 ```js
-Post = Astronomy.Class({
+Post = Astro.Class({
   name: 'Post',
   collection: Posts,
   fields: ['title'],
@@ -800,7 +811,7 @@ post.save(); // The "beforesave" event will be invoked.
 There are also four events related with setting and getting fields' values: `beforeset`, `beforeget`, `afterset`, `afterget`. Take a look at the example of using them.
 
 ```js
-Post = Astronomy.Class({
+Post = Astro.Class({
   name: 'Post',
   collection: Posts,
   fields: ['title', 'slug'],
@@ -842,6 +853,32 @@ item.name = 'name'; // The "afterset" event triggered.
 
 var car = new Car();
 car.wheels = 4; // The "afterset" event triggered.
+```
+
+##### Class event
+
+There is a class initialization event that you can hook into on the global level or on the level of module. This event is used in the custom modules or behaviors.
+
+```js
+Astro.on('initclass', function(schemaDefinition) {
+  var Class = this; // "this" points to the class being initialized.
+});
+```
+
+##### Instance event
+
+There is a instance initialization event that you can hook into on the global level or on the level of a class.
+
+```js
+Astro.on('initinstance', function(attrs) {
+  // "this" points to the instance being created.
+});
+
+// or
+
+Post.addEvent('initinstance', function(attrs) {
+  // "this" points to the instance being created.
+});
 ```
 
 ##### Events propagation
@@ -917,7 +954,7 @@ child.save();
 Inheritance is as simple as telling what model definition to extend. Documents of the child and parent classes are stored in the same collection. The distinction what document is of which type is done by looking at the special `_type` field that is automatically defined on the inherited documents. You shouldn't make any changes to this attribute.
 
 ```js
-Parent = Astronomy.Class({
+Parent = Astro.Class({
   name: 'Parent',
   collection: Collection,
   fields: ['parentField']
@@ -1034,7 +1071,7 @@ To read more about Astronomy Behaviors go to module's [repository](https://githu
 Astronomy is highly modularized. Any developer can write its own modules that extend Astronomy functionality. A developer can easily hook into the process of an initialization of a module, a class and instance of the given class. Let's take a look at how the `methods` feature had been implemented. The `methods` module is responsible for adding methods to our classes.
 
 ```js
-Post = Astronomy.Class(
+Post = Astro.Class(
   /* ... */
   methods: {
     /* Your methods */
@@ -1107,30 +1144,58 @@ As you can see, we define bunch of methods that are added to the `Class` by exte
 
 What does the `addMethod` function do? It adds the given method to the class's prototype (`this.prototype[methodName] = method;`) and to the schema (`this.schema.methods[methodName] = method;`). And that's everything it does.
 
-Of course we need to define our module. We do it in the separate file.
+We define our module in the separate file.
 
 ```js
-Astronomy.Module({
-  name: 'Methods',
-  oninitclass: methodsOnInitClass
+Astro.createModule({
+  name: 'methods',
+  init: function() {
+    // Method being called on module initialization.
+  },
+  events: {
+    initclass: methodsOnInitClass
+  }
 });
 ```
 
-We have to name the module. In our example it's `Methods`.
+We have to name the module. In our example it's `methods`.
 
-We can define few useful methods in the module definition. They are:
+We can define two events in the module definition. They are:
 
-- `oninitmodule`
-- `oninitclass`
-- `oninitinstance`
+- `initclass`
+- `initinstance`
 
-Each method is executed in a different context. The invocation context is related to the name of a method.
+Each event is executed in a different context. The invocation context is related with the name of a method.
 
-- `oninitmodule` - `this` points to the `window` object
-- `oninitclass` - `this` points to the the class
-- `oninitinstance` - `this` points to the class's instance (document being created)
+- `initclass` - `this` points to the the class
+- `initinstance` - `this` points to the class's instance (document being created)
 
 The best way to learn how to write own modules is investigating existing modules.
+
+### Advanced
+
+Here is a list of all objects / functions in the global `Astronomy` / `Astro` namespace with their descriptions.
+
+`Astro.EventData` - event data object passed to all events
+`Astro.BaseClass` - base class that every class inherits from
+`Astro.Schema` - schema class used for storing schema data
+
+`Astro.eventManager` - event manager for triggering events
+`Astro.utils` - object storing utility functions
+`Astro.on` - adds global event
+`Astro.off` - removes global event
+
+`Astro.createClass` or `Astro.Class` - creates class
+`Astro.createModule` - creates module
+`Astro.createValidator` - creates validator
+`Astro.createBehavior` - creates behavior
+`Astro.createType` - creates type
+
+`Astro.modules` - list of all added modules
+`Astro.classes` - list of all created classes
+`Astro.types` - list of all types
+`Astro.validators` or `Validators` - list of all added / created validators
+`Astro.behaviors` - list of all added behaviors
 
 ## Contribution
 
