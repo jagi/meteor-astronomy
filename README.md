@@ -4,6 +4,8 @@
 
 <img src="http://astronomy.meteor.com/images/logo.png" />
 
+[![Join the chat at https://gitter.im/jagi/meteor-astronomy](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jagi/meteor-astronomy?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 **Table of Contents**
 
 - [About](#about)
