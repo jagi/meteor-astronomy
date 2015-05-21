@@ -4,7 +4,9 @@
 
 <img src="http://astronomy.meteor.com/images/logo.png" />
 
-**Table of Contents**
+The Astronomy package allows creation of a schema for your Mongo documents. It's a model layer (in [MVC](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) pattern) for Meteor.
+
+## Table of Contents
 
 - [About](#about)
 - [Installation](#installation)
@@ -44,8 +46,6 @@
 - [License](#license)
 
 ## About
-
-The Astronomy package allows creation of a schema for your Mongo documents. In other words, it's a model layer (in [MVC](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) pattern) for Meteor.
 
 When fetching objects from Mongo Collections you get a simple JavaScript objects without any logic. You have to implement logic, validate attributes, check what fields have changed, save only modified fields, transform fields types when reading data from forms etc. in every place you are using them. Wouldn't it be great if you could write just like below?
 
@@ -343,7 +343,7 @@ Post = Astronomy.createClass({
 });
 ```
 
-You can also use the `Class` alias. We will be using it throughout this documentation. 
+You can also use the `Class` alias. We will be using it throughout this documentation.
 
 ```js
 Post = Astronomy.Class({
