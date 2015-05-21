@@ -126,7 +126,7 @@ $ meteor add jagi:astronomy
 - Form -> Object, Object -> Form conversion
 - Transactions
 - Behaviors
-  - Slug (creates slug from the given field)
+  - ~~Slug (creates slug from the given field)~~
   - Version (stores multiple versions of the given document)
   - SoftRemove (sets the "softRemoved" flag on a document instead removing it)
   - Tag (adds the "tags" field with ability to easily add and remove tags)
@@ -1065,6 +1065,16 @@ $ meteor add jagi:astronomy-behaviors
 ```
 
 To read more about Astronomy Behaviors go to module's [repository](https://github.com/jagi/meteor-astronomy-behaviors).
+
+Here is a list of behaviors:
+
+**Official behaviors:**
+- [timestamp](https://github.com/jagi/meteor-astronomy-timestamp-behavior)
+- [slug](https://github.com/jagi/meteor-astronomy-slug-behavior)
+- [sort](https://github.com/jagi/meteor-astronomy-sort-behavior)
+
+**Community behaviors**
+- [softremove]() (work in progress)
 
 #### Writing modules
 
