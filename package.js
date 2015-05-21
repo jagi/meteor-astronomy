@@ -1,6 +1,6 @@
 Package.describe({
   summary: 'Model layer for Meteor',
-  version: '0.8.2',
+  version: '0.9.0',
   name: 'jagi:astronomy',
   git: 'https://github.com/jagi/meteor-astronomy.git'
 });
@@ -13,14 +13,14 @@ Package.onUse(function(api) {
   api.use('underscore');
   api.use('ejson');
 
-  api.addFiles('lib/global.js', ['client', 'server']);
-  api.addFiles('lib/event_manager.js', ['client', 'server']);
-  api.addFiles('lib/event_list.js', ['client', 'server']);
-  api.addFiles('lib/event_data.js', ['client', 'server']);
-  api.addFiles('lib/base_class.js', ['client', 'server']);
-  api.addFiles('lib/schema.js', ['client', 'server']);
-  api.addFiles('lib/module.js', ['client', 'server']);
-  api.addFiles('lib/class.js', ['client', 'server']);
+  api.addFiles('lib/core/global.js', ['client', 'server']);
+  api.addFiles('lib/core/event_manager.js', ['client', 'server']);
+  api.addFiles('lib/core/event_list.js', ['client', 'server']);
+  api.addFiles('lib/core/event_data.js', ['client', 'server']);
+  api.addFiles('lib/core/base_class.js', ['client', 'server']);
+  api.addFiles('lib/core/schema.js', ['client', 'server']);
+  api.addFiles('lib/core/module.js', ['client', 'server']);
+  api.addFiles('lib/core/class.js', ['client', 'server']);
 
   // Utils.
   api.addFiles('lib/utils/utils.js', ['client', 'server']);
@@ -69,14 +69,14 @@ Package.onTest(function(api) {
   api.use('underscore');
   api.use('ejson');
 
-  api.addFiles('lib/global.js', ['client', 'server']);
-  api.addFiles('lib/event_manager.js', ['client', 'server']);
-  api.addFiles('lib/event_list.js', ['client', 'server']);
-  api.addFiles('lib/event_data.js', ['client', 'server']);
-  api.addFiles('lib/base_class.js', ['client', 'server']);
-  api.addFiles('lib/schema.js', ['client', 'server']);
-  api.addFiles('lib/module.js', ['client', 'server']);
-  api.addFiles('lib/class.js', ['client', 'server']);
+  api.addFiles('lib/core/global.js', ['client', 'server']);
+  api.addFiles('lib/core/event_manager.js', ['client', 'server']);
+  api.addFiles('lib/core/event_list.js', ['client', 'server']);
+  api.addFiles('lib/core/event_data.js', ['client', 'server']);
+  api.addFiles('lib/core/base_class.js', ['client', 'server']);
+  api.addFiles('lib/core/schema.js', ['client', 'server']);
+  api.addFiles('lib/core/module.js', ['client', 'server']);
+  api.addFiles('lib/core/class.js', ['client', 'server']);
 
   // Utils.
   api.addFiles('lib/utils/utils.js', ['client', 'server']);

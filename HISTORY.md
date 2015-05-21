@@ -1,3 +1,16 @@
+# 0.9.0 (2015-05-21)
+
+- Changes in API:
+  - `Astro.Module` to `Astro.createModule`
+  - `Astro.Type` to `Astro.createType`
+  - `Astro.Behavior` to `Astro.createBehavior`
+  - `Astro.Validator` to `Astro.createValidator`
+  - `Astro.modules` - list of all added modules
+  - `Astro.classes` - list of all created classes
+  - `Astro.types` - list of all types
+  - `Astro.validators` or `Validators` - list of all added / created validators
+  - `Astro.behaviors` - list of all added behaviors
+
 # 0.8.0 (2015-05-17)
 
 - Relations
