@@ -173,7 +173,7 @@ Post = Astro.Class({
       this.votes--;
     }
   },
-  behaviors: ['Timestamp'] // Add "timestamp" behavior that adds "createdAt" and "updatedAt" fields.
+  behaviors: ['timestamp'] // Add "timestamp" behavior that adds "createdAt" and "updatedAt" fields.
 });
 
 // Create object of our class.
