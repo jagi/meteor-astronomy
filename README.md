@@ -18,6 +18,7 @@ The Astronomy package allows creation of a schema for your Mongo documents. It's
   - [Templates](#templates)
   - [Iron Router](#iron-router)
   - [Meteor methods](#meteor-methods)
+  - [Users collection](#users-collection)
 - [Key concepts](#key-concepts)
   - [Defining schema](#defining-schema)
     - [Transformation](#transformation)
@@ -321,7 +322,7 @@ var post = Posts.findOne();
 Meteor.call('/user/method', post);
 ```
 
-**Example 6: Applying model to the Meteor.users collection**
+### Users collection
 
 It's possible to apply an Astronomy model to the `Meteor.users` collection. The minimal class schema looks like the one below.
 
