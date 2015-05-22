@@ -14,6 +14,10 @@ The Astronomy package allows creation of a schema for your Mongo documents. It's
 - [Planned features](#planned-features)
 - [Changelog](#changelog)
 - [Examples](#examples)
+  - [Basic operations](#basic-operations)
+  - [Templates](#templates)
+  - [Iron Router](#iron-router)
+  - [Meteor methods](#meteor-methods)
 - [Key concepts](#key-concepts)
   - [Defining schema](#defining-schema)
     - [Transformation](#transformation)
@@ -142,7 +146,7 @@ Changelog can be found in the HISTORY.md file.
 
 In the beginning, let's take a look at a simple example showing how to use Astronomy. We will describe it in details in the following sections of this documentation.
 
-**Example 1: Basic operations**
+### Basic operations
 
 ```js
 // Create global (no var keyword) Mongo collection.
@@ -189,7 +193,7 @@ post.save();
 post.remove();
 ```
 
-**Example 2: Using model with templates**
+### Templates
 
 ```js
 if (Meteor.isClient) {
@@ -230,8 +234,6 @@ if (Meteor.isClient) {
 </template>
 ```
 
-**Example 3: More on working with templates**
-
 You can access document's fields the same way you would do it without Astronomy.
 
 ```hbs
@@ -255,7 +257,7 @@ Post.addMethods({
 <div>{{post.getMessage}}</div>
 ```
 
-**Example 4: Using Astronomy with Iron Router**
+### Iron Router
 
 When working with Iron Router, we may want to create a link redirecting us to the given route using a document's id. Let's take a look at routes defined below. We have the route for all posts list and the route for displaying an individual post. The path consists of the `/post/` prefix and a document's id.
 
@@ -294,7 +296,15 @@ The first thing you may try to do when creating a link to the post is writing a 
 
 This code will not work. Iron Router looks for the `_id` field directly on the level of the document. However, the `_id` field is not there. The `_id` is stored in the internal object `_values` and we have the getter function defined for a document that takes care of getting the `_id` field. Fortunately, we have the `get` function that gets pure values (a simple JavaScript object). The correct code will look like follows.
 
-**Example 5: Passing Astronomy objects to Meteor methods**
+```hbs
+<div>
+  {{#each posts}}
+    <p><a href="{{pathFor 'post' data=this.get}}">{{title}}</a></p>
+  {{/each}}
+</div>
+```
+
+### Meteor methods
 
 The Astronomy objects can be passed to Meteor methods without any modifications. All Astronomy classes are EJSON-able. It means that they can be transfered from the client to the server (and vice versa) using the DDP protocol.
 
