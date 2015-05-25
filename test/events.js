@@ -154,40 +154,40 @@ Tinytest.add('Events order', function(test) {
     }
   });
 
-  Astro.on('beforeset', function() {
+  Astro.eventManager.on('beforeset', function() {
     events.push('beforeset global');
   });
-  Astro.on('afterset', function() {
+  Astro.eventManager.on('afterset', function() {
     events.push('afterset global');
   });
-  Astro.on('beforeget', function() {
+  Astro.eventManager.on('beforeget', function() {
     events.push('beforeget global');
   });
-  Astro.on('afterget', function() {
+  Astro.eventManager.on('afterget', function() {
     events.push('afterget global');
   });
-  Astro.on('beforesave', function() {
+  Astro.eventManager.on('beforesave', function() {
     events.push('beforesave global');
   });
-  Astro.on('aftersave', function() {
+  Astro.eventManager.on('aftersave', function() {
     events.push('aftersave global');
   });
-  Astro.on('beforeinsert', function() {
+  Astro.eventManager.on('beforeinsert', function() {
     events.push('beforeinsert global');
   });
-  Astro.on('afterinsert', function() {
+  Astro.eventManager.on('afterinsert', function() {
     events.push('afterinsert global');
   });
-  Astro.on('beforeupdate', function() {
+  Astro.eventManager.on('beforeupdate', function() {
     events.push('beforeupdate global');
   });
-  Astro.on('afterupdate', function() {
+  Astro.eventManager.on('afterupdate', function() {
     events.push('afterupdate global');
   });
-  Astro.on('beforeremove', function() {
+  Astro.eventManager.on('beforeremove', function() {
     events.push('beforeremove global');
   });
-  Astro.on('afterremove', function() {
+  Astro.eventManager.on('afterremove', function() {
     events.push('afterremove global');
   });
 

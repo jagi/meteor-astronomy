@@ -14,9 +14,8 @@ Package.onUse(function(api) {
   api.use('ejson');
 
   api.addFiles('lib/core/global.js', ['client', 'server']);
-  api.addFiles('lib/core/event_manager.js', ['client', 'server']);
-  api.addFiles('lib/core/event_list.js', ['client', 'server']);
-  api.addFiles('lib/core/event_data.js', ['client', 'server']);
+  api.addFiles('lib/core/events.js', ['client', 'server']);
+  api.addFiles('lib/core/event.js', ['client', 'server']);
   api.addFiles('lib/core/base_class.js', ['client', 'server']);
   api.addFiles('lib/core/schema.js', ['client', 'server']);
   api.addFiles('lib/core/module.js', ['client', 'server']);
@@ -70,9 +69,8 @@ Package.onTest(function(api) {
   api.use('ejson');
 
   api.addFiles('lib/core/global.js', ['client', 'server']);
-  api.addFiles('lib/core/event_manager.js', ['client', 'server']);
-  api.addFiles('lib/core/event_list.js', ['client', 'server']);
-  api.addFiles('lib/core/event_data.js', ['client', 'server']);
+  api.addFiles('lib/core/events.js', ['client', 'server']);
+  api.addFiles('lib/core/event.js', ['client', 'server']);
   api.addFiles('lib/core/base_class.js', ['client', 'server']);
   api.addFiles('lib/core/schema.js', ['client', 'server']);
   api.addFiles('lib/core/module.js', ['client', 'server']);
