@@ -1,6 +1,6 @@
 Package.describe({
   summary: 'Model layer for Meteor',
-  version: '0.9.1',
+  version: '0.9.2',
   name: 'jagi:astronomy',
   git: 'https://github.com/jagi/meteor-astronomy.git'
 });
@@ -51,12 +51,6 @@ Package.onUse(function(api) {
   api.addFiles('lib/modules/ejson/init_module.js', ['client', 'server']);
   api.addFiles('lib/modules/ejson/module.js', ['client', 'server']);
 
-  // Relations module.
-  api.addFiles('lib/modules/relations/init_module.js', ['client', 'server']);
-  api.addFiles('lib/modules/relations/init_class.js', ['client', 'server']);
-  api.addFiles('lib/modules/relations/init_instance.js', ['client', 'server']);
-  api.addFiles('lib/modules/relations/module.js', ['client', 'server']);
-
   api.export(['Astro', 'Astronomy'], ['client', 'server']);
 });
 
@@ -105,12 +99,6 @@ Package.onTest(function(api) {
   // EJSON module.
   api.addFiles('lib/modules/ejson/init_module.js', ['client', 'server']);
   api.addFiles('lib/modules/ejson/module.js', ['client', 'server']);
-
-  // Relations module.
-  api.addFiles('lib/modules/relations/init_module.js', ['client', 'server']);
-  api.addFiles('lib/modules/relations/init_class.js', ['client', 'server']);
-  api.addFiles('lib/modules/relations/init_instance.js', ['client', 'server']);
-  api.addFiles('lib/modules/relations/module.js', ['client', 'server']);
 
   api.export(['Astro', 'Astronomy'], ['client', 'server']);
 
