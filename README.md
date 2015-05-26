@@ -4,21 +4,16 @@
 
 <img src="http://astronomy.meteor.com/images/logo.png" />
 
-The Astronomy package allows creation of a schema for your Mongo documents. It's a model layer (in [MVC](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) pattern) for Meteor.
+The Astronomy package extends your Mongo documents with functionalities defined in the schema. It's the model layer (in [MVC](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) pattern) for Meteor or for people coming from relational databases environment, it's the Object-relational mapping system.
 
 ## Table of Contents
 
-- [About](#about)
+- [Introduction](#introduction)
 - [Installation](#installation)
 - [Features](#features)
 - [Planned features](#planned-features)
 - [Changelog](#changelog)
 - [Examples](#examples)
-  - [Basic operations](#basic-operations)
-  - [Templates](#templates)
-  - [Iron Router](#iron-router)
-  - [Meteor methods](#meteor-methods)
-  - [Users collection](#users-collection)
 - [Key concepts](#key-concepts)
   - [Defining schema](#defining-schema)
     - [Transformation](#transformation)
@@ -41,16 +36,11 @@ The Astronomy package allows creation of a schema for your Mongo documents. It's
       - [Instance event](#instance-event)
       - [Events propagation](#events-propagation)
     - [Inheritance](#inheritance)
-    - [Relations](#relations)
   - [Modules](#modules)
-    - [Validators](#validators)
-    - [Behaviors](#behaviors)
-    - [Writing modules](#writing-modules)
-  - [Advanced](#advanced)
 - [Contribution](#contribution)
 - [License](#license)
 
-## About
+## Introduction
 
 When fetching objects from Mongo Collections you get a simple JavaScript objects without any logic. You have to implement logic, validate attributes, check what fields have changed, save only modified fields, transform fields types when reading data from forms etc. in every place you are using them. Wouldn't it be great if you could write just like below?
 
@@ -105,19 +95,24 @@ $ meteor add jagi:astronomy
 
 ## Features
 
-- Automatic documents transformation
-- Fields definition (type, default value)
-- EJSON-ification of documents (sending documents over DDP protocol)
-- Methods definition
-- Events (before/after: save, update, insert, remove, set, get)
+- Documents transformation on fetch
+- Fields types
+- Fields default values
+- Documents EJSON-ification (sending docs through DDP protocol)
+- Methods
+- Events (storage, field, global, class and instance events)
+- Events propagation
 - Setters and getters
-- Modified fields getter
+- Getter of modified field
 - Documents cloning
 - Documents reloading
 - Inheritance
-- Possibility to extend functionality using behaviors ([`jagi:astronomy-behaviors` package](https://github.com/jagi/meteor-astronomy-behaviors))
-- Validators ([`jagi:astronomy-validators` package](https://github.com/jagi/meteor-astronomy-validators))
-- Relations definition
+- Modules
+  - [Validators](https://github.com/jagi/meteor-astronomy/wiki/Validators)
+  - [Simple validators](https://github.com/jagi/meteor-astronomy/wiki/Simple-Validators)
+  - [Behaviors](https://github.com/jagi/meteor-astronomy/wiki/Behaviors)
+  - [Relations](https://github.com/jagi/meteor-astronomy/wiki/Relations)
+  - [Query builder](https://github.com/jagi/meteor-astronomy/wiki/Query-Builder)
 
 ## Planned features
 
@@ -126,18 +121,18 @@ $ meteor add jagi:astronomy
 - Integration with [Orion CMS](https://github.com/orionjs/orion/)
 - Modules
   - ~~Relations~~ (Partial)
+  - ~~Query builder~~ (Partial)
   - Transactions
   - Migration
   - Forms
-  - Query builder
 - Behaviors
-  - ~~Slug (creates slug from the given field)~~
-  - Version (stores multiple versions of the given document)
-  - SoftRemove (sets the "softRemoved" flag on a document instead removing it)
-  - Tag (adds the "tags" field with ability to easily add and remove tags)
+  - ~~Slug~~ (creates slug from a field)
+  - ~~SoftRemove~~ (instead of removing document, sets the "softRemoved" flag)
+  - Version (stores multiple versions of a document)
+  - Tag (adds the "tags" field with the ability to easily add and remove tags)
   - Sign (adds createdBy, updatedBy, removedBy fields storing user id)
   - Vote (adds "votes" field with ability to vote on document)
-  - I18n (stores multiple language versions of the given field)
+  - I18n (stores multiple language versions of a field)
 
 ## Changelog
 
@@ -145,200 +140,7 @@ Changelog can be found in the HISTORY.md file.
 
 ## Examples
 
-In the beginning, let's take a look at a simple example showing how to use Astronomy. We will describe it in details in the following sections of this documentation.
-
-### Basic operations
-
-```js
-// Create global (no var keyword) Mongo collection.
-Posts = new Mongo.Collection('posts');
-
-// Create global (no var keyword) class (model).
-Post = Astro.Class({
-  name: 'Post', // Name model.
-  collection: Posts, // Associate collection with the model.
-  transform: true, // Auto transform objects fetched from collection.
-  fields: {
-    title: 'string', // Define "title" field of String type.
-    votes: {
-      type: 'number', // Define "votes" field of Number type.
-      default: 0 // Set default "votes" field value to 0.
-    }
-  },
-  methods: { // Define few methods.
-    voteUp: function () {
-      this.votes++;
-    },
-    voteDown: function () {
-      this.votes--;
-    }
-  },
-  behaviors: ['timestamp'] // Add "timestamp" behavior that adds "createdAt" and "updatedAt" fields.
-});
-
-// Create object of our class.
-var post = new Post({
-  title: 'New post'
-});
-// Save object in the collection
-post.save();
-
-// Change title
-post.title = 'Post title changed';
-// Get modified fields.
-post.getModified(); // Returns {title: "Post title changed"}
-// Update object (save changes into collection).
-post.save();
-
-// Remove the object from the collection.
-post.remove();
-```
-
-### Templates
-
-```js
-if (Meteor.isClient) {
-  Template.Posts.helpers({ // Provide "posts" cursor for all posts in the collection.
-    posts: function() {
-      return Posts.find();
-    }
-  });
-
-  // Voting up and down for post is as easy as calling "voteUp" or "voteDown" method on the object.
-  // The "this" keyword in the event listener is an object of our "Post" class.
-  Template.Posts.events({
-    'click .up': function() {
-      this.voteUp();
-      this.save();
-    },
-    'click .down': function() {
-      this.voteDown();
-      this.save();
-    }
-  });
-}
-```
-
-```hbs
-<head>
-  <title>Posts</title>
-</head>
-
-<body>
-  {{> Posts}}
-</body>
-
-<template name="Posts">
-  {{#each posts}}
-    <p>{{title}} <a class="up">Vote Up</a> | <a class="down">Vote Down</a> | <b>({{votes}})</b></p>
-  {{/each}}
-</template>
-```
-
-You can access document's fields the same way you would do it without Astronomy.
-
-```hbs
-<div>
-  <p><a href="/post/{{post._id}}">{{post.title}}</a></p>
-  <div>{{post.votes}}</div>
-</div>
-```
-
-You can also call document's methods like you would do normally.
-
-```js
-Post.addMethods({
-  getMessage: function() {
-    return 'Post title: ' + this.title;
-  }
-});
-```
-
-```hbs
-<div>{{post.getMessage}}</div>
-```
-
-### Iron Router
-
-When working with Iron Router, we may want to create a link redirecting us to the given route using a document's id. Let's take a look at routes defined below. We have the route for all posts list and the route for displaying an individual post. The path consists of the `/post/` prefix and a document's id.
-
-```js
-Router.route('/', {
-  name: 'posts',
-  template: 'Posts'
-});
-
-Router.route('/post/:_id', {
-  name: 'post'
-});
-```
-
-Now, we define the helper on our template that returns a cursor for all posts.
-
-```js
-if (Meteor.isClient) {
-  Template.Posts.helpers({ // Provide "posts" cursor for all posts in the collection.
-    posts: function() {
-      return Posts.find();
-    }
-  });
-}
-```
-
-The first thing you may try to do when creating a link to the post is writing a code similar to the one posted below.
-
-```hbs
-<div>
-  {{#each posts}}
-    <p><a href="{{pathFor 'post'}}">{{title}}</a></p>
-  {{/each}}
-</div>
-```
-
-This code will not work. Iron Router looks for the `_id` field directly on the level of the document. However, the `_id` field is not there. The `_id` is stored in the internal object `_values` and we have the getter function defined for a document that takes care of getting the `_id` field. Fortunately, we have the `get` function that gets pure values (a simple JavaScript object). The correct code will look like follows.
-
-```hbs
-<div>
-  {{#each posts}}
-    <p><a href="{{pathFor 'post' data=this.get}}">{{title}}</a></p>
-  {{/each}}
-</div>
-```
-
-### Meteor methods
-
-The Astronomy objects can be passed to Meteor methods without any modifications. All Astronomy classes are EJSON-able. It means that they can be transfered from the client to the server (and vice versa) using the DDP protocol.
-
-```js
-Meteor.methods({
-  '/user/method': function(post) {
-    if (post.validate()) {
-      post.save();
-    }
-  }
-});
-
-var post = Posts.findOne();
-Meteor.call('/user/method', post);
-```
-
-### Users collection
-
-It's possible to apply an Astronomy model to the `Meteor.users` collection. The minimal class schema looks like the one below.
-
-```js
-User = Astro.Class({
-  name: 'User',
-  collection: Meteor.users,
-  fields: {
-    emails: 'array',
-    services: 'object',
-    createdAt: 'date'
-  }
-});
-```
-
-Of course you will have to add to the schema any extra field that you want to publish. The example above works with the `accounts-password` package.
+A detailed examples can be found [on this Wiki page](https://github.com/jagi/meteor-astronomy/wiki/Examples).
 
 ## Key concepts
 
@@ -985,238 +787,9 @@ child.save();
 console.log(child._type); // Prints out 'Child`
 ```
 
-#### Relations
-
-Relations allows easy fetching of related documents.
-
-Let's say we have two classes `User` and `Address` and we want to create one to many relation. It means that one user can have many addresses related with it. Take a look at definition of the `Address` class.
-
-```js
-Addresses = new Mongo.Collection('addresses');
-
-Address = Astro.Class({
-  name: 'Address',
-  collection: Addresses,
-  fields: {
-    city: 'string',
-    state: 'string',
-    memberId: 'string'
-  }
-});
-```
-
-And now the `User` class with defined relations.
-
-```js
-Users = new Mongo.Collection('users');
-
-User = Astro.Class({
-  name: 'User',
-  collection: Users,
-  fields: {
-    firstName: 'string',
-    lastName: 'string'
-  },
-  relations: {
-    addresses: {
-      type: 'many',
-      class: 'Address',
-      local: '_id',
-      foreign: 'memberId'
-    }
-  }
-});
-```
-
-As you can see, we defined the `addresses` relation which points to `Address` class. Now it will be possible to execute the following code.
-
-```js
-var user = Users.findOne();
-users.addresses.forEach(function(address) {
-  /* Do something with the address */
-});
-```
-
-In the `many` relation, the `addresses` alias returns a Mongo cursor and the `one` relation returns a single document.
-
-We also have here two extra attributes `local` and `foreign`. The `local` attribute says that any `Address` is related with the `User` by the `User`'s  `_id` attribute. While a value of the `_id` attribute will be stored in the `memberId` field, in an instance of the `Address` document.
-
 ### Modules
 
-Almost every Astronomy feature had been written as a module. Such approach gives a lot of flexibility when creating applications. We can choose what features do we need and add them to the project. Thanks to that, we can minimize an application size and a load time. Let's discuss some external modules that are not a part of the core Astronomy package.
-
-#### Validators
-
-Validators are a nice way of checking fields values' validity. For instance, we can check whether the given field's value is an email string or matches a regular expression. You can also write your own validators.
-
-Validators have been implemented as the Astronomy module. You can add it to your Meteor project using the following command.
-
-```sh
-$ meteor add jagi:astronomy-validators
-```
-
-To read more about the Astronomy Validators go to the module's [repository](https://github.com/jagi/meteor-astronomy-validators).
-
-There is also a way of adding validators in the form of string rules which is more concise, but less flexible. The package that provides such a feature is called the Astronomy Simple Validators and can be added to the project using the following command.
-
-```sh
-$ meteor add jagi:astronomy-simple-validators
-```
-
-To read more about Astronomy Simple Validators go to the module's [repository](https://github.com/jagi/meteor-astronomy-simple-validators).
-
-#### Behaviors
-
-Behaviors are a nice way of reusing your code for more than one model. If you have similar features in two or more classes, you should consider creating a behavior for such a feature. An example of a good behavior can be `createdAt` and `updateAt` fields which should be filled with the current date on a document save and on every document update. And it's why we've created the `timestamp` behavior for that.
-
-Behaviors have been implemented as Astronomy module. You can add it to your Meteor project using the following command.
-
-```sh
-$ meteor add jagi:astronomy-behaviors
-```
-
-To read more about Astronomy Behaviors go to module's [repository](https://github.com/jagi/meteor-astronomy-behaviors).
-
-Here is a list of behaviors:
-
-**Official behaviors:**
-- [timestamp](https://github.com/jagi/meteor-astronomy-timestamp-behavior)
-- [slug](https://github.com/jagi/meteor-astronomy-slug-behavior)
-- [sort](https://github.com/jagi/meteor-astronomy-sort-behavior)
-
-**Community behaviors**
-- [softremove]() (work in progress)
-
-#### Writing modules
-
-Astronomy is highly modularized. Any developer can write its own modules that extend Astronomy functionality. A developer can easily hook into the process of an initialization of a module, a class and instance of the given class. Let's take a look at how the `methods` feature had been implemented. The `methods` module is responsible for adding methods to our classes.
-
-```js
-Post = Astro.Class(
-  /* ... */
-  methods: {
-    /* Your methods */
-  }
-);
-
-// Or.
-
-Post.addMethods({
-  /* Your methods */
-});
-```
-
-Below is almost entire code of the `methods` module. We will investigate what it does.
-
-```js
-var methods = {};
-
-methods.hasMethod = function(methodName) {
-  // Check if the method name is a string.
-  checks.methodName.call(this, methodName);
-
-  return _.has(this.schema.methods, methodName);
-};
-
-methods.getMethod = function(methodName) {
-  // Check if the method name is a string.
-  checks.methodName.call(this, methodName);
-
-  return this.schema.methods[methodName];
-};
-
-methods.getMethods = function() {
-  return this.schema.methods;
-};
-
-methods.addMethod = function(methodName, method) {
-  // Check if the method name is a string.
-  checks.methodName.call(this, methodName);
-  // Check if method is a function.
-  checks.method.call(this, methodName, method);
-
-  this.schema.methods[methodName] = method;
-  this.prototype[methodName] = method;
-};
-
-methods.addMethods = function(methods) {
-  checks.methods.call(this, methods);
-
-  _.each(methods, function(method, methodName) {
-    this.addMethod(methodName, method);
-  }, this);
-};
-
-methodsOnInitClass = function(schemaDefinition) {
-  var Class = this;
-
-  _.extend(Class, methods);
-
-  // Add the "methods" attribute to the schema.
-  Class.schema.methods = {};
-
-  if (_.has(schemaDefinition, 'methods')) {
-    Class.addMethods(schemaDefinition.methods);
-  }
-};
-```
-
-As you can see, we define bunch of methods that are added to the `Class` by extending it `_.extend(Class, methods);`. Thanks to that we will be able to write `Class.addMethod()`.
-
-What does the `addMethod` function do? It adds the given method to the class's prototype (`this.prototype[methodName] = method;`) and to the schema (`this.schema.methods[methodName] = method;`). And that's everything it does.
-
-We define our module in the separate file.
-
-```js
-Astro.createModule({
-  name: 'methods',
-  init: function() {
-    // Method being called on module initialization.
-  },
-  events: {
-    initclass: methodsOnInitClass
-  }
-});
-```
-
-We have to name the module. In our example it's `methods`.
-
-We can define two events in the module definition. They are:
-
-- `initclass`
-- `initinstance`
-
-Each event is executed in a different context. The invocation context is related with the name of a method.
-
-- `initclass` - `this` points to the the class
-- `initinstance` - `this` points to the class's instance (document being created)
-
-The best way to learn how to write own modules is investigating existing modules.
-
-### Advanced
-
-Here is a list of all objects / functions in the global `Astronomy` / `Astro` namespace with their descriptions.
-
-`Astro.Event` - event data object passed to all events
-`Astro.BaseClass` - base class that every class inherits from
-`Astro.Schema` - schema class used for storing schema data
-
-`Astro.eventManager` - global event manager
-`Astro.utils` - object storing utility functions
-`Astro.eventManager.on` - adds global event
-`Astro.off` - removes global event
-
-`Astro.createClass` or `Astro.Class` - creates class
-`Astro.createModule` - creates module
-`Astro.createValidator` - creates validator
-`Astro.createBehavior` - creates behavior
-`Astro.createType` - creates type
-
-`Astro.modules` - list of all added modules
-`Astro.classes` - list of all created classes
-`Astro.types` - list of all types
-`Astro.validators` or `Validators` - list of all added / created validators
-`Astro.behaviors` - list of all added behaviors
+The modules system is a huge subject, so we moved this section to the [separate Wiki page](https://github.com/jagi/meteor-astronomy/wiki/Modules).
 
 ## Contribution
 
