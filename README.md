@@ -4,7 +4,7 @@
 
 <img src="http://astronomy.meteor.com/images/logo.png" />
 
-The Astronomy package extends your Mongo documents with functionalities defined in the schema. It's the model layer (in [MVC](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) pattern) for Meteor or for people coming from relational databases environment, it's the Object-relational mapping system.
+The Astronomy package extends your Mongo documents with functionalities defined in the schema. It's the model layer (in [MVC](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) pattern) for Meteor or for people coming from relational databases environment, it's the Object-relational mapping system (ORM).
 
 ## Table of Contents
 
@@ -95,19 +95,18 @@ $ meteor add jagi:astronomy
 
 ## Features
 
-- Documents transformation on fetch
-- Fields types
-- Fields default values
-- Documents EJSON-ification (sending docs through DDP protocol)
-- Methods
-- Events (storage, field, global, class and instance events)
-- Events propagation
-- Setters and getters
-- Getter of modified field
-- Documents cloning
-- Documents reloading
-- Inheritance
-- Modules
+- [Documents transformation on fetch](#transformation)
+- [Fields types](#types)
+- [Fields default values](#types)
+- [Documents EJSON-ification](#ejson-ification) (sending docs through DDP protocol)
+- [Methods](#methods)
+- [Events](#events)
+- [Setters and getters](#setters-and-getters)
+- [Getter of modified field](#modified-fields)
+- [Documents cloning](#cloning)
+- [Documents reloading](#reactivity-and-reloading)
+- [Inheritance](#inheritance)
+- [Modules](#modules)
   - [Validators](https://github.com/jagi/meteor-astronomy/wiki/Validators)
   - [Simple validators](https://github.com/jagi/meteor-astronomy/wiki/Simple-Validators)
   - [Behaviors](https://github.com/jagi/meteor-astronomy/wiki/Behaviors)
