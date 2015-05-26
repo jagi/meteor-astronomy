@@ -139,7 +139,7 @@ $ meteor add jagi:astronomy
 
 ## Changelog
 
-Changelog can be found in the HISTORY.md file.
+Changelog can be found in [this file](https://github.com/jagi/meteor-astronomy/wiki/Changelog).
 
 ## Examples
 
