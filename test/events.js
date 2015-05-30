@@ -256,8 +256,8 @@ Tinytest.add('Events order', function(test) {
     'aftersave 2 on parent',
     'aftersave global'
   ];
-  parentEventOrder.parentField = 'update';
-  parentEventOrder.parentField;
+  parentEventOrder.set('parentField', 'update');
+  parentEventOrder.get('parentField');
   parentEventOrder.save();
   test.equal(events, expectedOrder,
     '3. Wrong events order on a parent document update after a change'
@@ -356,8 +356,8 @@ Tinytest.add('Events order', function(test) {
     'aftersave 2 on parent',
     'aftersave global'
   ];
-  childEventOrder.childField = 'update';
-  childEventOrder.childField;
+  childEventOrder.set('childField', 'update');
+  childEventOrder.get('childField');
   childEventOrder.save();
   test.equal(events, expectedOrder,
     '6. Wrong events order on a child document update after a change'
