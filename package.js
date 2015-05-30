@@ -20,6 +20,7 @@ Package.onUse(function(api) {
   api.addFiles('lib/core/base_class.js', ['client', 'server']);
   api.addFiles('lib/core/schema.js', ['client', 'server']);
   api.addFiles('lib/core/module.js', ['client', 'server']);
+  api.addFiles('lib/core/constructor.js', ['client', 'server']);
   api.addFiles('lib/core/class.js', ['client', 'server']);
 
   // Events module.
