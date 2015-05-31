@@ -1,6 +1,6 @@
 Package.describe({
   summary: 'Model layer for Meteor',
-  version: '0.9.2',
+  version: '0.10.0',
   name: 'jagi:astronomy',
   git: 'https://github.com/jagi/meteor-astronomy.git'
 });
@@ -14,16 +14,14 @@ Package.onUse(function(api) {
   api.use('ejson');
 
   api.addFiles('lib/core/global.js', ['client', 'server']);
+  api.addFiles('lib/core/utils.js', ['client', 'server']);
   api.addFiles('lib/core/events.js', ['client', 'server']);
   api.addFiles('lib/core/event.js', ['client', 'server']);
   api.addFiles('lib/core/base_class.js', ['client', 'server']);
   api.addFiles('lib/core/schema.js', ['client', 'server']);
   api.addFiles('lib/core/module.js', ['client', 'server']);
+  api.addFiles('lib/core/constructor.js', ['client', 'server']);
   api.addFiles('lib/core/class.js', ['client', 'server']);
-
-  // Utils.
-  api.addFiles('lib/utils/utils.js', ['client', 'server']);
-  api.addFiles('lib/utils/transform.js', ['client', 'server']);
 
   // Events module.
   api.addFiles('lib/modules/events/init_module.js', ['client', 'server']);
@@ -32,6 +30,7 @@ Package.onUse(function(api) {
 
   // Types module.
   api.addFiles('lib/modules/types/global.js', ['client', 'server']);
+  api.addFiles('lib/modules/types/utils.js', ['client', 'server']);
   api.addFiles('lib/modules/types/type.js', ['client', 'server']);
   api.addFiles('lib/modules/types/init_module.js', ['client', 'server']);
   api.addFiles('lib/modules/types/module.js', ['client', 'server']);
@@ -63,16 +62,14 @@ Package.onTest(function(api) {
   api.use('ejson');
 
   api.addFiles('lib/core/global.js', ['client', 'server']);
+  api.addFiles('lib/core/utils.js', ['client', 'server']);
   api.addFiles('lib/core/events.js', ['client', 'server']);
   api.addFiles('lib/core/event.js', ['client', 'server']);
   api.addFiles('lib/core/base_class.js', ['client', 'server']);
   api.addFiles('lib/core/schema.js', ['client', 'server']);
   api.addFiles('lib/core/module.js', ['client', 'server']);
+  api.addFiles('lib/core/constructor.js', ['client', 'server']);
   api.addFiles('lib/core/class.js', ['client', 'server']);
-
-  // Utils.
-  api.addFiles('lib/utils/utils.js', ['client', 'server']);
-  api.addFiles('lib/utils/transform.js', ['client', 'server']);
 
   // Events module.
   api.addFiles('lib/modules/events/init_module.js', ['client', 'server']);
@@ -81,6 +78,7 @@ Package.onTest(function(api) {
 
   // Types module.
   api.addFiles('lib/modules/types/global.js', ['client', 'server']);
+  api.addFiles('lib/modules/types/utils.js', ['client', 'server']);
   api.addFiles('lib/modules/types/type.js', ['client', 'server']);
   api.addFiles('lib/modules/types/init_module.js', ['client', 'server']);
   api.addFiles('lib/modules/types/module.js', ['client', 'server']);

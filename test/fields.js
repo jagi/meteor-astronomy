@@ -94,31 +94,31 @@ Tinytest.add('Types casting', function(test) {
   });
   var itemC = new ItemC();
 
-  itemC.stringField = 123;
+  itemC.set('stringField', 123);
   test.equal(itemC.stringField, '123',
     'The "stringField" field\'s set value 123 should become "123"'
   );
-  itemC.numberField = '123';
+  itemC.set('numberField', '123');
   test.equal(itemC.numberField, 123,
     'The "numberField" field\'s set value "123" should become 123'
   );
-  itemC.booleanField = '';
+  itemC.set('booleanField', '');
   test.isFalse(itemC.booleanField,
     'The "booleanField" field\'s set value "" should become false'
   );
-  itemC.booleanField = '123';
+  itemC.set('booleanField', '123');
   test.isTrue(itemC.booleanField,
     'The "booleanField" field\'s set value "123" should become true'
   );
-  itemC.booleanField = 0;
+  itemC.set('booleanField', 0);
   test.isFalse(itemC.booleanField,
     'The "booleanField" field\'s set value 0 should become false'
   );
-  itemC.booleanField = 1;
+  itemC.set('booleanField', 1);
   test.isTrue(itemC.booleanField,
     'The "booleanField" field\'s set value 1 should become true'
   );
-  itemC.dateField = (new Date(2000, 0, 1, 0, 0, 0)).getTime();
+  itemC.set('dateField', (new Date(2000, 0, 1, 0, 0, 0)).getTime());
   test.equal(itemC.dateField, new Date(2000, 0, 1, 0, 0, 0),
     'The "dateField" field\'s set value "" should become false'
   );
