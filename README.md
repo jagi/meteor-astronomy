@@ -49,7 +49,7 @@ var post = Posts.findOne();
 // Increase votes count by one.
 post.voteUp();
 // Auto convert a string input value to a number.
-post.count = tmpl.find('input[name=count]').value;
+post.set('count', tmpl.find('input[name=count]').value);
 // Check if all attributes are valid.
 if (post.validate()) {
   // Updates document with only fields that have changed.
@@ -265,8 +265,8 @@ Post = Astro.Class({
 });
 
 var post = new Post();
-post.title = 'Hello World!'; // Correct assignment
-post.title = 123; // Correct assignment
+post.set('title', 'Hello World!'); // Correct assignment
+post.set(title, 123); // Correct assignment
 ```
 
 In the example above we have defined three fields. Their types has not been defined so they can take any value and will be saved as set.
@@ -286,8 +286,8 @@ Post = Astro.Class({
 
 var post = new Post();
 console.log(post.title); // Prints out null.
-post.title = 'Hello World!'; // Correct assignment
-post.title = 123; // Correct assignment but numerical value will be converted to '123' string.
+post.set('title', 'Hello World!'); // Correct assignment
+post.set('title', 123); // Correct assignment but numerical value will be converted to '123' string.
 ```
 
 **List of fields with types and default values:**
@@ -365,7 +365,7 @@ As you can see, we use the `Astro.createType` method that gets a type definition
 
 ##### Setters and getters
 
-Each fields defined in the schema has its own setter and getter functions. Let's take an example.
+Each class has the setter (`set`) and getter (`get`) functions. Let's take an example.
 
 ```js
 Post = Astro.Class({
@@ -375,15 +375,16 @@ Post = Astro.Class({
 });
 
 var post = new Post();
-post.title = 'Title'; // Call field setter.
-alert(post.title); // Call field getter.
+post.set('title', 'Title'); // Call field setter.
+alert(post.get('title')); // Call field getter.
 ```
 
-But you can also call the setter and getter functions directly.
+But you can also set values directly but assigned values won't be converted to the proper type of the fields.
 
 ```js
-post.set('title', 'New title');
-alert(post.get('title'));
+post.title = 'New title';
+post.title = 123; // Value won't be converted to the string.
+alert(post.title);
 ```
 
 The setter and getter functions are more powerful. They can take many different arguments and return a different data. Let's examine them.
