@@ -387,6 +387,8 @@ post.title = 123; // Value won't be converted to the string.
 alert(post.title);
 ```
 
+You should always set values coming from the forms using the `set` function.
+
 The setter and getter functions are more powerful. They can take many different arguments and return a different data. Let's examine them.
 
 In the example below, we set multiple fields at once.
@@ -414,7 +416,7 @@ post.get(['title', 'commentsCount']);
 
 ##### Modified fields
 
-There are two internal objects in each Astronomy document. They are `_values` and `_original`. In the beginning (after fetching or creating a new document) both internal objects are the same (the `_original` object contains copies, not references, of all the values in the `_values` object). Modification of any field causes setting a new value for that field in the `_values` internal object. Thanks to that, we can compare values in the `_original` and `_values` objects and decide what fields had been modified.
+Each Astronomy document has the private `_original` property that stores information about an original state of the document before any modifications. Thanks to that we can determine which fields have been modified.
 
 ```js
 var post = Posts.findOne();
@@ -427,6 +429,8 @@ post.getModified(); // Returns {title: 'New title'}
 // Get old values for modified fields
 post.getModified(true); // Returns {title: 'Hello World!'}
 ```
+
+As you can see in the example above, we can pass a boolean value as the first parameter of the `getModified` function. It determines, if we want to take values of the object before (`true`) or after (`false` or left empty) modifications.
 
 #### Methods
 
@@ -506,7 +510,8 @@ The Astronomy objects are registered as a custom EJSON type. It means that every
 The EJSON-ification of Astronomy objects requires special treatment. The default implementation has to convert an object into the JSON type and allow an object's recreation when it's needed. We do it by storing some important informations:
 
 - the class name that was used to create an object's instance
-- internal `_original` and `_values` objects
+- current fields' values
+- original values before modification
 
 These informations are minimum and every module written for Astronomy should take EJSON-ification into account and store an additional data if it's needed to recreated the object in its original state. We can do it thanks to the special events, that we can hook into. There are two main functions dealing with EJSON-inification [`toJSONValue`](http://docs.meteor.com/#/full/ejson_type_toJSONValue) and [`fromJSONValue`](http://docs.meteor.com/#/full/ejson_add_type). You can read more about them in the Meteor [documentation](http://docs.meteor.com/#/full/ejson).
 
