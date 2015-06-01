@@ -1,6 +1,6 @@
 Package.describe({
   summary: 'Model layer for Meteor',
-  version: '0.10.0',
+  version: '0.10.1',
   name: 'jagi:astronomy',
   git: 'https://github.com/jagi/meteor-astronomy.git'
 });
@@ -39,7 +39,6 @@ Package.onUse(function(api) {
   api.addFiles('lib/modules/fields/utils.js', ['client', 'server']);
   api.addFiles('lib/modules/fields/init_module.js', ['client', 'server']);
   api.addFiles('lib/modules/fields/init_class.js', ['client', 'server']);
-  api.addFiles('lib/modules/fields/init_instance.js', ['client', 'server']);
   api.addFiles('lib/modules/fields/module.js', ['client', 'server']);
 
   // Methods module.
