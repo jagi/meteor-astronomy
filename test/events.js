@@ -1,11 +1,13 @@
-Tinytest.add('Events order', function(test) {
+Tinytest.add('Events module - Events order', function(test) {
+  Astro.classes = [];
+
   var events;
   var expectedOrder;
 
-  var EventOrders = new Mongo.Collection(null);
-  var ParentEventOrder = Astro.Class({
-    name: 'ParentEventOrder',
-    collection: EventOrders,
+  var Items = new Mongo.Collection(null);
+  var ParentItem = Astro.Class({
+    name: 'ParentItem',
+    collection: Items,
     fields: {
       parentField: {
         type: 'string',
@@ -46,7 +48,7 @@ Tinytest.add('Events order', function(test) {
     }
   });
 
-  ParentEventOrder.addEvents({
+  ParentItem.addEvents({
     beforeset: function() {
       events.push('beforeset 2 on parent');
     },
@@ -79,8 +81,8 @@ Tinytest.add('Events order', function(test) {
     }
   });
 
-  var ChildEventOrder = ParentEventOrder.extend({
-    name: 'ChildEventOrder',
+  var ChildItem = ParentItem.extend({
+    name: 'ChildItem',
     fields: {
       childField: {
         type: 'string',
@@ -121,7 +123,7 @@ Tinytest.add('Events order', function(test) {
     }
   });
 
-  ChildEventOrder.addEvents({
+  ChildItem.addEvents({
     beforeset: function() {
       events.push('beforeset 2 on child');
     },
@@ -207,8 +209,8 @@ Tinytest.add('Events order', function(test) {
     'aftersave 2 on parent',
     'aftersave global'
   ];
-  var parentEventOrder = new ParentEventOrder();
-  parentEventOrder.save();
+  var parentItem = new ParentItem();
+  parentItem.save();
   test.equal(events, expectedOrder,
     '1. Wrong events order on a parent document insert'
   );
@@ -223,7 +225,7 @@ Tinytest.add('Events order', function(test) {
     'beforeupdate 2 on parent',
     'beforeupdate global'
   ];
-  parentEventOrder.save();
+  parentItem.save();
   test.equal(events, expectedOrder,
     '2. Wrong events order on a parent document update without a change'
   );
@@ -256,9 +258,9 @@ Tinytest.add('Events order', function(test) {
     'aftersave 2 on parent',
     'aftersave global'
   ];
-  parentEventOrder.set('parentField', 'update');
-  parentEventOrder.get('parentField');
-  parentEventOrder.save();
+  parentItem.set('parentField', 'update');
+  parentItem.get('parentField');
+  parentItem.save();
   test.equal(events, expectedOrder,
     '3. Wrong events order on a parent document update after a change'
   );
@@ -287,8 +289,8 @@ Tinytest.add('Events order', function(test) {
     'aftersave 2 on parent',
     'aftersave global'
   ];
-  var childEventOrder = new ChildEventOrder();
-  childEventOrder.save();
+  var childItem = new ChildItem();
+  childItem.save();
   test.equal(events, expectedOrder,
     '4. Wrong events order on a child document insert'
   );
@@ -307,7 +309,7 @@ Tinytest.add('Events order', function(test) {
     'beforeupdate 2 on parent',
     'beforeupdate global'
   ];
-  childEventOrder.save();
+  childItem.save();
   test.equal(events, expectedOrder,
     '5. Wrong events order on a child document update without a change'
   );
@@ -356,9 +358,9 @@ Tinytest.add('Events order', function(test) {
     'aftersave 2 on parent',
     'aftersave global'
   ];
-  childEventOrder.set('childField', 'update');
-  childEventOrder.get('childField');
-  childEventOrder.save();
+  childItem.set('childField', 'update');
+  childItem.get('childField');
+  childItem.save();
   test.equal(events, expectedOrder,
     '6. Wrong events order on a child document update after a change'
   );
