@@ -610,7 +610,7 @@ post.save(function(err, id) {
 
 ##### Storage events
 
-There are eight events that can be called during operations on collections: `beforesave`, `beforeinsert`, `beforeupdate`, `beforeremove`, `aftersave`, `afterinsert`, `afterupdate`, `afterremove`. Their names are self explanatory. We can hook into process of saving, inserting, updating and removing of a document.
+There are eight events that can be called during operations on collections: `beforesave`, `beforeinsert`, `beforeupdate`, `beforeremove`, `aftersave`, `afterinsert`, `afterupdate`, `afterremove`. Their names are self explanatory. We can hook into process of saving, inserting, updating and removing of a document.  NOTE: these hooks are into the save() and remove() events of the Class - they will not be called on direct manipulations of the underlying collections (i.e. Posts.remove(id)).
 
 ```js
 Post = Astro.Class({
