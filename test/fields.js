@@ -77,3 +77,39 @@ Tinytest.add('Fields module - Default values', function(test) {
     'The "dateField" field\'s default value should be date "2000-01-01"'
   );
 });
+
+Tinytest.add('Fields module - Nested fields', function(test) {
+  Astro.classes = [];
+
+  var Item = Astro.Class({
+    name: 'Item',
+    fields: {
+      'string': {
+        type: 'string',
+        default: 'string'
+      },
+      'object': {
+        type: 'object',
+        default: {}
+      },
+      'object.property': {
+        type: 'string',
+        default: 'property'
+      },
+      'array': {
+        type: 'array',
+        default: []
+      },
+      'array.$': {
+        type: 'object',
+        default: {}
+      },
+      'array.$.property': {
+        type: 'string',
+        default: 'property'
+      }
+    }
+  });
+
+  var item = new Item();
+});
