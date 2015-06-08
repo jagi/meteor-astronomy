@@ -38,47 +38,7 @@ Tinytest.add('Fields module - Fields definition', function(test) {
   );
 });
 
-Tinytest.add('Fields module - Default values', function(test) {
-  Astro.classes = [];
-
-  var Item = Astro.Class({
-    name: 'Item',
-    fields: {
-      stringField: {
-        type: 'string',
-        default: 'string'
-      },
-      numberField: {
-        type: 'number',
-        default: 123
-      },
-      booleanField: {
-        type: 'boolean',
-        default: true
-      },
-      dateField: {
-        type: 'date',
-        default: new Date(2000, 0, 1)
-      }
-    }
-  });
-  var item = new Item();
-
-  test.equal(item.stringField, 'string',
-    'The "stringField" field\'s default value should be "string"'
-  );
-  test.equal(item.numberField, 123,
-    'The "numberField" field\'s default value should be 123'
-  );
-  test.isTrue(item.booleanField,
-    'The "booleanField" field\'s default value should be null'
-  );
-  test.equal(item.dateField, new Date(2000, 0, 1),
-    'The "dateField" field\'s default value should be date "2000-01-01"'
-  );
-});
-
-Tinytest.add('Fields module - Nested fields', function(test) {
+Tinytest.add('Fields module - Default and cast values', function(test) {
   Astro.classes = [];
 
   var Item = Astro.Class({
@@ -87,6 +47,18 @@ Tinytest.add('Fields module - Nested fields', function(test) {
       'string': {
         type: 'string',
         default: 'string'
+      },
+      'number': {
+        type: 'number',
+        default: 123
+      },
+      'boolean': {
+        type: 'boolean',
+        default: true
+      },
+      'date': {
+        type: 'date',
+        default: new Date(2000, 0, 1)
       },
       'object': {
         type: 'object',
@@ -110,6 +82,75 @@ Tinytest.add('Fields module - Nested fields', function(test) {
       }
     }
   });
-
   var item = new Item();
+
+  test.equal(item.string, 'string',
+    'The "string" field\'s default value should be "string"'
+  );
+  test.equal(item.number, 123,
+    'The "number" field\'s default value should be 123'
+  );
+  test.equal(item.boolean, true,
+    'The "boolean" field\'s default value should be null'
+  );
+  test.equal(item.date, new Date(2000, 0, 1),
+    'The "date" field\'s default value should be date "2000-01-01"'
+  );
+  test.equal(item.object, {},
+    'The "object" field\'s default value should be null'
+  );
+  test.equal(item.array, [],
+    'The "array" field\'s default value should be null'
+  );
+
+  item.set('string', 123);
+  item.set('number', '123');
+  item.set('boolean', 1);
+  item.set('date', 946681200000);
+  item.set('object', 123);
+  item.set('array', 123);
+  test.equal(item.string, '123',
+    'The "string" field\'s value should be casted to string'
+  );
+  test.equal(item.number, 123,
+    'The "number" field\'s value should be casted to number'
+  );
+  test.equal(item.boolean, true,
+    'The "boolean" field\'s value should be casted to boolean'
+  );
+  test.equal(item.date, new Date(2000, 0, 1),
+    'The "date" field\'s value should be casted to date'
+  );
+  test.instanceOf(item.object, Number,
+    'The "object" field\'s value should be casted to object'
+  );
+  test.equal(item.array, [123],
+    'The "array" field\'s value should be casted to array'
+  );
+
+  item.set('object', {});
+  item.set('object.property', undefined);
+  item.set('array', []);
+  item.set('array.0', undefined);
+  test.equal(item.object.property, 'property',
+    'The "object.property" field\'s default value should be "property"'
+  );
+  test.equal(item.array[0], {},
+    'The "array.0" field\'s default value should be {}'
+  );
+
+  item.set('object.property', 123);
+  test.equal(item.object.property, '123',
+    'The "object.property" field\'s value should be casted to string'
+  );
+
+  item.set('array.0.property', undefined);
+  test.equal(item.array[0].property, 'property',
+    'The "array.0.property" field\'s default value should be "property"'
+  );
+
+  item.set('array.0.property', 123);
+  test.equal(item.array[0].property, '123',
+    'The "array.0.property" field\'s value should be casted to string'
+  );
 });
