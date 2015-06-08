@@ -20,6 +20,8 @@ The Astronomy package extends your Mongo documents with functionalities defined 
     - [Constructor](#constructor)
     - [Fields](#fields)
       - [Types](#types)
+      - [Default values](#default-values)
+      - **[Nested fields](#nested-fields) NEW in 0.10.5**
       - [Custom types](#custom-types)
       - [Setters and getters](#setters-and-getters)
       - [Modified fields](#modified-fields)
@@ -253,9 +255,7 @@ var post = new Post(); // Shows alert 'Creating instance!'
 
 #### Fields
 
-The class schema is useless without definition of the fields. We have several ways of defining fields. Let's examine each one.
-
-**Simple list of fields:**
+The class schema is useless without definition of the fields. We have several ways of defining fields. Let's see the easiest way of defining them.
 
 ```js
 Post = Astro.Class({
@@ -271,7 +271,35 @@ post.set(title, 123); // Correct assignment
 
 In the example above we have defined three fields. Their types has not been defined so they can take any value and will be saved as set.
 
-**Lists of fields with types:**
+There are situation when we want to add some fields to the schema that is already defined. It can happen when we want to have different set of fields on the client and the server.
+
+```js
+if (Meteor.isServer) {
+  Post.addField('serverOnlyFieldA');
+  
+  Post.addFields(['serverOnlyFieldB', 'serverOnlyFieldC', 'serverOnlyFieldD']);
+  
+  Post.addField('serverOnlyFieldE', 'string');
+  
+  Post.addField('serverOnlyFieldF', {
+    type: 'number',
+    default: 10
+  });
+}
+```
+
+##### Types
+
+There are few predefined types of fields that you can use to define a class schema. They are:
+
+- `'string'`
+- `'number'`
+- `'boolean'`
+- `'object'`
+- `'array'`
+- `'date'`
+
+Each type has its own casting function. A value being set will be casted to the defined type. For example, when passing a numerical value to the field of the `'date'` type, then it will be treated as a time stamp and converted to the date object. Let's see how to define fields of given types.
 
 ```js
 Post = Astro.Class({
@@ -290,7 +318,9 @@ post.set('title', 'Hello World!'); // Correct assignment
 post.set('title', 123); // Correct assignment but numerical value will be converted to '123' string.
 ```
 
-**List of fields with types and default values:**
+##### Default values
+
+Every field can has its default value if not set. Let's see how to define fields with default values.
 
 ```js
 Post = Astro.Class({
@@ -316,37 +346,64 @@ var post = new Post();
 console.log(post.title); // Prints out an empty string.
 ```
 
-**Adding fields to already defined schema:**
+##### Nested fields
 
-There are situation when we want to add some fields for the schema that is already defined. It can happen when we want to have different set of fields in the client and the server.
+We can define types and default values not only for the fields that reside directly in the document but also for the nested fields.
 
 ```js
-if (Meteor.isServer) {
-  Post.addField('serverOnlyFieldA', {
-    type: 'number',
-    default: 10
-  });
-
-  Post.addField('serverOnlyFieldB', 'string');
-
-  Post.addField('serverOnlyFieldC');
-
-  Post.addFields(['serverOnlyFieldD', 'serverOnlyFieldE', 'serverOnlyFieldF']);
-}
+var Item = Astro.Class({
+  name: 'Item',
+  collection: Items,
+  fields: {
+    'object': {
+      type: 'object',
+      default: {}
+    },
+    'object.property': {
+      type: 'string',
+      default: 'Some default string'
+    }
+  }
+});
 ```
 
-##### Types
+Now when setting value for a nested field it will be automatically casted to a proper type or a default value will be assigned.
 
-There are few predefined types of fields that you can use to define a class schema. They are:
+```js
+var item = new Item();
+item.get('object.property'); // The "Some default string" value will be returned.
+item.set('object.property', 123); // Value will be casted to the "123" string.
+```
 
-- `'string'`
-- `'number'`
-- `'boolean'`
-- `'object'`
-- `'array'`
-- `'date'`
+We can also set types and default values for array elements and objects residing in arrays. Let's see the example.
 
-Each type has its own casting function that will try to parse any value to a given type. For example when you pass a numerical value into the field of the `'date'` type it will be treated as a timestamp.
+```js
+var Item = Astro.Class({
+  name: 'Item',
+  collection: Items,
+  fields: {
+    'array': {
+      type: 'array',
+      default: []
+    },
+    'array.$': {
+      type: 'object',
+      default: {}
+    },
+    'array.$.property': {
+      type: 'number',
+      default: 123
+    }
+  }
+});
+
+var item = new Item();
+item.get('array.0'); // The default {} object will be returned.
+item.set('array.0', 123); // The number 123 will be converted to object Number(123).
+item.set('array.0', {});
+item.get('array.0.property'); // The 123 number will be returned.
+item.set('array.0.property', '123') // The "123" string will be converted to the 123 number.
+```
 
 ##### Custom types
 
