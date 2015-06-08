@@ -1,6 +1,6 @@
 Package.describe({
   summary: 'Model layer for Meteor',
-  version: '0.10.4',
+  version: '0.10.5',
   name: 'jagi:astronomy',
   git: 'https://github.com/jagi/meteor-astronomy.git'
 });
@@ -54,7 +54,7 @@ Package.onUse(function(api) {
 
 Package.onTest(function(api) {
   api.use('tinytest');
-  api.use('jagi:astronomy@0.10.4');
+  api.use('jagi:astronomy@0.10.5');
 
   api.addFiles('test/ejson.js', ['client', 'server']);
   api.addFiles('test/events.js', ['client', 'server']);
