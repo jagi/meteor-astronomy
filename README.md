@@ -9,6 +9,8 @@ The Astronomy package extends your Mongo documents with functionalities defined 
 ## Table of Contents
 
 - [Introduction](#introduction)
+- [History](#history)
+- [Why use astronomy?](#why-use-astronomy)
 - [Installation](#installation)
 - [Features](#features)
 - [Planned features](#planned-features)
@@ -87,7 +89,42 @@ if (post.count > post.votes) {
 
 Which approach is simpler? I think the answer is obvious :).
 
-Why the name **Astronomy**? As almost everything related with Meteor is named with some cosmological term, so this one couldn't be an exception. The model layer in the MVC pattern is a description of real objects. While the science describing astronomical objects is [Astronomy](http://en.wikipedia.org/wiki/Astronomy).
+## History
+
+The idea of creating a package for Meteor, that would introduce the model layer, emerged after creating several simple Meteor applications. I noticed that I'm constantly repeating the same parts of code to manage storing of documents and validation. It was definitely frustrating in comparison to what I could do in the Doctrine library for PHP that I've used to use for many years.
+
+So it's why I've decided to create a package that would follow some principles that can be found in Doctrine. The first version appeared in 2013 and was named [Verin Model](https://github.com/jagi/verin-model). I didn't promote it extensively and it didn't have many users. However it worked as expected.
+
+In the late 2014, I've decided to give it one more try and implement much better package that would concentrate all the features, related with the model layer, that I've ever needed when creating Meteor applications. In the meanwhile many other packages appeared on the Atmosphere. However even when some of them had features that I was looking for, on the other hand they were to complex in use. Some packages just focused on single features. And I didn't like the idea of using many packages that follows quite different rules, some of them modifying Meteor's core, others overriding some Meteor objects. I just wanted the one modular tool that would fit all my needs and that why I've created **Astronomy** (originally named Cosmology).
+
+Why the name **Astronomy**? As almost everything related with Meteor is named with some cosmological term, so this one couldn't be an exception. The model layer in the MVC pattern is a description of real objects. The science describing astronomical objects is [Astronomy](http://en.wikipedia.org/wiki/Astronomy) so it couldn't be named differently.
+
+## Why use Astronomy?
+
+There are many other packages that do the same or have some of the Astronomy functionalities. I will try to point out here what are the main benefits of using Astronomy over other solutions.
+
+- Beside of having many features that are listed in the [Features](#features) section...
+- ... Astronomy is highly modularized. It was one the main principles when creating it. Thanks to that anyone can easily hook into almost every process that happens in the Astronomy. Developers can create their own modules, behaviors and validators.
+- It's easy to learn. Astronomy does not reinvent wheel. It takes the best from the tools you are already familiar with, not only from the JavaScript world but also from the other languages.
+- When using Astronomy you can easily replace from three to five packages that you already use with the one that follows the same pattern across all its modules. The main principle is simplicity.
+- There are many developers that already use Astronomy and I allowed myself to post some of the comments here.
+
+
+> I love your package, it's really great. As RoR developer, this package is really exciting!
+
+> Anyway, very happy to have moved to astronomy, really like it we will release an app using it soon, so I will let you know.
+
+> I still don't understand how this package is not getting more popular imho this package is better than simple-schema.
+
+> Amazing work, beautifully designed package! Anyone give this package few seconds and take a look at sources? If people will write code in such clean and modular way, world would be better! Kudos Jagi!
+
+> Amazing package indeed! Coming from a php MVC background, this package is a gift :). You rock!
+
+> Thanks for creating an amazing package. I would request you to add two way data binding.
+
+> Thanks - this has the makings of an amazing tool.... I'm hoping to replace Mesosphere, collection-hooks, collection-helpers, and a bunch of custom code - all with a cleaner code base!
+
+I hope you will join and become happy user of Astronomy :)
 
 ## Installation
 
