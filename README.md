@@ -104,7 +104,7 @@ Why the name **Astronomy**? As almost everything related with Meteor is named wi
 There are many other packages that do the same or have some of the Astronomy functionalities. I will try to point out here what are the main benefits of using Astronomy over other solutions.
 
 - Beside of having many features that are listed in the [Features](#features) section...
-- ... Astronomy is highly modularized. It was one the main principles when creating it. Thanks to that anyone can easily hook into almost every process that happens in the Astronomy. Developers can create their own modules, behaviors and validators.
+- ... Astronomy is highly modularized. It was one of the main principles when creating it. Thanks to that anyone can easily hook into almost every process that happens in the Astronomy. Developers can create their own modules, behaviors and validators.
 - It's easy to learn. Astronomy does not reinvent wheel. It takes the best from the tools you are already familiar with, not only from the JavaScript world but also from the other languages.
 - When using Astronomy you can easily replace from three to five packages that you already use with the one that follows the same pattern across all its modules. The main principle is simplicity.
 - There are many developers that already use Astronomy and I allowed myself to post some of the comments here.
