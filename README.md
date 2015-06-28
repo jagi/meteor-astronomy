@@ -263,7 +263,7 @@ Post = Astro.Class({
   transform: false
 });
 
-var post = Posts.findOne(); // Get instance of Post class
+var post = Posts.findOne(); // Get plain ejson data
 ```
 
 If you want to have the automatic documents transformation turned on and you need to get a plain object you can force that for a particular query by passing `null` as a value of the `transform` option.
