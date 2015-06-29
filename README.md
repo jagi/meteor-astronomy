@@ -775,13 +775,13 @@ Astro.eventManager.on('afterset', function (e) {
 });
 
 var post = new Post();
-post.title = 'title';  // The "afterset" event triggered.
+post.set('title', 'title');  // The "afterset" event triggered.
 
 var item = new Item();
-item.name = 'name';  // The "afterset" event triggered.
+item.set('name', 'name');  // The "afterset" event triggered.
 
 var car = new Car();
-car.wheels = 4;  // The "afterset" event triggered.
+car.set('wheels', 4);  // The "afterset" event triggered.
 ```
 
 ##### Class event
