@@ -15,13 +15,13 @@ Tinytest.add('Events module - Events order', function(test) {
       }
     },
     events: {
-      beforeset: function() {
+      beforeset: function(e) {
         events.push('beforeset 1 on parent');
       },
       afterset: function() {
         events.push('afterset 1 on parent');
       },
-      beforeget: function() {
+      beforeget: function(e) {
         events.push('beforeget 1 on parent');
       },
       afterget: function() {
@@ -61,7 +61,7 @@ Tinytest.add('Events module - Events order', function(test) {
     afterget: function() {
       events.push('afterget 2 on parent');
     },
-    beforesave: function() {
+    beforesave: function(e) {
       events.push('beforesave 2 on parent');
     },
     aftersave: function() {

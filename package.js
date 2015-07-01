@@ -14,6 +14,7 @@ Package.onUse(function(api) {
   api.use('ejson');
 
   api.addFiles('lib/core/global.js', ['client', 'server']);
+  api.addFiles('lib/core/config.js', ['client', 'server']);
   api.addFiles('lib/core/utils.js', ['client', 'server']);
   api.addFiles('lib/core/events.js', ['client', 'server']);
   api.addFiles('lib/core/event.js', ['client', 'server']);
