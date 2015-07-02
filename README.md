@@ -472,7 +472,7 @@ Post = Astro.Class({
 
 var post = new Post();
 post.set('title', 'Title');  // Call field setter.
-alert(post.get('title'));  // Call field getter.
+post.get('title');  // Call field getter.
 ```
 
 You can also set values directly but assigned values won't be converted to the proper type of the fields.
@@ -485,9 +485,17 @@ alert(post.title);  // 123, not '123'
 
 You should always set values coming from forms using the `set` function.
 
-The setter and getter functions are more powerful. They can take many different arguments and return different data. Let's examine them.
+There is a possibility to change the way Astronomy behaves on value assignment and force implicit setters. Let's see the example.
 
-In the example below, we set multiple fields at once.
+```js
+Astro.config.supportLegacyBrowsers = false;
+post.title = 123;
+alert(post.title); // '123'
+```
+
+It this example, the value had been converted to string thanks to setting the `Astro.config.supportLegacyBrowsers` option to `false`. However, it has one downside. It's not supported in IE 8.0 anb below, so set this option only if you don't care about legacy browsers.
+
+The setter and getter functions are even more powerful. They can take many different arguments. Let's examine the possibilites. In the example below, we set multiple fields at once.
 
 ```js
 post.set({
@@ -496,7 +504,7 @@ post.set({
 });
 ```
 
-Now let's move on to the getter function. In the following example we get all the fields of the class instance.
+In the following example we get all the fields of the class instance.
 
 ```js
 // Returns object with all fields: '_id', 'title' and 'commentsCount'.
