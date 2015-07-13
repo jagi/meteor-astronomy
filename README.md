@@ -39,6 +39,7 @@ The Astronomy package extends your MongoDB documents with functionalities define
       - [Class event](#class-event)
       - [Instance event](#instance-event)
       - [Events propagation](#events-propagation)
+    - [Indexes](#indexes)
     - [Inheritance](#inheritance)
   - [Modules](#modules)
 - [Contribution](#contribution)
@@ -149,6 +150,7 @@ $ meteor add jagi:astronomy
 - [Getter of modified fields](#modified-fields)
 - [Documents cloning](#cloning)
 - [Documents reloading](#reactivity-and-reloading)
+- [Indexes](#indexes)
 - [Inheritance](#inheritance)
 - [Modules](#modules)
   - [Validators](https://github.com/jagi/meteor-astronomy/wiki/Validators)
@@ -884,6 +886,69 @@ child.save();
 // 1. Child.beforesave
 // 2. Parent.beforesave
 // 3. Global.beforesave
+```
+
+#### Indexes
+
+To speed up the process of finding a document in a collection we should add indexes to some fields. If we sort documents by a name, it's a good idea to add an index to the `name` field. We have two ways of defining indexes in Astronomy. The first one is defining field as indexed just in its definition.
+
+```js
+Post = Astro.Class({
+  name: 'Post',
+  collection: Posts,
+  fields: {
+    name: {
+      type: 'string',
+      index: 1 // Define an index (ascending order) for the "name" field.
+    }
+  }
+});
+```
+
+The value `1` under the `index` property is an order in which index will be stored. In this case, it doesn't matter if we use ascending (`1`) or descending (`-1`) order because MongoDB can easily iterate through the one key indexes in both directions. However it does matter in the case of the multi-key indexes. Let's see how to define an index for multiple fields.
+
+```js
+User = Astro.Class({
+  name: 'User',
+  collection: Users,
+  fields: {
+    firstName: 'string',
+    lastName: 'string'
+  },
+  indexes: {
+    fullName: {
+      fields: {
+        lastName: 1,
+        firstName: 1
+      },
+      options: {}
+    }
+  }
+});
+```
+
+As you can see, we've provided an object with the definition of indexes under the `indexes` property. The `fullName` property name is an index name. An index definition consists of two values: list of fields and list of options. In fact, it's exactly the same list of fields (keys) and options as described in the [MongoDB documentation](http://docs.mongodb.org/manual/reference/method/db.collection.createIndex/#db.collection.createIndex). If you want to read more about indexes, I encourage you to read it.
+
+You can also add indexes to already defined class.
+
+```js
+// Add one index.
+Post.addIndex('indexName', {
+  fields: {},
+  options: {}
+});
+
+// Add many indexes at once.
+Post.addIndexes({
+  firstIndexName: {
+    fields: {},
+    options: {}
+  },
+  secondIndexName: {
+    fields: {},
+    options: {}
+  }
+});
 ```
 
 #### Inheritance
