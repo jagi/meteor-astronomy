@@ -497,6 +497,8 @@ alert(post.title); // '123'
 
 It this example, the value had been converted to string thanks to setting the `Astro.config.supportLegacyBrowsers` option to `false`. However, it has one downside. It's not supported in IE 8.0 anb below, so set this option only if you don't care about legacy browsers.
 
+**IMPORTANT! You have to put the configuration code in the file which is executed before the creation of any Astronomy schema. In most cases it will be root or lib directory. To read more about the load order go to the File Load Order section in the official [Meteor documentation](http://docs.meteor.com/#/full/structuringyourapp)**
+
 The setter and getter functions are even more powerful. They can take many different arguments. Let's examine the possibilites. In the example below, we set multiple fields at once.
 
 ```js
