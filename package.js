@@ -36,6 +36,10 @@ Package.onUse(function(api) {
   api.addFiles('lib/modules/types/init_module.js', ['client', 'server']);
   api.addFiles('lib/modules/types/module.js', ['client', 'server']);
 
+  // Indexes module.
+  api.addFiles('lib/modules/indexes/init_class.js', ['client', 'server']);
+  api.addFiles('lib/modules/indexes/module.js', ['client', 'server']);
+
   // Fields module.
   api.addFiles('lib/modules/fields/utils.js', ['client', 'server']);
   api.addFiles('lib/modules/fields/init_module.js', ['client', 'server']);
@@ -45,10 +49,6 @@ Package.onUse(function(api) {
   // Methods module.
   api.addFiles('lib/modules/methods/init_class.js', ['client', 'server']);
   api.addFiles('lib/modules/methods/module.js', ['client', 'server']);
-
-  // Indexes module.
-  api.addFiles('lib/modules/indexes/init_class.js', ['client', 'server']);
-  api.addFiles('lib/modules/indexes/module.js', ['client', 'server']);
 
   // EJSON module.
   api.addFiles('lib/modules/ejson/init_module.js', ['client', 'server']);
