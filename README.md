@@ -120,7 +120,11 @@ There are many other packages that implement some of the functionality in Astron
 
 > I still don't understand how this package is not getting more popular imho this package is better than simple-schema.
 
+-- [dstollie](https://crater.io/posts/MT9dPLYiydEWmqYi5/comment/tCQH3LGahRQDhCkNs)
+
 > Amazing work, beautifully designed package! Anyone give this package few seconds and take a look at sources? If people will write code in such clean and modular way, world would be better! Kudos Jagi!
+
+-- [Kuba Wyrobek](https://crater.io/posts/MT9dPLYiydEWmqYi5/comment/tCQH3LGahRQDhCkNs)
 
 > Amazing package indeed! Coming from a php MVC background, this package is a gift :). You rock!
 
