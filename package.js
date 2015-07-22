@@ -23,7 +23,7 @@ Package.onUse(function(api) {
   api.addFiles('lib/core/schema.js', ['client', 'server']);
   api.addFiles('lib/core/module.js', ['client', 'server']);
   api.addFiles('lib/core/constructor.js', ['client', 'server']);
-  api.addFiles('lib/core/class.js', ['client', 'server']);
+  api.addFiles('lib/core/classes.js', ['client', 'server']);
 
   // Events module.
   api.addFiles('lib/modules/events/init_module.js', ['client', 'server']);
@@ -49,7 +49,7 @@ Package.onUse(function(api) {
   // EJSON module.
   api.addFiles('lib/modules/ejson/init_module.js', ['client', 'server']);
 
-  // MongoDb driver.
+  // Mongo driver.
   api.addFiles([
     'lib/drivers/mongo/init_driver.js',
     'lib/drivers/mongo/field_definition.js',
