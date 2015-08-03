@@ -54,6 +54,7 @@ Package.onUse(function(api) {
     'lib/drivers/mongo/init_driver.js',
     'lib/drivers/mongo/field_definition.js',
     'lib/drivers/mongo/type_definition.js',
+    'lib/drivers/mongo/init_class.js',
     'lib/drivers/mongo/types.js',
   ], ['client', 'server']);
 
