@@ -17,7 +17,7 @@ The Astronomy package extends your MongoDB documents with functionalities define
 - [Changelog](#changelog)
 - [Examples](#examples)
 - [Key concepts](#key-concepts)
-  - [Defining schema](#defining-schema)
+  - [Defining a schema](#defining-a-schema)
     - [Transformation](#transformation)
     - [Constructor](#constructor)
     - [Fields](#fields)
@@ -190,7 +190,7 @@ A detailed example can be found [on this Wiki page](https://github.com/jagi/mete
 
 ## Key concepts
 
-### Defining schema
+### Defining a schema
 
 To get started, we have to create a model by defining its schema. A schema is a description of the model / class. The schema creation is inspired by the Doctrine library for the Symfony (PHP) framework, so anyone who has ever worked with it should feel familiar with Astronomy.
 
@@ -245,7 +245,7 @@ var post = new Post({  // Initialize document with some data
 
 #### Transformation
 
-Once you bind a class to a Collection, objects return from that collection will be automatically converted to instances of the proper class:
+Once you bind a class to a Collection, objects returned from that collection will automatically be converted to instances of the proper class:
 
 ```js
 Posts = new Mongo.Collection('posts');
@@ -307,7 +307,7 @@ Post = Astro.Class({
 
 var post = new Post();
 post.set('title', 'Hello World!');  // Correct assignment
-post.set(title, 123);  // Correct assignment
+post.set('title', 123);  // Correct assignment
 ```
 
 In the example above we have defined three fields. Their types have not been defined so they can take any value and will be saved as they are passed to `set`.
@@ -331,7 +331,7 @@ if (Meteor.isServer) {
 
 ##### Types
 
-There are few predefined types of fields that you can use to define a class schema. They are specified as lowercased strings indicating the type:
+There are a few predefined types of fields that you can use to define a class schema. They are specified as lowercased strings indicating the type:
 
 - `'string'`
 - `'number'`
@@ -459,7 +459,7 @@ Astro.createType({
 });
 ```
 
-As you can see, we use the `Astro.createType` method that gets a type definition as the only parameter. You have to provide two required attributes in this definition. The first one is the `name`` of the type that will be used in the field definition. The second one is the `cast`` function, that has to return a converted value.
+As you can see, we use the `Astro.createType` method that gets a type definition as the only parameter. You have to provide two required attributes in this definition. The first one is the `name` of the type that will be used in the field definition. The second one is the `cast` function, that has to return a converted value.
 
 ##### Setters and getters
 
