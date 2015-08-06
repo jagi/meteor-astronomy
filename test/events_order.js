@@ -1,4 +1,4 @@
-Tinytest.add('Events module - Events order', function(test) {
+Tinytest.add('Events - Order', function(test) {
   Astro.classes = [];
 
   var events;
@@ -10,7 +10,7 @@ Tinytest.add('Events module - Events order', function(test) {
     collection: Items,
     fields: {
       parentField: {
-        type: 'string',
+        type: 'String',
         default: null
       }
     },
@@ -85,7 +85,7 @@ Tinytest.add('Events module - Events order', function(test) {
     name: 'ChildItem',
     fields: {
       childField: {
-        type: 'string',
+        type: 'String',
         default: null
       }
     },
