@@ -1,11 +1,11 @@
-Tinytest.add('Methods module - Methods definition', function(test) {
+Tinytest.add('Methods - Definition', function(test) {
   Astro.classes = [];
 
   var Item = Astro.Class({
     name: 'Item',
     fields: {
-      stringField: 'string',
-      numberField: 'number'
+      stringField: 'String',
+      numberField: 'Number'
     },
     methods: {
       methodA: function() {

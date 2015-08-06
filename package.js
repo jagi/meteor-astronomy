@@ -65,9 +65,11 @@ Package.onTest(function(api) {
   api.use('tinytest');
   api.use('jagi:astronomy@0.10.5');
 
-  api.addFiles('test/ejson.js', ['client', 'server']);
-  api.addFiles('test/events.js', ['client', 'server']);
-  api.addFiles('test/fields.js', ['client', 'server']);
-  api.addFiles('test/methods.js', ['client', 'server']);
-  api.addFiles('test/types.js', ['client', 'server']);
+  api.addFiles('test/core_save.js', ['client', 'server']);
+  api.addFiles('test/ejson_parsing.js', ['client', 'server']);
+  api.addFiles('test/events_order.js', ['client', 'server']);
+  api.addFiles('test/fields_definition.js', ['client', 'server']);
+  api.addFiles('test/fields_default.js', ['client', 'server']);
+  api.addFiles('test/methods_definition.js', ['client', 'server']);
+  api.addFiles('test/types_casting.js', ['client', 'server']);
 });
