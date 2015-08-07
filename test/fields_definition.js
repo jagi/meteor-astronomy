@@ -38,7 +38,6 @@ Tinytest.add('Fields - Definition', function(test) {
     'The "ItemA" class should have 6 fields'
   );
 
-  var Items = new Mongo.Collection('items');
   var ItemB = Astro.Class({
     name: 'ItemB',
     collection: Items,

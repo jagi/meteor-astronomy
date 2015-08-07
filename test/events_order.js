@@ -4,7 +4,6 @@ Tinytest.add('Events - Order', function(test) {
   var events;
   var expectedOrder;
 
-  var Items = new Mongo.Collection(null);
   var ParentItem = Astro.Class({
     name: 'ParentItem',
     collection: Items,
