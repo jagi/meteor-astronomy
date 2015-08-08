@@ -20,6 +20,18 @@ Tinytest.add('Core - Update', function(test) {
       b: 'b',
       c: 'c',
       d: 'd'
+    },
+    nested: {
+      string: 'string',
+      number: 123,
+      boolean: true,
+      date: new Date(2000, 0, 1, 0, 0, 0, 0),
+      array: [1, 2, 3],
+      object: {
+        a: 'a',
+        b: 'b',
+        c: 'c'
+      }
     }
   };
 
