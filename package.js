@@ -30,7 +30,6 @@ Package.onUse(function(api) {
   api.addFiles('lib/modules/events/init_class.js', ['client', 'server']);
 
   // Types module.
-  api.addFiles('lib/modules/types/utils.js', ['client', 'server']);
   api.addFiles('lib/modules/types/type_definition.js', ['client', 'server']);
   api.addFiles('lib/modules/types/init_module.js', ['client', 'server']);
 
