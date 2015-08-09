@@ -42,6 +42,9 @@ Package.onUse(function(api) {
   api.addFiles('lib/modules/fields/init_module.js', ['client', 'server']);
   api.addFiles('lib/modules/fields/init_class.js', ['client', 'server']);
 
+  // Storage module.
+  api.addFiles('lib/modules/storage/init_class.js', ['client', 'server']);
+
   // Methods module.
   api.addFiles('lib/modules/methods/init_class.js', ['client', 'server']);
 
