@@ -66,24 +66,33 @@ Package.onTest(function(api) {
   api.use('tinytest');
   api.use('insecure');
   api.use('jagi:astronomy@0.10.5');
+  api.use('jagi:astronomy-timestamp-behavior');
 
   // Init.
   api.addFiles('test/init.js', ['client', 'server']);
   // Core.
-  api.addFiles('test/core_insert.js', ['client', 'server']);
-  api.addFiles('test/core_update.js', ['client', 'server']);
-  api.addFiles('test/core_remove.js', ['client', 'server']);
+  api.addFiles([
+    'test/core_insert.js',
+    'test/core_update.js',
+    'test/core_remove.js'
+  ], ['client', 'server']);
   // EJSON.
   api.addFiles('test/ejson_parsing.js', ['client', 'server']);
   // Events.
   api.addFiles('test/events_order.js', ['client', 'server']);
   // Fields.
-  api.addFiles('test/fields_definition.js', ['client', 'server']);
-  api.addFiles('test/fields_default.js', ['client', 'server']);
-  api.addFiles('test/fields_setters.js', ['client', 'server']);
-  api.addFiles('test/fields_getters.js', ['client', 'server']);
+  api.addFiles([
+    'test/fields_definition.js',
+    'test/fields_default.js',
+    'test/fields_setters.js',
+    'test/fields_getters.js'
+  ], ['client', 'server']);
   // Types.
   api.addFiles('test/types_casting.js', ['client', 'server']);
   // Methods.
   api.addFiles('test/methods_definition.js', ['client', 'server']);
+  // Behaviors.
+  api.addFiles([
+    'test/behaviors_timestamp.js'
+  ], ['client', 'server']);
 });
