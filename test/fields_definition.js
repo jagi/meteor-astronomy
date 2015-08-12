@@ -46,7 +46,7 @@ Tinytest.add('Fields - Definition', function(test) {
   test.equal(_.size(ItemB.getFields()), 2,
     'The "ItemB" class should have 2 fields'
   );
-  test.instanceOf(ItemB.getField('_id'), Astro.base.FieldDefinition,
+  test.instanceOf(ItemB.getField('_id'), Astro.FieldDefinition,
     'The "ItemB" class should have the "_id" field'
   );
 });
