@@ -1,17 +1,17 @@
 Tinytest.add('Core - Insert', function(test) {
-  var item = new SimpleItem();
+  var core = new Core();
 
-  item.set('string', 'string');
-  item.set('number', 123);
-  item.set('boolean', true);
-  item.set('date', new Date(2000, 0, 1, 0, 0, 0, 0));
-  item.set('array', [1, 2, 3]);
-  item.set('object', {
+  core.set('string', 'string');
+  core.set('number', 123);
+  core.set('boolean', true);
+  core.set('date', new Date(2000, 0, 1, 0, 0, 0, 0));
+  core.set('array', [1, 2, 3]);
+  core.set('object', {
     a: 'a',
     b: 'b',
     c: 'c'
   });
-  item.set('nested', new Nested({
+  core.set('nested', new NestedCore({
     string: 'string',
     number: 123,
     boolean: true,
@@ -23,13 +23,13 @@ Tinytest.add('Core - Insert', function(test) {
       c: 'c'
     }
   }));
-  item.save();
+  core.save();
 
-  item = _.omit(Items.findOne({}, {
+  core = _.omit(Cores.findOne({}, {
     transform: null
   }), '_id');
 
-  testItem = {
+  expectedCore = {
     string: 'string',
     number: 123,
     boolean: true,
@@ -54,7 +54,7 @@ Tinytest.add('Core - Insert', function(test) {
     }
   };
 
-  test.equal(item, testItem,
+  test.equal(core, expectedCore,
     'The document has not been saved properly'
   );
 });

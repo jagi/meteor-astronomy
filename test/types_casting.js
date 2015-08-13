@@ -1,8 +1,8 @@
 Tinytest.add('Types - Casting', function(test) {
   Astro.classes = [];
 
-  var Item = Astro.Class({
-    name: 'Item',
+  var Cast = Astro.Class({
+    name: 'Cast',
     fields: {
       'string': {
         type: 'String'
@@ -24,55 +24,53 @@ Tinytest.add('Types - Casting', function(test) {
       }
     }
   });
-  var item = new Item();
+  var cast = new Cast();
 
-  item.set('string', 123);
-  test.equal(item.string, '123',
-    'The "string" field\'s value after setting to 123 should become "123"'
+  cast.set('string', 123);
+  test.equal(cast.string, '123',
+    'The value of the "string" field after setting it to 123 should become "123"'
   );
 
-  item.set('number', '123');
-  test.equal(item.number, 123,
-    'The "number" field\'s value after setting to "123" should become 123'
+  cast.set('number', '123');
+  test.equal(cast.number, 123,
+    'The value of the "number" field after setting it to "123" should become 123'
   );
 
-  item.set('boolean', '');
-  test.isFalse(item.boolean,
-    'The "boolean" field\'s value after setting to "" should become false'
+  cast.set('boolean', '');
+  test.isFalse(cast.boolean,
+    'The value of the "boolean" field after setting it to "" should become false'
   );
 
-  item.set('boolean', '123');
-  test.isTrue(item.boolean,
-    'The "boolean" field\'s value after setting to "123" should become true'
+  cast.set('boolean', '123');
+  test.isTrue(cast.boolean,
+    'The value of the "boolean" field after setting it to "123" should become true'
   );
 
-  item.set('boolean', 0);
-  test.isFalse(item.boolean,
-    'The "boolean" field\'s value after setting to 0 should become false'
+  cast.set('boolean', 0);
+  test.isFalse(cast.boolean,
+    'The value of the "boolean" field after setting it to 0 should become false'
   );
 
-  item.set('boolean', 1);
-  test.isTrue(item.boolean,
-    'The "boolean" field\'s value after setting to 1 should become true'
+  cast.set('boolean', 1);
+  test.isTrue(cast.boolean,
+    'The value of the "boolean" field after setting it to 1 should become true'
   );
 
-  item.set('date', (new Date(2000, 0, 1, 0, 0, 0)).getTime());
-  test.equal(item.date, new Date(2000, 0, 1, 0, 0, 0),
-    'The "date" field\'s value after setting to "" should become false'
+  cast.set('date', (new Date(2000, 0, 1, 0, 0, 0)).getTime());
+  test.equal(cast.date, new Date(2000, 0, 1, 0, 0, 0),
+    'The value of the "date" field after setting it to "" should become false'
   );
 
-  item.set('array', 123);
-  test.equal(item.array, [],
-    'The "array" field\'s value after setting to 123 should become []'
+  cast.set('array', 123);
+  test.equal(cast.array, [],
+    'The value of the "array" field after setting it to 123 should become []'
   );
 
-  ///////////////////////////////////////////////
-
-
+/*
   Astro.classes = [];
 
-  var Item = Astro.Class({
-    name: 'Item',
+  var Cast = Astro.Class({
+    name: 'Cast',
     fields: {
       'string': {
         type: 'String',
@@ -101,30 +99,31 @@ Tinytest.add('Types - Casting', function(test) {
     }
   });
 
-  var item = new Item();
-  item.set('string', 123);
-  item.set('number', '123');
-  item.set('boolean', 1);
-  item.set('date', 946681200000);
-  item.set('object', 123);
-  item.set('array', 123);
+  var cast = new Cast();
+  cast.set('string', 123);
+  cast.set('number', '123');
+  cast.set('boolean', 1);
+  cast.set('date', 946681200000);
+  cast.set('object', 123);
+  cast.set('array', 123);
 
-  test.equal(item.string, '123',
+  test.equal(cast.string, '123',
     'The "string" field\'s value should be casted to string'
   );
-  test.equal(item.number, 123,
+  test.equal(cast.number, 123,
     'The "number" field\'s value should be casted to number'
   );
-  test.equal(item.boolean, true,
+  test.equal(cast.boolean, true,
     'The "boolean" field\'s value should be casted to boolean'
   );
-  test.equal(item.date, new Date(2000, 0, 1),
+  test.equal(cast.date, new Date(2000, 0, 1),
     'The "date" field\'s value should be casted to date'
   );
-  test.instanceOf(item.object, Number,
+  test.instanceOf(cast.object, Number,
     'The "object" field\'s value should be casted to object'
   );
-  test.equal(item.array, [],
+  test.equal(cast.array, [],
     'The "array" field\'s value should be casted to array'
   );
+  */
 });

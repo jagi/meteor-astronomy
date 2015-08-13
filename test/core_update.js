@@ -1,15 +1,15 @@
 Tinytest.add('Core - Update', function(test) {
-  var item = Items.findOne();
+  var core = Cores.findOne();
 
-  item.set('string', item.get('string').toUpperCase());
-  item.set('number', 321);
-  item.set('boolean', false);
-  item.set('date', new Date(2001, 0, 1, 0, 0, 0, 0));
-  item.array.push(4);
-  item.object.d = 'd';
-  item.save();
+  core.set('string', core.get('string').toUpperCase());
+  core.set('number', 321);
+  core.set('boolean', false);
+  core.set('date', new Date(2001, 0, 1, 0, 0, 0, 0));
+  core.array.push(4);
+  core.object.d = 'd';
+  core.save();
 
-  var testItem = {
+  var expectedCore = {
     string: 'STRING',
     number: 321,
     boolean: false,
@@ -35,11 +35,11 @@ Tinytest.add('Core - Update', function(test) {
     }
   };
 
-  item = _.omit(Items.findOne({}, {
+  core = _.omit(Cores.findOne({}, {
     transform: null
   }), '_id');
 
-  test.equal(item, testItem,
+  test.equal(core, expectedCore,
     'The document has not been updated properly'
   );
 });
