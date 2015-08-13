@@ -67,6 +67,7 @@ Package.onTest(function(api) {
   api.use('insecure');
   api.use('jagi:astronomy@0.10.5');
   api.use('jagi:astronomy-timestamp-behavior');
+  api.use('jagi:astronomy-slug-behavior');
 
   // Init.
   api.addFiles('test/init.js', ['client', 'server']);
@@ -93,6 +94,7 @@ Package.onTest(function(api) {
   api.addFiles('test/methods_definition.js', ['client', 'server']);
   // Behaviors.
   api.addFiles([
-    'test/behaviors_timestamp.js'
+    'test/behaviors_timestamp.js',
+    'test/behaviors_slug.js'
   ], ['client', 'server']);
 });

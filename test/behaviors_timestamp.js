@@ -1,4 +1,4 @@
-Tinytest.add('Behaviors - Timestamp', function(test) {
+Tinytest.addAsync('Behaviors - Timestamp', function(test, next) {
   Timestamps = new Mongo.Collection(null);
 
   TimestampA = Astro.Class({
@@ -17,23 +17,26 @@ Tinytest.add('Behaviors - Timestamp', function(test) {
   });
   timestampA.save();
 
-  test.instanceOf(timestampA.createdAt, Date,
+  test.instanceOf(timestampA.get('createdAt'), Date,
     'The "createdAt" field should be instance of Date'
   );
-  test.instanceOf(timestampA.updatedAt, Date,
+  test.instanceOf(timestampA.get('updatedAt'), Date,
     'The "updatedAt" field should be instance of Date'
   );
-  test.equal(timestampA.createdAt, timestampA.updatedAt,
+  test.equal(timestampA.get('createdAt'), timestampA.get('updatedAt'),
     'The "createdAt" and "updatedAt" fields should be equal'
   );
 
-  timestampA.set('name', 'updated');
-  timestampA.save();
+  timestampA.set('name', 'TimestampA2');
 
-  test.isTrue(timestampA.createdAt < timestampA.updatedAt,
-    'The value of the "updatedAt" field should be greater than the value ' +
-    'of the "createdAt" fields'
-  );
+  Meteor.setTimeout(function() {
+    timestampA.save();
+    test.isTrue(timestampA.get('createdAt') < timestampA.get('updatedAt'),
+      'The value of the "updatedAt" field should be greater than the value ' +
+      'of the "createdAt" field'
+    );
+    next();
+  }, 1);
 
   TimestampB = Astro.Class({
     name: 'TimestampB',
@@ -54,13 +57,13 @@ Tinytest.add('Behaviors - Timestamp', function(test) {
   });
   timestampB.save();
 
-  test.instanceOf(timestampB.created, Date,
+  test.instanceOf(timestampB.get('created'), Date,
     'The "created" field should be instance of Date'
   );
-  test.instanceOf(timestampB.updated, Date,
+  test.instanceOf(timestampB.get('updated'), Date,
     'The "updated" field should be instance of Date'
   );
-  test.equal(timestampB.created, timestampB.updated,
+  test.equal(timestampB.get('created'), timestampB.get('updated'),
     'The "created" and "updated" fields should be equal'
   );
 
@@ -83,10 +86,10 @@ Tinytest.add('Behaviors - Timestamp', function(test) {
   });
   timestampC.save();
 
-  test.isUndefined(timestampC.createdAt,
+  test.isUndefined(timestampC.get('createdAt'),
     'The "createdAt" field should be undefined'
   );
-  test.isUndefined(timestampC.updatedAt,
+  test.isUndefined(timestampC.get('updatedAt'),
     'The "updatedAt" field should be undefined'
   );
 });
