@@ -1,21 +1,20 @@
-removeAllItems = function() {
-  Items.find({}, {
-    transform: null
-  }).forEach(function(item) {
-    Items.remove(item._id);
-  });
-};
+Tinytest.add('Core - Init', function(test) {
+  // Remove all classes.
+  Astro.classes = [];
 
-Tinytest.add('Init', function(test) {
   // Create collection.
-  Items = new Mongo.Collection(null);
+  Cores = new Mongo.Collection(null);
 
   // Remove all previously stored documents.
-  removeAllItems();
+  Cores.find({}, {
+    transform: null
+  }).forEach(function(item) {
+    Cores.remove(item._id);
+  });
 
   // Class for usage as a nested field.
-  Nested = Astro.Class({
-    name: 'Nested',
+  NestedCore = Astro.Class({
+    name: 'NestedCore',
     fields: {
       'string': {
         type: 'String'
@@ -39,9 +38,9 @@ Tinytest.add('Init', function(test) {
   });
 
   // Define simple class to work with.
-  SimpleItem = Astro.Class({
-    name: 'SimpleItem',
-    collection: Items,
+  Core = Astro.Class({
+    name: 'Core',
+    collection: Cores,
     fields: {
       'string': {
         type: 'String'
@@ -62,7 +61,7 @@ Tinytest.add('Init', function(test) {
         type: 'Array'
       },
       'nested': {
-        type: 'Nested'
+        type: 'NestedCore'
       }
     }
   });

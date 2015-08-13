@@ -1,13 +1,13 @@
-var removeAll = function() {
-  Slugs.find({}, {
-    transform: null
-  }).forEach(function(slug) {
-    Slugs.remove(slug._id);
-  });
-};
-
 Tinytest.add('Behaviors - Slug', function(test) {
   Slugs = new Mongo.Collection(null);
+
+  var removeAll = function() {
+    Slugs.find({}, {
+      transform: null
+    }).forEach(function(slug) {
+      Slugs.remove(slug._id);
+    });
+  };
 
   removeAll();
 

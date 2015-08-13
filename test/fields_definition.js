@@ -1,52 +1,57 @@
 Tinytest.add('Fields - Definition', function(test) {
-  Astro.classes = [];
-
-  var ItemA = Astro.Class({
-    name: 'ItemA',
-    fields: ['noType1']
+  var FieldA = Astro.Class({
+    name: 'FieldA',
+    fields: ['nullA']
   });
-  test.equal(_.size(ItemA.getFields()), 1,
-    'The "ItemA" class should have 1 field'
+  test.isNull(FieldA.getField('nullA').type,
+    'The type of the "nullA" field should be null'
   );
 
-  ItemA.addField('noType2');
-  test.equal(_.size(ItemA.getFields()), 2,
-    'The "ItemA" class should have 2 fields'
+  FieldA.addField('nullB');
+  test.isNull(FieldA.getField('nullB').type,
+    'The type of the "nullB" field should be null'
   );
 
-  ItemA.addField('string', 'String');
-  test.equal(_.size(ItemA.getFields()), 3,
-    'The "ItemA" class should have 3 fields'
+  FieldA.addField('string', 'String');
+  test.equal(FieldA.getField('string').type.name, 'String',
+    'The type of the "string" field should be "String"'
   );
 
-  ItemA.addField('number', {
+  FieldA.addField('number', {
     type: 'Number'
   });
-  test.equal(_.size(ItemA.getFields()), 4,
-    'The "ItemA" class should have 4 fields'
+  test.equal(FieldA.getField('number').type.name, 'Number',
+    'The type of the "number" field should be "Number"'
   );
 
-  ItemA.addFields({
-    boolean: {
+  FieldA.addFields({
+    'boolean': {
       type: 'Boolean'
     },
-    date: {
+    'date': {
       type: 'Date'
     }
   });
-  test.equal(_.size(ItemA.getFields()), 6,
-    'The "ItemA" class should have 6 fields'
+  test.equal(FieldA.getField('boolean').type.name, 'Boolean',
+    'The type of the "boolean" field should be "Boolean"'
+  );
+  test.equal(FieldA.getField('date').type.name, 'Date',
+    'The type of the "date" field should be "Date"'
   );
 
-  var ItemB = Astro.Class({
-    name: 'ItemB',
-    collection: Items,
+  var FieldB = Astro.Class({
+    name: 'FieldB',
+    collection: Fields,
     fields: ['field']
   });
-  test.equal(_.size(ItemB.getFields()), 2,
-    'The "ItemB" class should have 2 fields'
+  test.equal(_.size(FieldB.getFields()), 2,
+    'The "FieldB" class should have 2 fields'
   );
-  test.instanceOf(ItemB.getField('_id'), Astro.FieldDefinition,
-    'The "ItemB" class should have the "_id" field'
+  test.isNotNull(FieldB.getField('_id'),
+    'The "FieldB" class should have the "_id" field'
+  );
+
+  test.equal(Field.getField('nested').type.name, 'NestedField',
+    'The type of the "nested" field should be "NestedField"'
   );
 });

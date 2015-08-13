@@ -1,24 +1,14 @@
 Tinytest.add('Methods - Definition', function(test) {
-  Astro.classes = [];
+  test.equal(_.size(Method.getMethods()), 2,
+    'The "Method" class should have 2 methods'
+  );
 
-  var Item = Astro.Class({
-    name: 'Item',
-    fields: {
-      stringField: 'String',
-      numberField: 'Number'
-    },
-    methods: {
-      methodA: function() {
-        return this.stringField + this.numberField;
-      }
-    }
+  var method = new Method({
+    string: 'string',
+    number: 123
   });
 
-  Item.addMethod('methodB', function() {
-    return this.stringField + this.numberField;
-  });
-
-  test.equal(_.size(Item.getMethods()), 2,
-    'The "Item" class should have 2 methods'
+  test.equal(method.methodA(), 'string123',
+    'The "methodA" method should return "string123"'
   );
 });

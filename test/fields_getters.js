@@ -1,5 +1,5 @@
 Tinytest.add('Fields - Getters', function(test) {
-  var item = new SimpleItem({
+  var item = new Field({
     string: 'string',
     number: 123,
     boolean: true,
@@ -9,6 +9,9 @@ Tinytest.add('Fields - Getters', function(test) {
       a: 'a',
       b: 'b',
       c: 'c'
+    },
+    nested: {
+      string: 'string'
     }
   });
 
@@ -42,5 +45,9 @@ Tinytest.add('Fields - Getters', function(test) {
 
   test.equal(item.get('object.a'), 'a',
     'The value of the "object.a" field should be equal "a"'
+  );
+
+  test.equal(item.get('nested.string'), 'string',
+    'The value of the "nested.string" field should be equal "string"'
   );
 });
