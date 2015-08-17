@@ -104,9 +104,12 @@ Package.onTest(function(api) {
     'test/methods_init.js',
     'test/methods_definition.js'
   ], ['client', 'server']);
-  // Modules.
+  // Validators.
   api.addFiles([
-    'test/modules_validators.js'
+    'test/validators_init.js',
+    'test/validators_validate.js',
+    'test/validators_nested.js',
+    'test/validators_order.js'
   ], ['client', 'server']);
   // Behaviors.
   api.addFiles([
