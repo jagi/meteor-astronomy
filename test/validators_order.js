@@ -1,8 +1,8 @@
 Tinytest.add('Validators - Order', function(test) {
   Astro.classes = [];
 
-  ValidatorItem = Astro.Class({
-    name: 'ValidatorItem',
+  ValidatorOrder = Astro.Class({
+    name: 'ValidatorOrder',
     fields: [
       'first',
       'second',
@@ -20,15 +20,15 @@ Tinytest.add('Validators - Order', function(test) {
     ]
   });
 
-  var validatorItem = new ValidatorItem();
-  validatorItem.validate();
-  var errors = validatorItem.getValidationErrors();
+  var validatorOrder = new ValidatorOrder();
+  validatorOrder.validate();
+  var errors = validatorOrder.getValidationErrors();
 
   test.isTrue(_.has(errors, 'third'),
     'The "third" validator should be run first');
 
-  validatorItem.validate(false);
-  var keys = _.keys(validatorItem.getValidationErrors());
+  validatorOrder.validate(false);
+  var keys = _.keys(validatorOrder.getValidationErrors());
   test.equal(keys, ['third', 'second', 'first'],
     'Validators should be run in the following order ' +
     '"third", "second", "first"'
