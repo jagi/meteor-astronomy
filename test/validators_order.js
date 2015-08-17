@@ -27,7 +27,7 @@ Tinytest.add('Validators - Order', function(test) {
   test.isTrue(_.has(errors, 'third'),
     'The "third" validator should be run first');
 
-  validatorItem.validateAll();
+  validatorItem.validate(false);
   var keys = _.keys(validatorItem.getValidationErrors());
   test.equal(keys, ['third', 'second', 'first'],
     'Validators should be run in the following order ' +
