@@ -1,8 +1,6 @@
 Tinytest.add('Validators - Nested validators', function(test) {
-  Astro.classes = [];
-
-  ValidatorItem = Astro.Class({
-    name: 'ValidatorItem',
+  ValidatorNested = Astro.Class({
+    name: 'ValidatorNested',
     fields: {
       object: 'Object',
       array: 'Array'
@@ -15,47 +13,45 @@ Tinytest.add('Validators - Nested validators', function(test) {
     }
   });
 
-  var validatorItem = new ValidatorItem();
+  var validatorNested = new ValidatorNested();
 
-  test.isFalse(validatorItem.validate('object.property'),
+  test.isFalse(validatorNested.validate('object.property'),
     'Should not pass "object.property" validation'
   );
-  test.isFalse(validatorItem.validate('array.0'),
+  test.isFalse(validatorNested.validate('array.0'),
     'Should not pass "array.0" validation'
   );
-  validatorItem.array = [
+  validatorNested.set('array', [
     'abc'
-  ];
-  test.isFalse(validatorItem.validate('array.$'),
+  ]);
+  test.isFalse(validatorNested.validate('array.$'),
     'Should not pass "array.$" validation'
   );
-  validatorItem.array = [{
+  validatorNested.set('array', [{
     property: 123
-  }];
-  test.isFalse(validatorItem.validate('array.$.property'),
+  }]);
+  test.isFalse(validatorNested.validate('array.$.property'),
     'Should not pass "array.$.property" validation'
   );
 
-  //////////////////////////////////////////////////////////////////////////////
-
-  validatorItem.object = {
+  validatorNested.set('object', {
     property: 'abc'
-  };
-  validatorItem.array = [{
+  });
+  validatorNested.set('array', [{
     property: 'abc'
   }, {
     property: 'def'
-  }];
-  test.isTrue(validatorItem.validate('object.property'),
+  }]);
+  test.isTrue(validatorNested.validate('object.property'),
     'Should pass "object.property" validation'
   );
-  test.isTrue(validatorItem.validate('array.0'),
+  test.isTrue(validatorNested.validate('array.0'),
     'Should pass "array.0" validation'
   );
-  test.isTrue(validatorItem.validate('array.$'),
+  test.isTrue(validatorNested.validate('array.$'),
     'Should pass "array.$" validation'
   );
-  test.isTrue(validatorItem.validate('array.$.property'),
+  test.isTrue(validatorNested.validate('array.$.property'),
     'Should pass "array.$.property" validation'
   );
 });

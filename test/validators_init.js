@@ -1,8 +1,11 @@
 Tinytest.add('Validators - Init', function(test) {
   Astro.classes = [];
 
+  ValidatorCollection = new Mongo.Collection(null);
+
   ValidatorItem = Astro.Class({
     name: 'ValidatorItem',
+    collection: ValidatorCollection,
     fields: {
       // Type validators.
       'string': {

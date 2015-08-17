@@ -1,5 +1,8 @@
 Tinytest.add('Validators - Validate', function(test) {
-  var validateItem = new ValidatorItem();
+  (new ValidatorItem({
+    'unique': 'abc'
+  })).save();
+  validateItem = new ValidatorItem();
 
   // Type.
   validateItem.set('string', 88);
@@ -9,9 +12,6 @@ Tinytest.add('Validators - Validate', function(test) {
   validateItem.set('object', 'abc');
   validateItem.set('date', 'abc');
   validateItem.set('email', 'abc');
-
-  console.log(validateItem.get('string'), validateItem.validate('string'));
-
   test.isFalse(validateItem.validate('string'),
     'The "string" validator should not pass'
   );
@@ -113,8 +113,6 @@ Tinytest.add('Validators - Validate', function(test) {
     'The "or" validator should not pass'
   );
 
-  //////////////////////////////////////////////////////////////////////////////
-
   // Type.
   validateItem.set('string', 'abc');
   validateItem.set('number', 123);
@@ -124,25 +122,25 @@ Tinytest.add('Validators - Validate', function(test) {
   validateItem.set('date', new Date());
   validateItem.set('email', 'luke.jagodzinski@gmail.com');
   test.isTrue(validateItem.validate('string'),
-    'The "string" validator should not pass'
+    'The "string" validator should pass'
   );
   test.isTrue(validateItem.validate('number'),
-    'The "number" validator should not pass'
+    'The "number" validator should pass'
   );
   test.isTrue(validateItem.validate('boolean'),
-    'The "boolean" validator should not pass'
+    'The "boolean" validator should pass'
   );
   test.isTrue(validateItem.validate('array'),
-    'The "array" validator should not pass'
+    'The "array" validator should pass'
   );
   test.isTrue(validateItem.validate('object'),
-    'The "object" validator should not pass'
+    'The "object" validator should pass'
   );
   test.isTrue(validateItem.validate('date'),
-    'The "date" validator should not pass'
+    'The "date" validator should pass'
   );
   test.isTrue(validateItem.validate('email'),
-    'The "email" validator should not pass'
+    'The "email" validator should pass'
   );
 
   // Existence.
@@ -153,16 +151,16 @@ Tinytest.add('Validators - Validate', function(test) {
     property: 'abc'
   });
   test.isTrue(validateItem.validate('required'),
-    'The "required" validator should not pass'
+    'The "required" validator should pass'
   );
   test.isTrue(validateItem.validate('null'),
-    'The "null" validator should not pass'
+    'The "null" validator should pass'
   );
   test.isTrue(validateItem.validate('notNull'),
-    'The "notNull" validator should not pass'
+    'The "notNull" validator should pass'
   );
   test.isTrue(validateItem.validate('has'),
-    'The "has" validator should not pass'
+    'The "has" validator should pass'
   );
 
   // Size.
@@ -174,25 +172,25 @@ Tinytest.add('Validators - Validate', function(test) {
   validateItem.set('lt', 1);
   validateItem.set('lte', 2);
   test.isTrue(validateItem.validate('length'),
-    'The "length" validator should not pass'
+    'The "length" validator should pass'
   );
   test.isTrue(validateItem.validate('minLength'),
-    'The "minLength" validator should not pass'
+    'The "minLength" validator should pass'
   );
   test.isTrue(validateItem.validate('maxLength'),
-    'The "maxLength" validator should not pass'
+    'The "maxLength" validator should pass'
   );
   test.isTrue(validateItem.validate('gt'),
-    'The "gt" validator should not pass'
+    'The "gt" validator should pass'
   );
   test.isTrue(validateItem.validate('gte'),
-    'The "gte" validator should not pass'
+    'The "gte" validator should pass'
   );
   test.isTrue(validateItem.validate('lt'),
-    'The "lt" validator should not pass'
+    'The "lt" validator should pass'
   );
   test.isTrue(validateItem.validate('lte'),
-    'The "lte" validator should not pass'
+    'The "lte" validator should pass'
   );
 
   // Comparison.
@@ -202,32 +200,32 @@ Tinytest.add('Validators - Validate', function(test) {
   validateItem.set('equalTo', 'abc');
   validateItem.set('regexp', '123');
   test.isTrue(validateItem.validate('choice'),
-    'The "choice" validator should not pass'
+    'The "choice" validator should pass'
   );
   test.isTrue(validateItem.validate('unique'),
-    'The "unique" validator should not pass'
+    'The "unique" validator should pass'
   );
   test.isTrue(validateItem.validate('equal'),
-    'The "equal" validator should not pass'
+    'The "equal" validator should pass'
   );
   test.isTrue(validateItem.validate('equalTo'),
-    'The "equalTo" validator should not pass'
+    'The "equalTo" validator should pass'
   );
   test.isTrue(validateItem.validate('regexp'),
-    'The "regexp" validator should not pass'
+    'The "regexp" validator should pass'
   );
 
   // Logical.
   validateItem.set('and', 123);
   validateItem.set('or', true);
   test.isTrue(validateItem.validate('and'),
-    'The "and" validator should not pass'
+    'The "and" validator should pass'
   );
   test.isTrue(validateItem.validate('or'),
-    'The "or" validator should not pass'
+    'The "or" validator should pass'
   );
   validateItem.set('or', 123);
   test.isTrue(validateItem.validate('or'),
-    'The "or" validator should not pass'
+    'The "or" validator should pass'
   );
 });
