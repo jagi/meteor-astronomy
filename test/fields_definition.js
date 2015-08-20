@@ -3,13 +3,13 @@ Tinytest.add('Fields - Definition', function(test) {
     name: 'FieldA',
     fields: ['nullA']
   });
-  test.isNull(FieldA.getField('nullA').type,
-    'The type of the "nullA" field should be null'
+  test.equal(FieldA.getField('nullA').type.name, 'Null',
+    'The type of the "nullA" field should be "Null"'
   );
 
   FieldA.addField('nullB');
-  test.isNull(FieldA.getField('nullB').type,
-    'The type of the "nullB" field should be null'
+  test.equal(FieldA.getField('nullB').type.name, 'Null',
+    'The type of the "nullB" field should be "Null"'
   );
 
   FieldA.addField('string', 'String');
