@@ -42,6 +42,13 @@ Package.onUse(function(api) {
   api.addFiles('lib/modules/fields/init_module.js', ['client', 'server']);
   api.addFiles('lib/modules/fields/init_class.js', ['client', 'server']);
 
+  // Embed module.
+  api.addFiles([
+    'lib/modules/embed/embed_one_field.js',
+    'lib/modules/embed/embed_many_field.js',
+    'lib/modules/embed/init_class.js'
+  ], ['client', 'server']);
+
   // Storage module.
   api.addFiles('lib/modules/storage/init_class.js', ['client', 'server']);
 
@@ -54,7 +61,6 @@ Package.onUse(function(api) {
   // Mongo driver.
   api.addFiles([
     'lib/drivers/mongo/init_driver.js',
-    'lib/drivers/mongo/field_definition.js',
     'lib/drivers/mongo/init_class.js',
     'lib/drivers/mongo/types.js',
   ], ['client', 'server']);
