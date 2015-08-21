@@ -17,7 +17,7 @@ Tinytest.add('Events - Order', function(test) {
   var event = new Event();
   event.save();
   test.equal(actualEventsList, expectedEventsList,
-    'Wrong events order on a child document insert'
+    'Wrong events order on a document insert'
   );
 
   actualEventsList = [];
@@ -31,7 +31,7 @@ Tinytest.add('Events - Order', function(test) {
   ];
   event.save();
   test.equal(actualEventsList, expectedEventsList,
-    'Wrong events order on a child document update without a change'
+    'Wrong events order on a document update without a change'
   );
 
   actualEventsList = [];
@@ -65,6 +65,6 @@ Tinytest.add('Events - Order', function(test) {
   event.get('childField');
   event.save();
   test.equal(actualEventsList, expectedEventsList,
-    'Wrong events order on a child document update after a change'
+    'Wrong events order on a document update after a change'
   );
 });
