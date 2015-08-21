@@ -1,7 +1,7 @@
 Tinytest.add('Fields - Default', function(test) {
   var field = new Field();
 
-  test.isNull(field.get('null'), 'null',
+  test.isNull(field.get('null'),
     'The default value of the "null" field should be null'
   );
   test.equal(field.get('string'), 'string',

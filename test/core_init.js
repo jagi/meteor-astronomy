@@ -15,24 +15,24 @@ Tinytest.add('Core - Init', function(test) {
   // Class for usage as a nested field.
   NestedCore = Astro.Class({
     name: 'NestedCore',
+    embedOne: {
+      'object': {}
+    },
+    embedMany: {
+      'array': {}
+    },
     fields: {
       'string': {
-        type: 'String'
+        type: 'string'
       },
       'number': {
-        type: 'Number'
+        type: 'number'
       },
       'boolean': {
-        type: 'Boolean'
+        type: 'boolean'
       },
       'date': {
-        type: 'Date'
-      },
-      'object': {
-        type: 'Object'
-      },
-      'array': {
-        type: 'Array'
+        type: 'date'
       }
     }
   });
@@ -41,27 +41,27 @@ Tinytest.add('Core - Init', function(test) {
   Core = Astro.Class({
     name: 'Core',
     collection: Cores,
+    embedOne: {
+      'nested': {
+        class: 'NestedCore'
+      },
+      'object': {}
+    },
+    embedMany: {
+      'array': {}
+    },
     fields: {
       'string': {
-        type: 'String'
+        type: 'string'
       },
       'number': {
-        type: 'Number'
+        type: 'number'
       },
       'boolean': {
-        type: 'Boolean'
+        type: 'boolean'
       },
       'date': {
-        type: 'Date'
-      },
-      'object': {
-        type: 'Object'
-      },
-      'array': {
-        type: 'Array'
-      },
-      'nested': {
-        type: 'NestedCore'
+        type: 'date'
       }
     }
   });

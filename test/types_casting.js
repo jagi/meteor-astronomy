@@ -3,24 +3,24 @@ Tinytest.add('Types - Casting', function(test) {
 
   var Cast = Astro.Class({
     name: 'Cast',
+    embedOne: {
+      'object': {}
+    },
+    embedMany: {
+      'array': {}
+    },
     fields: {
       'string': {
-        type: 'String'
+        type: 'string'
       },
       'number': {
-        type: 'Number'
+        type: 'number'
       },
       'boolean': {
-        type: 'Boolean'
+        type: 'boolean'
       },
       'date': {
-        type: 'Date'
-      },
-      'array': {
-        type: 'Array'
-      },
-      'object': {
-        type: 'Object'
+        type: 'date'
       }
     }
   });
@@ -65,65 +65,4 @@ Tinytest.add('Types - Casting', function(test) {
   test.equal(cast.array, [],
     'The value of the "array" field after setting it to 123 should become []'
   );
-
-/*
-  Astro.classes = [];
-
-  var Cast = Astro.Class({
-    name: 'Cast',
-    fields: {
-      'string': {
-        type: 'String',
-        default: 'string'
-      },
-      'number': {
-        type: 'Number',
-        default: 123
-      },
-      'boolean': {
-        type: 'Boolean',
-        default: true
-      },
-      'date': {
-        type: 'Date',
-        default: new Date(2000, 0, 1)
-      },
-      'object': {
-        type: 'Object',
-        default: {}
-      },
-      'array': {
-        type: 'Array',
-        default: []
-      }
-    }
-  });
-
-  var cast = new Cast();
-  cast.set('string', 123);
-  cast.set('number', '123');
-  cast.set('boolean', 1);
-  cast.set('date', 946681200000);
-  cast.set('object', 123);
-  cast.set('array', 123);
-
-  test.equal(cast.string, '123',
-    'The "string" field\'s value should be casted to string'
-  );
-  test.equal(cast.number, 123,
-    'The "number" field\'s value should be casted to number'
-  );
-  test.equal(cast.boolean, true,
-    'The "boolean" field\'s value should be casted to boolean'
-  );
-  test.equal(cast.date, new Date(2000, 0, 1),
-    'The "date" field\'s value should be casted to date'
-  );
-  test.instanceOf(cast.object, Number,
-    'The "object" field\'s value should be casted to object'
-  );
-  test.equal(cast.array, [],
-    'The "array" field\'s value should be casted to array'
-  );
-  */
 });

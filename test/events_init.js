@@ -1,159 +1,84 @@
 Tinytest.add('Events - Init', function(test) {
   Astro.classes = [];
 
-  Orders = new Mongo.Collection(null);
+  Events = new Mongo.Collection(null);
 
   actualEventsList;
   expectedEventsList;
 
-  ParentEvent = Astro.Class({
-    name: 'ParentEvent',
-    collection: Orders,
-    fields: {
-      parentField: {
-        type: 'String',
-        default: null
-      }
-    },
-    events: {
-      beforeSet: function(e) {
-        actualEventsList.push('beforeSet 1 on parent');
-      },
-      afterSet: function() {
-        actualEventsList.push('afterSet 1 on parent');
-      },
-      beforeGet: function(e) {
-        actualEventsList.push('beforeGet 1 on parent');
-      },
-      afterGet: function() {
-        actualEventsList.push('afterGet 1 on parent');
-      },
-      beforeSave: function() {
-        actualEventsList.push('beforeSave 1 on parent');
-      },
-      afterSave: function() {
-        actualEventsList.push('afterSave 1 on parent');
-      },
-      beforeInsert: function() {
-        actualEventsList.push('beforeInsert 1 on parent');
-      },
-      afterInsert: function() {
-        actualEventsList.push('afterInsert 1 on parent');
-      },
-      beforeUpdate: function() {
-        actualEventsList.push('beforeUpdate 1 on parent');
-      },
-      afterUpdate: function() {
-        actualEventsList.push('afterUpdate 1 on parent');
-      }
-    }
-  });
-
-  ParentEvent.addEvents({
-    beforeSet: function() {
-      actualEventsList.push('beforeSet 2 on parent');
-    },
-    afterSet: function() {
-      actualEventsList.push('afterSet 2 on parent');
-    },
-    beforeGet: function() {
-      actualEventsList.push('beforeGet 2 on parent');
-    },
-    afterGet: function() {
-      actualEventsList.push('afterGet 2 on parent');
-    },
-    beforeSave: function(e) {
-      actualEventsList.push('beforeSave 2 on parent');
-    },
-    afterSave: function() {
-      actualEventsList.push('afterSave 2 on parent');
-    },
-    beforeInsert: function() {
-      actualEventsList.push('beforeInsert 2 on parent');
-    },
-    afterInsert: function() {
-      actualEventsList.push('afterInsert 2 on parent');
-    },
-    beforeUpdate: function() {
-      actualEventsList.push('beforeUpdate 2 on parent');
-    },
-    afterUpdate: function() {
-      actualEventsList.push('afterUpdate 2 on parent');
-    }
-  });
-
-  ChildEvent = ParentEvent.extend({
-    name: 'ChildEvent',
+  Event = Astro.Class({
+    name: 'Event',
+    collection: Events,
     fields: {
       childField: {
-        type: 'String',
+        type: 'string',
         default: null
       }
     },
     events: {
       beforeSet: function() {
-        actualEventsList.push('beforeSet 1 on child');
+        actualEventsList.push('beforeSet 1');
       },
       afterSet: function() {
-        actualEventsList.push('afterSet 1 on child');
+        actualEventsList.push('afterSet 1');
       },
       beforeGet: function() {
-        actualEventsList.push('beforeGet 1 on child');
+        actualEventsList.push('beforeGet 1');
       },
       afterGet: function() {
-        actualEventsList.push('afterGet 1 on child');
+        actualEventsList.push('afterGet 1');
       },
       beforeSave: function() {
-        actualEventsList.push('beforeSave 1 on child');
+        actualEventsList.push('beforeSave 1');
       },
       afterSave: function() {
-        actualEventsList.push('afterSave 1 on child');
+        actualEventsList.push('afterSave 1');
       },
       beforeInsert: function() {
-        actualEventsList.push('beforeInsert 1 on child');
+        actualEventsList.push('beforeInsert 1');
       },
       afterInsert: function() {
-        actualEventsList.push('afterInsert 1 on child');
+        actualEventsList.push('afterInsert 1');
       },
       beforeUpdate: function() {
-        actualEventsList.push('beforeUpdate 1 on child');
+        actualEventsList.push('beforeUpdate 1');
       },
       afterUpdate: function() {
-        actualEventsList.push('afterUpdate 1 on child');
+        actualEventsList.push('afterUpdate 1');
       }
     }
   });
 
-  ChildEvent.addEvents({
+  Event.addEvents({
     beforeSet: function() {
-      actualEventsList.push('beforeSet 2 on child');
+      actualEventsList.push('beforeSet 2');
     },
     afterSet: function() {
-      actualEventsList.push('afterSet 2 on child');
+      actualEventsList.push('afterSet 2');
     },
     beforeGet: function() {
-      actualEventsList.push('beforeGet 2 on child');
+      actualEventsList.push('beforeGet 2');
     },
     afterGet: function() {
-      actualEventsList.push('afterGet 2 on child');
+      actualEventsList.push('afterGet 2');
     },
     beforeSave: function() {
-      actualEventsList.push('beforeSave 2 on child');
+      actualEventsList.push('beforeSave 2');
     },
     afterSave: function() {
-      actualEventsList.push('afterSave 2 on child');
+      actualEventsList.push('afterSave 2');
     },
     beforeInsert: function() {
-      actualEventsList.push('beforeInsert 2 on child');
+      actualEventsList.push('beforeInsert 2');
     },
     afterInsert: function() {
-      actualEventsList.push('afterInsert 2 on child');
+      actualEventsList.push('afterInsert 2');
     },
     beforeUpdate: function() {
-      actualEventsList.push('beforeUpdate 2 on child');
+      actualEventsList.push('beforeUpdate 2');
     },
     afterUpdate: function() {
-      actualEventsList.push('afterUpdate 2 on child');
+      actualEventsList.push('afterUpdate 2');
     }
   });
 
