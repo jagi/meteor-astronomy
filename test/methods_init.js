@@ -4,8 +4,8 @@ Tinytest.add('Methods - Init', function(test) {
   Method = Astro.Class({
     name: 'Method',
     fields: {
-      string: 'String',
-      number: 'Number'
+      string: 'string',
+      number: 'number'
     },
     methods: {
       methodA: function() {

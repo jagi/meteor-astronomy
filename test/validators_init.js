@@ -3,9 +3,37 @@ Tinytest.add('Validators - Init', function(test) {
 
   ValidatorCollection = new Mongo.Collection(null);
 
+  NestedValidator = Astro.Class({
+    name: 'NestedValidator',
+    fields: {
+      'string': {
+        type: null,
+        validators: Validators.string()
+      },
+      'number': {
+        type: null,
+        validators: Validators.number()
+      }
+    }
+  });
+
   ValidatorItem = Astro.Class({
     name: 'ValidatorItem',
     collection: ValidatorCollection,
+    embedOne: {
+      'object': {
+        class: 'NestedValidator'
+      }
+    },
+    embedMany: {
+      'array': {
+        class: 'NestedValidator'
+      }
+    },
+    validators: {
+      'array': Validators.array(),
+      'object': Validators.object()
+    },
     fields: {
       // Type validators.
       'string': {
@@ -19,14 +47,6 @@ Tinytest.add('Validators - Init', function(test) {
       'boolean': {
         type: null,
         validators: Validators.boolean()
-      },
-      'array': {
-        type: null,
-        validators: Validators.array()
-      },
-      'object': {
-        type: null,
-        validators: Validators.object()
       },
       'date': {
         type: null,

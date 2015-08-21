@@ -3,40 +3,40 @@ Tinytest.add('Fields - Definition', function(test) {
     name: 'FieldA',
     fields: ['nullA']
   });
-  test.equal(FieldA.getField('nullA').type.name, 'Null',
-    'The type of the "nullA" field should be "Null"'
+  test.isNull(FieldA.getField('nullA').type,
+    'The type of the "nullA" field should be null'
   );
 
   FieldA.addField('nullB');
-  test.equal(FieldA.getField('nullB').type.name, 'Null',
-    'The type of the "nullB" field should be "Null"'
+  test.isNull(FieldA.getField('nullB').type,
+    'The type of the "nullB" field should be null'
   );
 
-  FieldA.addField('string', 'String');
-  test.equal(FieldA.getField('string').type.name, 'String',
-    'The type of the "string" field should be "String"'
+  FieldA.addField('string', 'string');
+  test.equal(FieldA.getField('string').type, 'string',
+    'The type of the "string" field should be "string"'
   );
 
   FieldA.addField('number', {
-    type: 'Number'
+    type: 'number'
   });
-  test.equal(FieldA.getField('number').type.name, 'Number',
-    'The type of the "number" field should be "Number"'
+  test.equal(FieldA.getField('number').type, 'number',
+    'The type of the "number" field should be "number"'
   );
 
   FieldA.addFields({
     'boolean': {
-      type: 'Boolean'
+      type: 'boolean'
     },
     'date': {
-      type: 'Date'
+      type: 'date'
     }
   });
-  test.equal(FieldA.getField('boolean').type.name, 'Boolean',
-    'The type of the "boolean" field should be "Boolean"'
+  test.equal(FieldA.getField('boolean').type, 'boolean',
+    'The type of the "boolean" field should be "boolean"'
   );
-  test.equal(FieldA.getField('date').type.name, 'Date',
-    'The type of the "date" field should be "Date"'
+  test.equal(FieldA.getField('date').type, 'date',
+    'The type of the "date" field should be "date"'
   );
 
   var FieldB = Astro.Class({
@@ -51,7 +51,11 @@ Tinytest.add('Fields - Definition', function(test) {
     'The "FieldB" class should have the "_id" field'
   );
 
-  test.equal(Field.getField('nested').type.name, 'NestedField',
-    'The type of the "nested" field should be "NestedField"'
+  test.instanceOf(Field.getField('object'), Astro.EmbedOneField,
+    'The "object" field should be instace of the "Astro.EmbedOneField" class'
+  );
+
+  test.instanceOf(Field.getField('array'), Astro.EmbedManyField,
+    'The "array" field should be instace of the "Astro.EmbedManyField" class'
   );
 });

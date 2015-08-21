@@ -4,12 +4,12 @@ Tinytest.add('Validators - Validate', function(test) {
   })).save();
   validateItem = new ValidatorItem();
 
+  // NOT PASSING VALIDATION
+
   // Type.
   validateItem.set('string', 88);
   validateItem.set('number', 'abc');
   validateItem.set('boolean', 'abc');
-  validateItem.set('array', 'abc');
-  validateItem.set('object', 'abc');
   validateItem.set('date', 'abc');
   validateItem.set('email', 'abc');
   test.isFalse(validateItem.validate('string'),
@@ -20,12 +20,6 @@ Tinytest.add('Validators - Validate', function(test) {
   );
   test.isFalse(validateItem.validate('boolean'),
     'The "boolean" validator should not pass'
-  );
-  test.isFalse(validateItem.validate('array'),
-    'The "array" validator should not pass'
-  );
-  test.isFalse(validateItem.validate('object'),
-    'The "object" validator should not pass'
   );
   test.isFalse(validateItem.validate('date'),
     'The "date" validator should not pass'
@@ -81,6 +75,7 @@ Tinytest.add('Validators - Validate', function(test) {
   test.isFalse(validateItem.validate('lte'),
     'The "lte" validator should not pass'
   );
+
   // Comparison.
   validateItem.set('choice', 'abc');
   validateItem.set('unique', 'abc');
@@ -113,12 +108,12 @@ Tinytest.add('Validators - Validate', function(test) {
     'The "or" validator should not pass'
   );
 
+  // PASSING VALIDATION
+
   // Type.
   validateItem.set('string', 'abc');
   validateItem.set('number', 123);
   validateItem.set('boolean', false);
-  validateItem.set('array', []);
-  validateItem.set('object', {});
   validateItem.set('date', new Date());
   validateItem.set('email', 'luke.jagodzinski@gmail.com');
   test.isTrue(validateItem.validate('string'),

@@ -1,16 +1,64 @@
 Tinytest.addAsync('Behaviors - Timestamp', function(test, next) {
-  Timestamps = new Mongo.Collection(null);
+  TimestampsA = new Mongo.Collection(null);
+  TimestampsB = new Mongo.Collection(null);
+  TimestampsC = new Mongo.Collection(null);
+
+  TimestampsA.find({}, {
+    transform: null
+  }).forEach(function(item) {
+    TimestampsA.remove(item._id);
+  });
+
+  TimestampsB.find({}, {
+    transform: null
+  }).forEach(function(item) {
+    TimestampsB.remove(item._id);
+  });
+
+  TimestampsC.find({}, {
+    transform: null
+  }).forEach(function(item) {
+    TimestampsC.remove(item._id);
+  });
 
   TimestampA = Astro.Class({
     name: 'TimestampA',
-    collection: Timestamps,
+    collection: TimestampsA,
     fields: {
-      name: 'String'
+      name: 'string'
     },
     behaviors: {
       timestamp: {}
     }
   });
+
+  TimestampB = Astro.Class({
+    name: 'TimestampB',
+    collection: TimestampsB,
+    fields: {
+      name: 'string'
+    },
+    behaviors: {
+      timestamp: {
+        createdFieldName: 'created',
+        updatedFieldName: 'updated'
+      }
+    }
+  });
+
+  TimestampC = Astro.Class({
+  name: 'TimestampC',
+  collection: TimestampsC,
+  fields: {
+    name: 'string'
+  },
+  behaviors: {
+    timestamp: {
+      hasCreatedField: false,
+      hasUpdatedField: false
+    }
+  }
+});
 
   var timestampA = new TimestampA({
     name: 'TimestampA'
@@ -38,20 +86,6 @@ Tinytest.addAsync('Behaviors - Timestamp', function(test, next) {
     next();
   }, 1);
 
-  TimestampB = Astro.Class({
-    name: 'TimestampB',
-    collection: Timestamps,
-    fields: {
-      name: 'String'
-    },
-    behaviors: {
-      timestamp: {
-        createdFieldName: 'created',
-        updatedFieldName: 'updated'
-      }
-    }
-  });
-
   var timestampB = new TimestampB({
     name: 'TimestampB'
   });
@@ -66,20 +100,6 @@ Tinytest.addAsync('Behaviors - Timestamp', function(test, next) {
   test.equal(timestampB.get('created'), timestampB.get('updated'),
     'The "created" and "updated" fields should be equal'
   );
-
-  TimestampC = Astro.Class({
-    name: 'TimestampC',
-    collection: Timestamps,
-    fields: {
-      name: 'String'
-    },
-    behaviors: {
-      timestamp: {
-        hasCreatedField: false,
-        hasUpdatedField: false
-      }
-    }
-  });
 
   var timestampC = new TimestampC({
     name: 'TimestampC'
