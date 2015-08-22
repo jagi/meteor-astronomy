@@ -113,7 +113,6 @@ Package.onTest(function(api) {
   api.addFiles([
     'test/validators_init.js',
     'test/validators_validate.js',
-    'test/validators_nested.js',
     'test/validators_order.js'
   ], ['client', 'server']);
   // Behaviors.

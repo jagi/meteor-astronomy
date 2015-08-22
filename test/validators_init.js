@@ -22,17 +22,15 @@ Tinytest.add('Validators - Init', function(test) {
     collection: ValidatorCollection,
     embedOne: {
       'object': {
-        class: 'NestedValidator'
+        class: 'NestedValidator',
+        validators: Validators.object()
       }
     },
     embedMany: {
       'array': {
-        class: 'NestedValidator'
+        class: 'NestedValidator',
+        validators: Validators.array()
       }
-    },
-    validators: {
-      'array': Validators.array(),
-      'object': Validators.object()
     },
     fields: {
       // Type validators.
