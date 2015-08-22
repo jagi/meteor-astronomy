@@ -74,6 +74,7 @@ Package.onTest(function(api) {
     'jagi:astronomy',
     'jagi:astronomy-timestamp-behavior',
     'jagi:astronomy-slug-behavior',
+    'jagi:astronomy-softremove-behavior',
     'jagi:astronomy-validators',
     'jagi:astronomy-simple-validators'
   ]);
@@ -124,6 +125,7 @@ Package.onTest(function(api) {
   // Behaviors.
   api.addFiles([
     'test/behaviors_timestamp.js',
-    'test/behaviors_slug.js'
+    'test/behaviors_slug.js',
+    'test/behaviors_softremove.js'
   ], ['client', 'server']);
 });
