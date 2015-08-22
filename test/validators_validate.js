@@ -12,6 +12,8 @@ Tinytest.add('Validators - Validate', function(test) {
   validateItem.set('boolean', 'abc');
   validateItem.set('date', 'abc');
   validateItem.set('email', 'abc');
+  validateItem.set('object', null);
+  validateItem.set('array', null);
   test.isFalse(validateItem.validate('string'),
     'The "string" validator should not pass'
   );
@@ -26,6 +28,12 @@ Tinytest.add('Validators - Validate', function(test) {
   );
   test.isFalse(validateItem.validate('email'),
     'The "email" validator should not pass'
+  );
+  test.isFalse(validateItem.validate('object'),
+    'The "object" validator should not pass'
+  );
+  test.isFalse(validateItem.validate('array'),
+    'The "array" validator should not pass'
   );
 
   // Existence.
@@ -116,6 +124,16 @@ Tinytest.add('Validators - Validate', function(test) {
   validateItem.set('boolean', false);
   validateItem.set('date', new Date());
   validateItem.set('email', 'luke.jagodzinski@gmail.com');
+  validateItem.set('object', new NestedValidator({
+    string: 'abc',
+    number: 123
+  }));
+  validateItem.set('array', [
+    new NestedValidator({
+      string: 'abc',
+      number: 123
+    })
+  ]);
   test.isTrue(validateItem.validate('string'),
     'The "string" validator should pass'
   );
