@@ -74,7 +74,8 @@ Package.onTest(function(api) {
     'jagi:astronomy',
     'jagi:astronomy-timestamp-behavior',
     'jagi:astronomy-slug-behavior',
-    'jagi:astronomy-validators'
+    'jagi:astronomy-validators',
+    'jagi:astronomy-simple-validators'
   ]);
 
   // Core.
@@ -114,6 +115,11 @@ Package.onTest(function(api) {
     'test/validators_init.js',
     'test/validators_validate.js',
     'test/validators_order.js'
+  ], ['client', 'server']);
+  // Simple Validators.
+  api.addFiles([
+    'test/simple_validators_init.js',
+    'test/simple_validators_parser.js'
   ], ['client', 'server']);
   // Behaviors.
   api.addFiles([
