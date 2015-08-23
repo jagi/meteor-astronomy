@@ -93,4 +93,10 @@ Tinytest.add('Core - Transform', function(test) {
     'The second document fetched from the "MultiTransforms" collection ' +
     'should be an instance of the "MultiBTransform" class'
   );
+  test.isNotNull(MultiATransform.getField('type'),
+    'The "MultiATransform" class should have the "type" field'
+  );
+  test.isNotNull(MultiBTransform.getField('type'),
+    'The "MultiBTransform" class should have the "type" field'
+  );
 });
