@@ -1,5 +1,6 @@
 Tinytest.add('Methods - Init', function(test) {
-  Astro.classes = [];
+  // Reset Astronomy.
+  reset();
 
   Method = Astro.Class({
     name: 'Method',

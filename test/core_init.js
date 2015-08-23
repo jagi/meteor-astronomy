@@ -1,6 +1,10 @@
+reset = function() {
+  Astro.classes = {};
+};
+
 Tinytest.add('Core - Init', function(test) {
-  // Remove all classes.
-  Astro.classes = [];
+  // Reset Astronomy.
+  reset();
 
   // Create collection.
   Cores = new Mongo.Collection(null);

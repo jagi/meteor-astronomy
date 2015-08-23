@@ -1,5 +1,6 @@
 Tinytest.add('EJSON - Init', function(test) {
-  Astro.classes = [];
+  // Reset Astronomy.
+  reset();
 
   EJSONClass = Astro.Class({
     name: 'EJSONClass',

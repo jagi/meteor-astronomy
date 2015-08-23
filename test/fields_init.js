@@ -1,4 +1,7 @@
 Tinytest.add('Fields - Init', function(test) {
+  // Reset Astronomy.
+  reset();
+
   Fields = new Mongo.Collection(null);
 
   // Class for usage as a nested field.

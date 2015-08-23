@@ -1,4 +1,7 @@
 Tinytest.add('Behaviors - Slug', function(test) {
+  // Reset Astronomy.
+  reset();
+
   SlugsA = new Mongo.Collection(null);
   SlugsB = new Mongo.Collection(null);
 

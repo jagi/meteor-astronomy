@@ -1,4 +1,7 @@
 Tinytest.addAsync('Behaviors - Timestamp', function(test, next) {
+  // Reset Astronomy.
+  reset();
+
   TimestampsA = new Mongo.Collection(null);
   TimestampsB = new Mongo.Collection(null);
   TimestampsC = new Mongo.Collection(null);
