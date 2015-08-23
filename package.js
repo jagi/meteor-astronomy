@@ -39,6 +39,11 @@ Package.onUse(function(api) {
   // EJSON module.
   api.addFiles('lib/modules/ejson/init_module.js', ['client', 'server']);
 
+  // Methods module.
+  api.addFiles([
+    'lib/modules/methods/init_class.js'
+  ], ['client', 'server']);
+
   // Fields module.
   api.addFiles('lib/modules/fields/utils.js', ['client', 'server']);
   api.addFiles('lib/modules/fields/field_definition.js', ['client', 'server']);
@@ -53,10 +58,9 @@ Package.onUse(function(api) {
   ], ['client', 'server']);
 
   // Storage module.
-  api.addFiles('lib/modules/storage/init_class.js', ['client', 'server']);
-
-  // Methods module.
-  api.addFiles('lib/modules/methods/init_class.js', ['client', 'server']);
+  api.addFiles([
+    'lib/modules/storage/init_class.js'
+  ], ['client', 'server']);
 
   // Mongo driver.
   api.addFiles([
