@@ -15,8 +15,6 @@ Package.onUse(function(api) {
 
   api.addFiles([
     'lib/core/global.js',
-    'lib/core/drivers.js',
-    'lib/core/config.js',
     'lib/core/utils.js',
     'lib/core/events.js',
     'lib/core/event.js',
@@ -30,8 +28,11 @@ Package.onUse(function(api) {
   api.addFiles('lib/modules/events/init_class.js', ['client', 'server']);
 
   // Types module.
-  api.addFiles('lib/modules/types/type_definition.js', ['client', 'server']);
-  api.addFiles('lib/modules/types/init_module.js', ['client', 'server']);
+  api.addFiles([
+    'lib/modules/types/type_definition.js',
+    'lib/modules/types/init_module.js',
+    'lib/modules/types/types.js'
+  ], ['client', 'server']);
 
   // Indexes module.
   api.addFiles('lib/modules/indexes/init_class.js', ['client', 'server']);
@@ -60,12 +61,6 @@ Package.onUse(function(api) {
   // Storage module.
   api.addFiles([
     'lib/modules/storage/init_class.js'
-  ], ['client', 'server']);
-
-  // Mongo driver.
-  api.addFiles([
-    'lib/drivers/mongo/init_driver.js',
-    'lib/drivers/mongo/types.js',
   ], ['client', 'server']);
 
   api.export(['Astro', 'Astronomy'], ['client', 'server']);

@@ -1,5 +1,6 @@
 Tinytest.add('Events - Init', function(test) {
-  Astro.classes = [];
+  // Reset Astronomy.
+  reset();
 
   Events = new Mongo.Collection(null);
 
