@@ -9,11 +9,13 @@ Tinytest.add('Fields - Init', function(test) {
     name: 'NestedField',
     embedOne: {
       'object': {
-        default: null
+        default: {}
       }
     },
     embedMany: {
-      'array': {}
+      'array': {
+        default: []
+      }
     },
     fields: {
       'null': {
@@ -47,10 +49,14 @@ Tinytest.add('Fields - Init', function(test) {
         class: 'NestedField',
         default: {}
       },
-      'object': {}
+      'object': {
+        default: {}
+      }
     },
     embedMany: {
-      'array': {}
+      'array': {
+        default: []
+      }
     },
     fields: {
       'null': {
