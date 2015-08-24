@@ -24,8 +24,10 @@ Package.onUse(function(api) {
   ], ['client', 'server']);
 
   // Events module.
-  api.addFiles('lib/modules/events/init_module.js', ['client', 'server']);
-  api.addFiles('lib/modules/events/init_class.js', ['client', 'server']);
+  api.addFiles([
+    'lib/modules/events/init_module.js',
+    'lib/modules/events/init_class.js'
+  ], ['client', 'server']);
 
   // Types module.
   api.addFiles([
@@ -46,10 +48,13 @@ Package.onUse(function(api) {
   ], ['client', 'server']);
 
   // Fields module.
-  api.addFiles('lib/modules/fields/utils.js', ['client', 'server']);
-  api.addFiles('lib/modules/fields/field_definition.js', ['client', 'server']);
-  api.addFiles('lib/modules/fields/init_module.js', ['client', 'server']);
-  api.addFiles('lib/modules/fields/init_class.js', ['client', 'server']);
+  api.addFiles([
+    'lib/modules/fields/utils.js',
+    'lib/modules/fields/field_definition.js',
+    'lib/modules/fields/init_module.js',
+    'lib/modules/fields/init_schema.js',
+    'lib/modules/fields/init_class.js'
+  ], ['client', 'server']);
 
   // Embed module.
   api.addFiles([
@@ -60,7 +65,8 @@ Package.onUse(function(api) {
 
   // Storage module.
   api.addFiles([
-    'lib/modules/storage/init_class.js'
+    'lib/modules/storage/init_class.js',
+    'lib/modules/storage/init_schema.js'
   ], ['client', 'server']);
 
   api.export(['Astro', 'Astronomy'], ['client', 'server']);
