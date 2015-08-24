@@ -17,10 +17,10 @@ Tinytest.add('Fields - Default', function(test) {
     'The default value of the "date" field should be Date(2000, 0, 1)'
   );
   test.equal(field.get('object'), {},
-    'The default value of the "object" field should be null'
+    'The default value of the "object" field should be {}'
   );
   test.equal(field.get('array'), [],
-    'The default value of the "array" field should be null'
+    'The default value of the "array" field should be []'
   );
   test.instanceOf(field.get('nested'), NestedField,
     'The default value of the "nested" field should be instance of the ' +
