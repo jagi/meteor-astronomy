@@ -8,11 +8,11 @@ Tinytest.add('Validators - Init', function(test) {
     name: 'NestedValidator',
     fields: {
       'string': {
-        type: null,
+        required: true,
         validators: Validators.string()
       },
       'number': {
-        type: null,
+        required: true,
         validators: Validators.number()
       }
     }
@@ -24,114 +24,116 @@ Tinytest.add('Validators - Init', function(test) {
     embedOne: {
       'object': {
         class: 'NestedValidator',
+        required: true,
         validators: Validators.object()
       }
     },
     embedMany: {
       'array': {
         class: 'NestedValidator',
+        required: true,
         validators: Validators.array()
       }
     },
     fields: {
       // Type validators.
       'string': {
-        type: null,
+        required: true,
         validators: Validators.string()
       },
       'number': {
-        type: null,
+        required: true,
         validators: Validators.number()
       },
       'boolean': {
-        type: null,
+        required: true,
         validators: Validators.boolean()
       },
       'date': {
-        type: null,
+        required: true,
         validators: Validators.date()
       },
       'email': {
-        type: null,
+        required: true,
         validators: Validators.email()
       },
       // Existence validators.
       'required': {
-        type: null,
+        required: true,
         validators: Validators.required()
       },
       'null': {
-        type: null,
+        required: true,
         validators: Validators.null()
       },
       'notNull': {
-        type: null,
+        required: true,
         validators: Validators.notNull()
       },
       'has': {
-        type: null,
+        required: true,
         validators: Validators.has('property')
       },
       // Size validators.
       'length': {
-        type: null,
+        required: true,
         validators: Validators.length(2)
       },
       'minLength': {
-        type: null,
+        required: true,
         validators: Validators.minLength(2)
       },
       'maxLength': {
-        type: null,
+        required: true,
         validators: Validators.maxLength(2)
       },
       'gt': {
-        type: null,
+        required: true,
         validators: Validators.gt(2)
       },
       'gte': {
-        type: null,
+        required: true,
         validators: Validators.gte(2)
       },
       'lt': {
-        type: null,
+        required: true,
         validators: Validators.lt(2)
       },
       'lte': {
-        type: null,
+        required: true,
         validators: Validators.lte(2)
       },
       // Comparison validators.
       'choice': {
-        type: null,
+        required: true,
         validators: Validators.choice(['a', 'b', 'c'])
       },
       'unique': {
-        type: null,
+        required: true,
         validators: Validators.unique()
       },
       'equal': {
-        type: null,
+        required: true,
         validators: Validators.equal('abc')
       },
       'equalTo': {
-        type: null,
+        required: true,
         validators: Validators.equalTo('equal')
       },
       'regexp': {
-        type: null,
+        required: true,
         validators: Validators.regexp(/^[0-9]+$/)
       },
       // Logical validators.
       'and': {
-        type: null,
+        required: true,
         validators: Validators.and([
           Validators.required(),
           Validators.number()
         ])
       },
       'or': {
-        type: null,
+        required: true,
         validators: Validators.or([
           Validators.boolean(),
           Validators.number()
