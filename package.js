@@ -88,6 +88,7 @@ Package.onTest(function(api) {
   api.addFiles([
     'test/core_init.js',
     'test/core_transform.js',
+    'test/core_extend.js',
     'test/core_insert.js',
     'test/core_update.js',
     'test/core_remove.js'
