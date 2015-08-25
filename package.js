@@ -15,6 +15,7 @@ Package.onUse(function(api) {
 
   api.addFiles([
     'lib/core/global.js',
+    'lib/core/errors.js',
     'lib/core/utils.js',
     'lib/core/events.js',
     'lib/core/event.js',
@@ -49,6 +50,7 @@ Package.onUse(function(api) {
 
   // Fields module.
   api.addFiles([
+    'lib/modules/fields/errors.js',
     'lib/modules/fields/utils.js',
     'lib/modules/fields/field_definition.js',
     'lib/modules/fields/init_module.js',
