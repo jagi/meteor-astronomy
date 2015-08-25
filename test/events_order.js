@@ -1,6 +1,12 @@
 Tinytest.add('Events - Order', function(test) {
   actualEventsList = [];
   expectedEventsList = [
+    'beforeInit 1',
+    'beforeInit 2',
+    'beforeInit global',
+    'afterInit 1',
+    'afterInit 2',
+    'afterInit global',
     'beforeSave 1',
     'beforeSave 2',
     'beforeSave global',
