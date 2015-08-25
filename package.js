@@ -38,7 +38,10 @@ Package.onUse(function(api) {
   ], ['client', 'server']);
 
   // Indexes module.
-  api.addFiles('lib/modules/indexes/init_class.js', ['client', 'server']);
+  api.addFiles([
+    'lib/modules/indexes/errors.js',
+    'lib/modules/indexes/init_class.js'
+  ], 'server');
 
   // EJSON module.
   api.addFiles('lib/modules/ejson/init_module.js', ['client', 'server']);
