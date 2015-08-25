@@ -115,6 +115,8 @@ Package.onTest(function(api) {
   ], ['client', 'server']);
   // Types.
   api.addFiles('test/types_casting.js', ['client', 'server']);
+  // Indexes.
+  api.addFiles('test/indexes_init.js', 'server');
   // Methods.
   api.addFiles([
     'test/methods_init.js',

@@ -17,6 +17,12 @@ Tinytest.add('Events - Init', function(test) {
       }
     },
     events: {
+      beforeInit: function() {
+        actualEventsList.push('beforeInit 1');
+      },
+      afterInit: function() {
+        actualEventsList.push('afterInit 1');
+      },
       beforeSet: function() {
         actualEventsList.push('beforeSet 1');
       },
@@ -51,6 +57,12 @@ Tinytest.add('Events - Init', function(test) {
   });
 
   Event.addEvents({
+    beforeInit: function() {
+      actualEventsList.push('beforeInit 2');
+    },
+    afterInit: function() {
+      actualEventsList.push('afterInit 2');
+    },
     beforeSet: function() {
       actualEventsList.push('beforeSet 2');
     },
@@ -83,6 +95,12 @@ Tinytest.add('Events - Init', function(test) {
     }
   });
 
+  Astro.eventManager.on('beforeInit', function() {
+    actualEventsList.push('beforeInit global');
+  });
+  Astro.eventManager.on('afterInit', function() {
+    actualEventsList.push('afterInit global');
+  });
   Astro.eventManager.on('beforeSet', function() {
     actualEventsList.push('beforeSet global');
   });
