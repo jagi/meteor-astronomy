@@ -118,7 +118,8 @@ Package.onTest(function(api) {
     'test/fields_definition.js',
     'test/fields_default.js',
     'test/fields_setters.js',
-    'test/fields_getters.js'
+    'test/fields_getters.js',
+    'test/fields_modified.js'
   ], ['client', 'server']);
   // Types.
   api.addFiles('test/types_casting.js', ['client', 'server']);
