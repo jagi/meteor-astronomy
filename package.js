@@ -128,7 +128,8 @@ Package.onTest(function(api) {
   // Validators.
   api.addFiles([
     'test/validators_init.js',
-    'test/validators_validate.js',
+    'test/validators_validate_single.js',
+    'test/validators_validate_multiple.js',
     'test/validators_order.js'
   ], ['client', 'server']);
   // Simple Validators.

@@ -36,6 +36,9 @@ Tinytest.add('Validators - Init', function(test) {
       }
     },
     fields: {
+      'notRequired': {
+        validators: Validators.length(2)
+      },
       // Type validators.
       'string': {
         required: true,
