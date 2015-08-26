@@ -1,13 +1,13 @@
-Tinytest.add('Core - Update', function(test) {
-  var core = Cores.findOne();
+Tinytest.add('Storage - Update', function(test) {
+  var storage = Storages.findOne();
 
-  core.set('string', core.get('string').toUpperCase());
-  core.set('number', 321);
-  core.set('boolean', false);
-  core.set('date', new Date(2001, 0, 1, 0, 0, 0, 0));
-  core.array.push(4);
-  core.object.d = 'd';
-  core.save();
+  storage.set('string', storage.get('string').toUpperCase());
+  storage.set('number', 321);
+  storage.set('boolean', false);
+  storage.set('date', new Date(2001, 0, 1, 0, 0, 0, 0));
+  storage.array.push(4);
+  storage.object.d = 'd';
+  storage.save();
 
   var expectedCore = {
     string: 'STRING',
@@ -35,11 +35,11 @@ Tinytest.add('Core - Update', function(test) {
     }
   };
 
-  core = _.omit(Cores.findOne({}, {
+  storage = _.omit(Storages.findOne({}, {
     transform: null
   }), '_id');
 
-  test.equal(core, expectedCore,
+  test.equal(storage, expectedCore,
     'The document has not been updated properly'
   );
 });
