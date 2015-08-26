@@ -101,7 +101,8 @@ Package.onTest(function(api) {
     'test/storage_insert.js',
     'test/storage_update.js',
     'test/storage_remove.js',
-    'test/storage_reload.js'
+    'test/storage_reload.js',
+    'test/storage_cloning.js'
   ], ['client', 'server']);
   // EJSON.
   api.addFiles([
