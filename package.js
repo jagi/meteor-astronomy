@@ -14,14 +14,14 @@ Package.onUse(function(api) {
   api.use('ejson');
 
   api.addFiles([
-    'lib/core/global.js',
-    'lib/core/errors.js',
-    'lib/core/utils.js',
-    'lib/core/events.js',
-    'lib/core/event.js',
-    'lib/core/base_class.js',
-    'lib/core/schema.js',
-    'lib/core/classes.js'
+    'lib/modules/core/global.js',
+    'lib/modules/core/errors.js',
+    'lib/modules/core/utils.js',
+    'lib/modules/core/events.js',
+    'lib/modules/core/event.js',
+    'lib/modules/core/base_class.js',
+    'lib/modules/core/schema.js',
+    'lib/modules/core/classes.js'
   ], ['client', 'server']);
 
   // Events module.
@@ -93,10 +93,14 @@ Package.onTest(function(api) {
   api.addFiles([
     'test/core_init.js',
     'test/core_transform.js',
-    'test/core_extend.js',
-    'test/core_insert.js',
-    'test/core_update.js',
-    'test/core_remove.js'
+    'test/core_extend.js'
+  ], ['client', 'server']);
+  // Storage
+  api.addFiles([
+    'test/storage_init.js',
+    'test/storage_insert.js',
+    'test/storage_update.js',
+    'test/storage_remove.js'
   ], ['client', 'server']);
   // EJSON.
   api.addFiles([
