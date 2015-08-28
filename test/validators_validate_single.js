@@ -43,7 +43,7 @@ Tinytest.add('Validators - Validate single', function(test) {
   );
 
   // Existence.
-  validatorItem.set('required', undefined);
+  validatorItem.set('required', null);
   validatorItem.set('null', 'abc');
   validatorItem.set('notNull', null);
   validatorItem.set('has', {});
