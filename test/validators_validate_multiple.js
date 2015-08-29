@@ -35,6 +35,7 @@ Tinytest.add('Validators - Validate multiple', function(test) {
     'unique': 'abc',
     'equal': 'abcdef',
     'equalTo': 'abc',
+    'equalFunction': 'abc',
     'regexp': 'abc',
 
     // Logical.
@@ -111,6 +112,7 @@ Tinytest.add('Validators - Validate multiple', function(test) {
     'unique': '123',
     'equal': 'abc',
     'equalTo': 'abc',
+    'equalFunction': 'abc',
     'regexp': '123',
 
     // Logical.
