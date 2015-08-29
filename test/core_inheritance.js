@@ -1,9 +1,9 @@
-Tinytest.add('Core - Extend', function(test) {
+Tinytest.add('Core - Inheritance', function(test) {
   var parentAfterInit = function() {};
   var childAfterInit = function() {};
 
-  ParentExtend = Astro.Class({
-    name: 'ParentExtend',
+  ParentInheritance = Astro.Class({
+    name: 'ParentInheritance',
     fields: {
       parentField: 'string'
     },
@@ -18,8 +18,8 @@ Tinytest.add('Core - Extend', function(test) {
     }
   });
 
-  ChildExtend = ParentExtend.extend({
-    name: 'ChildExtend',
+  ChildInheritance = ParentInheritance.extend({
+    name: 'ChildInheritance',
     fields: {
       childField: 'string'
     },
@@ -34,25 +34,29 @@ Tinytest.add('Core - Extend', function(test) {
     }
   });
 
-  var childExtend = new ChildExtend();
+  var childInheritance = new ChildInheritance();
 
-  test.isNotNull(ChildExtend.getField('parentField'),
+  test.isNotNull(ChildInheritance.getField('parentField'),
     'The child class should inherit parent fields'
   );
-  test.isNotNull(ChildExtend.getBehavior('timestamp'),
+  test.isNotNull(ChildInheritance.getBehavior('timestamp'),
     'The child class should inherit parent behaviors'
   );
-  test.isNotNull(childExtend.parentMethod,
+  test.isNotNull(childInheritance.parentMethod,
     'The child class should inherit parent methods'
   );
 
-  test.isNotNull(ChildExtend.getField('childField'),
+  test.isNotNull(ChildInheritance.getField('childField'),
     'The child class should have its own fields'
   );
-  test.isNotNull(ChildExtend.getBehavior('slug'),
+  test.isNotNull(ChildInheritance.getBehavior('slug'),
     'The child class should have its own behaviors'
   );
-  test.isNotNull(childExtend.childMethod,
+  test.isNotNull(childInheritance.childMethod,
     'The child class should have its own methods'
+  );
+
+  test.instanceOf(childInheritance, ParentInheritance,
+    'An instance of a child class should be also instance of a parent class'
   );
 });
