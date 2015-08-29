@@ -95,6 +95,7 @@ Tinytest.add('Validators - Validate single', function(test) {
   validatorItem.set('unique', 'abc');
   validatorItem.set('equal', 'abcdef');
   validatorItem.set('equalTo', 'abc');
+  validatorItem.set('equalFunction', 'abc');
   validatorItem.set('regexp', 'abc');
   test.isFalse(validatorItem.validate('choice'),
     'The "choice" validator should not pass'
@@ -107,6 +108,9 @@ Tinytest.add('Validators - Validate single', function(test) {
   );
   test.isFalse(validatorItem.validate('equalTo'),
     'The "equalTo" validator should not pass'
+  );
+  test.isFalse(validatorItem.validate('equalFunction'),
+    'The "equalFunction" validator should not pass'
   );
   test.isFalse(validatorItem.validate('regexp'),
     'The "regexp" validator should not pass'
@@ -223,6 +227,7 @@ Tinytest.add('Validators - Validate single', function(test) {
   validatorItem.set('unique', '123');
   validatorItem.set('equal', 'abc');
   validatorItem.set('equalTo', 'abc');
+  validatorItem.set('equalFunction', 'abc');
   validatorItem.set('regexp', '123');
   test.isTrue(validatorItem.validate('choice'),
     'The "choice" validator should pass'
@@ -235,6 +240,9 @@ Tinytest.add('Validators - Validate single', function(test) {
   );
   test.isTrue(validatorItem.validate('equalTo'),
     'The "equalTo" validator should pass'
+  );
+  test.isTrue(validatorItem.validate('equalFunction'),
+    'The "equalFunction" validator should pass'
   );
   test.isTrue(validatorItem.validate('regexp'),
     'The "regexp" validator should pass'

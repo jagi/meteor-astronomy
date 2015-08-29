@@ -123,6 +123,12 @@ Tinytest.add('Validators - Init', function(test) {
         required: true,
         validators: Validators.equalTo('equal')
       },
+      'equalFunction': {
+        required: true,
+        validators: Validators.equal(function() {
+          return this.get('equal');
+        })
+      },
       'regexp': {
         required: true,
         validators: Validators.regexp(/^[0-9]+$/)
