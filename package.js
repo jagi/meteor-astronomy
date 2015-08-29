@@ -111,7 +111,6 @@ Package.onTest(function(api) {
   ], ['client', 'server']);
   // Events.
   api.addFiles([
-    'test/events_init.js',
     'test/events_order.js',
     'test/events_propagation.js',
     'test/events_default.js'
