@@ -55,7 +55,7 @@ Package.onUse(function(api) {
   api.addFiles([
     'lib/modules/fields/errors.js',
     'lib/modules/fields/utils.js',
-    'lib/modules/fields/field_definition.js',
+    'lib/modules/fields/field.js',
     'lib/modules/fields/init_module.js',
     'lib/modules/fields/init_schema.js',
     'lib/modules/fields/init_class.js'
@@ -63,6 +63,7 @@ Package.onUse(function(api) {
 
   // Embed module.
   api.addFiles([
+    'lib/modules/embed/embed_field.js',
     'lib/modules/embed/embed_one_field.js',
     'lib/modules/embed/embed_many_field.js',
     'lib/modules/embed/init_class.js'
