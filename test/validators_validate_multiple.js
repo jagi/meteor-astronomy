@@ -19,7 +19,6 @@ Tinytest.add('Validators - Validate multiple', function(test) {
     'required': undefined,
     'null': 'abc',
     'notNull': null,
-    'has': {},
 
     // Size.
     'length': 'abc',
@@ -40,7 +39,12 @@ Tinytest.add('Validators - Validate multiple', function(test) {
 
     // Logical.
     'and': 'abc',
-    'or': 'abc'
+    'or': 'abc',
+
+    // Embedded.
+    'has': {},
+    'contains': [],
+    'every': [1, 2, 3]
   });
 
   validatorItem._errors.clear();
@@ -94,9 +98,6 @@ Tinytest.add('Validators - Validate multiple', function(test) {
     'required': 'abc',
     'null': null,
     'notNull': 'abc',
-    'has': {
-      property: 'abc'
-    },
 
     // Size.
     'length': 'ab',
@@ -117,7 +118,14 @@ Tinytest.add('Validators - Validate multiple', function(test) {
 
     // Logical.
     'and': 123,
-    'or': true
+    'or': true,
+
+    // Embedded.
+    'has': {
+      property: 'abc'
+    },
+    'contains': ['abc'],
+    'every': ['a', 'b', 'c']
   });
 
   validatorItem._errors.clear();

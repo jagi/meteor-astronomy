@@ -46,7 +46,6 @@ Tinytest.add('Validators - Validate single', function(test) {
   validatorItem.set('required', null);
   validatorItem.set('null', 'abc');
   validatorItem.set('notNull', null);
-  validatorItem.set('has', {});
   test.isFalse(validatorItem.validate('required'),
     'The "required" validator should not pass'
   );
@@ -55,9 +54,6 @@ Tinytest.add('Validators - Validate single', function(test) {
   );
   test.isFalse(validatorItem.validate('notNull'),
     'The "notNull" validator should not pass'
-  );
-  test.isFalse(validatorItem.validate('has'),
-    'The "has" validator should not pass'
   );
 
   // Size.
@@ -126,6 +122,20 @@ Tinytest.add('Validators - Validate single', function(test) {
     'The "or" validator should not pass'
   );
 
+  // Emdedded.
+  validatorItem.set('has', {});
+  test.isFalse(validatorItem.validate('has'),
+    'The "has" validator should not pass'
+  );
+  validatorItem.set('contains', []);
+  test.isFalse(validatorItem.validate('contains'),
+    'The "contains" validator should not pass'
+  );
+  validatorItem.set('every', [1, 2, 3]);
+  test.isFalse(validatorItem.validate('every'),
+    'The "every" validator should not pass'
+  );
+
   // PASSING VALIDATION
 
   validatorItem._errors.clear();
@@ -176,9 +186,6 @@ Tinytest.add('Validators - Validate single', function(test) {
   validatorItem.set('required', 'abc');
   validatorItem.set('null', null);
   validatorItem.set('notNull', 'abc');
-  validatorItem.set('has', {
-    property: 'abc'
-  });
   test.isTrue(validatorItem.validate('required'),
     'The "required" validator should pass'
   );
@@ -187,9 +194,6 @@ Tinytest.add('Validators - Validate single', function(test) {
   );
   test.isTrue(validatorItem.validate('notNull'),
     'The "notNull" validator should pass'
-  );
-  test.isTrue(validatorItem.validate('has'),
-    'The "has" validator should pass'
   );
 
   // Size.
@@ -260,5 +264,21 @@ Tinytest.add('Validators - Validate single', function(test) {
   validatorItem.set('or', 123);
   test.isTrue(validatorItem.validate('or'),
     'The "or" validator should pass'
+  );
+
+  // Emdedded.
+  validatorItem.set('has', {
+    property: 'abc'
+  });
+  test.isTrue(validatorItem.validate('has'),
+    'The "has" validator should pass'
+  );
+  validatorItem.set('contains', ['abc']);
+  test.isTrue(validatorItem.validate('contains'),
+    'The "contains" validator should pass'
+  );
+  validatorItem.set('every', ['a', 'b', 'c']);
+  test.isTrue(validatorItem.validate('every'),
+    'The "every" validator should pass'
   );
 });
