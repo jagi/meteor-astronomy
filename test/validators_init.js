@@ -26,6 +26,10 @@ Tinytest.add('Validators - Init', function(test) {
         class: 'NestedValidator',
         required: true,
         validators: Validators.object()
+      },
+      'has': {
+        required: true,
+        validators: Validators.has('property')
       }
     },
     embedMany: {
@@ -33,7 +37,17 @@ Tinytest.add('Validators - Init', function(test) {
         class: 'NestedValidator',
         required: true,
         validators: Validators.array()
-      }
+      },
+      'contains': {
+        required: true,
+        validators: Validators.contains('abc')
+      },
+      'every': {
+        required: true,
+        validators: Validators.every(
+          Validators.string()
+        )
+      },
     },
     fields: {
       'notRequired': {
@@ -72,10 +86,6 @@ Tinytest.add('Validators - Init', function(test) {
       'notNull': {
         required: true,
         validators: Validators.notNull()
-      },
-      'has': {
-        required: true,
-        validators: Validators.has('property')
       },
       // Size validators.
       'length': {
