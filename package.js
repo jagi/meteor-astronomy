@@ -143,7 +143,6 @@ Package.onTest(function(api) {
   ], ['client', 'server']);
   // Simple Validators.
   api.addFiles([
-    'test/simple_validators_init.js',
     'test/simple_validators_parser.js'
   ], ['client', 'server']);
   // Behaviors.
