@@ -144,8 +144,8 @@ Tinytest.add('Validators - Init', function(test) {
       'or': {
         required: true,
         validators: Validators.or([
-          Validators.boolean(),
-          Validators.number()
+          Validators.number(),
+          Validators.boolean()
         ])
       }
     }
