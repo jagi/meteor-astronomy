@@ -58,6 +58,7 @@ Package.onUse(function(api) {
     'lib/modules/fields/modifier.js',
     'lib/modules/fields/set_default.js',
     'lib/modules/fields/set.js',
+    'lib/modules/fields/get_original.js',
     'lib/modules/fields/get.js',
     'lib/modules/fields/push.js',
     'lib/modules/fields/modified.js',
