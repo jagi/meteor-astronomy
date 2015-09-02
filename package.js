@@ -56,11 +56,13 @@ Package.onUse(function(api) {
     'lib/modules/fields/errors.js',
     'lib/modules/fields/utils.js',
     'lib/modules/fields/modifier.js',
+    'lib/modules/fields/set_default.js',
     'lib/modules/fields/set.js',
     'lib/modules/fields/get.js',
     'lib/modules/fields/push.js',
     'lib/modules/fields/modified.js',
     'lib/modules/fields/field.js',
+    'lib/modules/fields/ejson.js',
     'lib/modules/fields/init_schema.js',
     'lib/modules/fields/init_class.js'
   ], ['client', 'server']);
