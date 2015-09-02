@@ -8,124 +8,124 @@ Tinytest.add('Events - Order', function(test) {
     collection: EventsOrders,
     fields: ['childField'],
     events: {
-      beforeInit: function() {
+      beforeInit: function(e) {
         actualEventsList.push('beforeInit 1');
       },
-      afterInit: function() {
+      afterInit: function(e) {
         actualEventsList.push('afterInit 1');
       },
-      beforeSet: function() {
-        actualEventsList.push('beforeSet 1');
+      beforeSet: function(e) {
+        actualEventsList.push('beforeSet 1 (' + e.data.fieldName + ')');
       },
-      afterSet: function() {
-        actualEventsList.push('afterSet 1');
+      afterSet: function(e) {
+        actualEventsList.push('afterSet 1 (' + e.data.fieldName + ')');
       },
-      beforeGet: function() {
-        actualEventsList.push('beforeGet 1');
+      beforeGet: function(e) {
+        actualEventsList.push('beforeGet 1 (' + e.data.fieldName + ')');
       },
-      afterGet: function() {
-        actualEventsList.push('afterGet 1');
+      afterGet: function(e) {
+        actualEventsList.push('afterGet 1 (' + e.data.fieldName + ')');
       },
-      beforeSave: function() {
+      beforeSave: function(e) {
         actualEventsList.push('beforeSave 1');
       },
-      afterSave: function() {
+      afterSave: function(e) {
         actualEventsList.push('afterSave 1');
       },
-      beforeInsert: function() {
+      beforeInsert: function(e) {
         actualEventsList.push('beforeInsert 1');
       },
-      afterInsert: function() {
+      afterInsert: function(e) {
         actualEventsList.push('afterInsert 1');
       },
-      beforeUpdate: function() {
+      beforeUpdate: function(e) {
         actualEventsList.push('beforeUpdate 1');
       },
-      afterUpdate: function() {
+      afterUpdate: function(e) {
         actualEventsList.push('afterUpdate 1');
       }
     }
   });
 
   EventsOrder.addEvents({
-    beforeInit: function() {
+    beforeInit: function(e) {
       actualEventsList.push('beforeInit 2');
     },
-    afterInit: function() {
+    afterInit: function(e) {
       actualEventsList.push('afterInit 2');
     },
-    beforeSet: function() {
-      actualEventsList.push('beforeSet 2');
+    beforeSet: function(e) {
+      actualEventsList.push('beforeSet 2 (' + e.data.fieldName + ')');
     },
-    afterSet: function() {
-      actualEventsList.push('afterSet 2');
+    afterSet: function(e) {
+      actualEventsList.push('afterSet 2 (' + e.data.fieldName + ')');
     },
-    beforeGet: function() {
-      actualEventsList.push('beforeGet 2');
+    beforeGet: function(e) {
+      actualEventsList.push('beforeGet 2 (' + e.data.fieldName + ')');
     },
-    afterGet: function() {
-      actualEventsList.push('afterGet 2');
+    afterGet: function(e) {
+      actualEventsList.push('afterGet 2 (' + e.data.fieldName + ')');
     },
-    beforeSave: function() {
+    beforeSave: function(e) {
       actualEventsList.push('beforeSave 2');
     },
-    afterSave: function() {
+    afterSave: function(e) {
       actualEventsList.push('afterSave 2');
     },
-    beforeInsert: function() {
+    beforeInsert: function(e) {
       actualEventsList.push('beforeInsert 2');
     },
-    afterInsert: function() {
+    afterInsert: function(e) {
       actualEventsList.push('afterInsert 2');
     },
-    beforeUpdate: function() {
+    beforeUpdate: function(e) {
       actualEventsList.push('beforeUpdate 2');
     },
-    afterUpdate: function() {
+    afterUpdate: function(e) {
       actualEventsList.push('afterUpdate 2');
     }
   });
 
-  Astro.eventManager.on('beforeInit', function() {
+  Astro.eventManager.on('beforeInit', function(e) {
     actualEventsList.push('beforeInit global');
   });
-  Astro.eventManager.on('afterInit', function() {
+  Astro.eventManager.on('afterInit', function(e) {
     actualEventsList.push('afterInit global');
   });
-  Astro.eventManager.on('beforeSet', function() {
-    actualEventsList.push('beforeSet global');
+  Astro.eventManager.on('beforeSet', function(e) {
+    actualEventsList.push('beforeSet global (' + e.data.fieldName + ')');
   });
-  Astro.eventManager.on('afterSet', function() {
-    actualEventsList.push('afterSet global');
+  Astro.eventManager.on('afterSet', function(e) {
+    actualEventsList.push('afterSet global (' + e.data.fieldName + ')');
   });
-  Astro.eventManager.on('beforeGet', function() {
-    actualEventsList.push('beforeGet global');
+  Astro.eventManager.on('beforeGet', function(e) {
+    actualEventsList.push('beforeGet global (' + e.data.fieldName + ')');
   });
-  Astro.eventManager.on('afterGet', function() {
-    actualEventsList.push('afterGet global');
+  Astro.eventManager.on('afterGet', function(e) {
+    actualEventsList.push('afterGet global (' + e.data.fieldName + ')');
   });
-  Astro.eventManager.on('beforeSave', function() {
+  Astro.eventManager.on('beforeSave', function(e) {
     actualEventsList.push('beforeSave global');
   });
-  Astro.eventManager.on('afterSave', function() {
+  Astro.eventManager.on('afterSave', function(e) {
     actualEventsList.push('afterSave global');
   });
-  Astro.eventManager.on('beforeInsert', function() {
+  Astro.eventManager.on('beforeInsert', function(e) {
     actualEventsList.push('beforeInsert global');
   });
-  Astro.eventManager.on('afterInsert', function() {
+  Astro.eventManager.on('afterInsert', function(e) {
     actualEventsList.push('afterInsert global');
   });
-  Astro.eventManager.on('beforeUpdate', function() {
+  Astro.eventManager.on('beforeUpdate', function(e) {
     actualEventsList.push('beforeUpdate global');
   });
-  Astro.eventManager.on('afterUpdate', function() {
+  Astro.eventManager.on('afterUpdate', function(e) {
     actualEventsList.push('afterUpdate global');
   });
-  Astro.eventManager.on('beforeRemove', function() {
+  Astro.eventManager.on('beforeRemove', function(e) {
     actualEventsList.push('beforeRemove global');
   });
-  Astro.eventManager.on('afterRemove', function() {
+  Astro.eventManager.on('afterRemove', function(e) {
     actualEventsList.push('afterRemove global');
   });
 
@@ -143,12 +143,30 @@ Tinytest.add('Events - Order', function(test) {
     'beforeInsert 1',
     'beforeInsert 2',
     'beforeInsert global',
+    'beforeGet 1 (childField)',
+    'beforeGet 2 (childField)',
+    'beforeGet global (childField)',
+    'afterGet 1 (childField)',
+    'afterGet 2 (childField)',
+    'afterGet global (childField)',
+    'beforeGet 1 (_id)',
+    'beforeGet 2 (_id)',
+    'beforeGet global (_id)',
+    'afterGet 1 (_id)',
+    'afterGet 2 (_id)',
+    'afterGet global (_id)',
     'afterInsert 1',
     'afterInsert 2',
     'afterInsert global',
     'afterSave 1',
     'afterSave 2',
-    'afterSave global'
+    'afterSave global',
+    'beforeGet 1 (childField)',
+    'beforeGet 2 (childField)',
+    'beforeGet global (childField)',
+    'afterGet 1 (childField)',
+    'afterGet 2 (childField)',
+    'afterGet global (childField)'
   ];
   var event = new EventsOrder();
   event.save();
@@ -163,7 +181,19 @@ Tinytest.add('Events - Order', function(test) {
     'beforeSave global',
     'beforeUpdate 1',
     'beforeUpdate 2',
-    'beforeUpdate global'
+    'beforeUpdate global',
+    'beforeGet 1 (childField)',
+    'beforeGet 2 (childField)',
+    'beforeGet global (childField)',
+    'afterGet 1 (childField)',
+    'afterGet 2 (childField)',
+    'afterGet global (childField)',
+    'beforeGet 1 (_id)',
+    'beforeGet 2 (_id)',
+    'beforeGet global (_id)',
+    'afterGet 1 (_id)',
+    'afterGet 2 (_id)',
+    'afterGet global (_id)'
   ];
   event.save();
   test.equal(actualEventsList, expectedEventsList,
@@ -172,30 +202,48 @@ Tinytest.add('Events - Order', function(test) {
 
   actualEventsList = [];
   expectedEventsList = [
-    'beforeSet 1',
-    'beforeSet 2',
-    'beforeSet global',
-    'afterSet 1',
-    'afterSet 2',
-    'afterSet global',
-    'beforeGet 1',
-    'beforeGet 2',
-    'beforeGet global',
-    'afterGet 1',
-    'afterGet 2',
-    'afterGet global',
+    'beforeSet 1 (childField)',
+    'beforeSet 2 (childField)',
+    'beforeSet global (childField)',
+    'afterSet 1 (childField)',
+    'afterSet 2 (childField)',
+    'afterSet global (childField)',
+    'beforeGet 1 (childField)',
+    'beforeGet 2 (childField)',
+    'beforeGet global (childField)',
+    'afterGet 1 (childField)',
+    'afterGet 2 (childField)',
+    'afterGet global (childField)',
     'beforeSave 1',
     'beforeSave 2',
     'beforeSave global',
     'beforeUpdate 1',
     'beforeUpdate 2',
     'beforeUpdate global',
+    'beforeGet 1 (childField)',
+    'beforeGet 2 (childField)',
+    'beforeGet global (childField)',
+    'afterGet 1 (childField)',
+    'afterGet 2 (childField)',
+    'afterGet global (childField)',
+    'beforeGet 1 (_id)',
+    'beforeGet 2 (_id)',
+    'beforeGet global (_id)',
+    'afterGet 1 (_id)',
+    'afterGet 2 (_id)',
+    'afterGet global (_id)',
     'afterUpdate 1',
     'afterUpdate 2',
     'afterUpdate global',
     'afterSave 1',
     'afterSave 2',
-    'afterSave global'
+    'afterSave global',
+    'beforeGet 1 (childField)',
+    'beforeGet 2 (childField)',
+    'beforeGet global (childField)',
+    'afterGet 1 (childField)',
+    'afterGet 2 (childField)',
+    'afterGet global (childField)'
   ];
   event.set('childField', 'update');
   event.get('childField');
