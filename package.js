@@ -61,6 +61,7 @@ Package.onUse(function(api) {
     'lib/modules/fields/get_original.js',
     'lib/modules/fields/get.js',
     'lib/modules/fields/push.js',
+    'lib/modules/fields/inc.js',
     'lib/modules/fields/modified.js',
     'lib/modules/fields/field.js',
     'lib/modules/fields/ejson.js',
