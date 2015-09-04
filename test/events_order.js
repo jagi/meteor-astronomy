@@ -160,13 +160,7 @@ Tinytest.add('Events - Order', function(test) {
     'afterInsert global',
     'afterSave 1',
     'afterSave 2',
-    'afterSave global',
-    'beforeGet 1 (childField)',
-    'beforeGet 2 (childField)',
-    'beforeGet global (childField)',
-    'afterGet 1 (childField)',
-    'afterGet 2 (childField)',
-    'afterGet global (childField)'
+    'afterSave global'
   ];
   var event = new EventsOrder();
   event.save();
@@ -182,18 +176,12 @@ Tinytest.add('Events - Order', function(test) {
     'beforeUpdate 1',
     'beforeUpdate 2',
     'beforeUpdate global',
-    'beforeGet 1 (childField)',
-    'beforeGet 2 (childField)',
-    'beforeGet global (childField)',
-    'afterGet 1 (childField)',
-    'afterGet 2 (childField)',
-    'afterGet global (childField)',
-    'beforeGet 1 (_id)',
-    'beforeGet 2 (_id)',
-    'beforeGet global (_id)',
-    'afterGet 1 (_id)',
-    'afterGet 2 (_id)',
-    'afterGet global (_id)'
+    'afterUpdate 1',
+    'afterUpdate 2',
+    'afterUpdate global',
+    'afterSave 1',
+    'afterSave 2',
+    'afterSave global'
   ];
   event.save();
   test.equal(actualEventsList, expectedEventsList,
@@ -226,29 +214,17 @@ Tinytest.add('Events - Order', function(test) {
     'afterGet 1 (childField)',
     'afterGet 2 (childField)',
     'afterGet global (childField)',
-    'beforeGet 1 (_id)',
-    'beforeGet 2 (_id)',
-    'beforeGet global (_id)',
-    'afterGet 1 (_id)',
-    'afterGet 2 (_id)',
-    'afterGet global (_id)',
     'afterUpdate 1',
     'afterUpdate 2',
     'afterUpdate global',
     'afterSave 1',
     'afterSave 2',
-    'afterSave global',
-    'beforeGet 1 (childField)',
-    'beforeGet 2 (childField)',
-    'beforeGet global (childField)',
-    'afterGet 1 (childField)',
-    'afterGet 2 (childField)',
-    'afterGet global (childField)'
+    'afterSave global'
   ];
   event.set('childField', 'update');
   event.get('childField');
   event.save();
   test.equal(actualEventsList, expectedEventsList,
-    'Wrong events order on a document update after a change'
+    'Wrong events order on a document update after with a change'
   );
 });

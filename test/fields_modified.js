@@ -1,11 +1,8 @@
 Tinytest.add('Fields - Modified', function(test) {
   var field = new Field();
 
-  var modified = [
-    'null', 'string', 'number', 'boolean', 'date', 'nested', 'object', 'array'
-  ];
-  test.equal(_.keys(field.getModified()), modified,
-    'All fields of a newly created document should be modified'
+  test.equal(_.keys(field.getModified()), [],
+    'A new document should not have modified fields'
   );
 
   field.save();
