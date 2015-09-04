@@ -9,12 +9,16 @@ Tinytest.add('Fields - Init', function(test) {
     name: 'NestedField',
     embedOne: {
       'object': {
-        default: {}
+        default: function() {
+          return {};
+        }
       }
     },
     embedMany: {
       'array': {
-        default: []
+        default: function() {
+          return [];
+        }
       }
     },
     fields: {
@@ -47,15 +51,21 @@ Tinytest.add('Fields - Init', function(test) {
     embedOne: {
       'nested': {
         class: 'NestedField',
-        default: {}
+        default: function() {
+          return {};
+        }
       },
       'object': {
-        default: {}
+        default: function() {
+          return {};
+        }
       }
     },
     embedMany: {
       'array': {
-        default: []
+        default: function() {
+          return [];
+        }
       }
     },
     fields: {

@@ -50,20 +50,15 @@ Tinytest.add('Fields - Push', function(test) {
     'Pushing a single value into the non-typed array field should succeed'
   );
 
-  push.push('arrayA', [2, 3]);
-  test.equal(push.get('arrayA'), [1, 2, 3],
-    'Pushing a single array value into the non-typed array field should succeed'
-  );
-
   push.push({
-    'arrayA': 4,
-    'arrayB': [1, 2, 3, 4],
+    'arrayA': 2,
+    'arrayB': 1,
   });
   test.equal(
     push.get(['arrayA', 'arrayB']),
     {
-      'arrayA': [1, 2, 3, 4],
-      'arrayB': [1, 2, 3, 4]
+      'arrayA': [1, 2],
+      'arrayB': [1]
     },
     'Pushing multiple values into the non-typed array field should succeed'
   );
@@ -74,20 +69,15 @@ Tinytest.add('Fields - Push', function(test) {
     'Pushing a single value into the typed array field should succeed'
   );
 
-  push.push('typedArrayA', [2, 3]);
-  test.equal(push.get('typedArrayA'), ['1', '2', '3'],
-    'Pushing a single array value into the typed array field should succeed'
-  );
-
   push.push({
-    'typedArrayA': 4,
-    'typedArrayB': [1, 2, 3, 4],
+    'typedArrayA': 2,
+    'typedArrayB': 1,
   });
   test.equal(
     push.get(['typedArrayA', 'typedArrayB']),
     {
-      'typedArrayA': ['1', '2', '3', '4'],
-      'typedArrayB': ['1', '2', '3', '4']
+      'typedArrayA': ['1', '2'],
+      'typedArrayB': ['1']
     },
     'Pushing multiple values into the typed array field should succeed'
   );
@@ -98,17 +88,11 @@ Tinytest.add('Fields - Push', function(test) {
     'Pushing a single value into the class typed array field should succeed'
   );
 
-  push.push('classArrayA', [{}, {}]);
-  test.instanceOf(push.get('classArrayA.2'), NestedPush,
-    'Pushing a single array value into the class typed array field should ' +
-    'succeed'
-  );
-
   push.push({
     'classArrayA': {},
-    'classArrayB': [{}, {}, {}, {}],
+    'classArrayB': {},
   });
-  test.instanceOf(push.get('classArrayB.3'), NestedPush,
+  test.instanceOf(push.get('classArrayB.0'), NestedPush,
     'Pushing multiple values into the class typed array field should succeed'
   );
 });

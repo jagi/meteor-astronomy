@@ -52,22 +52,15 @@ Tinytest.add('Behaviors - Slug', function(test) {
     'hh' + 'iiiiiiiii' + 'j' + 'k' + 'lllll' + 'nnnnn' + 'oooooooooooo' +
     'rrr' + 'ssss' + 'ttt' + 'uuuuuuuuuu' + 'w' + 'yyy' + 'zzz';
 
-  var slugA1 = new SlugA({
-    name: 'Slug ' + diacritics
-  });
+  var slugA1 = new SlugA();
+  slugA1.set('name', 'Slug ' + diacritics);
   slugA1.save();
   test.equal(slugA1.get('slug'), 'slug-' + expected,
     'The slug function does not work properly'
   );
 
-  var slug = new SlugA({
-    name: 'dupa'
-  });
-  slug.save();
-
-  var slugA2 = new SlugA({
-    name: 'Slug ' + diacritics
-  });
+  var slugA2 = new SlugA();
+  slugA2.set('name', 'Slug ' + diacritics);
   slugA2.save();
   test.equal(slugA2.get('slug'), 'slug-' + expected + '-2',
     'The value of the slag field should be unique'
@@ -79,9 +72,8 @@ Tinytest.add('Behaviors - Slug', function(test) {
     'It should not be possible to update a slug'
   );
 
-  var slugB1 = new SlugB({
-    title: 'Slug ' + diacritics
-  });
+  var slugB1 = new SlugB();
+  slugB1.set('title', 'Slug ' + diacritics);
   slugB1.save();
   test.isNotUndefined(slugB1.get('slugged'),
     'The name of a field for the slug storage should be "slugged"'
@@ -99,9 +91,8 @@ Tinytest.add('Behaviors - Slug', function(test) {
     'It should be possible to update a slug"'
   );
 
-  slugB2 = new SlugB({
-    title: 'Slug2 ' + diacritics
-  });
+  slugB2 = new SlugB();
+  slugB2.set('title', 'Slug2 ' + diacritics);
   slugB2.save();
   test.equal(slugB2.get('slugged'), 'slug2_' + expected,
     'The value of the slag field should not be unique'

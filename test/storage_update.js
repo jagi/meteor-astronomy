@@ -5,8 +5,8 @@ Tinytest.add('Storage - Update', function(test) {
   storage.set('number', 321);
   storage.set('boolean', false);
   storage.set('date', new Date(2001, 0, 1, 0, 0, 0, 0));
-  storage.array.push(4);
-  storage.object.d = 'd';
+  storage.push('array', 4);
+  storage.set('object.d', 'd');
   storage.save();
 
   var expectedCore = {
