@@ -96,63 +96,62 @@ Package.onTest(function(api) {
 
   // Core.
   api.addFiles([
-    'test/core_init.js',
-    'test/core_transform.js',
-    'test/core_inheritance.js'
+    'test/core/core_init.js',
+    'test/core/core_transform.js',
+    'test/core/core_inheritance.js'
   ], ['client', 'server']);
   // Storage
   api.addFiles([
-    'test/storage_init.js',
-    'test/storage_insert.js',
-    'test/storage_update.js',
-    'test/storage_remove.js',
-    'test/storage_reload.js',
-    'test/storage_cloning.js'
+    'test/storage/storage_init.js',
+    'test/storage/storage_insert.js',
+    'test/storage/storage_update.js',
+    'test/storage/storage_remove.js',
+    'test/storage/storage_reload.js',
+    'test/storage/storage_cloning.js'
   ], ['client', 'server']);
   // EJSON.
   api.addFiles([
-    'test/ejson_init.js',
-    'test/ejson_parsing.js'
+    'test/ejson/ejson_init.js',
+    'test/ejson/ejson_parsing.js'
   ], ['client', 'server']);
   // Events.
   api.addFiles([
-    'test/events_order.js',
-    'test/events_propagation.js',
-    'test/events_default.js'
+    'test/events/events_order.js',
+    'test/events/events_propagation.js',
+    'test/events/events_prevent_default.js'
   ], ['client', 'server']);
   // Fields.
   api.addFiles([
-    'test/fields_init.js',
-    'test/fields_definition.js',
-    'test/fields_default.js',
-    'test/fields_casting.js',
-    'test/fields_setters.js',
-    'test/fields_getters.js',
-    'test/fields_modified.js',
-    'test/fields_push.js'
+    'test/fields/fields_init.js',
+    'test/fields/fields_definition.js',
+    'test/fields/fields_default.js',
+    'test/fields/fields_casting.js',
+    'test/fields/fields_setters.js',
+    'test/fields/fields_getters.js',
+    'test/fields/fields_modified.js',
+    'test/fields/fields_push.js'
   ], ['client', 'server']);
   // Indexes.
-  api.addFiles('test/indexes_init.js', 'server');
+  api.addFiles('test/indexes/indexes_init.js', 'server');
   // Methods.
   api.addFiles([
-    'test/methods_init.js',
-    'test/methods_definition.js'
+    'test/methods/methods_init.js',
+    'test/methods/methods_definition.js'
   ], ['client', 'server']);
-  // Validators.
+  // Modules.
   api.addFiles([
-    'test/validators_init.js',
-    'test/validators_validate_single.js',
-    'test/validators_validate_multiple.js',
-    'test/validators_order.js'
-  ], ['client', 'server']);
-  // Simple Validators.
-  api.addFiles([
-    'test/simple_validators_parser.js'
+    // Validators
+    'test/modules/validators_init.js',
+    'test/modules/validators_validate_single.js',
+    'test/modules/validators_validate_multiple.js',
+    'test/modules/validators_order.js',
+    // Simple Validators.
+    'test/modules/simple_validators_parser.js'
   ], ['client', 'server']);
   // Behaviors.
   api.addFiles([
-    'test/behaviors_timestamp.js',
-    'test/behaviors_slug.js',
-    'test/behaviors_softremove.js'
+    'test/behaviors/behaviors_timestamp.js',
+    'test/behaviors/behaviors_slug.js',
+    'test/behaviors/behaviors_softremove.js'
   ], ['client', 'server']);
 });
