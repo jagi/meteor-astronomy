@@ -22,8 +22,8 @@ Tinytest.add('Fields - Default', function(test) {
   test.equal(field.get('array'), [],
     'The default value of the "array" field should be []'
   );
-  test.instanceOf(field.get('nested'), NestedField,
+  test.instanceOf(field.get('nested'), Nested,
     'The default value of the "nested" field should be instance of the ' +
-    'NestedField class'
+    'Nested class'
   );
 });

@@ -21,35 +21,36 @@ Tinytest.add('Validators - Init', function(test) {
   ValidatorItem = Astro.Class({
     name: 'ValidatorItem',
     collection: ValidatorCollection,
-    embedOne: {
+    fields: {
       'object': {
+        type: 'object',
         class: 'NestedValidator',
         required: true,
         validators: Validators.object()
       },
       'has': {
+        type: 'object',
         required: true,
         validators: Validators.has('property')
-      }
-    },
-    embedMany: {
+      },
       'array': {
+        type: 'array',
         class: 'NestedValidator',
         required: true,
         validators: Validators.array()
       },
       'contains': {
+        type: 'array',
         required: true,
         validators: Validators.contains('abc')
       },
       'every': {
+        type: 'array',
         required: true,
         validators: Validators.every(
           Validators.string()
         )
       },
-    },
-    fields: {
       'notRequired': {
         validators: Validators.length(2)
       },

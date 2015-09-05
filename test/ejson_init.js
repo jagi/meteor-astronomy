@@ -4,13 +4,13 @@ Tinytest.add('EJSON - Init', function(test) {
 
   EJSONClass = Astro.Class({
     name: 'EJSONClass',
-    embedOne: {
-      'object': {}
-    },
-    embedMany: {
-      'array': {}
-    },
     fields: {
+      'object': {
+        type: 'object'
+      },
+      'array': {
+        type: 'array'
+      },
       'string': {
         type: 'string'
       },

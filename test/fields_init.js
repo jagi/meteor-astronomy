@@ -5,23 +5,21 @@ Tinytest.add('Fields - Init', function(test) {
   Fields = new Mongo.Collection(null);
 
   // Class for usage as a nested field.
-  NestedField = Astro.Class({
-    name: 'NestedField',
-    embedOne: {
+  Nested = Astro.Class({
+    name: 'Nested',
+    fields: {
       'object': {
+        type: 'object',
         default: function() {
           return {};
         }
-      }
-    },
-    embedMany: {
+      },
       'array': {
+        type: 'array',
         default: function() {
           return [];
         }
-      }
-    },
-    fields: {
+      },
       'null': {
         type: null
       },
@@ -48,27 +46,26 @@ Tinytest.add('Fields - Init', function(test) {
   Field = Astro.Class({
     name: 'Field',
     collection: Fields,
-    embedOne: {
+    fields: {
       'nested': {
-        class: 'NestedField',
+        type: 'object',
+        class: 'Nested',
         default: function() {
           return {};
         }
       },
       'object': {
+        type: 'object',
         default: function() {
           return {};
         }
-      }
-    },
-    embedMany: {
+      },
       'array': {
+        type: 'array',
         default: function() {
           return [];
         }
-      }
-    },
-    fields: {
+      },
       'null': {
         type: null,
         default: null
