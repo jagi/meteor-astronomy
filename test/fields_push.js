@@ -5,36 +5,42 @@ Tinytest.add('Fields - Push', function(test) {
 
   var Push = Astro.Class({
     name: 'Push',
-    embedMany: {
+    fields: {
       arrayA: {
+        type: 'array',
         default: function() {
           return [];
         }
       },
       arrayB: {
+        type: 'array',
         default: function() {
           return [];
         }
       },
       typedArrayA: {
-        type: 'string',
+        type: 'array',
+        nestedType: 'string',
         default: function() {
           return [];
         }
       },
       typedArrayB: {
-        type: 'string',
+        type: 'array',
+        nestedType: 'string',
         default: function() {
           return [];
         }
       },
       classArrayA: {
+        type: 'array',
         class: 'NestedPush',
         default: function() {
           return [];
         }
       },
       classArrayB: {
+        type: 'array',
         class: 'NestedPush',
         default: function() {
           return [];

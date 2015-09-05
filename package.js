@@ -53,6 +53,18 @@ Package.onUse(function(api) {
 
   // Fields module.
   api.addFiles([
+    'lib/modules/fields/global.js',
+
+    'lib/modules/fields/base_field.js',
+    'lib/modules/fields/null_field.js',
+    'lib/modules/fields/string_field.js',
+    'lib/modules/fields/number_field.js',
+    'lib/modules/fields/boolean_field.js',
+    'lib/modules/fields/date_field.js',
+    'lib/modules/fields/nested_field.js',
+    'lib/modules/fields/object_field.js',
+    'lib/modules/fields/array_field.js',
+
     'lib/modules/fields/errors.js',
     'lib/modules/fields/utils.js',
     'lib/modules/fields/modifier.js',
@@ -67,14 +79,6 @@ Package.onUse(function(api) {
     'lib/modules/fields/ejson.js',
     'lib/modules/fields/init_schema.js',
     'lib/modules/fields/init_class.js'
-  ], ['client', 'server']);
-
-  // Embed module.
-  api.addFiles([
-    'lib/modules/embed/embed_field.js',
-    'lib/modules/embed/embed_one_field.js',
-    'lib/modules/embed/embed_many_field.js',
-    'lib/modules/embed/init_class.js'
   ], ['client', 'server']);
 
   // Storage module.
@@ -129,13 +133,12 @@ Package.onTest(function(api) {
     'test/fields_init.js',
     'test/fields_definition.js',
     'test/fields_default.js',
+    'test/fields_casting.js',
     'test/fields_setters.js',
     'test/fields_getters.js',
     'test/fields_modified.js',
     'test/fields_push.js'
   ], ['client', 'server']);
-  // Types.
-  api.addFiles('test/types_casting.js', ['client', 'server']);
   // Indexes.
   api.addFiles('test/indexes_init.js', 'server');
   // Methods.

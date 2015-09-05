@@ -1,31 +1,40 @@
-Tinytest.add('Types - Casting', function(test) {
+Tinytest.add('Fields - Casting', function(test) {
   Astro.classes = [];
 
-  var EmbedCast = Astro.Class({
-    name: 'EmbedCast'
+  var NestedCast = Astro.Class({
+    name: 'NestedCast'
   });
 
   var Cast = Astro.Class({
     name: 'Cast',
-    embedOne: {
-      'object': {},
+    fields: {
+      'object': {
+        type: 'object'
+      },
       'one': {
-        class: 'EmbedCast'
-      }
-    },
-    embedMany: {
+        type: 'object',
+        class: 'NestedCast'
+      },
       'array': {
-        type: 'string'
+        type: 'array',
+        nestedType: 'string'
       },
       'many': {
-        class: 'EmbedCast'
+        type: 'array',
+        class: 'NestedCast'
+      },
+      'string': {
+        type: 'string'
+      },
+      'number': {
+        type: 'number'
+      },
+      'boolean': {
+        type: 'boolean'
+      },
+      'date': {
+        type: 'date'
       }
-    },
-    fields: {
-      'string': 'string',
-      'number': 'number',
-      'boolean': 'boolean',
-      'date': 'date',
     }
   });
   var cast = new Cast();
@@ -86,12 +95,12 @@ Tinytest.add('Types - Casting', function(test) {
   );
 
   cast.set('one', {});
-  test.instanceOf(cast.one, EmbedCast,
+  test.instanceOf(cast.one, NestedCast,
     'The object should be casted to the instance of the class'
   );
 
   cast.set('many', [{}]);
-  test.instanceOf(cast.many[0], EmbedCast,
+  test.instanceOf(cast.many[0], NestedCast,
     'The array of objects should be casted to the array of instances of the ' +
     'class'
   );

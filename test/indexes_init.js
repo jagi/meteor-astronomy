@@ -14,17 +14,15 @@ Tinytest.add('Indexes - Init', function(test) {
   Index = Astro.Class({
     name: 'Index',
     collection: Indexes,
-    embedOne: {
-      'object': {
-        index: 1
-      }
-    },
-    embedMany: {
-      'array': {
-        index: 1
-      }
-    },
     fields: {
+      'object': {
+        type: 'object',
+        index: 1
+      },
+      'array': {
+        type: 'array',
+        index: 1
+      },
       'field': {
         type: 'string',
         index: 1
@@ -47,11 +45,11 @@ Tinytest.add('Indexes - Init', function(test) {
   );
 
   test.isTrue(Index.hasIndex('object'),
-    'Index defined in the embeded (one) field definition should be added'
+    'Index defined in the object field definition should be added'
   );
 
   test.isTrue(Index.hasIndex('array'),
-    'Index defined in the embeded (many) field definition should be added'
+    'Index defined in the array field definition should be added'
   );
 
   test.isTrue(Index.hasIndex('indexes'),
