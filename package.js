@@ -30,13 +30,6 @@ Package.onUse(function(api) {
     'lib/modules/events/init_class.js'
   ], ['client', 'server']);
 
-  // Types module.
-  api.addFiles([
-    'lib/modules/types/type_definition.js',
-    'lib/modules/types/init_module.js',
-    'lib/modules/types/types.js'
-  ], ['client', 'server']);
-
   // Indexes module.
   api.addFiles([
     'lib/modules/indexes/errors.js',
@@ -75,7 +68,6 @@ Package.onUse(function(api) {
     'lib/modules/fields/push.js',
     'lib/modules/fields/inc.js',
     'lib/modules/fields/modified.js',
-    'lib/modules/fields/field.js',
     'lib/modules/fields/ejson.js',
     'lib/modules/fields/init_schema.js',
     'lib/modules/fields/init_class.js'
