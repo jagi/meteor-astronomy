@@ -175,13 +175,7 @@ Tinytest.add('Events - Order', function(test) {
     'beforeSave global',
     'beforeUpdate 1',
     'beforeUpdate 2',
-    'beforeUpdate global',
-    'afterUpdate 1',
-    'afterUpdate 2',
-    'afterUpdate global',
-    'afterSave 1',
-    'afterSave 2',
-    'afterSave global'
+    'beforeUpdate global'
   ];
   event.save();
   test.equal(actualEventsList, expectedEventsList,
