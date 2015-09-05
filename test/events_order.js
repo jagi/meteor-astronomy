@@ -14,11 +14,17 @@ Tinytest.add('Events - Order', function(test) {
       afterInit: function(e) {
         actualEventsList.push('afterInit 1');
       },
+      beforeChange: function(e) {
+        actualEventsList.push('beforeChange 1 (' + e.data.fieldName + ')');
+      },
       beforeSet: function(e) {
         actualEventsList.push('beforeSet 1 (' + e.data.fieldName + ')');
       },
       afterSet: function(e) {
         actualEventsList.push('afterSet 1 (' + e.data.fieldName + ')');
+      },
+      afterChange: function(e) {
+        actualEventsList.push('afterChange 1 (' + e.data.fieldName + ')');
       },
       beforeGet: function(e) {
         actualEventsList.push('beforeGet 1 (' + e.data.fieldName + ')');
@@ -54,11 +60,17 @@ Tinytest.add('Events - Order', function(test) {
     afterInit: function(e) {
       actualEventsList.push('afterInit 2');
     },
+    beforeChange: function(e) {
+      actualEventsList.push('beforeChange 2 (' + e.data.fieldName + ')');
+    },
     beforeSet: function(e) {
       actualEventsList.push('beforeSet 2 (' + e.data.fieldName + ')');
     },
     afterSet: function(e) {
       actualEventsList.push('afterSet 2 (' + e.data.fieldName + ')');
+    },
+    afterChange: function(e) {
+      actualEventsList.push('afterChange 2 (' + e.data.fieldName + ')');
     },
     beforeGet: function(e) {
       actualEventsList.push('beforeGet 2 (' + e.data.fieldName + ')');
@@ -92,11 +104,17 @@ Tinytest.add('Events - Order', function(test) {
   Astro.eventManager.on('afterInit', function(e) {
     actualEventsList.push('afterInit global');
   });
+  Astro.eventManager.on('beforeChange', function(e) {
+    actualEventsList.push('beforeChange global (' + e.data.fieldName + ')');
+  });
   Astro.eventManager.on('beforeSet', function(e) {
     actualEventsList.push('beforeSet global (' + e.data.fieldName + ')');
   });
   Astro.eventManager.on('afterSet', function(e) {
     actualEventsList.push('afterSet global (' + e.data.fieldName + ')');
+  });
+  Astro.eventManager.on('afterChange', function(e) {
+    actualEventsList.push('afterChange global (' + e.data.fieldName + ')');
   });
   Astro.eventManager.on('beforeGet', function(e) {
     actualEventsList.push('beforeGet global (' + e.data.fieldName + ')');
@@ -184,12 +202,18 @@ Tinytest.add('Events - Order', function(test) {
 
   actualEventsList = [];
   expectedEventsList = [
+    'beforeChange 1 (childField)',
+    'beforeChange 2 (childField)',
+    'beforeChange global (childField)',
     'beforeSet 1 (childField)',
     'beforeSet 2 (childField)',
     'beforeSet global (childField)',
     'afterSet 1 (childField)',
     'afterSet 2 (childField)',
     'afterSet global (childField)',
+    'afterChange 1 (childField)',
+    'afterChange 2 (childField)',
+    'afterChange global (childField)',
     'beforeGet 1 (childField)',
     'beforeGet 2 (childField)',
     'beforeGet global (childField)',

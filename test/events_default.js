@@ -1,4 +1,4 @@
-Tinytest.add('Events - Default', function(test) {
+Tinytest.add('Events - Preventing default', function(test) {
   // Reset Astronomy.
   reset();
 
@@ -16,17 +16,17 @@ Tinytest.add('Events - Default', function(test) {
     }
   });
 
-  var eventsPropagation = new EventsDefault({
+  var eventsDefault = new EventsDefault({
     prevent: true
   });
-  eventsPropagation.save();
-  test.isNull(eventsPropagation._id,
+  eventsDefault.save();
+  test.isNull(eventsDefault._id,
     'Execution of the action should be prevented'
   );
 
-  eventsPropagation.set('prevent', false);
-  eventsPropagation.save();
-  test.isNotNull(eventsPropagation._id,
+  eventsDefault.set('prevent', false);
+  eventsDefault.save();
+  test.isNotNull(eventsDefault._id,
     'Execution of the action should not be prevented'
   );
 });
