@@ -1,4 +1,4 @@
-Tinytest.add('Events - Preventing default', function(test) {
+Tinytest.add('Events - Prevent default', function(test) {
   // Reset Astronomy.
   reset();
 
