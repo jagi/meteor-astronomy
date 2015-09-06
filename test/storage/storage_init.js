@@ -4,17 +4,12 @@ Tinytest.add('Storage - Init', function(test) {
 
   // Create collection.
   Storages = new Mongo.Collection(null);
-
   // Remove all previously stored documents.
-  Storages.find({}, {
-    transform: null
-  }).forEach(function(item) {
-    Storages.remove(item._id);
-  });
+  removeAll(Storages);
 
   // Class for usage as a nested field.
-  NestedCore = Astro.Class({
-    name: 'NestedCore',
+  NestedStorage = Astro.Class({
+    name: 'NestedStorage',
     fields: {
       'object': {
         type: 'object'
@@ -44,22 +39,31 @@ Tinytest.add('Storage - Init', function(test) {
     fields: {
       'nested': {
         type: 'object',
-        class: 'NestedCore'
+        class: 'NestedStorage'
       },
       'object': {
-        type: 'object'
+        type: 'object',
+        default:  function() {
+          return {};
+        }
       },
       'array': {
-        type: 'array'
+        type: 'array',
+        default:  function() {
+          return [];
+        }
       },
       'string': {
-        type: 'string'
+        type: 'string',
+        default: 'abc'
       },
       'number': {
-        type: 'number'
+        type: 'number',
+        default: 123
       },
       'boolean': {
-        type: 'boolean'
+        type: 'boolean',
+        default: true
       },
       'date': {
         type: 'date'

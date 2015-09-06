@@ -12,7 +12,7 @@ Tinytest.add('Storage - Reload', function(test) {
       b: 'b',
       c: 'c'
     },
-    'nested': new NestedCore({
+    'nested': {
       string: 'string',
       number: 123,
       boolean: true,
@@ -23,7 +23,7 @@ Tinytest.add('Storage - Reload', function(test) {
         b: 'b',
         c: 'c'
       }
-    })
+    }
   });
   storage.save();
 

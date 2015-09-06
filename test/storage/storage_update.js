@@ -9,7 +9,7 @@ Tinytest.add('Storage - Update', function(test) {
   storage.set('object.d', 'd');
   storage.save();
 
-  var expectedCore = {
+  var expected = {
     string: 'STRING',
     number: 321,
     boolean: false,
@@ -39,7 +39,7 @@ Tinytest.add('Storage - Update', function(test) {
     transform: null
   }), '_id');
 
-  test.equal(storage, expectedCore,
+  test.equal(storage, expected,
     'The document has not been updated properly'
   );
 });

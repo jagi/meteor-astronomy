@@ -12,7 +12,7 @@ Tinytest.add('Storage - Insert', function(test) {
       b: 'b',
       c: 'c'
     },
-    nested: new NestedCore({
+    nested: {
       string: 'string',
       number: 123,
       boolean: true,
@@ -23,14 +23,14 @@ Tinytest.add('Storage - Insert', function(test) {
         b: 'b',
         c: 'c'
       }
-    })
+    }
   });
   storage.save();
 
   storage = Storages.findOne({}, {
     transform: null
   });
-  expectedCore = {
+  expected = {
     _id: id,
     string: 'string',
     number: 123,
@@ -55,7 +55,7 @@ Tinytest.add('Storage - Insert', function(test) {
       }
     }
   };
-  test.equal(storage, expectedCore,
+  test.equal(storage, expected,
     'The document has not been saved properly'
   );
 });
