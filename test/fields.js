@@ -106,7 +106,7 @@ Tinytest.add('Fields module - Default and cast values', function(test) {
   item.set('string', 123);
   item.set('number', '123');
   item.set('boolean', 1);
-  item.set('date', 946681200000);
+  item.set('date', item.get('date').getTime());
   item.set('object', 123);
   item.set('array', 123);
   test.equal(item.string, '123',
