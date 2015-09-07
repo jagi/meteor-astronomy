@@ -1,7 +1,8 @@
 State Machine
 =============
 
-This is the state machine proposal.
+This is the state machine proposal, inspired in the Erlang gen_fsm and Akka
+FSMand Akka FSM.
 It seems to be an optimal implementation, adding a simple state machine object, 
 and Astro automatically decouple the states and events. 
 
