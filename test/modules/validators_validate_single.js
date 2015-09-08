@@ -63,11 +63,21 @@ Tinytest.add('Validators - Validate single', function(test) {
         required: true,
         validators: Validators.number()
       },
+      'numberCast': {
+        type: 'number',
+        required: true,
+        validators: Validators.number()
+      },
       'boolean': {
         required: true,
         validators: Validators.boolean()
       },
       'date': {
+        required: true,
+        validators: Validators.date()
+      },
+      'dateCast': {
+        type: 'date',
         required: true,
         validators: Validators.date()
       },
@@ -178,8 +188,10 @@ Tinytest.add('Validators - Validate single', function(test) {
   // Type.
   validatorItem.set('string', 88);
   validatorItem.set('number', 'abc');
+  validatorItem.set('numberCast', 'abc');
   validatorItem.set('boolean', 'abc');
   validatorItem.set('date', 'abc');
+  validatorItem.set('dateCast', 'abc');
   validatorItem.set('email', 'abc');
   validatorItem.set('object', null);
   validatorItem.set('array', null);
@@ -189,11 +201,17 @@ Tinytest.add('Validators - Validate single', function(test) {
   test.isFalse(validatorItem.validate('number'),
     'The "number" validator should not pass'
   );
+  test.isFalse(validatorItem.validate('numberCast'),
+    'The "number" validator for the "numberCast" field should not pass'
+  );
   test.isFalse(validatorItem.validate('boolean'),
     'The "boolean" validator should not pass'
   );
   test.isFalse(validatorItem.validate('date'),
     'The "date" validator should not pass'
+  );
+  test.isFalse(validatorItem.validate('dateCast'),
+    'The "date" validator for the "dateCast" field should not pass'
   );
   test.isFalse(validatorItem.validate('email'),
     'The "email" validator should not pass'
@@ -310,8 +328,10 @@ Tinytest.add('Validators - Validate single', function(test) {
   // Type.
   validatorItem.set('string', 'abc');
   validatorItem.set('number', 123);
+  validatorItem.set('numberCast', '123');
   validatorItem.set('boolean', false);
   validatorItem.set('date', new Date());
+  validatorItem.set('dateCast', 946681200000);
   validatorItem.set('email', 'luke.jagodzinski@gmail.com');
   validatorItem.set('object', new NestedValidator({
     string: 'abc',
@@ -329,6 +349,9 @@ Tinytest.add('Validators - Validate single', function(test) {
   test.isTrue(validatorItem.validate('number'),
     'The "number" validator should pass'
   );
+  test.isTrue(validatorItem.validate('numberCast'),
+    'The "number" validator for the "numberCast" field should pass'
+  );
   test.isTrue(validatorItem.validate('boolean'),
     'The "boolean" validator should pass'
   );
@@ -340,6 +363,9 @@ Tinytest.add('Validators - Validate single', function(test) {
   );
   test.isTrue(validatorItem.validate('date'),
     'The "date" validator should pass'
+  );
+  test.isTrue(validatorItem.validate('dateCast'),
+    'The "date" validator for the "dateCast" field should pass'
   );
   test.isTrue(validatorItem.validate('email'),
     'The "email" validator should pass'
