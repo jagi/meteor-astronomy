@@ -20,28 +20,28 @@ Tinytest.add('Fields - Push', function(test) {
       },
       typedArrayA: {
         type: 'array',
-        nestedType: 'string',
+        nested: 'string',
         default: function() {
           return [];
         }
       },
       typedArrayB: {
         type: 'array',
-        nestedType: 'string',
+        nested: 'string',
         default: function() {
           return [];
         }
       },
       classArrayA: {
         type: 'array',
-        class: 'NestedPush',
+        nested: 'NestedPush',
         default: function() {
           return [];
         }
       },
       classArrayB: {
         type: 'array',
-        class: 'NestedPush',
+        nested: 'NestedPush',
         default: function() {
           return [];
         }

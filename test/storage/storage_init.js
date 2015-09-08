@@ -39,7 +39,7 @@ Tinytest.add('Storage - Init', function(test) {
     fields: {
       'nested': {
         type: 'object',
-        class: 'NestedStorage'
+        nested: 'NestedStorage'
       },
       'object': {
         type: 'object',

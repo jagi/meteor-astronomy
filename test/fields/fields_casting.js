@@ -1,5 +1,6 @@
 Tinytest.add('Fields - Casting', function(test) {
-  Astro.classes = [];
+  // Reset Astronomy.
+  reset();
 
   var NestedCast = Astro.Class({
     name: 'NestedCast'
@@ -13,15 +14,15 @@ Tinytest.add('Fields - Casting', function(test) {
       },
       'one': {
         type: 'object',
-        class: 'NestedCast'
+        nested: 'NestedCast'
       },
       'array': {
         type: 'array',
-        nestedType: 'string'
+        nested: 'string'
       },
       'many': {
         type: 'array',
-        class: 'NestedCast'
+        nested: 'NestedCast'
       },
       'string': {
         type: 'string'

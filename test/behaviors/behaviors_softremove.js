@@ -24,7 +24,7 @@ Tinytest.add('Behaviors - Softremove', function(test) {
     SoftremovesC.remove(item._id);
   });
 
-  SoftremoveA = Astro.Class({
+  var SoftremoveA = Astro.Class({
     name: 'SoftremoveA',
     collection: SoftremovesA,
     fields: {
@@ -35,7 +35,7 @@ Tinytest.add('Behaviors - Softremove', function(test) {
     }
   });
 
-  SoftremoveB = Astro.Class({
+  var SoftremoveB = Astro.Class({
     name: 'SoftremoveB',
     collection: SoftremovesB,
     fields: {
@@ -50,7 +50,7 @@ Tinytest.add('Behaviors - Softremove', function(test) {
     }
   });
 
-  SoftremoveC = Astro.Class({
+  var SoftremoveC = Astro.Class({
     name: 'SoftremoveC',
     collection: SoftremovesC,
     fields: {

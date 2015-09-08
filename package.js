@@ -95,9 +95,9 @@ Package.onTest(function(api) {
     'jagi:astronomy-simple-validators'
   ]);
 
+  api.addFiles('test/utils.js', ['client', 'server']);
   // Core.
   api.addFiles([
-    'test/core/core_init.js',
     'test/core/core_transform.js',
     'test/core/core_inheritance.js',
     'test/core/core_state.js'
@@ -117,7 +117,6 @@ Package.onTest(function(api) {
   ], ['client', 'server']);
   // EJSON.
   api.addFiles([
-    'test/ejson/ejson_init.js',
     'test/ejson/ejson_parsing.js'
   ], ['client', 'server']);
   // Events.
@@ -128,7 +127,6 @@ Package.onTest(function(api) {
   ], ['client', 'server']);
   // Fields.
   api.addFiles([
-    'test/fields/fields_init.js',
     'test/fields/fields_definition.js',
     'test/fields/fields_default.js',
     'test/fields/fields_casting.js',
@@ -138,16 +136,16 @@ Package.onTest(function(api) {
     'test/fields/fields_push.js'
   ], ['client', 'server']);
   // Indexes.
-  api.addFiles('test/indexes/indexes_init.js', 'server');
+  api.addFiles([
+    'test/indexes/indexes_definition.js'
+  ], 'server');
   // Methods.
   api.addFiles([
-    'test/methods/methods_init.js',
     'test/methods/methods_definition.js'
   ], ['client', 'server']);
   // Modules.
   api.addFiles([
     // Validators
-    'test/modules/validators_init.js',
     'test/modules/validators_validate_single.js',
     'test/modules/validators_validate_multiple.js',
     'test/modules/validators_order.js',
