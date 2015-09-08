@@ -1,4 +1,31 @@
 Tinytest.add('EJSON - Parsing', function(test) {
+  // Reset Astronomy.
+  reset();
+
+  var EJSONClass = Astro.Class({
+    name: 'EJSONClass',
+    fields: {
+      'object': {
+        type: 'object'
+      },
+      'array': {
+        type: 'array'
+      },
+      'string': {
+        type: 'string'
+      },
+      'number': {
+        type: 'number'
+      },
+      'boolean': {
+        type: 'boolean'
+      },
+      'date': {
+        type: 'date'
+      }
+    }
+  });
+
   var ejsonA = new EJSONClass({
     string: 'string',
     number: 123,

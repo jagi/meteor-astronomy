@@ -2,8 +2,8 @@ Tinytest.add('Behaviors - Slug', function(test) {
   // Reset Astronomy.
   reset();
 
-  SlugsA = new Mongo.Collection(null);
-  SlugsB = new Mongo.Collection(null);
+  var SlugsA = new Mongo.Collection(null);
+  var SlugsB = new Mongo.Collection(null);
 
   SlugsA.find({}, {
     transform: null
@@ -17,7 +17,7 @@ Tinytest.add('Behaviors - Slug', function(test) {
     SlugsB.remove(slug._id);
   });
 
-  SlugA = Astro.Class({
+  var SlugA = Astro.Class({
     name: 'SlugA',
     collection: SlugsA,
     fields: {
@@ -28,7 +28,7 @@ Tinytest.add('Behaviors - Slug', function(test) {
     }
   });
 
-  SlugB = Astro.Class({
+  var SlugB = Astro.Class({
     name: 'SlugB',
     collection: SlugsB,
     fields: {

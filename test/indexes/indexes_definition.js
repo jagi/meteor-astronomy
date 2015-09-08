@@ -1,8 +1,8 @@
-Tinytest.add('Indexes - Init', function(test) {
+Tinytest.add('Indexes - Add', function(test) {
   // Reset Astronomy.
   reset();
 
-  Indexes = new Mongo.Collection('indexes');
+  var Indexes = new Mongo.Collection('indexes');
 
   try {
     Indexes._dropIndex('object');
@@ -11,7 +11,7 @@ Tinytest.add('Indexes - Init', function(test) {
     Indexes._dropIndex('indexes');
   } catch (e) {}
 
-  Index = Astro.Class({
+  var Index = Astro.Class({
     name: 'Index',
     collection: Indexes,
     fields: {

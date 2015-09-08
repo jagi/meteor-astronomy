@@ -1,7 +1,7 @@
 Tinytest.add('Core - Transform', function(test) {
-  Transforms = new Mongo.Collection(null);
-  FunctionTransforms = new Mongo.Collection(null);
-  MultiTransforms = new Mongo.Collection(null);
+  var Transforms = new Mongo.Collection(null);
+  var FunctionTransforms = new Mongo.Collection(null);
+  var MultiTransforms = new Mongo.Collection(null);
 
   // Remove all previously stored documents.
   Transforms.find({}, {
@@ -20,7 +20,7 @@ Tinytest.add('Core - Transform', function(test) {
     MultiTransforms.remove(item._id);
   });
 
-  Transform = Astro.Class({
+  var Transform = Astro.Class({
     name: 'Transform',
     collection: Transforms,
     fields: {
@@ -28,10 +28,10 @@ Tinytest.add('Core - Transform', function(test) {
     }
   });
 
-  CustomClass = function(attrs) {
+  var CustomClass = function(attrs) {
     this.name = attrs.name;
   };
-  FunctionTransform = Astro.Class({
+  var FunctionTransform = Astro.Class({
     name: 'FunctionTransform',
     collection: FunctionTransforms,
     transform: function(attrs) {
@@ -42,7 +42,7 @@ Tinytest.add('Core - Transform', function(test) {
     }
   });
 
-  MultiATransform = Astro.Class({
+  var MultiATransform = Astro.Class({
     name: 'MultiATransform',
     collection: MultiTransforms,
     typeField: 'type',
@@ -50,7 +50,7 @@ Tinytest.add('Core - Transform', function(test) {
       name: 'string'
     }
   });
-  MultiBTransform = Astro.Class({
+  var MultiBTransform = Astro.Class({
     name: 'MultiBTransform',
     collection: MultiTransforms,
     typeField: 'type',

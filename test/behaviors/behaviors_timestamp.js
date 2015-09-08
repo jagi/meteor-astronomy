@@ -2,9 +2,9 @@ Tinytest.addAsync('Behaviors - Timestamp', function(test, next) {
   // Reset Astronomy.
   reset();
 
-  TimestampsA = new Mongo.Collection(null);
-  TimestampsB = new Mongo.Collection(null);
-  TimestampsC = new Mongo.Collection(null);
+  var TimestampsA = new Mongo.Collection(null);
+  var TimestampsB = new Mongo.Collection(null);
+  var TimestampsC = new Mongo.Collection(null);
 
   TimestampsA.find({}, {
     transform: null
@@ -24,7 +24,7 @@ Tinytest.addAsync('Behaviors - Timestamp', function(test, next) {
     TimestampsC.remove(item._id);
   });
 
-  TimestampA = Astro.Class({
+  var TimestampA = Astro.Class({
     name: 'TimestampA',
     collection: TimestampsA,
     fields: {
@@ -35,7 +35,7 @@ Tinytest.addAsync('Behaviors - Timestamp', function(test, next) {
     }
   });
 
-  TimestampB = Astro.Class({
+  var TimestampB = Astro.Class({
     name: 'TimestampB',
     collection: TimestampsB,
     fields: {
@@ -49,7 +49,7 @@ Tinytest.addAsync('Behaviors - Timestamp', function(test, next) {
     }
   });
 
-  TimestampC = Astro.Class({
+  var TimestampC = Astro.Class({
   name: 'TimestampC',
   collection: TimestampsC,
   fields: {

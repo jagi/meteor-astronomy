@@ -2,7 +2,7 @@ Tinytest.add('Core - Inheritance', function(test) {
   var parentAfterInit = function() {};
   var childAfterInit = function() {};
 
-  ParentInheritance = Astro.Class({
+  var ParentInheritance = Astro.Class({
     name: 'ParentInheritance',
     fields: {
       parentField: 'string'
@@ -18,7 +18,7 @@ Tinytest.add('Core - Inheritance', function(test) {
     }
   });
 
-  ChildInheritance = ParentInheritance.extend({
+  var ChildInheritance = ParentInheritance.extend({
     name: 'ChildInheritance',
     fields: {
       childField: 'string'
