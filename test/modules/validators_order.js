@@ -4,17 +4,11 @@ Tinytest.add('Validators - Order', function(test) {
 
   var ValidatorOrder = Astro.Class({
     name: 'ValidatorOrder',
-    fields: {
-      'first': {
-        required: true
-      },
-      'second': {
-        required: true
-      },
-      'third': {
-        required: true
-      }
-    },
+    fields: [
+      'first',
+      'second',
+      'third'
+    ],
     validators: {
       'first': Validators.string(),
       'second': Validators.string(),
