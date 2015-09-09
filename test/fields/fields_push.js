@@ -52,7 +52,7 @@ Tinytest.add('Fields - Push', function(test) {
 
   // Non-typed arrays.
   push.push('arrayA', 1);
-  test.equal(push.get('arrayA'), [1],
+  test.equal(push.arrayA, [1],
     'Pushing a single value into the non-typed array field should succeed'
   );
 
@@ -71,7 +71,7 @@ Tinytest.add('Fields - Push', function(test) {
 
   // Typed arrays.
   push.push('typedArrayA', 1);
-  test.equal(push.get('typedArrayA'), ['1'],
+  test.equal(push.typedArrayA, ['1'],
     'Pushing a single value into the typed array field should succeed'
   );
 
@@ -90,7 +90,7 @@ Tinytest.add('Fields - Push', function(test) {
 
   // Class arrays.
   push.push('classArrayA', {});
-  test.instanceOf(push.get('classArrayA.0'), NestedPush,
+  test.instanceOf(push.classArrayA[0], NestedPush,
     'Pushing a single value into the class typed array field should succeed'
   );
 
@@ -98,7 +98,7 @@ Tinytest.add('Fields - Push', function(test) {
     'classArrayA': {},
     'classArrayB': {},
   });
-  test.instanceOf(push.get('classArrayB.0'), NestedPush,
+  test.instanceOf(push.classArrayB[0], NestedPush,
     'Pushing multiple values into the class typed array field should succeed'
   );
 });

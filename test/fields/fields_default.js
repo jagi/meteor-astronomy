@@ -88,28 +88,28 @@ Tinytest.add('Fields - Default', function(test) {
 
   var def = new Default();
 
-  test.isNull(def.get('null'),
+  test.isNull(def.null,
     'The default value of the "null" field should be null'
   );
-  test.equal(def.get('string'), 'string',
+  test.equal(def.string, 'string',
     'The default value of the "string" field should be "string"'
   );
-  test.equal(def.get('number'), 123,
+  test.equal(def.number, 123,
     'The default value of the "number" field should be 123'
   );
-  test.equal(def.get('boolean'), true,
+  test.equal(def.boolean, true,
     'The default value of the "boolean" field should be null'
   );
-  test.equal(def.get('date'), new Date(2000, 0, 1),
+  test.equal(def.date, new Date(2000, 0, 1),
     'The default value of the "date" field should be Date(2000, 0, 1)'
   );
-  test.equal(def.get('object'), {},
+  test.equal(def.object, {},
     'The default value of the "object" field should be {}'
   );
-  test.equal(def.get('array'), [],
+  test.equal(def.array, [],
     'The default value of the "array" field should be []'
   );
-  test.instanceOf(def.get('nested'), NestedDefault,
+  test.instanceOf(def.nested, NestedDefault,
     'The default value of the "nested" field should be instance of the ' +
     'NestedDefault class'
   );
