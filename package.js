@@ -15,7 +15,6 @@ Package.onUse(function(api) {
 
   api.addFiles([
     'lib/modules/core/global.js',
-    'lib/modules/core/errors.js',
     'lib/modules/core/utils.js',
     'lib/modules/core/events.js',
     'lib/modules/core/event.js',
@@ -32,7 +31,6 @@ Package.onUse(function(api) {
 
   // Indexes module.
   api.addFiles([
-    'lib/modules/indexes/errors.js',
     'lib/modules/indexes/init_class.js'
   ], 'server');
 
@@ -56,7 +54,6 @@ Package.onUse(function(api) {
     'lib/modules/fields/types/nested_field.js',
     'lib/modules/fields/types/object_field.js',
     'lib/modules/fields/types/array_field.js',
-    'lib/modules/fields/errors.js',
     'lib/modules/fields/utils.js',
     'lib/modules/fields/modifiers.js',
     'lib/modules/fields/set_default.js',
