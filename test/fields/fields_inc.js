@@ -168,7 +168,6 @@ Tinytest.add('Fields - Inc', function(test) {
     number: 2,
     string: ''
   };
-  console.log(inc);
   inc.save();
   var incPlain = _.omit(IncCollection.findOne({}, {
     transform: null
