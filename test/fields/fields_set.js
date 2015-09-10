@@ -1,4 +1,4 @@
-Tinytest.add('Fields - Setters', function(test) {
+Tinytest.add('Fields - Set', function(test) {
   // Reset Astronomy.
   reset();
 

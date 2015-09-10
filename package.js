@@ -124,10 +124,12 @@ Package.onTest(function(api) {
     'test/fields/fields_definition.js',
     'test/fields/fields_default.js',
     'test/fields/fields_casting.js',
-    'test/fields/fields_setters.js',
-    'test/fields/fields_getters.js',
+    'test/fields/fields_set.js',
+    'test/fields/fields_get.js',
+    'test/fields/fields_push.js',
+    'test/fields/fields_pop.js',
+    'test/fields/fields_inc.js',
     'test/fields/fields_modified.js',
-    'test/fields/fields_push.js'
   ], ['client', 'server']);
   // Indexes.
   api.addFiles([
