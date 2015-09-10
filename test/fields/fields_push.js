@@ -1,10 +1,14 @@
 Tinytest.add('Fields - Push', function(test) {
+  var PushCollection = new Mongo.Collection(null);
+  removeAll(PushCollection);
+
   var NestedPush = Astro.Class({
     name: 'NestedPush'
   });
 
   var Push = Astro.Class({
     name: 'Push',
+    collection: PushCollection,
     fields: {
       arrayA: {
         type: 'array',
@@ -49,6 +53,7 @@ Tinytest.add('Fields - Push', function(test) {
     }
   });
   var push = new Push();
+  push.save();
 
   // Non-typed arrays.
   push.push('arrayA', 1);
@@ -100,5 +105,21 @@ Tinytest.add('Fields - Push', function(test) {
   });
   test.instanceOf(push.classArrayB[0], NestedPush,
     'Pushing multiple values into the class typed array field should succeed'
+  );
+
+  var expected = {
+    arrayA: [1, 2],
+    arrayB: [1],
+    typedArrayA: ['1', '2'],
+    typedArrayB: ['1'],
+    classArrayA: [{}, {}],
+    classArrayB: [{}]
+  };
+  push.save();
+  var pushPlain = _.omit(PushCollection.findOne({}, {
+    transform: null
+  }), '_id');
+  test.equal(pushPlain, expected,
+    'A document with pushed values not saved properly'
   );
 });

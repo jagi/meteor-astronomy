@@ -1,4 +1,4 @@
-Tinytest.add('Fields - Getters', function(test) {
+Tinytest.add('Fields - Get', function(test) {
   // Reset Astronomy.
   reset();
 
