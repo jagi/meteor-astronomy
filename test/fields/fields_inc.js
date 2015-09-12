@@ -20,6 +20,14 @@ Tinytest.add('Fields - Inc', function(test) {
     name: 'Inc',
     collection: IncCollection,
     fields: {
+      number: {
+        type: 'number',
+        default: 0
+      },
+      string: {
+        type: 'string',
+        default: ''
+      },
       array: {
         type: 'array',
         default: function() {
@@ -62,14 +70,6 @@ Tinytest.add('Fields - Inc', function(test) {
         default: function() {
           return [{}];
         }
-      },
-      number: {
-        type: 'number',
-        default: 0
-      },
-      string: {
-        type: 'string',
-        default: ''
       }
     }
   });
