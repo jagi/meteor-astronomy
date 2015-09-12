@@ -130,6 +130,8 @@ Package.onTest(function(api) {
     'test/fields/fields_pop.js',
     'test/fields/fields_inc.js',
     'test/fields/fields_modified.js',
+    'test/fields/fields_immutable.js',
+    'test/fields/fields_transient.js'
   ], ['client', 'server']);
   // Indexes.
   api.addFiles([
