@@ -3,47 +3,46 @@ Tinytest.add('Fields - Push', function(test) {
   removeAll(PushCollection);
 
   var NestedPush = Astro.Class({
-    name: 'NestedPush'
+    name: 'NestedPush',
+    fields: {
+      array: {
+        type: 'array',
+        nested: 'string',
+        default: function() {
+          return [];
+        }
+      }
+    }
   });
 
   var Push = Astro.Class({
     name: 'Push',
     collection: PushCollection,
     fields: {
-      arrayA: {
+      null: {
+        type: null,
+        default: function() {
+          return [];
+        }
+      },
+      string: {
+        type: 'string',
+        default: ''
+      },
+      array: {
         type: 'array',
         default: function() {
           return [];
         }
       },
-      arrayB: {
-        type: 'array',
-        default: function() {
-          return [];
-        }
-      },
-      typedArrayA: {
-        type: 'array',
-        nested: 'string',
-        default: function() {
-          return [];
-        }
-      },
-      typedArrayB: {
+      typedArray: {
         type: 'array',
         nested: 'string',
         default: function() {
           return [];
         }
       },
-      classArrayA: {
-        type: 'array',
-        nested: 'NestedPush',
-        default: function() {
-          return [];
-        }
-      },
-      classArrayB: {
+      classArray: {
         type: 'array',
         nested: 'NestedPush',
         default: function() {
@@ -55,65 +54,51 @@ Tinytest.add('Fields - Push', function(test) {
   var push = new Push();
   push.save();
 
-  // Non-typed arrays.
-  push.push('arrayA', 1);
-  test.equal(push.arrayA, [1],
-    'Pushing a single value into the non-typed array field should succeed'
+  // Non-typed field.
+  push.push('null', 1);
+  test.equal(push.null, [1],
+    'Pushing a value into the non-typed field should succeed'
   );
 
-  push.push({
-    'arrayA': 2,
-    'arrayB': 1,
-  });
-  test.equal(
-    push.get(['arrayA', 'arrayB']),
-    {
-      'arrayA': [1, 2],
-      'arrayB': [1]
-    },
-    'Pushing multiple values into the non-typed array field should succeed'
+  // Typed field.
+  push.push('string', 1);
+  test.equal(push.string, '',
+    'Pushing a value into the string field should fail'
+  );
+
+  // Non-typed arrays.
+  push.push('array', 1);
+  test.equal(push.array, [1],
+    'Pushing a value into the non-typed array field should succeed'
   );
 
   // Typed arrays.
-  push.push('typedArrayA', 1);
-  test.equal(push.typedArrayA, ['1'],
-    'Pushing a single value into the typed array field should succeed'
-  );
-
-  push.push({
-    'typedArrayA': 2,
-    'typedArrayB': 1,
-  });
-  test.equal(
-    push.get(['typedArrayA', 'typedArrayB']),
-    {
-      'typedArrayA': ['1', '2'],
-      'typedArrayB': ['1']
-    },
-    'Pushing multiple values into the typed array field should succeed'
+  push.push('typedArray', 1);
+  test.equal(push.typedArray, ['1'],
+    'Pushing a value into the typed array field should succeed'
   );
 
   // Class arrays.
-  push.push('classArrayA', {});
-  test.instanceOf(push.classArrayA[0], NestedPush,
-    'Pushing a single value into the class typed array field should succeed'
+  push.push('classArray', {});
+  test.instanceOf(push.classArray[0], NestedPush,
+    'Pushing a value into the class typed array field should succeed'
   );
 
-  push.push({
-    'classArrayA': {},
-    'classArrayB': {},
-  });
-  test.instanceOf(push.classArrayB[0], NestedPush,
-    'Pushing multiple values into the class typed array field should succeed'
+  // Nested arrays.
+  push.push('classArray.0.array', 1);
+  test.equal(push.classArray[0].array, ['1'],
+    'Pushing a value into the typed array field of the nested field should ' +
+    'succeed'
   );
 
   var expected = {
-    arrayA: [1, 2],
-    arrayB: [1],
-    typedArrayA: ['1', '2'],
-    typedArrayB: ['1'],
-    classArrayA: [{}, {}],
-    classArrayB: [{}]
+    null: [1],
+    string: '',
+    array: [1],
+    typedArray: ['1'],
+    classArray: [{
+      array: ['1']
+    }]
   };
   push.save();
   var pushPlain = _.omit(PushCollection.findOne({}, {
