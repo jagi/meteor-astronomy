@@ -64,6 +64,7 @@ Package.onUse(function(api) {
     'lib/modules/fields/inc.js',
     'lib/modules/fields/modified.js',
     'lib/modules/fields/ejson.js',
+    'lib/modules/fields/init_definition.js',
     'lib/modules/fields/init_schema.js',
     'lib/modules/fields/init_class.js'
   ], ['client', 'server']);
