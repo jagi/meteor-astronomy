@@ -9,62 +9,42 @@ Tinytest.add('Fields - Definition', function(test) {
   test.instanceOf(DefinitionA.getField('nullA'), Astro.fields.null,
     'The type of the "nullA" field should be "null"'
   );
-
-  DefinitionA.addField('nullB');
-  test.instanceOf(DefinitionA.getField('nullB'), Astro.fields.null,
-    'The type of the "nullB" field should be "null"'
+  test.isUndefined(DefinitionA.getField('_id'),
+    'Class without provided collection should not have the "_id" field'
   );
-
-  DefinitionA.addField('string', 'string');
-  test.instanceOf(DefinitionA.getField('string'), Astro.fields.string,
-    'The type of the "string" field should be "string"'
-  );
-
-  DefinitionA.addField('number', {
-    type: 'number'
-  });
-  test.instanceOf(DefinitionA.getField('number'), Astro.fields.number,
-    'The type of the "number" field should be "number"'
-  );
-
-  DefinitionA.addFields({
-    'boolean': {
-      type: 'boolean'
-    },
-    'date': {
-      type: 'date'
-    },
-    'object': {
-      type: 'object'
-    },
-    'array': {
-      type: 'array'
-    }
-  });
-  test.instanceOf(DefinitionA.getField('boolean'), Astro.fields.boolean,
-    'The type of the "boolean" field should be "boolean"'
-  );
-  test.instanceOf(DefinitionA.getField('date'), Astro.fields.date,
-    'The type of the "date" field should be "date"'
-  );
-  test.instanceOf(DefinitionA.getField('object'), Astro.fields.object,
-    'The "object" field should be instace of the "Astro.fields.object" class'
-  );
-  test.instanceOf(DefinitionA.getField('array'), Astro.fields.array,
-    'The "array" field should be instace of the "Astro.fields.array" class'
-  );
-
-  var Definitions = new Mongo.Collection(null);
 
   var DefinitionB = Astro.Class({
     name: 'DefinitionB',
+    fields: {
+      'string': 'string'
+    }
+  });
+  test.instanceOf(DefinitionB.getField('string'), Astro.fields.string,
+    'The type of the "string" field should be "string"'
+  );
+
+  var DefinitionC = Astro.Class({
+    name: 'DefinitionC',
+    fields: {
+      'number': {
+        type: 'number'
+      }
+    }
+  });
+  test.instanceOf(DefinitionC.getField('number'), Astro.fields.number,
+    'The type of the "number" field should be "number"'
+  );
+
+  var Definitions = new Mongo.Collection(null);
+  var DefinitionD = Astro.Class({
+    name: 'DefinitionD',
     collection: Definitions,
     fields: ['field']
   });
-  test.equal(_.size(DefinitionB.getFields()), 2,
-    'The "DefinitionB" class should have 2 fields'
+  test.equal(_.size(DefinitionD.getFields()), 2,
+    'The "DefinitionD" class should have 2 fields'
   );
-  test.isNotNull(DefinitionB.getField('_id'),
-    'The "DefinitionB" class should have the "_id" field'
+  test.isNotNull(DefinitionD.getField('_id'),
+    'The "DefinitionD" class should have the "_id" field'
   );
 });

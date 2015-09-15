@@ -18,19 +18,34 @@ Package.onUse(function(api) {
     'lib/modules/core/utils.js',
     'lib/modules/core/events.js',
     'lib/modules/core/event.js',
+    'lib/modules/core/event_manager.js',
     'lib/modules/core/base_class.js',
     'lib/modules/core/schema.js',
     'lib/modules/core/classes.js'
   ], ['client', 'server']);
 
+  // Behaviors module.
+  api.addFiles([
+    'lib/modules/behaviors/global.js',
+    'lib/modules/behaviors/behavior.js',
+    'lib/modules/behaviors/class_behavior.js',
+    'lib/modules/behaviors/create_behavior.js',
+    'lib/modules/behaviors/init_definition.js',
+    'lib/modules/behaviors/init_schema.js',
+    'lib/modules/behaviors/init_class.js'
+  ], ['client', 'server']);
+
   // Events module.
   api.addFiles([
-    'lib/modules/events/init_module.js',
+    'lib/modules/events/init_definition.js',
+    'lib/modules/events/init_schema.js',
     'lib/modules/events/init_class.js'
   ], ['client', 'server']);
 
   // Indexes module.
   api.addFiles([
+    'lib/modules/indexes/init_definition.js',
+    'lib/modules/indexes/init_schema.js',
     'lib/modules/indexes/init_class.js'
   ], 'server');
 
@@ -39,6 +54,8 @@ Package.onUse(function(api) {
 
   // Methods module.
   api.addFiles([
+    'lib/modules/methods/init_definition.js',
+    'lib/modules/methods/init_schema.js',
     'lib/modules/methods/init_class.js'
   ], ['client', 'server']);
 
@@ -71,8 +88,8 @@ Package.onUse(function(api) {
 
   // Storage module.
   api.addFiles([
-    'lib/modules/storage/init_class.js',
-    'lib/modules/storage/init_schema.js'
+    'lib/modules/storage/init_schema.js',
+    'lib/modules/storage/init_class.js'
   ], ['client', 'server']);
 
   api.export(['Astro', 'Astronomy'], ['client', 'server']);

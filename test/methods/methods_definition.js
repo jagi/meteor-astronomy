@@ -15,10 +15,6 @@ Tinytest.add('Methods - Definition', function(test) {
     }
   });
 
-  Method.addMethod('methodB', function() {
-    return this.string + this.number;
-  });
-
   var method = new Method({
     string: 'string',
     number: 123

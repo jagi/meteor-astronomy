@@ -8,16 +8,18 @@ Tinytest.add('Events - Propagation', function(test) {
     collection: EventsPropagations,
     fields: ['stop'],
     events: {
-      beforeSave: function(e) {
-        events.push('beforeSave 1');
-        if (this.get('stop')) {
-          e.stopPropagation();
+      beforeSave: [
+        function(e) {
+          events.push('beforeSave 1');
+          if (this.get('stop')) {
+            e.stopPropagation();
+          }
+        },
+        function() {
+          events.push('beforeSave 2');
         }
-      }
+      ]
     }
-  });
-  EventsPropagation.addEvent('beforeSave', function() {
-    events.push('beforeSave 2');
   });
 
   var events = [];

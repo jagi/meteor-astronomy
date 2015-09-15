@@ -2,6 +2,22 @@ Tinytest.add('Indexes - Add', function(test) {
   // Reset Astronomy.
   reset();
 
+  var Future = Npm.require('fibers/future');
+  var hasIndex = function(Collection, indexName) {
+    var raw = Collection.rawCollection();
+    var future = new Future();
+
+    raw.indexExists(indexName, function(err, exists) {
+      if (err) {
+        future.throw(err);
+      }
+
+      future.return(exists);
+    });
+
+    return future.wait();
+  };
+
   var Indexes = new Mongo.Collection('indexes');
 
   try {
@@ -40,19 +56,19 @@ Tinytest.add('Indexes - Add', function(test) {
     }
   });
 
-  test.isTrue(Index.hasIndex('field'),
+  test.isTrue(hasIndex(Indexes, 'field'),
     'Index defined in the field definition should be added'
   );
 
-  test.isTrue(Index.hasIndex('object'),
+  test.isTrue(hasIndex(Indexes, 'object'),
     'Index defined in the object field definition should be added'
   );
 
-  test.isTrue(Index.hasIndex('array'),
+  test.isTrue(hasIndex(Indexes, 'array'),
     'Index defined in the array field definition should be added'
   );
 
-  test.isTrue(Index.hasIndex('indexes'),
+  test.isTrue(hasIndex(Indexes, 'indexes'),
     'Index defined in the class definition should be added'
   );
 });
