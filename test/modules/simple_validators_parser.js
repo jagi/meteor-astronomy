@@ -8,87 +8,87 @@ Tinytest.add('Simple Validators - Parser', function(test) {
       // Type validators.
       'string': {
         type: null,
-        simpleValidators: 'string'
+        simpleValidator: 'string'
       },
       'number': {
         type: null,
-        simpleValidators: 'number'
+        simpleValidator: 'number'
       },
       'boolean': {
         type: null,
-        simpleValidators: 'boolean'
+        simpleValidator: 'boolean'
       },
       'date': {
         type: null,
-        simpleValidators: 'date'
+        simpleValidator: 'date'
       },
       'email': {
         type: null,
-        simpleValidators: 'email'
+        simpleValidator: 'email'
       },
       // Existence validators.
       'required': {
         type: null,
-        simpleValidators: 'required'
+        simpleValidator: 'required'
       },
       'null': {
         type: null,
-        simpleValidators: 'null'
+        simpleValidator: 'null'
       },
       'notNull': {
         type: null,
-        simpleValidators: 'notNull'
+        simpleValidator: 'notNull'
       },
       'has': {
         type: null,
-        simpleValidators: 'has("property")'
+        simpleValidator: 'has("property")'
       },
       // Size validators.
       'length': {
         type: null,
-        simpleValidators: 'length(2)'
+        simpleValidator: 'length(2)'
       },
       'minLength': {
         type: null,
-        simpleValidators: 'minLength(2)'
+        simpleValidator: 'minLength(2)'
       },
       'maxLength': {
         type: null,
-        simpleValidators: 'maxLength(2)'
+        simpleValidator: 'maxLength(2)'
       },
       'gt': {
         type: null,
-        simpleValidators: 'gt(2)'
+        simpleValidator: 'gt(2)'
       },
       'gte': {
         type: null,
-        simpleValidators: 'gte(2)'
+        simpleValidator: 'gte(2)'
       },
       'lt': {
         type: null,
-        simpleValidators: 'lt(2)'
+        simpleValidator: 'lt(2)'
       },
       'lte': {
         type: null,
-        simpleValidators: 'lte(2)'
+        simpleValidator: 'lte(2)'
       },
       // Comparison validators.
       'unique': {
         type: null,
-        simpleValidators: 'unique'
+        simpleValidator: 'unique'
       },
       'equal': {
         type: null,
-        simpleValidators: 'equal("abc")'
+        simpleValidator: 'equal("abc")'
       },
       'equalTo': {
         type: null,
-        simpleValidators: 'equalTo("equal")'
+        simpleValidator: 'equalTo("equal")'
       },
       // Logical validators.
       'and': {
         type: null,
-        simpleValidators: 'required,number'
+        simpleValidator: 'required,number'
       }
     }
   });
@@ -122,111 +122,111 @@ Tinytest.add('Simple Validators - Parser', function(test) {
 
   // Type validators.
   test.equal(
-    SimpleValidatorItem.getValidator('string').param[0].validator.name,
+    SimpleValidatorItem.getValidator('string').validator.name,
     'string',
     'The "string" validator has not been parsed properly'
   );
   test.equal(
-    SimpleValidatorItem.getValidator('number').param[0].validator.name,
+    SimpleValidatorItem.getValidator('number').validator.name,
     'number',
     'The "number" validator has not been parsed properly'
   );
   test.equal(
-    SimpleValidatorItem.getValidator('boolean').param[0].validator.name,
+    SimpleValidatorItem.getValidator('boolean').validator.name,
     'boolean',
     'The "boolean" validator has not been parsed properly'
   );
   test.equal(
-    SimpleValidatorItem.getValidator('date').param[0].validator.name,
+    SimpleValidatorItem.getValidator('date').validator.name,
     'date',
     'The "date" validator has not been parsed properly'
   );
   test.equal(
-    SimpleValidatorItem.getValidator('email').param[0].validator.name,
+    SimpleValidatorItem.getValidator('email').validator.name,
     'email',
     'The "email" validator has not been parsed properly'
   );
 
   // Existence validators.
   test.equal(
-    SimpleValidatorItem.getValidator('required').param[0].validator.name,
+    SimpleValidatorItem.getValidator('required').validator.name,
     'required',
     'The "required" validator has not been parsed properly'
   );
   test.equal(
-    SimpleValidatorItem.getValidator('null').param[0].validator.name,
+    SimpleValidatorItem.getValidator('null').validator.name,
     'null',
     'The "null" validator has not been parsed properly'
   );
   test.equal(
-    SimpleValidatorItem.getValidator('notNull').param[0].validator.name,
+    SimpleValidatorItem.getValidator('notNull').validator.name,
     'notNull',
     'The "notNull" validator has not been parsed properly'
   );
   test.equal(
-    SimpleValidatorItem.getValidator('has').param[0].validator.name,
+    SimpleValidatorItem.getValidator('has').validator.name,
     'has',
     'The "has("property")" validator has not been parsed properly'
   );
 
   // Size validators.
   test.equal(
-    SimpleValidatorItem.getValidator('length').param[0].validator.name,
+    SimpleValidatorItem.getValidator('length').validator.name,
     'length',
     'The "length(2)" validator has not been parsed properly'
   );
   test.equal(
-    SimpleValidatorItem.getValidator('minLength').param[0].validator.name,
+    SimpleValidatorItem.getValidator('minLength').validator.name,
     'minLength',
     'The "minLength(2)" validator has not been parsed properly'
   );
   test.equal(
-    SimpleValidatorItem.getValidator('maxLength').param[0].validator.name,
+    SimpleValidatorItem.getValidator('maxLength').validator.name,
     'maxLength',
     'The "maxLength(2)" validator has not been parsed properly'
   );
   test.equal(
-    SimpleValidatorItem.getValidator('gt').param[0].validator.name,
+    SimpleValidatorItem.getValidator('gt').validator.name,
     'gt',
     'The "gt(2)" validator has not been parsed properly'
   );
   test.equal(
-    SimpleValidatorItem.getValidator('gte').param[0].validator.name,
+    SimpleValidatorItem.getValidator('gte').validator.name,
     'gte',
     'The "gte(2)" validator has not been parsed properly'
   );
   test.equal(
-    SimpleValidatorItem.getValidator('lt').param[0].validator.name,
+    SimpleValidatorItem.getValidator('lt').validator.name,
     'lt',
     'The "lt(2)" validator has not been parsed properly'
   );
   test.equal(
-    SimpleValidatorItem.getValidator('lte').param[0].validator.name,
+    SimpleValidatorItem.getValidator('lte').validator.name,
     'lte',
     'The "lte(2)" validator has not been parsed properly'
   );
 
   // Comparison validators.
   test.equal(
-    SimpleValidatorItem.getValidator('unique').param[0].validator.name,
+    SimpleValidatorItem.getValidator('unique').validator.name,
     'unique',
     'The "unique" validator has not been parsed properly'
   );
   test.equal(
-    SimpleValidatorItem.getValidator('equal').param[0].validator.name,
+    SimpleValidatorItem.getValidator('equal').validator.name,
     'equal',
     'The "equal("abc")" validator has not been parsed properly'
   );
   test.equal(
-    SimpleValidatorItem.getValidator('equalTo').param[0].validator.name,
+    SimpleValidatorItem.getValidator('equalTo').validator.name,
     'equalTo',
     'The "equalTo("equal")" validator has not been parsed properly'
   );
 
   // Logical validators.
   test.equal(
-    SimpleValidatorItem.getValidator('and').param[0].validator.name,
-    'required',
+    SimpleValidatorItem.getValidator('and').validator.name,
+    'and',
     'The "required,number" validator has not been parsed properly'
   );
 });

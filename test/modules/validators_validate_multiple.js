@@ -8,10 +8,10 @@ Tinytest.add('Validators - Validate multiple', function(test) {
     name: 'NestedValidator',
     fields: {
       'string': {
-        validators: Validators.string()
+        validator: Validators.string()
       },
       'number': {
-        validators: Validators.number()
+        validator: Validators.number()
       }
     }
   });
@@ -23,109 +23,109 @@ Tinytest.add('Validators - Validate multiple', function(test) {
       'object': {
         type: 'object',
         nested: 'NestedValidator',
-        validators: Validators.object()
+        validator: Validators.object()
       },
       'has': {
         type: 'object',
-        validators: Validators.has('property')
+        validator: Validators.has('property')
       },
       'array': {
         type: 'array',
         nested: 'NestedValidator',
-        validators: Validators.array()
+        validator: Validators.array()
       },
       'contains': {
         type: 'array',
-        validators: Validators.contains('abc')
+        validator: Validators.contains('abc')
       },
       'every': {
         type: 'array',
-        validators: Validators.every(
+        validator: Validators.every(
           Validators.string()
         )
       },
       'notRequired': {
         optional: true,
-        validators: Validators.length(2)
+        validator: Validators.length(2)
       },
       // Type validators.
       'string': {
-        validators: Validators.string()
+        validator: Validators.string()
       },
       'number': {
-        validators: Validators.number()
+        validator: Validators.number()
       },
       'boolean': {
-        validators: Validators.boolean()
+        validator: Validators.boolean()
       },
       'date': {
-        validators: Validators.date()
+        validator: Validators.date()
       },
       'email': {
-        validators: Validators.email()
+        validator: Validators.email()
       },
       // Existence validators.
       'required': {
-        validators: Validators.required()
+        validator: Validators.required()
       },
       'null': {
-        validators: Validators.null()
+        validator: Validators.null()
       },
       'notNull': {
-        validators: Validators.notNull()
+        validator: Validators.notNull()
       },
       // Size validators.
       'length': {
-        validators: Validators.length(2)
+        validator: Validators.length(2)
       },
       'minLength': {
-        validators: Validators.minLength(2)
+        validator: Validators.minLength(2)
       },
       'maxLength': {
-        validators: Validators.maxLength(2)
+        validator: Validators.maxLength(2)
       },
       'gt': {
-        validators: Validators.gt(2)
+        validator: Validators.gt(2)
       },
       'gte': {
-        validators: Validators.gte(2)
+        validator: Validators.gte(2)
       },
       'lt': {
-        validators: Validators.lt(2)
+        validator: Validators.lt(2)
       },
       'lte': {
-        validators: Validators.lte(2)
+        validator: Validators.lte(2)
       },
       // Comparison validators.
       'choice': {
-        validators: Validators.choice(['a', 'b', 'c'])
+        validator: Validators.choice(['a', 'b', 'c'])
       },
       'unique': {
-        validators: Validators.unique()
+        validator: Validators.unique()
       },
       'equal': {
-        validators: Validators.equal('abc')
+        validator: Validators.equal('abc')
       },
       'equalTo': {
-        validators: Validators.equalTo('equal')
+        validator: Validators.equalTo('equal')
       },
       'equalFunction': {
-        validators: Validators.equal(function() {
+        validator: Validators.equal(function() {
           return this.get('equal');
         })
       },
       'regexp': {
-        validators: Validators.regexp(/^[0-9]+$/)
+        validator: Validators.regexp(/^[0-9]+$/)
       },
       // Logical validators.
       'and': {
-        validators: Validators.and([
+        validator: Validators.and([
           Validators.required(),
           Validators.number()
         ])
       },
       'or': {
-        validators: Validators.or([
+        validator: Validators.or([
           Validators.number(),
           Validators.boolean()
         ])
