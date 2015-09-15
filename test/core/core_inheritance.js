@@ -18,7 +18,7 @@ Tinytest.add('Core - Inheritance', function(test) {
     }
   });
 
-  var ChildInheritance = ParentInheritance.extend({
+  var ChildInheritance = ParentInheritance.inherit({
     name: 'ChildInheritance',
     fields: {
       childField: 'string'
