@@ -112,6 +112,7 @@ Package.onTest(function(api) {
   api.addFiles([
     'test/core/core_transform.js',
     'test/core/core_inheritance.js',
+    'test/core/core_extend.js',
     'test/core/core_state.js'
   ], ['client', 'server']);
   // Storage
