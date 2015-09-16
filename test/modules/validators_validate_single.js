@@ -137,6 +137,23 @@ Tinytest.add('Validators - Validate single', function(test) {
           Validators.number(),
           Validators.boolean()
         ])
+      },
+      'if': {
+        validator: Validators.if({
+          condition: function() {
+            return this.if === 'abc';
+          },
+          true: Validators.minLength(4),
+          false: Validators.number()
+        })
+      },
+      'switch': {
+        validator: Validators.switch({
+          cases: {
+            'abc': Validators.string(),
+            123: Validators.number()
+          }
+        })
       }
     }
   });
@@ -271,8 +288,16 @@ Tinytest.add('Validators - Validate single', function(test) {
   test.isFalse(validatorItem.validate('or'),
     'The "or" validator should not pass'
   );
+  validatorItem.set('if', 'abc');
+  test.isFalse(validatorItem.validate('if'),
+    'The "if" validator should not pass'
+  );
+  validatorItem.set('if', 'abcd');
+  test.isFalse(validatorItem.validate('if'),
+    'The "if" validator should not pass'
+  );
 
-  // Emdedded.
+  // Nested.
   validatorItem.set('has', {});
   test.isFalse(validatorItem.validate('has'),
     'The "has" validator should not pass'
@@ -423,8 +448,20 @@ Tinytest.add('Validators - Validate single', function(test) {
   test.isTrue(validatorItem.validate('or'),
     'The "or" validator should pass'
   );
+  validatorItem.set('if', 123);
+  test.isTrue(validatorItem.validate('if'),
+    'The "if" validator should pass'
+  );
+  validatorItem.set('switch', 'abc');
+  test.isTrue(validatorItem.validate('switch'),
+    'The "switch" validator should pass'
+  );
+  validatorItem.set('switch', 123);
+  test.isTrue(validatorItem.validate('switch'),
+    'The "switch" validator should pass'
+  );
 
-  // Emdedded.
+  // Nested.
   validatorItem.set('has', {
     property: 'abc'
   });
