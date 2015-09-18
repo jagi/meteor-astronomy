@@ -12,6 +12,7 @@ Package.onUse(function(api) {
   api.use('minimongo');
   api.use('underscore');
   api.use('ejson');
+  api.use('check');
 
   api.addFiles([
     'lib/modules/core/global.js',
