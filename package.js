@@ -16,6 +16,7 @@ Package.onUse(function(api) {
 
   api.addFiles([
     'lib/modules/core/global.js',
+    'lib/modules/core/config.js',
     'lib/modules/core/utils.js',
     'lib/modules/core/events.js',
     'lib/modules/core/event.js',
