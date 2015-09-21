@@ -35,7 +35,9 @@ Tinytest.add('Fields - Set', function(test) {
       },
       'date': {
         type: 'date',
-        default: new Date(2000, 0, 1)
+        default: function() {
+          return new Date(2000, 0, 1);
+        }
       }
     }
   });
@@ -81,7 +83,9 @@ Tinytest.add('Fields - Set', function(test) {
       },
       'date': {
         type: 'date',
-        default: new Date(2000, 0, 1)
+        default: function() {
+          return new Date(2000, 0, 1);
+        }
       }
     }
   });
