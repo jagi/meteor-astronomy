@@ -14,6 +14,11 @@ Package.onUse(function(api) {
   api.use('ejson');
   api.use('check');
 
+  api.imply('mongo');
+  api.imply('underscore');
+  api.imply('ejson');
+  api.imply('check');
+
   api.addFiles([
     'lib/modules/core/global.js',
     'lib/modules/core/config.js',

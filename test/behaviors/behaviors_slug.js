@@ -47,10 +47,12 @@ Tinytest.add('Behaviors - Slug', function(test) {
 
   var diacritics = 'ąáàâãăåäāǟ' + 'ćĉčçċ' + 'ďđḑ' + 'ęéèêěĕëēė' + 'ģĝğġģ' +
     'ĥħ' + 'íìîĭïīįĩı' + 'ĵ' + 'ķ' + 'łļĺľŀ' + 'ňńņñŉ' + 'óòôŏöōøőȯȱȭõ' +
-    'řŗŕ' + 'śŝšş' + 'ťțŧ' + 'úùûūųüűŭũů' + 'ŵ' + 'ŷýÿ' + 'źżž';
+    'řŗŕ' + 'śŝšş' + 'ťțŧ' + 'úùûūųüűŭũů' + 'ŵ' + 'ŷýÿ' + 'źżž' +
+    'абчдеёэфгийяъюкхлмнопрсшщтцувызж';
   var expected = 'aaaaaaaaaa' + 'ccccc' + 'ddd' + 'eeeeeeeee' + 'ggggg' +
     'hh' + 'iiiiiiiii' + 'j' + 'k' + 'lllll' + 'nnnnn' + 'oooooooooooo' +
-    'rrr' + 'ssss' + 'ttt' + 'uuuuuuuuuu' + 'w' + 'yyy' + 'zzz';
+    'rrr' + 'ssss' + 'ttt' + 'uuuuuuuuuu' + 'w' + 'yyy' + 'zzz' +
+    'abchdeeefgiiiaieiukkhlmnoprsshshchttsuvyzzh';
 
   var slugA1 = new SlugA();
   slugA1.set('name', 'Slug ' + diacritics);
