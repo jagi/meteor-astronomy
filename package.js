@@ -69,13 +69,13 @@ Package.onUse(function(api) {
   // Fields module.
   api.addFiles([
     'lib/modules/fields/global.js',
+    'lib/modules/fields/create_type.js',
     'lib/modules/fields/base_field.js',
     'lib/modules/fields/types/null_field.js',
     'lib/modules/fields/types/string_field.js',
     'lib/modules/fields/types/number_field.js',
     'lib/modules/fields/types/boolean_field.js',
     'lib/modules/fields/types/date_field.js',
-    'lib/modules/fields/types/nested_field.js',
     'lib/modules/fields/types/object_field.js',
     'lib/modules/fields/types/array_field.js',
     'lib/modules/fields/utils.js',
