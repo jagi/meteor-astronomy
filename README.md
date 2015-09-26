@@ -77,4 +77,4 @@ If you have any suggestions or want to write new features or behaviors please co
 
 ## License
 
-Astronomy is released under the (http://opensource.org/licenses/MIT) MIT License.
+Astronomy is released under the [MIT License](http://opensource.org/licenses/MIT).
