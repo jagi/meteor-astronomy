@@ -24,6 +24,8 @@ If your working project is using Astronomy in version 0.12.1 then it's recommend
 meteor add jagi:astronomy@0.12.1
 ```
 
+Support for the 0.12.1 version will not be continued.
+
 ## Introduction
 
 When fetching documents from Mongo collections, you get plain JavaScript objects without any logic. You have to validate values of objects' properties, check what fields have changed, save only modified fields, transform values coming from forms, in every place you are playing with a document; a lot of things to do. Wouldn't it be great if you could define some simple rules and leave everything else to framework? It's actually possible thanks to Astronomy. But first let's take a look at how your code would look like without using Astronomy.
