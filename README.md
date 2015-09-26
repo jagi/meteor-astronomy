@@ -10,6 +10,12 @@ The [Astronomy](https://atmospherejs.com/jagi/astronomy) package introduces the 
 
 Astronomy documentation can be found [here](http://astronomy.jagi.io).
 
+## Installation
+
+```sh
+$ meteor add jagi:astronomy
+```
+
 ## Moving to 1.0.0
 
 If your working project is using Astronomy in version 0.12.1 then it's recommended to move to version 1.0.0. You can find information about changes in 1.0.0 in the [HISTORY.md](https://github.com/jagi/meteor-astronomy/blob/master/HISTORY.md) file. However, if you are not able to upgrade your project, you have to specify Astronomy version you want to use.
@@ -64,12 +70,6 @@ if (post.validate()) {
 ```
 
 What approach is simpler? I think the choice is obvious.
-
-## Installation
-
-```sh
-$ meteor add jagi:astronomy
-```
 
 ## Contribution
 
