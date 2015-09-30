@@ -35,8 +35,7 @@ Package.onUse(function(api) {
   // Storage module.
   api.addFiles([
     'lib/modules/storage/init_class.js',
-    'lib/modules/storage/init_definition.js',
-    'lib/modules/storage/init_schema.js'
+    'lib/modules/storage/init_definition.js'
   ], ['client', 'server']);
 
   // Behaviors module.
