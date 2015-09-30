@@ -28,7 +28,15 @@ Package.onUse(function(api) {
     'lib/modules/core/event_manager.js',
     'lib/modules/core/base_class.js',
     'lib/modules/core/schema.js',
+    'lib/modules/core/sub_schema.js',
     'lib/modules/core/classes.js'
+  ], ['client', 'server']);
+
+  // Storage module.
+  api.addFiles([
+    'lib/modules/storage/init_class.js',
+    'lib/modules/storage/init_definition.js',
+    'lib/modules/storage/init_schema.js'
   ], ['client', 'server']);
 
   // Behaviors module.
@@ -37,33 +45,26 @@ Package.onUse(function(api) {
     'lib/modules/behaviors/behavior.js',
     'lib/modules/behaviors/class_behavior.js',
     'lib/modules/behaviors/create_behavior.js',
+    'lib/modules/behaviors/init_class.js',
     'lib/modules/behaviors/init_definition.js',
-    'lib/modules/behaviors/init_schema.js',
-    'lib/modules/behaviors/init_class.js'
+    'lib/modules/behaviors/init_schema.js'
   ], ['client', 'server']);
 
   // Events module.
   api.addFiles([
+    'lib/modules/events/init_class.js',
     'lib/modules/events/init_definition.js',
-    'lib/modules/events/init_schema.js',
-    'lib/modules/events/init_class.js'
+    'lib/modules/events/init_schema.js'
   ], ['client', 'server']);
-
-  // Indexes module.
-  api.addFiles([
-    'lib/modules/indexes/init_definition.js',
-    'lib/modules/indexes/init_schema.js',
-    'lib/modules/indexes/init_class.js'
-  ], 'server');
 
   // EJSON module.
   api.addFiles('lib/modules/ejson/init_module.js', ['client', 'server']);
 
   // Methods module.
   api.addFiles([
+    'lib/modules/methods/init_class.js',
     'lib/modules/methods/init_definition.js',
-    'lib/modules/methods/init_schema.js',
-    'lib/modules/methods/init_class.js'
+    'lib/modules/methods/init_schema.js'
   ], ['client', 'server']);
 
   // Fields module.
@@ -88,16 +89,17 @@ Package.onUse(function(api) {
     'lib/modules/fields/inc.js',
     'lib/modules/fields/modified.js',
     'lib/modules/fields/ejson.js',
+    'lib/modules/fields/init_class.js',
     'lib/modules/fields/init_definition.js',
-    'lib/modules/fields/init_schema.js',
-    'lib/modules/fields/init_class.js'
+    'lib/modules/fields/init_schema.js'
   ], ['client', 'server']);
 
-  // Storage module.
+  // Indexes module.
   api.addFiles([
-    'lib/modules/storage/init_schema.js',
-    'lib/modules/storage/init_class.js'
-  ], ['client', 'server']);
+    'lib/modules/indexes/init_class.js',
+    'lib/modules/indexes/init_definition.js',
+    'lib/modules/indexes/init_schema.js'
+  ], 'server');
 
   api.export(['Astro', 'Astronomy'], ['client', 'server']);
 });
