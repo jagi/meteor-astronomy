@@ -35,24 +35,24 @@ Tinytest.add('Core - Extend', function(test) {
 
   var extended = new Extended();
 
-  test.isNotNull(Extended.getField('originalField'),
+  test.instanceOf(Extended.getField('originalField'), Astro.BaseField,
     'The class should contain original fields'
   );
-  test.isNotNull(Extended.getField('extendField'),
+  test.instanceOf(Extended.getField('extendField'), Astro.BaseField,
     'The class should contain extended fields'
   );
 
-  test.isNotNull(extended.originalMethod,
+  test.instanceOf(extended.originalMethod, Function,
     'The class should contain original methods'
   );
-  test.isNotNull(extended.extendMethod,
+  test.instanceOf(extended.extendMethod, Function,
     'The class should contain extended methods'
   );
 
-  test.isNotNull(Extended.getBehavior('timestamp'),
+  test.instanceOf(Extended.getBehavior('timestamp'), Astro.ClassBehavior,
     'The class should contain original behaviors'
   );
-  test.isNotNull(Extended.getBehavior('slug'),
+  test.instanceOf(Extended.getBehavior('slug'), Astro.ClassBehavior,
     'The class should contain extended behaviors'
   );
 });

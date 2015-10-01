@@ -28,7 +28,6 @@ Package.onUse(function(api) {
     'lib/modules/core/event_manager.js',
     'lib/modules/core/base_class.js',
     'lib/modules/core/schema.js',
-    'lib/modules/core/sub_schema.js',
     'lib/modules/core/classes.js'
   ], ['client', 'server']);
 
@@ -46,14 +45,12 @@ Package.onUse(function(api) {
     'lib/modules/behaviors/create_behavior.js',
     'lib/modules/behaviors/init_class.js',
     'lib/modules/behaviors/init_definition.js',
-    'lib/modules/behaviors/init_schema.js'
   ], ['client', 'server']);
 
   // Events module.
   api.addFiles([
     'lib/modules/events/init_class.js',
     'lib/modules/events/init_definition.js',
-    'lib/modules/events/init_schema.js'
   ], ['client', 'server']);
 
   // EJSON module.
@@ -63,7 +60,6 @@ Package.onUse(function(api) {
   api.addFiles([
     'lib/modules/methods/init_class.js',
     'lib/modules/methods/init_definition.js',
-    'lib/modules/methods/init_schema.js'
   ], ['client', 'server']);
 
   // Fields module.
@@ -90,14 +86,12 @@ Package.onUse(function(api) {
     'lib/modules/fields/ejson.js',
     'lib/modules/fields/init_class.js',
     'lib/modules/fields/init_definition.js',
-    'lib/modules/fields/init_schema.js'
   ], ['client', 'server']);
 
   // Indexes module.
   api.addFiles([
     'lib/modules/indexes/init_class.js',
-    'lib/modules/indexes/init_definition.js',
-    'lib/modules/indexes/init_schema.js'
+    'lib/modules/indexes/init_definition.js'
   ], 'server');
 
   api.export(['Astro', 'Astronomy'], ['client', 'server']);
