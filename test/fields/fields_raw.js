@@ -1,10 +1,10 @@
-Tinytest.add('Fields - Get', function(test) {
+Tinytest.add('Fields - Raw', function(test) {
   // Reset Astronomy.
   reset();
 
   // Class for usage as a nested field.
-  var NestedGet = Astro.Class({
-    name: 'NestedGet',
+  var NestedRaw = Astro.Class({
+    name: 'NestedRaw',
     fields: {
       'object': {
         type: 'object',
@@ -43,12 +43,12 @@ Tinytest.add('Fields - Get', function(test) {
   });
 
   // Define simple class to work with.
-  var Get = Astro.Class({
-    name: 'Get',
+  var Raw = Astro.Class({
+    name: 'Raw',
     fields: {
       'nested': {
         type: 'object',
-        nested: 'NestedGet',
+        nested: 'NestedRaw',
         default: function() {
           return {};
         }
@@ -90,7 +90,7 @@ Tinytest.add('Fields - Get', function(test) {
     }
   });
 
-  var getDoc = new Get({
+  var rawDoc = new Raw({
     string: 'string',
     number: 123,
     boolean: true,
@@ -106,44 +106,52 @@ Tinytest.add('Fields - Get', function(test) {
     }
   });
 
-  test.equal(getDoc.get('string'), 'string',
-    'The value of the "string" field should is not correct'
+  test.equal(rawDoc.raw('string'), 'string',
+    'The raw value of the "string" field is not correct'
   );
 
-  test.equal(getDoc.get('number'), 123,
-    'The value of the "number" field should is not correct'
+  test.equal(rawDoc.raw('number'), 123,
+    'The raw value of the "number" field is not correct'
   );
 
-  test.equal(getDoc.get('boolean'), true,
-    'The value of the "boolean" field should is not correct'
+  test.equal(rawDoc.raw('boolean'), true,
+    'The raw value of the "boolean" field is not correct'
   );
 
-  test.equal(getDoc.get('date'), new Date(2000, 0, 1, 0, 0, 0, 0),
-    'The value of the "date" field should is not correct'
+  test.equal(rawDoc.raw('date'), new Date(2000, 0, 1, 0, 0, 0, 0),
+    'The raw value of the "date" field is not correct'
   );
 
-  test.equal(getDoc.get('array'), [1, 2, 3],
-    'The value of the "array" field should is not correct'
+  test.equal(rawDoc.raw('array'), [1, 2, 3],
+    'The raw value of the "array" field is not correct'
   );
 
-  test.equal(getDoc.get('object'), {
+  test.equal(rawDoc.raw('object'), {
     a: 'a',
     b: 'b',
     c: 'c'
   },
-    'The value of the "object" field should is not correct'
+    'The raw value of the "object" field is not correct'
   );
 
-  test.instanceOf(getDoc.get('nested'), NestedGet,
-    'The value of the "nested" field should be instance of the ' +
-    '"NestedGet" class'
+  var rawNested = {
+    object: {},
+    array: [],
+    null: null,
+    string: 'string',
+    number: 123,
+    boolean: true,
+    date: new Date(2000, 0, 1, 0, 0, 0, 0)
+  };
+  test.equal(rawDoc.raw('nested'), rawNested,
+    'The raw value of the "nested" field is not correct'
   );
 
-  test.equal(getDoc.get('object.a'), 'a',
-    'The value of the "object.a" field should is not correct'
+  test.equal(rawDoc.raw('object.a'), 'a',
+    'The raw value of the "object.a" field is not correct'
   );
 
-  test.equal(getDoc.get('nested.string'), 'string',
-    'The value of the "nested.string" field should is not correct'
+  test.equal(rawDoc.raw('nested.string'), 'string',
+    'The raw value of the "nested.string" field is not correct'
   );
 });
