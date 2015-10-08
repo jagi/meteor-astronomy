@@ -79,6 +79,7 @@ Package.onUse(function(api) {
     'lib/modules/fields/set_default.js',
     'lib/modules/fields/set.js',
     'lib/modules/fields/get.js',
+    'lib/modules/fields/raw.js',
     'lib/modules/fields/push.js',
     'lib/modules/fields/pop.js',
     'lib/modules/fields/pull.js',

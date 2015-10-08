@@ -28,18 +28,18 @@ Tinytest.add('Storage - Cloning', function(test) {
   storage.save();
 
   var clone = storage.copy();
-  test.isNull(clone.get('_id'),
+  test.isNull(clone.raw('_id'),
     'In the cloned document a value of the "_id" field should be null'
   );
 
   clone = storage.copy(true);
-  test.isNotNull(clone.get('_id'),
+  test.isNotNull(clone.raw('_id'),
     'In the saved cloned document a value of the "_id" field should not be null'
   );
-  test.notEqual(clone.get('_id'), storage.get('_id'),
+  test.notEqual(clone.raw('_id'), storage.raw('_id'),
     'The "_id" fields of the original and cloned documents should not be equal'
   );
-  test.equal(_.omit(clone.get(), '_id'), _.omit(storage.get(), '_id'),
+  test.equal(_.omit(clone.raw(), '_id'), _.omit(storage.raw(), '_id'),
     'All values (excluding the "_id" field) of the original and cloned ' +
     'documents should be equal'
   );
