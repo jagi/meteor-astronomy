@@ -12,15 +12,15 @@ Tinytest.add('Fields - Casting', function(test) {
       'object': {
         type: 'object'
       },
-      'one': {
-        type: 'object',
-        nested: 'NestedCast'
-      },
       'array': {
         type: 'array',
         nested: 'string'
       },
-      'many': {
+      'nested': {
+        type: 'object',
+        nested: 'NestedCast'
+      },
+      'arrayNested': {
         type: 'array',
         nested: 'NestedCast'
       },
@@ -42,67 +42,66 @@ Tinytest.add('Fields - Casting', function(test) {
 
   cast.set('string', 123);
   test.equal(cast.string, '123',
-    'The number should be casted to the string'
+    'The casted value of the "string" field is not correct'
   );
 
   cast.set('number', '123');
   test.equal(cast.number, 123,
-    'The string should be casted to the number'
+    'The casted value of the "number" field is not correct'
   );
 
   cast.set('boolean', '');
   test.isFalse(cast.boolean,
-    'The empty string should be casted to the false'
+    'The casted value of the "boolean" field is not correct'
   );
 
   cast.set('boolean', '123');
   test.isTrue(cast.boolean,
-    'The non empty string should be casted to the true'
+    'The casted value of the "boolean" field is not correct'
   );
 
   cast.set('boolean', 0);
   test.isFalse(cast.boolean,
-    'The 0 number should be casted to false'
+    'The casted value of the "boolean" field is not correct'
   );
 
   cast.set('boolean', 1);
   test.isTrue(cast.boolean,
-    'The 1 number should be casted to true'
+    'The casted value of the "boolean" field is not correct'
   );
 
   cast.set('date', (new Date(2000, 0, 1, 0, 0, 0)).getTime());
   test.equal(cast.date, new Date(2000, 0, 1, 0, 0, 0),
-    'The number should be casted to the date'
+    'The casted value of the "date" field is not correct'
   );
 
   cast.set('object', 123);
   test.isNull(cast.object,
-    'Setting a non object value should have no effect'
+    'The casted value of the "object" field is not correct'
   );
 
   cast.set('object', {a: 'a'});
   test.equal(cast.object, {a: 'a'},
-    'Setting an object value should succeed'
+    'The casted value of the "object" field is not correct'
   );
 
   cast.set('array', 123);
   test.isNull(cast.array,
-    'Setting a non array value should have no effect'
+    'The casted value of the "array" field is not correct'
   );
 
   cast.set('array', [123]);
   test.equal(cast.array, ['123'],
-    'The array of numbers should be casted to the array of strings'
+    'The casted value of the "array" field is not correct'
   );
 
-  cast.set('one', {});
-  test.instanceOf(cast.one, NestedCast,
-    'The object should be casted to the instance of the class'
+  cast.set('nested', {});
+  test.instanceOf(cast.nested, NestedCast,
+    'The casted value of the "nested" field is not correct'
   );
 
-  cast.set('many', [{}]);
-  test.instanceOf(cast.many[0], NestedCast,
-    'The array of objects should be casted to the array of instances of the ' +
-    'class'
+  cast.set('arrayNested', [{}]);
+  test.instanceOf(cast.arrayNested[0], NestedCast,
+    'The casted value of the "arrayNested.0" field is not correct'
   );
 });

@@ -94,27 +94,27 @@ Tinytest.add('Fields - Set', function(test) {
 
   setter.set('string', 'string');
   test.equal(setter.string, 'string',
-    'The value of the "string" field should be equal "string"'
+    'The set value of the "string" field is not correct'
   );
 
   setter.set('number', 123);
   test.equal(setter.number, 123,
-    'The value of the "number" field should be equal 123'
+    'The set value of the "number" field is not correct'
   );
 
   setter.set('boolean', true);
   test.equal(setter.boolean, true,
-    'The value of the "boolean" field should be equal true'
+    'The set value of the "boolean" field is not correct'
   );
 
   setter.set('date', new Date(2000, 0, 1, 0, 0, 0, 0));
   test.equal(setter.date, new Date(2000, 0, 1, 0, 0, 0, 0),
-    'The value of the "date" field should be equal Date(2000, 0, 1, 0, 0, 0, 0)'
+    'The set value of the "date" field is not correct'
   );
 
   setter.set('array', [1, 2]);
   test.equal(setter.array, [1, 2],
-    'The value of the "array" field should be equal [1, 2]'
+    'The set value of the "array" field is not correct'
   );
 
   setter.set('object', {
@@ -125,7 +125,7 @@ Tinytest.add('Fields - Set', function(test) {
     a: 'a',
     b: 'b'
   },
-    'The value of the "object" field should be equal {a: "a", b: "b"}'
+    'The set value of the "object" field is not correct'
   );
 
   setter = new Setter();
@@ -143,26 +143,26 @@ Tinytest.add('Fields - Set', function(test) {
   });
 
   test.equal(setter.string, 'STRING',
-    'The value of the "string" field should be equal "STRING"'
+    'The set value of the "string" field is not correct'
   );
   test.equal(setter.number, 321,
-    'The value of the "number" field should be equal 321'
+    'The set value of the "number" field is not correct'
   );
   test.equal(setter.boolean, false,
-    'The value of the "boolean" field should be equal false'
+    'The set value of the "boolean" field is not correct'
   );
   test.equal(setter.date, new Date(2001, 0, 1, 0, 0, 0, 0),
-    'The value of the "date" field should be equal Date(2001, 0, 1, 0, 0, 0, 0)'
+    'The set value of the "date" field is not correct'
   );
   test.equal(setter.array, [1, 2, 3],
-    'The value of the "array" field should be equal [1, 2, 3]'
+    'The set value of the "array" field is not correct'
   );
   test.equal(setter.object, {
     a: 'a',
     b: 'b',
     c: 'c'
   },
-    'The value of the "object" field should be equal {a: "a", b: "b", c: "c"}'
+    'The set value of the "object" field is not correct'
   );
 
   setter = new Setter({
@@ -177,33 +177,33 @@ Tinytest.add('Fields - Set', function(test) {
   });
 
   test.equal(setter.string, 'str',
-    'The value of the "string" field should be equal "str"'
+    'The set value of the "string" field is not correct'
   );
   test.equal(setter.number, 111,
-    'The value of the "number" field should be equal 111'
+    'The set value of the "number" field is not correct'
   );
   test.equal(setter.boolean, true,
-    'The value of the "boolean" field should be equal true'
+    'The set value of the "boolean" field is not correct'
   );
   test.equal(setter.date, new Date(2002, 0, 1, 0, 0, 0, 0),
-    'The value of the "date" field should be equal Date(2002, 0, 1, 0, 0, 0, 0)'
+    'The set value of the "date" field is not correct'
   );
   test.equal(setter.array, [1],
-    'The value of the "array" field should be equal [1]'
+    'The set value of the "array" field is not correct'
   );
   test.equal(setter.object, {
     a: 'a'
   },
-    'The value of the "object" field should be equal {a: "a"}'
+    'The set value of the "object" field is not correct'
   );
 
   setter.set('object.a', 1);
   test.equal(setter.object.a, 1,
-    'The value of the "object.a" field should be equal 1'
+    'The set value of the "object.a" field is not correct'
   );
 
   setter.set('nested.string', 'string');
   test.equal(setter.nested.string, 'string',
-    'The value of the "nested.string" field should be equal "string"'
+    'The set value of the "nested.string" field is not correct'
   );
 });
