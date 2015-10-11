@@ -1,3 +1,19 @@
+# 1.1.0 (2015-10-11)
+
+- [Add the "raw()" method](http://astronomy.jagi.io/#raw)
+- [Change the way how the "get()" method works](http://astronomy.jagi.io/#raw) - this needs more clarification. As 1.1.0 version should be backward compatible with 1.0.0, this one change is breaking a compatibility. I know I shouldn't do so, but I had to. In most situation you won't even see any difference. From now the `raw()` method is getting responsibilites of the `get()` method.
+- Fix to the internal `_clearModifiers()` method
+- 
+# 1.0.2 (2015-10-02)
+
+- [Add the "pull()" method](http://astronomy.jagi.io/#pull)
+- Add `getMethod()`, `getBehavior()` etc. to every class
+- Stop using the `initSchema` event in every module
+
+# 1.0.1 (2015-10-01)
+
+- Fix the `initSchema` event
+
 # 1.0.0 (2015-09-30)
 
 - [Nested classes/fields](http://astronomy.jagi.io/#nested-fields)
