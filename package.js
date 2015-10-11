@@ -168,6 +168,7 @@ Package.onTest(function(api) {
   // Modules.
   api.addFiles([
     // Validators
+    'test/modules/validators_validate_single_nested.js',
     'test/modules/validators_validate_single.js',
     'test/modules/validators_validate_multiple.js',
     'test/modules/validators_order.js',
