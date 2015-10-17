@@ -1,7 +1,12 @@
+# 1.1.1 (2015-10-17)
+
+- Allow turning off transform function per environment by setting it to `null`
+- Add ability to detect existence of the given event type using the `Class.hasEvent('eventType')` function
+
 # 1.1.0 (2015-10-11)
 
 - [Add the "raw()" method](http://astronomy.jagi.io/#raw)
-- [Change the way how the "get()" method works](http://astronomy.jagi.io/#raw) - this needs more clarification. As 1.1.0 version should be backward compatible with 1.0.0, this one change is breaking a compatibility. I know I shouldn't do so, but I had to. In most situation you won't even see any difference. From now the `raw()` method is getting responsibilites of the `get()` method.
+- [Change the way how the "get()" method works](http://astronomy.jagi.io/#raw) - this needs more clarification. As 1.1.0 version should be backward compatible with 1.0.0, this one change is breaking a compatibility. I know I shouldn't do so, but I had to. In most situation you won't even see any difference. From now the `raw()` method is getting responsibilites of the `get()` method
 - Fix the internal `_clearModifiers()` method
 
 # 1.0.2 (2015-10-02)
