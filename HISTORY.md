@@ -1,3 +1,7 @@
+# 1.1.2 (2015-10-18)
+
+- Fixed pushing a value to an array field of a nested document without a schema
+
 # 1.1.1 (2015-10-17)
 
 - Allow turning off transform function per environment by setting it to `null`
