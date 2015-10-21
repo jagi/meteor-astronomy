@@ -72,15 +72,18 @@ Tinytest.add('Fields - Casting', function(test) {
 
   cast.set('boolean', 'false');
   test.isFalse(cast.boolean,
-  	'The casted value of "false" is not correct');
+    'The casted value of the "boolean" field is not correct'
+  );
 
   cast.set('boolean', 'FALSE');
   test.isFalse(cast.boolean,
-  	'The casted value of "FALSE" is not correct');
+    'The casted value of the "boolean" field is not correct'
+  );
 
   cast.set('boolean', '0');
   test.isFalse(cast.boolean,
-  	'The casted value of "0" is not correct');
+    'The casted value of the "boolean" field is not correct'
+  );
 
   cast.set('date', (new Date(2000, 0, 1, 0, 0, 0)).getTime());
   test.equal(cast.date, new Date(2000, 0, 1, 0, 0, 0),
