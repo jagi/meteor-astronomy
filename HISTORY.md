@@ -1,3 +1,8 @@
+# 1.1.3 (2015-10-22)
+
+- The `pull()` method looks for a values in array by value not by reference
+- For the `boolean` type, the "false" or "FALSE" string will be cased to `false`
+
 # 1.1.2 (2015-10-18)
 
 - Fixed pushing a value to an array field of a nested document without a schema
