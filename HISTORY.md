@@ -1,3 +1,7 @@
+# 1.1.4 (2015-10-24)
+
+- Fix the `pull()` method to not convert array of nested classes to array of plain objects
+
 # 1.1.3 (2015-10-22)
 
 - The `pull()` method looks for a values in array by value not by reference
