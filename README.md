@@ -75,7 +75,7 @@ What approach is simpler? I think the choice is obvious.
 
 ## Contribution
 
-If you have any suggestions or want to write new features or behaviors please contact me, or just create an issue or a pull request.
+If you have any suggestions or want to write new features or behaviors please contact me, or just create an issue or a pull request. If you found any error please create a reproduction repository and create an issue. Thanks to that it will be easier for me to tell what is wrong. Please, don't use CoffeeScript for creating a reproduction.
 
 ## License
 
