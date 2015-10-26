@@ -1,3 +1,7 @@
+# 1.1.5 (2015-10-26)
+
+- I hope it's a last fix to the `pull()` method :). Now it solves a problem with assumption that nested field is instance of the Astronomy class
+
 # 1.1.4 (2015-10-24)
 
 - Fix the `pull()` method to not convert array of nested classes to array of plain objects
