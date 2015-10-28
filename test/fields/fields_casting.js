@@ -119,4 +119,29 @@ Tinytest.add('Fields - Casting', function(test) {
   test.instanceOf(cast.arrayNested[0], NestedCast,
     'The casted value of the "arrayNested.0" field is not correct'
   );
+
+  test.throws(function() {
+    var InvalidNested = Astro.createClass({
+      name: 'InvalidNested',
+      fields: {
+        'invalid': {
+          type: 'object',
+          nested: 'NonExistentClass'
+        }
+      }
+    });
+  }, 'The nested class for [invalid] does not exist');
+
+  test.throws(function() {
+    var InvalidArrayNested = Astro.createClass({
+      name: 'InvalidArrayNested',
+      fields: {
+        'invalid': {
+          type: 'array',
+          nested: 'NonExistentClass'
+        }
+      }
+    });
+  }, 'The nested class for [invalid] does not exist');
+
 });
