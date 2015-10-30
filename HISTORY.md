@@ -1,3 +1,10 @@
+# 1.2.0 (2015-10-30)
+
+- Introduced behavior methods thanks to which you can run behavior at any moment
+- Throw an error when the nested class does not exist
+- Added the `type` property to the class field object to easily determine of which type a given field is (for packages/modules authors)
+- Clear modifiers when pushing a nested document with modifications
+
 # 1.1.5 (2015-10-26)
 
 - I hope it's a last fix to the `pull()` method :). Now it solves a problem with assumption that nested field is instance of the Astronomy class
