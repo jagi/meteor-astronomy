@@ -1,3 +1,10 @@
+# 1.2.1 (2015-11-08)
+
+- Fix a bug on setting nested object in a nested array
+- Fix a problem with setting a default value for the `_id` property
+- Calling the `find()` method from the class level should only find documents being instances of a given class
+- Introduce `Astro.config.disableTransform` option to disable transformation globally
+
 # 1.2.0 (2015-10-30)
 
 - Introduced behavior methods thanks to which you can run behavior at any moment
