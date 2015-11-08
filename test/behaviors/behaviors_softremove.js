@@ -72,6 +72,12 @@ Tinytest.add('Behaviors - Softremove', function(test) {
   test.instanceOf(softremoveA.get('removedAt'), Date,
     'The "removedAt" field should be set with a date of document removal'
   );
+  test.equal(SoftremovesA.find().count(), 1,
+    'Wrong number of fetched documents from the "Collection.find()" method call'
+  );
+  test.equal(SoftremoveA.find().count(), 0,
+    'Wrong number of fetched documents from the "Class.find()" method call'
+  );
 
   var softremoveB = new SoftremoveB();
   softremoveB.save();
@@ -82,11 +88,23 @@ Tinytest.add('Behaviors - Softremove', function(test) {
   test.instanceOf(softremoveB.get('removedDate'), Date,
     'The "removedDate" field should be set with a date of document removal'
   );
+  test.equal(SoftremovesB.find().count(), 1,
+    'Wrong number of fetched documents from the "Collection.find()" method call'
+  );
+  test.equal(SoftremoveB.find().count(), 0,
+    'Wrong number of fetched documents from the "Class.find()" method call'
+  );
 
   var softremoveC = new SoftremoveC();
   softremoveC.save();
   softremoveC.softRemove();
   test.isUndefined(softremoveC.get('removedAt'),
     'The "removedAt" field should not be available'
+  );
+  test.equal(SoftremovesC.find().count(), 1,
+    'Wrong number of fetched documents from the "Collection.find()" method call'
+  );
+  test.equal(SoftremoveC.find().count(), 0,
+    'Wrong number of fetched documents from the "Class.find()" method call'
   );
 });
