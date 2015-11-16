@@ -1,3 +1,7 @@
+# 1.2.2 (2015-11-16)
+
+- Fix a bug disallowing multiple pull operations
+
 # 1.2.1 (2015-11-08)
 
 - Fix a bug on setting nested object in a nested array
