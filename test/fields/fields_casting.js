@@ -50,6 +50,16 @@ Tinytest.add('Fields - Casting', function(test) {
     'The casted value of the "number" field is not correct'
   );
 
+  cast.set('number', '');
+  test.equal(cast.number, null,
+    'The casted value of empty string for "number" field is not correct'
+  );
+
+  cast.set('number', '1e1');
+  test.equal(cast.number, NaN,
+    'The casted value of scientific notation for "number" field is not correct'
+  );
+
   cast.set('boolean', '');
   test.isFalse(cast.boolean,
     'The casted value of the "boolean" field is not correct'
