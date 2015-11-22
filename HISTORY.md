@@ -1,3 +1,7 @@
+# 1.2.3 (2015-11-22)
+
+- Return popped/pulled values from the `pop()` and `pull()` methods
+
 # 1.2.2 (2015-11-16)
 
 - Fix a bug disallowing multiple pull operations
