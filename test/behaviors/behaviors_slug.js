@@ -4,6 +4,7 @@ Tinytest.add('Behaviors - Slug', function(test) {
 
   var SlugsA = new Mongo.Collection(null);
   var SlugsB = new Mongo.Collection(null);
+  var SlugsC = new Mongo.Collection(null);
 
   SlugsA.find({}, {
     transform: null
@@ -41,6 +42,19 @@ Tinytest.add('Behaviors - Slug', function(test) {
         canUpdate: true,
         unique: false,
         separator: '_'
+      }
+    }
+  });
+
+  var SlugC = Astro.Class({
+    name: 'SlugC',
+    collection: SlugsC,
+    fields: {
+      name: 'string'
+    },
+    behaviors: {
+      slug: {
+        generateOnInit: true
       }
     }
   });
@@ -93,10 +107,10 @@ Tinytest.add('Behaviors - Slug', function(test) {
     'It should be possible to update a slug"'
   );
 
-  slugB2 = new SlugB();
-  slugB2.set('title', 'Slug2 ' + diacritics);
-  slugB2.save();
-  test.equal(slugB2.get('slugged'), 'slug2_' + expected,
-    'The value of the slag field should not be unique'
+  var slugC1 = new SlugC({
+    'name': 'Slug ' + diacritics
+  });
+  test.equal(slugC1.get('slug'), 'slug-' + expected,
+    'The value of the slag field should be generated on init'
   );
 });
