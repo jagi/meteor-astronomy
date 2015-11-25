@@ -1,3 +1,7 @@
+# 1.2.4 (2015-11-25)
+
+- Don't check selector validity on the client only collections
+
 # 1.2.3 (2015-11-22)
 
 - Return popped/pulled values from the `pop()` and `pull()` methods
