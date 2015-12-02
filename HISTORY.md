@@ -1,3 +1,7 @@
+# 1.2.6 (2015-12-02)
+
+- Fix a bug with modifiers when setting object using a reference
+
 # 1.2.5 (2015-12-02)
 
 - Allow Mongo ObjectId as id
