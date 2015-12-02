@@ -1,3 +1,7 @@
+# 1.2.5 (2015-12-02)
+
+- Allow Mongo ObjectId as id
+
 # 1.2.4 (2015-11-25)
 
 - Don't check selector validity on the client only collections
