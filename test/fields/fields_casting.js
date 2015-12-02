@@ -1,5 +1,5 @@
 Tinytest.add('Fields - Casting', function(test) {
-  // Reset Astronomy.
+  // Reset Astro.
   reset();
 
   var NestedCast = Astro.Class({

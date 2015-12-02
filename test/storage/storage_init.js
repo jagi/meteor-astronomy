@@ -1,5 +1,5 @@
 Tinytest.add('Storage - Init', function(test) {
-  // Reset Astronomy.
+  // Reset Astro.
   reset();
 
   // Create collection.

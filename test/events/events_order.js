@@ -1,5 +1,5 @@
 Tinytest.add('Events - Order', function(test) {
-  // Reset Astronomy.
+  // Reset Astro.
   reset();
 
   var EventsOrders = new Mongo.Collection(null);

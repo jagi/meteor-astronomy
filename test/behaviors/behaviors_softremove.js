@@ -1,5 +1,5 @@
 Tinytest.add('Behaviors - Softremove', function(test) {
-  // Reset Astronomy.
+  // Reset Astro.
   reset();
 
   SoftremovesA = new Mongo.Collection(null);

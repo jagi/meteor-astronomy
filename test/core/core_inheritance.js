@@ -36,7 +36,7 @@ Tinytest.add('Core - Inheritance', function(test) {
 
   var childInheritance = new ChildInheritance();
 
-  test.instanceOf(ChildInheritance.getField('parentField'), Astro.BaseField,
+  test.instanceOf(ChildInheritance.getField('parentField'), Astro.Field,
     'The child class should inherit parent fields'
   );
   test.instanceOf(
@@ -47,7 +47,7 @@ Tinytest.add('Core - Inheritance', function(test) {
     'The child class should inherit parent methods'
   );
 
-  test.instanceOf(ChildInheritance.getField('childField'), Astro.BaseField,
+  test.instanceOf(ChildInheritance.getField('childField'), Astro.Field,
     'The child class should have its own fields'
   );
   test.instanceOf(ChildInheritance.getBehavior('slug'), Astro.ClassBehavior,

@@ -1,5 +1,5 @@
 Tinytest.add('Validators - Order', function(test) {
-  // Reset Astronomy.
+  // Reset Astro.
   reset();
 
   var ValidatorOrder = Astro.Class({

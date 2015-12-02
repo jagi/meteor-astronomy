@@ -1,5 +1,5 @@
 Tinytest.add('Events - Prevent default', function(test) {
-  // Reset Astronomy.
+  // Reset Astro.
   reset();
 
   var EventsDefaults = new Mongo.Collection(null);

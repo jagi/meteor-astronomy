@@ -1,5 +1,5 @@
 Tinytest.add('EJSON - Parsing', function(test) {
-  // Reset Astronomy.
+  // Reset Astro.
   reset();
 
   var NestedEJSON = Astro.Class({

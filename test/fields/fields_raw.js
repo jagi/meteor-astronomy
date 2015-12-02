@@ -1,5 +1,5 @@
 Tinytest.add('Fields - Raw', function(test) {
-  // Reset Astronomy.
+  // Reset Astro.
   reset();
 
   // Class for usage as a nested field.

@@ -1,5 +1,5 @@
 Tinytest.add('Validators - Validate single', function(test) {
-  // Reset Astronomy.
+  // Reset Astro.
   reset();
 
   var ValidatorCollection = new Mongo.Collection(null);

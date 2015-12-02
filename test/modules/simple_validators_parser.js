@@ -1,5 +1,5 @@
 Tinytest.add('Simple Validators - Parser', function(test) {
-  // Reset Astronomy.
+  // Reset Astro.
   reset();
 
   var SimpleValidatorItem = Astro.Class({

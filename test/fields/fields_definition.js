@@ -1,5 +1,5 @@
 Tinytest.add('Fields - Definition', function(test) {
-  // Reset Astronomy.
+  // Reset Astro.
   reset();
 
   var DefinitionA = Astro.Class({

@@ -1,5 +1,5 @@
 Tinytest.add('Fields - Default', function(test) {
-  // Reset Astronomy.
+  // Reset Astro.
   reset();
 
   // Class for usage as a nested field.

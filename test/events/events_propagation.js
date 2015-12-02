@@ -1,5 +1,5 @@
 Tinytest.add('Events - Propagation', function(test) {
-  // Reset Astronomy.
+  // Reset Astro.
   reset();
 
   var EventsPropagations = new Mongo.Collection(null);

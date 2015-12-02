@@ -1,5 +1,5 @@
 Tinytest.add('Indexes - Add', function(test) {
-  // Reset Astronomy.
+  // Reset Astro.
   reset();
 
   var Future = Npm.require('fibers/future');

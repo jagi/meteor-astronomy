@@ -35,10 +35,10 @@ Tinytest.add('Core - Extend', function(test) {
 
   var extended = new Extended();
 
-  test.instanceOf(Extended.getField('originalField'), Astro.BaseField,
+  test.instanceOf(Extended.getField('originalField'), Astro.Field,
     'The class should contain original fields'
   );
-  test.instanceOf(Extended.getField('extendField'), Astro.BaseField,
+  test.instanceOf(Extended.getField('extendField'), Astro.Field,
     'The class should contain extended fields'
   );
 

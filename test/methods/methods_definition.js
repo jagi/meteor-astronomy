@@ -1,5 +1,5 @@
 Tinytest.add('Methods - Definition', function(test) {
-  // Reset Astronomy.
+  // Reset Astro.
   reset();
 
   var Method = Astro.Class({
