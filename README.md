@@ -20,7 +20,7 @@ $ meteor add jagi:astronomy
 
 If your working project is using Astronomy in version 0.12.1 then it's recommended to move to version 1.0.0. You can find information about changes in 1.0.0 in the [HISTORY.md](https://github.com/jagi/meteor-astronomy/blob/master/HISTORY.md) file. However, if you are not able to upgrade your project, you have to specify Astronomy version you want to use.
 
-```js
+```sh
 meteor add jagi:astronomy@0.12.1
 ```
 
