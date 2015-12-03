@@ -69,6 +69,7 @@ Package.onUse(function(api) {
     // Meteor methods.
     'lib/modules/storage/meteor_methods/meteor_methods.js',
     'lib/modules/storage/meteor_methods/save.js',
+    'lib/modules/storage/meteor_methods/remove.js',
     // Class Events.
     'lib/modules/storage/class_events/class_events.js',
     'lib/modules/storage/class_events/before_init.js',
