@@ -1,5 +1,5 @@
 Tinytest.add('Core - Inherit', function(test) {
-  var Parent = Astro.Class.create({
+  let Parent = Astro.Class.create({
     name: 'Parent',
     fields: {
       parentField: 'string'
@@ -12,7 +12,7 @@ Tinytest.add('Core - Inherit', function(test) {
     }
   });
 
-  var Child = Parent.inherit({
+  let Child = Parent.inherit({
     name: 'Child',
     fields: {
       childField: 'string'
@@ -25,7 +25,7 @@ Tinytest.add('Core - Inherit', function(test) {
     }
   });
 
-  var child = new Child();
+  let child = new Child();
 
   // Fields.
   test.instanceOf(Child.getField('parentField'), Astro.Field,

@@ -1,102 +1,59 @@
 Tinytest.add('Core - Transform', function(test) {
-  var Transforms = new Mongo.Collection(null);
-  var FunctionTransforms = new Mongo.Collection(null);
-  var MultiTransforms = new Mongo.Collection(null);
+  let Transforms = new Mongo.Collection(null);
 
-  // Remove all previously stored documents.
-  Transforms.find({}, {
-    transform: null
-  }).forEach(function(item) {
-    Transforms.remove(item._id);
-  });
-  FunctionTransforms.find({}, {
-    transform: null
-  }).forEach(function(item) {
-    FunctionTransforms.remove(item._id);
-  });
-  MultiTransforms.find({}, {
-    transform: null
-  }).forEach(function(item) {
-    MultiTransforms.remove(item._id);
+  reset();
+  removeAll(Transforms);
+
+  // Insert a document.
+  Transforms.insert({
+    name: 'name'
   });
 
-  var Transform = Astro.Class({
-    name: 'Transform',
+  // Default transform function.
+  let DefaultTransform = Astro.Class.create({
+    name: 'DefaultTransform',
     collection: Transforms,
     fields: {
       name: 'string'
     }
   });
 
-  var CustomClass = function(attrs) {
-    this.name = attrs.name;
+  // Custom transform function.
+  let CustomClass = class {
+    constructor(values) {
+      _.extend(this, values);
+    }
   };
-  var FunctionTransform = Astro.Class({
-    name: 'FunctionTransform',
-    collection: FunctionTransforms,
-    transform: function(attrs) {
-      return new CustomClass(attrs);
+  let CustomTransform = Astro.Class.create({
+    name: 'CustomTransform',
+    collection: Transforms,
+    transform: function(values) {
+      return new CustomClass(values);
     },
     fields: {
       name: 'string'
     }
   });
 
-  var MultiATransform = Astro.Class({
-    name: 'MultiATransform',
-    collection: MultiTransforms,
-    typeField: 'type',
-    fields: {
-      name: 'string'
-    }
-  });
-  var MultiBTransform = Astro.Class({
-    name: 'MultiBTransform',
-    collection: MultiTransforms,
-    typeField: 'type',
+  // No transform function.
+  let NoTransform = Astro.Class.create({
+    name: 'NoTransform',
+    collection: Transforms,
+    transform: null,
     fields: {
       name: 'string'
     }
   });
 
-  var transform = new Transform({
-    name: 'abc'
-  });
-  transform.save();
-  test.instanceOf(Transforms.findOne(), Transform,
-    'The document fetched from the "Transforms" collection should be an ' +
-    'instance of the "Transform" class'
+  test.instanceOf(DefaultTransform.findOne(), DefaultTransform,
+    'Default transform function should be applied to the fetched documents'
   );
 
-  var functionTransform = new FunctionTransform({
-    name: 'abc'
-  });
-  functionTransform.save();
-  test.instanceOf(FunctionTransforms.findOne(), CustomClass,
-    'The document fetched from the "FunctionTransforms" collection should be ' +
-    'an instance of the "CustomClass" class'
+  test.instanceOf(CustomTransform.findOne(), CustomClass,
+    'Custom transform function should be applied to the fetched documents'
   );
 
-  var multiATransform = new MultiATransform({
-    name: 'a'
-  });
-  multiATransform.save();
-  var multiBTransform = new MultiBTransform({
-    name: 'b'
-  });
-  multiBTransform.save();
-  test.instanceOf(MultiTransforms.findOne({name: 'a'}), MultiATransform,
-    'The first document fetched from the "MultiTransforms" collection ' +
-    'should be an instance of the "MultiATransform" class'
-  );
-  test.instanceOf(MultiTransforms.findOne({name: 'b'}), MultiBTransform,
-    'The second document fetched from the "MultiTransforms" collection ' +
-    'should be an instance of the "MultiBTransform" class'
-  );
-  test.isNotNull(MultiATransform.getField('type'),
-    'The "MultiATransform" class should have the "type" field'
-  );
-  test.isNotNull(MultiBTransform.getField('type'),
-    'The "MultiBTransform" class should have the "type" field'
+  test.equal(NoTransform.findOne().constructor, Object,
+    'No transform function should be applied to the fetched documents'
   );
 });
