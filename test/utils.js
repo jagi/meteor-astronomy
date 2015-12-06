@@ -1,11 +1,13 @@
 reset = function() {
-  Astro.Class.create.classes = {};
-};
+  _.each(Astro.Class.classes, function(Class) {
+    let Collection = Class.getCollection();
+    if (!Collection) {
+      return;
+    }
 
-removeAll = function(Collection) {
-  Collection.find({}, {
-    transform: null
-  }).forEach(function(doc) {
-    Collection.remove(doc._id);
+    // Remove documents from the collection.
+    Collection.find().forEach(function(doc) {
+      Collection.remove(doc._id);
+    });
   });
 };

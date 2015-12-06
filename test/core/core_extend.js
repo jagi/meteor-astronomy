@@ -1,4 +1,6 @@
 Tinytest.add('Core - Extend', function(test) {
+  reset();
+
   let Extended = Astro.Class.create({
     name: 'Extended',
     fields: {

@@ -1,8 +1,7 @@
 Tinytest.add('Core - State', function(test) {
-  let States = new Mongo.Collection(null);
-
   reset();
-  removeAll(States);
+
+  let States = new Mongo.Collection(null);
 
   let State = Astro.Class.create({
     name: 'State',

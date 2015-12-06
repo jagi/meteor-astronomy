@@ -1,4 +1,6 @@
 Tinytest.add('Core - Inherit', function(test) {
+  reset();
+
   let Parent = Astro.Class.create({
     name: 'Parent',
     fields: {

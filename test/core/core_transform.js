@@ -1,8 +1,7 @@
 Tinytest.add('Core - Transform', function(test) {
-  let Transforms = new Mongo.Collection(null);
-
   reset();
-  removeAll(Transforms);
+
+  let Transforms = new Mongo.Collection(null);
 
   // Insert a document.
   Transforms.insert({

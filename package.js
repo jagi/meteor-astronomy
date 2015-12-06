@@ -271,63 +271,63 @@ Package.onTest(function(api) {
   ], ['client', 'server']);
   // Storage
   api.addFiles([
-    'test/storage/storage_init.js',
-    'test/storage/storage_insert.js',
-    'test/storage/storage_update.js',
-    'test/storage/storage_remove.js',
-    'test/storage/storage_reload.js',
-    'test/storage/storage_cloning.js',
-    'test/storage/storage_direct_insert.js',
-    'test/storage/storage_direct_update.js',
-    'test/storage/storage_direct_upsert.js',
-    'test/storage/storage_direct_remove.js'
+    'test/storage/init.js',
+    'test/storage/document_insert.js',
+    'test/storage/document_update.js',
+    'test/storage/document_remove.js',
+    'test/storage/reload.js',
+    // 'test/storage/copy.js',
+    // 'test/storage/class_insert.js',
+    // 'test/storage/class_update.js',
+    // 'test/storage/class_upsert.js',
+    // 'test/storage/class_remove.js'
   ], ['client', 'server']);
   // EJSON.
   api.addFiles([
-    'test/ejson/ejson_parsing.js'
+    // 'test/ejson/ejson_parsing.js'
   ], ['client', 'server']);
   // Events.
   api.addFiles([
-    'test/events/events_order.js',
-    'test/events/events_propagation.js',
-    'test/events/events_prevent_default.js'
+    // 'test/events/events_order.js',
+    // 'test/events/events_propagation.js',
+    // 'test/events/events_prevent_default.js'
   ], ['client', 'server']);
   // Fields.
   api.addFiles([
-    'test/fields/fields_definition.js',
-    'test/fields/fields_default.js',
-    'test/fields/fields_casting.js',
-    'test/fields/fields_set.js',
-    'test/fields/fields_get.js',
-    'test/fields/fields_raw.js',
-    'test/fields/fields_push.js',
-    'test/fields/fields_pop.js',
-    'test/fields/fields_inc.js',
-    'test/fields/fields_modified.js',
-    'test/fields/fields_immutable.js',
-    'test/fields/fields_transient.js'
+    // 'test/fields/fields_definition.js',
+    // 'test/fields/fields_default.js',
+    // 'test/fields/fields_casting.js',
+    // 'test/fields/fields_set.js',
+    // 'test/fields/fields_get.js',
+    // 'test/fields/fields_raw.js',
+    // 'test/fields/fields_push.js',
+    // 'test/fields/fields_pop.js',
+    // 'test/fields/fields_inc.js',
+    // 'test/fields/fields_modified.js',
+    // 'test/fields/fields_immutable.js',
+    // 'test/fields/fields_transient.js'
   ], ['client', 'server']);
   // Indexes.
   api.addFiles([
-    'test/indexes/indexes_definition.js'
+    // 'test/indexes/indexes_definition.js'
   ], 'server');
   // Methods.
   api.addFiles([
-    'test/methods/methods_definition.js'
+    // 'test/methods/methods_definition.js'
   ], ['client', 'server']);
   // Modules.
   api.addFiles([
-    // Validators
-    'test/modules/validators_validate_single.js',
-    'test/modules/validators_validate_multiple.js',
-    'test/modules/validators_order.js',
-    // Simple Validators.
-    'test/modules/simple_validators_parser.js'
+    // // Validators
+    // 'test/modules/validators_validate_single.js',
+    // 'test/modules/validators_validate_multiple.js',
+    // 'test/modules/validators_order.js',
+    // // Simple Validators.
+    // 'test/modules/simple_validators_parser.js'
   ], ['client', 'server']);
   // Behaviors.
   api.addFiles([
-    'test/behaviors/behaviors_timestamp.js',
-    'test/behaviors/behaviors_slug.js',
-    'test/behaviors/behaviors_softremove.js'
+    // 'test/behaviors/behaviors_timestamp.js',
+    // 'test/behaviors/behaviors_slug.js',
+    // 'test/behaviors/behaviors_softremove.js'
   ], ['client', 'server']);
 });
