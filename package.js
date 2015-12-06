@@ -251,12 +251,14 @@ Package.onTest(function(api) {
   api.use([
     'tinytest',
     'insecure',
-    'jagi:astronomy',
-    'jagi:astronomy-timestamp-behavior',
-    'jagi:astronomy-slug-behavior',
-    'jagi:astronomy-softremove-behavior',
-    'jagi:astronomy-validators',
-    'jagi:astronomy-simple-validators'
+    'ecmascript',
+    'es5-shim',
+    'jagi:astronomy@2.0.0-rc.1',
+    // 'jagi:astronomy-timestamp-behavior',
+    // 'jagi:astronomy-slug-behavior',
+    // 'jagi:astronomy-softremove-behavior',
+    // 'jagi:astronomy-validators',
+    // 'jagi:astronomy-simple-validators'
   ]);
 
   api.addFiles('test/utils.js', ['client', 'server']);

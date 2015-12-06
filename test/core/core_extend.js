@@ -1,8 +1,8 @@
 Tinytest.add('Core - Extend', function(test) {
-  var originalAfterInit = function() {};
-  var extendAfterInit = function() {};
+  let originalAfterInit = function() {};
+  let extendAfterInit = function() {};
 
-  var Extended = Astro.Class({
+  let Extended = Astro.Class.create({
     name: 'Extended',
     fields: {
       originalField: 'string'
@@ -12,9 +12,6 @@ Tinytest.add('Core - Extend', function(test) {
     },
     events: {
       afterInit: originalAfterInit
-    },
-    behaviors: {
-      timestamp: {}
     }
   });
 
@@ -27,32 +24,29 @@ Tinytest.add('Core - Extend', function(test) {
     },
     events: {
       afterInit: extendAfterInit
-    },
-    behaviors: {
-      slug: {}
     }
   });
 
-  var extended = new Extended();
+  let extended = new Extended();
 
+  // Fields.
   test.instanceOf(Extended.getField('originalField'), Astro.Field,
-    'The class should contain original fields'
+    'Class should contain original fields'
   );
   test.instanceOf(Extended.getField('extendField'), Astro.Field,
-    'The class should contain extended fields'
+    'Class should contain extended fields'
   );
 
+  // Methods.
   test.instanceOf(extended.originalMethod, Function,
-    'The class should contain original methods'
+    'Class should contain original methods'
   );
   test.instanceOf(extended.extendMethod, Function,
-    'The class should contain extended methods'
+    'Class should contain extended methods'
   );
 
-  test.instanceOf(Extended.getBehavior('timestamp'), Astro.ClassBehavior,
-    'The class should contain original behaviors'
-  );
-  test.instanceOf(Extended.getBehavior('slug'), Astro.ClassBehavior,
-    'The class should contain extended behaviors'
+  // Events.
+  test.equal(Extended.getEvents('afterInit').length, 2,
+    'Class should contain two "afterInit" event handlers'
   );
 });
