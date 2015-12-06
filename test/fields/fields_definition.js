@@ -2,7 +2,7 @@ Tinytest.add('Fields - Definition', function(test) {
   // Reset Astro.
   reset();
 
-  var DefinitionA = Astro.Class({
+  var DefinitionA = Astro.Class.create({
     name: 'DefinitionA',
     fields: ['nullA']
   });
@@ -13,7 +13,7 @@ Tinytest.add('Fields - Definition', function(test) {
     'Class without provided collection should not have the "_id" field'
   );
 
-  var DefinitionB = Astro.Class({
+  var DefinitionB = Astro.Class.create({
     name: 'DefinitionB',
     fields: {
       'string': 'string'
@@ -23,7 +23,7 @@ Tinytest.add('Fields - Definition', function(test) {
     'The type of the "string" field should be "string"'
   );
 
-  var DefinitionC = Astro.Class({
+  var DefinitionC = Astro.Class.create({
     name: 'DefinitionC',
     fields: {
       'number': {
@@ -36,7 +36,7 @@ Tinytest.add('Fields - Definition', function(test) {
   );
 
   var Definitions = new Mongo.Collection(null);
-  var DefinitionD = Astro.Class({
+  var DefinitionD = Astro.Class.create({
     name: 'DefinitionD',
     collection: Definitions,
     fields: ['field']

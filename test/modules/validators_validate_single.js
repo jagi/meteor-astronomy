@@ -4,7 +4,7 @@ Tinytest.add('Validators - Validate single', function(test) {
 
   var ValidatorCollection = new Mongo.Collection(null);
 
-  var NestedValidator = Astro.Class({
+  var NestedValidator = Astro.Class.create({
     name: 'NestedValidator',
     fields: {
       'string': {
@@ -16,7 +16,7 @@ Tinytest.add('Validators - Validate single', function(test) {
     }
   });
 
-  var ValidatorItem = Astro.Class({
+  var ValidatorItem = Astro.Class.create({
     name: 'ValidatorItem',
     collection: ValidatorCollection,
     fields: {

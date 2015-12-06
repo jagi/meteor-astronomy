@@ -3,7 +3,7 @@ Tinytest.add('Fields - Get', function(test) {
   reset();
 
   // Class for usage as a nested field.
-  var NestedGet = Astro.Class({
+  var NestedGet = Astro.Class.create({
     name: 'NestedGet',
     fields: {
       'object': {
@@ -43,7 +43,7 @@ Tinytest.add('Fields - Get', function(test) {
   });
 
   // Define simple class to work with.
-  var Get = Astro.Class({
+  var Get = Astro.Class.create({
     name: 'Get',
     fields: {
       'nested': {

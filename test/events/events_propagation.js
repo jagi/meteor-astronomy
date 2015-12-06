@@ -3,7 +3,7 @@ Tinytest.add('Events - Propagation', function(test) {
   reset();
 
   var EventsPropagations = new Mongo.Collection(null);
-  var EventsPropagation = Astro.Class({
+  var EventsPropagation = Astro.Class.create({
     name: 'EventsPropagation',
     collection: EventsPropagations,
     fields: ['stop'],

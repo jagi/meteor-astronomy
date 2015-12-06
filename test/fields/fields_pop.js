@@ -2,7 +2,7 @@ Tinytest.add('Fields - Pop', function(test) {
   var PopCollection = new Mongo.Collection(null);
   removeAll(PopCollection);
 
-  var NestedPop = Astro.Class({
+  var NestedPop = Astro.Class.create({
     name: 'NestedPop',
     fields: {
       array: {
@@ -15,7 +15,7 @@ Tinytest.add('Fields - Pop', function(test) {
     }
   });
 
-  var Pop = Astro.Class({
+  var Pop = Astro.Class.create({
     name: 'Pop',
     collection: PopCollection,
     fields: {

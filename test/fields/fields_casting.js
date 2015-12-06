@@ -2,11 +2,11 @@ Tinytest.add('Fields - Casting', function(test) {
   // Reset Astro.
   reset();
 
-  var NestedCast = Astro.Class({
+  var NestedCast = Astro.Class.create({
     name: 'NestedCast'
   });
 
-  var Cast = Astro.Class({
+  var Cast = Astro.Class.create({
     name: 'Cast',
     fields: {
       'object': {

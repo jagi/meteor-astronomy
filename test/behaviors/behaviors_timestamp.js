@@ -24,7 +24,7 @@ Tinytest.addAsync('Behaviors - Timestamp', function(test, next) {
     TimestampsC.remove(item._id);
   });
 
-  var TimestampA = Astro.Class({
+  var TimestampA = Astro.Class.create({
     name: 'TimestampA',
     collection: TimestampsA,
     fields: {
@@ -35,7 +35,7 @@ Tinytest.addAsync('Behaviors - Timestamp', function(test, next) {
     }
   });
 
-  var TimestampB = Astro.Class({
+  var TimestampB = Astro.Class.create({
     name: 'TimestampB',
     collection: TimestampsB,
     fields: {
@@ -49,7 +49,7 @@ Tinytest.addAsync('Behaviors - Timestamp', function(test, next) {
     }
   });
 
-  var TimestampC = Astro.Class({
+  var TimestampC = Astro.Class.create({
   name: 'TimestampC',
   collection: TimestampsC,
   fields: {

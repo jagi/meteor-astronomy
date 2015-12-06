@@ -2,7 +2,7 @@ Tinytest.add('Fields - Push', function(test) {
   var PushCollection = new Mongo.Collection(null);
   removeAll(PushCollection);
 
-  var NestedPush = Astro.Class({
+  var NestedPush = Astro.Class.create({
     name: 'NestedPush',
     fields: {
       array: {
@@ -15,7 +15,7 @@ Tinytest.add('Fields - Push', function(test) {
     }
   });
 
-  var Push = Astro.Class({
+  var Push = Astro.Class.create({
     name: 'Push',
     collection: PushCollection,
     fields: {

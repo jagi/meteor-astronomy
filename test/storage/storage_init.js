@@ -8,7 +8,7 @@ Tinytest.add('Storage - Init', function(test) {
   removeAll(Storages);
 
   // Class for usage as a nested field.
-  NestedStorage = Astro.Class({
+  NestedStorage = Astro.Class.create({
     name: 'NestedStorage',
     fields: {
       'object': {
@@ -33,7 +33,7 @@ Tinytest.add('Storage - Init', function(test) {
   });
 
   // Define simple class to work with.
-  Storage = Astro.Class({
+  Storage = Astro.Class.create({
     name: 'Storage',
     collection: Storages,
     fields: {

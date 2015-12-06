@@ -17,7 +17,7 @@ Tinytest.add('Behaviors - Slug', function(test) {
     SlugsB.remove(slug._id);
   });
 
-  var SlugA = Astro.Class({
+  var SlugA = Astro.Class.create({
     name: 'SlugA',
     collection: SlugsA,
     fields: {
@@ -28,7 +28,7 @@ Tinytest.add('Behaviors - Slug', function(test) {
     }
   });
 
-  var SlugB = Astro.Class({
+  var SlugB = Astro.Class.create({
     name: 'SlugB',
     collection: SlugsB,
     fields: {

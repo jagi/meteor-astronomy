@@ -2,7 +2,7 @@ Tinytest.add('Fields - Transient', function(test) {
   var TransientCollection = new Mongo.Collection(null);
   removeAll(TransientCollection);
 
-  var NestedTransient = Astro.Class({
+  var NestedTransient = Astro.Class.create({
     name: 'NestedTransient',
     fields: {
       string: {
@@ -17,7 +17,7 @@ Tinytest.add('Fields - Transient', function(test) {
     }
   });
 
-  var Transient = Astro.Class({
+  var Transient = Astro.Class.create({
     name: 'Transient',
     collection: TransientCollection,
     fields: {

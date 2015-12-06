@@ -2,7 +2,7 @@ Tinytest.add('Methods - Definition', function(test) {
   // Reset Astro.
   reset();
 
-  var Method = Astro.Class({
+  var Method = Astro.Class.create({
     name: 'Method',
     fields: {
       string: 'string',

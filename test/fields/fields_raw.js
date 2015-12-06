@@ -3,7 +3,7 @@ Tinytest.add('Fields - Raw', function(test) {
   reset();
 
   // Class for usage as a nested field.
-  var NestedRaw = Astro.Class({
+  var NestedRaw = Astro.Class.create({
     name: 'NestedRaw',
     fields: {
       'object': {
@@ -43,7 +43,7 @@ Tinytest.add('Fields - Raw', function(test) {
   });
 
   // Define simple class to work with.
-  var Raw = Astro.Class({
+  var Raw = Astro.Class.create({
     name: 'Raw',
     fields: {
       'nested': {

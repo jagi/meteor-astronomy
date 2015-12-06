@@ -3,7 +3,7 @@ Tinytest.add('Events - Prevent default', function(test) {
   reset();
 
   var EventsDefaults = new Mongo.Collection(null);
-  var EventsDefault = Astro.Class({
+  var EventsDefault = Astro.Class.create({
     name: 'EventsDefault',
     collection: EventsDefaults,
     fields: ['prevent'],

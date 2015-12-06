@@ -2,7 +2,7 @@ Tinytest.add('Validators - Order', function(test) {
   // Reset Astro.
   reset();
 
-  var ValidatorOrder = Astro.Class({
+  var ValidatorOrder = Astro.Class.create({
     name: 'ValidatorOrder',
     fields: [
       'first',

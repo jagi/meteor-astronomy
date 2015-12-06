@@ -2,7 +2,7 @@ Tinytest.add('EJSON - Parsing', function(test) {
   // Reset Astro.
   reset();
 
-  var NestedEJSON = Astro.Class({
+  var NestedEJSON = Astro.Class.create({
     name: 'NestedEJSON',
     fields: {
       'string': {
@@ -14,7 +14,7 @@ Tinytest.add('EJSON - Parsing', function(test) {
     }
   });
 
-  var EJSONClass = Astro.Class({
+  var EJSONClass = Astro.Class.create({
     name: 'EJSONClass',
     fields: {
       'object': {

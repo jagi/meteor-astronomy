@@ -2,7 +2,7 @@ Tinytest.add('Fields - Immutable', function(test) {
   var ImmutableCollection = new Mongo.Collection(null);
   removeAll(ImmutableCollection);
 
-  var NestedImmutable = Astro.Class({
+  var NestedImmutable = Astro.Class.create({
     name: 'NestedImmutable',
     fields: {
       string: {
@@ -15,7 +15,7 @@ Tinytest.add('Fields - Immutable', function(test) {
     }
   });
 
-  var Immutable = Astro.Class({
+  var Immutable = Astro.Class.create({
     name: 'Immutable',
     collection: ImmutableCollection,
     fields: {

@@ -27,7 +27,7 @@ Tinytest.add('Indexes - Add', function(test) {
     Indexes._dropIndex('indexes');
   } catch (e) {}
 
-  var Index = Astro.Class({
+  var Index = Astro.Class.create({
     name: 'Index',
     collection: Indexes,
     fields: {

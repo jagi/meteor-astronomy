@@ -2,7 +2,7 @@ Tinytest.add('Simple Validators - Parser', function(test) {
   // Reset Astro.
   reset();
 
-  var SimpleValidatorItem = Astro.Class({
+  var SimpleValidatorItem = Astro.Class.create({
     name: 'SimpleValidatorItem',
     fields: {
       // Type validators.

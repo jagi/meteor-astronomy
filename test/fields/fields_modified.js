@@ -5,7 +5,7 @@ Tinytest.add('Fields - Modified', function(test) {
   var ModifiedCollection = new Mongo.Collection(null);
 
   // Define simple class to work with.
-  var Modified = Astro.Class({
+  var Modified = Astro.Class.create({
     name: 'Modified',
     collection: ModifiedCollection,
     fields: {

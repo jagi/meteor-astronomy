@@ -2,7 +2,7 @@ Tinytest.add('Fields - Inc', function(test) {
   var IncCollection = new Mongo.Collection(null);
   removeAll(IncCollection);
 
-  var NestedInc = Astro.Class({
+  var NestedInc = Astro.Class.create({
     name: 'NestedInc',
     fields: {
       number: {
@@ -16,7 +16,7 @@ Tinytest.add('Fields - Inc', function(test) {
     }
   });
 
-  var Inc = Astro.Class({
+  var Inc = Astro.Class.create({
     name: 'Inc',
     collection: IncCollection,
     fields: {

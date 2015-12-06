@@ -3,7 +3,7 @@ Tinytest.add('Fields - Default', function(test) {
   reset();
 
   // Class for usage as a nested field.
-  var NestedDefault = Astro.Class({
+  var NestedDefault = Astro.Class.create({
     name: 'NestedDefault',
     fields: {
       'object': {
@@ -43,7 +43,7 @@ Tinytest.add('Fields - Default', function(test) {
   });
 
   // Define simple class to work with.
-  var Default = Astro.Class({
+  var Default = Astro.Class.create({
     name: 'Default',
     fields: {
       'nested': {

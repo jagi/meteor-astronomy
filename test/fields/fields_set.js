@@ -3,7 +3,7 @@ Tinytest.add('Fields - Set', function(test) {
   reset();
 
   // Class for usage as a nested field.
-  var NestedSetter = Astro.Class({
+  var NestedSetter = Astro.Class.create({
     name: 'NestedSetter',
     fields: {
       'object': {
@@ -43,7 +43,7 @@ Tinytest.add('Fields - Set', function(test) {
   });
 
   // Define simple class to work with.
-  var Setter = Astro.Class({
+  var Setter = Astro.Class.create({
     name: 'Setter',
     fields: {
       'nested': {

@@ -1,5 +1,5 @@
 reset = function() {
-  Astro.Class.classes = {};
+  Astro.Class.create.classes = {};
 };
 
 removeAll = function(Collection) {

@@ -3,7 +3,7 @@ Tinytest.add('Events - Order', function(test) {
   reset();
 
   var EventsOrders = new Mongo.Collection(null);
-  var EventsOrder = Astro.Class({
+  var EventsOrder = Astro.Class.create({
     name: 'EventsOrder',
     collection: EventsOrders,
     fields: ['childField'],
