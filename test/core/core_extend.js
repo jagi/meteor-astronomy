@@ -1,7 +1,4 @@
 Tinytest.add('Core - Extend', function(test) {
-  let originalAfterInit = function() {};
-  let extendAfterInit = function() {};
-
   let Extended = Astro.Class.create({
     name: 'Extended',
     fields: {
@@ -11,7 +8,7 @@ Tinytest.add('Core - Extend', function(test) {
       originalMethod: function() {}
     },
     events: {
-      afterInit: originalAfterInit
+      afterInit: function() {}
     }
   });
 
@@ -23,11 +20,9 @@ Tinytest.add('Core - Extend', function(test) {
       extendMethod: function() {}
     },
     events: {
-      afterInit: extendAfterInit
+      afterInit: function() {}
     }
   });
-
-  let extended = new Extended();
 
   // Fields.
   test.instanceOf(Extended.getField('originalField'), Astro.Field,
@@ -38,10 +33,10 @@ Tinytest.add('Core - Extend', function(test) {
   );
 
   // Methods.
-  test.instanceOf(extended.originalMethod, Function,
+  test.instanceOf(Extended.getMethod('originalMethod'), Function,
     'Class should contain original methods'
   );
-  test.instanceOf(extended.extendMethod, Function,
+  test.instanceOf(Extended.getMethod('extendMethod'), Function,
     'Class should contain extended methods'
   );
 

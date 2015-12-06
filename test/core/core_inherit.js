@@ -25,8 +25,6 @@ Tinytest.add('Core - Inherit', function(test) {
     }
   });
 
-  let child = new Child();
-
   // Fields.
   test.instanceOf(Child.getField('parentField'), Astro.Field,
     'The child class should inherit parent fields'
@@ -36,10 +34,10 @@ Tinytest.add('Core - Inherit', function(test) {
   );
 
   // Methods.
-  test.instanceOf(child.parentMethod, Function,
+  test.instanceOf(Child.getMethod('parentMethod'), Function,
     'The child class should inherit parent methods'
   );
-  test.instanceOf(child.childMethod, Function,
+  test.instanceOf(Child.getMethod('childMethod'), Function,
     'The child class should have its own methods'
   );
 
@@ -49,6 +47,7 @@ Tinytest.add('Core - Inherit', function(test) {
   );
 
   // Instance check.
+  let child = new Child();
   test.instanceOf(child, Parent,
     'An instance of the child class should be also instance of the parent class'
   );
