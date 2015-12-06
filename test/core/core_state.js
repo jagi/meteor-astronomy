@@ -1,69 +1,25 @@
 Tinytest.add('Core - State', function(test) {
-  var States = new Mongo.Collection(null);
+  let States = new Mongo.Collection(null);
+
+  reset();
   removeAll(States);
 
-  var NestedState = Astro.Class({
-    name: 'NestedState',
-    fields: {
-      'object': {
-        type: 'object'
-      },
-      'array': {
-        type: 'array'
-      },
-      'string': {
-        type: 'string'
-      },
-      'number': {
-        type: 'number'
-      },
-      'boolean': {
-        type: 'boolean'
-      },
-      'date': {
-        type: 'date'
-      }
-    }
-  });
-
-  var State = Astro.Class({
+  let State = Astro.Class.create({
     name: 'State',
     collection: States,
     fields: {
-      'nested': {
-        type: 'object',
-        nested: 'NestedState'
-      },
-      'object': {
-        type: 'object'
-      },
-      'array': {
-        type: 'array'
-      },
-      'string': {
-        type: 'string'
-      },
-      'number': {
-        type: 'number'
-      },
-      'boolean': {
-        type: 'boolean'
-      },
-      'date': {
-        type: 'date'
-      }
+      'name': 'string'
     }
   });
 
-  var core = new State();
-
+  let core = new State();
   test.isTrue(core._isNew,
     'A newly created document should have the "_isNew" flag set to true'
   );
 
   core.save();
   test.isFalse(core._isNew,
-    'A save document should have the "_isNew" flag set to false'
+    'The saved document should have the "_isNew" flag set to false'
   );
 
   core = States.findOne();
