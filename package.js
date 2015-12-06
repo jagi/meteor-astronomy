@@ -98,12 +98,12 @@ Package.onUse(function(api) {
     'lib/modules/behaviors/global/behaviors.js',
     'lib/modules/behaviors/global/class_behavior.js',
     // Hooks.
-    'lib/modules/behaviors/module/init_schema.js',
-    'lib/modules/behaviors/module/init_definition.js',
-    'lib/modules/behaviors/module/parse_definition.js',
-    'lib/modules/behaviors/module/merge_definitions.js',
-    'lib/modules/behaviors/module/apply_definition.js',
-    'lib/modules/behaviors/module/init_class.js'
+    'lib/modules/behaviors/hooks/init_schema.js',
+    'lib/modules/behaviors/hooks/init_definition.js',
+    'lib/modules/behaviors/hooks/parse_definition.js',
+    'lib/modules/behaviors/hooks/merge_definitions.js',
+    'lib/modules/behaviors/hooks/apply_definition.js',
+    'lib/modules/behaviors/hooks/init_class.js'
   ], ['client', 'server']);
 
   // Events module.
@@ -118,12 +118,12 @@ Package.onUse(function(api) {
     'lib/modules/events/global/event.js',
     'lib/modules/events/global/events.js',
     // Hooks.
-    'lib/modules/events/module/init_schema.js',
-    'lib/modules/events/module/init_definition.js',
-    'lib/modules/events/module/parse_definition.js',
-    'lib/modules/events/module/merge_definitions.js',
-    'lib/modules/events/module/apply_definition.js',
-    'lib/modules/events/module/init_class.js'
+    'lib/modules/events/hooks/init_schema.js',
+    'lib/modules/events/hooks/init_definition.js',
+    'lib/modules/events/hooks/parse_definition.js',
+    'lib/modules/events/hooks/merge_definitions.js',
+    'lib/modules/events/hooks/apply_definition.js',
+    'lib/modules/events/hooks/init_class.js'
   ], ['client', 'server']);
 
   // Methods module.
@@ -135,12 +135,12 @@ Package.onUse(function(api) {
     'lib/modules/methods/class_static_methods/get_methods.js',
     'lib/modules/methods/class_static_methods/has_method.js',
     // Hooks.
-    'lib/modules/methods/module/init_schema.js',
-    'lib/modules/methods/module/init_definition.js',
-    'lib/modules/methods/module/parse_definition.js',
-    'lib/modules/methods/module/merge_definitions.js',
-    'lib/modules/methods/module/apply_definition.js',
-    'lib/modules/methods/module/init_class.js'
+    'lib/modules/methods/hooks/init_schema.js',
+    'lib/modules/methods/hooks/init_definition.js',
+    'lib/modules/methods/hooks/parse_definition.js',
+    'lib/modules/methods/hooks/merge_definitions.js',
+    'lib/modules/methods/hooks/apply_definition.js',
+    'lib/modules/methods/hooks/init_class.js'
   ], ['client', 'server']);
 
   // Fields module.
@@ -189,12 +189,12 @@ Package.onUse(function(api) {
     'lib/modules/fields/global/types/number.js',
     'lib/modules/fields/global/types/string.js',
     // Hooks.
-    'lib/modules/fields/module/init_schema.js',
-    'lib/modules/fields/module/init_definition.js',
-    'lib/modules/fields/module/parse_definition.js',
-    'lib/modules/fields/module/merge_definitions.js',
-    'lib/modules/fields/module/apply_definition.js',
-    'lib/modules/fields/module/init_class.js'
+    'lib/modules/fields/hooks/init_schema.js',
+    'lib/modules/fields/hooks/init_definition.js',
+    'lib/modules/fields/hooks/parse_definition.js',
+    'lib/modules/fields/hooks/merge_definitions.js',
+    'lib/modules/fields/hooks/apply_definition.js',
+    'lib/modules/fields/hooks/init_class.js'
   ], ['client', 'server']);
 
   // Indexes module.
@@ -206,12 +206,12 @@ Package.onUse(function(api) {
     'lib/modules/indexes/class_static_methods/get_indexes.js',
     'lib/modules/indexes/class_static_methods/has_index.js',
     // Hooks.
-    'lib/modules/indexes/module/init_schema.js',
-    'lib/modules/indexes/module/init_definition.js',
-    'lib/modules/indexes/module/parse_definition.js',
-    'lib/modules/indexes/module/merge_definitions.js',
-    'lib/modules/indexes/module/apply_definition.js',
-    'lib/modules/indexes/module/init_class.js'
+    'lib/modules/indexes/hooks/init_schema.js',
+    'lib/modules/indexes/hooks/init_definition.js',
+    'lib/modules/indexes/hooks/parse_definition.js',
+    'lib/modules/indexes/hooks/merge_definitions.js',
+    'lib/modules/indexes/hooks/apply_definition.js',
+    'lib/modules/indexes/hooks/init_class.js'
   ], 'server');
 
   // Validators module.
@@ -234,12 +234,12 @@ Package.onUse(function(api) {
     // Global.
     'lib/modules/validators/global/validation_error.js',
     // Hooks.
-    'lib/modules/validators/module/init_schema.js',
-    'lib/modules/validators/module/init_definition.js',
-    'lib/modules/validators/module/parse_definition.js',
-    'lib/modules/validators/module/merge_definitions.js',
-    'lib/modules/validators/module/apply_definition.js',
-    'lib/modules/validators/module/init_class.js'
+    'lib/modules/validators/hooks/init_schema.js',
+    'lib/modules/validators/hooks/init_definition.js',
+    'lib/modules/validators/hooks/parse_definition.js',
+    'lib/modules/validators/hooks/merge_definitions.js',
+    'lib/modules/validators/hooks/apply_definition.js',
+    'lib/modules/validators/hooks/init_class.js'
   ], ['client', 'server']);
 
   api.export(['Astro', 'Validators'], ['client', 'server']);
