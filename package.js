@@ -41,7 +41,9 @@ Package.onUse(function(api) {
     'lib/modules/storage/module.js',
     // Utils.
     'lib/modules/storage/utils/utils.js',
+    'lib/modules/storage/utils/generate_meteor_method_callback.js',
     'lib/modules/storage/utils/throw_if_selector_is_not_id.js',
+    'lib/modules/storage/utils/apply_modifier.js',
     'lib/modules/storage/utils/transform_to_class.js',
     // Class prototype methods.
     'lib/modules/storage/class_prototype_methods/class_prototype_methods.js',
@@ -56,20 +58,18 @@ Package.onUse(function(api) {
     'lib/modules/storage/class_static_methods/get_collection.js',
     'lib/modules/storage/class_static_methods/get_type_field.js',
     'lib/modules/storage/class_static_methods/get_transform.js',
-    // Collection methods.
-    'lib/modules/storage/collection_methods/collection_methods.js',
-    'lib/modules/storage/collection_methods/dispatch_event.js',
-    'lib/modules/storage/collection_methods/find.js',
-    'lib/modules/storage/collection_methods/insert.js',
-    'lib/modules/storage/collection_methods/update.js',
-    'lib/modules/storage/collection_methods/remove.js',
-    'lib/modules/storage/collection_methods/validated_insert.js',
-    'lib/modules/storage/collection_methods/validated_update.js',
-    'lib/modules/storage/collection_methods/validated_remove.js',
+    'lib/modules/storage/class_static_methods/find.js',
+    'lib/modules/storage/class_static_methods/insert.js',
+    'lib/modules/storage/class_static_methods/update.js',
+    'lib/modules/storage/class_static_methods/remove.js',
     // Meteor methods.
     'lib/modules/storage/meteor_methods/meteor_methods.js',
-    'lib/modules/storage/meteor_methods/save.js',
-    'lib/modules/storage/meteor_methods/remove.js',
+    'lib/modules/storage/meteor_methods/class_insert.js',
+    'lib/modules/storage/meteor_methods/class_update.js',
+    'lib/modules/storage/meteor_methods/class_remove.js',
+    'lib/modules/storage/meteor_methods/document_insert.js',
+    'lib/modules/storage/meteor_methods/document_update.js',
+    'lib/modules/storage/meteor_methods/document_remove.js',
     // Class Events.
     'lib/modules/storage/class_events/class_events.js',
     'lib/modules/storage/class_events/before_init.js',
@@ -77,12 +77,12 @@ Package.onUse(function(api) {
     'lib/modules/storage/class_events/from_json_value.js',
     'lib/modules/storage/class_events/to_json_value.js',
     // Hooks.
-    'lib/modules/storage/module/init_schema.js',
-    'lib/modules/storage/module/init_definition.js',
-    'lib/modules/storage/module/parse_definition.js',
-    'lib/modules/storage/module/merge_definitions.js',
-    'lib/modules/storage/module/apply_definition.js',
-    'lib/modules/storage/module/init_class.js'
+    'lib/modules/storage/hooks/init_schema.js',
+    'lib/modules/storage/hooks/init_definition.js',
+    'lib/modules/storage/hooks/parse_definition.js',
+    'lib/modules/storage/hooks/merge_definitions.js',
+    'lib/modules/storage/hooks/apply_definition.js',
+    'lib/modules/storage/hooks/init_class.js'
   ], ['client', 'server']);
 
   // Behaviors module.
