@@ -41,10 +41,13 @@ Package.onUse(function(api) {
     'lib/modules/storage/module.js',
     // Utils.
     'lib/modules/storage/utils/utils.js',
-    'lib/modules/storage/utils/generate_meteor_method_callback.js',
+    'lib/modules/storage/utils/wrap_callback.js',
     'lib/modules/storage/utils/throw_if_selector_is_not_id.js',
     'lib/modules/storage/utils/apply_modifier.js',
     'lib/modules/storage/utils/transform_to_class.js',
+    'lib/modules/storage/utils/document_insert.js',
+    'lib/modules/storage/utils/document_update.js',
+    'lib/modules/storage/utils/document_remove.js',
     // Class prototype methods.
     'lib/modules/storage/class_prototype_methods/class_prototype_methods.js',
     'lib/modules/storage/class_prototype_methods/save.js',
