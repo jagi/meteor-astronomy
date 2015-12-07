@@ -14,6 +14,7 @@ Tinytest.add('Storage - Reload', function(test) {
       string: 'abc'
     }
   });
+  storage.save();
 
   // Modify document.
   storage.string = 'cba';
@@ -29,8 +30,7 @@ Tinytest.add('Storage - Reload', function(test) {
   };
   storage.reload();
 
-  let expected = Storage.findOne();
-  test.isTrue(EJSON.equals(storage, expected),
+  test.isTrue(EJSON.equals(storage, Storage.findOne()),
     'Document should be reloaded to the original state'
   );
 });
