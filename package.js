@@ -48,6 +48,9 @@ Package.onUse(function(api) {
     'lib/modules/storage/utils/document_insert.js',
     'lib/modules/storage/utils/document_update.js',
     'lib/modules/storage/utils/document_remove.js',
+    'lib/modules/storage/utils/class_insert.js',
+    'lib/modules/storage/utils/class_update.js',
+    'lib/modules/storage/utils/class_remove.js',
     // Class prototype methods.
     'lib/modules/storage/class_prototype_methods/class_prototype_methods.js',
     'lib/modules/storage/class_prototype_methods/save.js',
