@@ -1,4 +1,4 @@
-Tinytest.add('Core - Transform', function(test) {
+Tinytest.add('Storage - Transform', function(test) {
   reset();
 
   let Transforms = new Mongo.Collection(null);

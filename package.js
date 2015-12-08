@@ -270,14 +270,15 @@ Package.onTest(function(api) {
   api.addFiles('test/utils.js', ['client', 'server']);
   // Core.
   api.addFiles([
-    'test/core/core_transform.js',
-    'test/core/core_inherit.js',
-    'test/core/core_extend.js',
-    'test/core/core_state.js'
+    'test/core/inherit.js',
+    'test/core/extend.js',
+    'test/core/state.js',
+    'test/core/ejson.js'
   ], ['client', 'server']);
   // Storage
   api.addFiles([
     'test/storage/init.js',
+    'test/storage/transform.js',
     'test/storage/document_insert.js',
     'test/storage/document_update.js',
     'test/storage/document_remove.js',
@@ -287,10 +288,6 @@ Package.onTest(function(api) {
     // 'test/storage/class_update.js',
     // 'test/storage/class_upsert.js',
     // 'test/storage/class_remove.js'
-  ], ['client', 'server']);
-  // EJSON.
-  api.addFiles([
-    // 'test/ejson/ejson_parsing.js'
   ], ['client', 'server']);
   // Events.
   api.addFiles([
