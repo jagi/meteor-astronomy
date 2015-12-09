@@ -122,7 +122,6 @@ Package.onUse(function(api) {
     // Global.
     'lib/modules/events/global/event_target.js',
     'lib/modules/events/global/event.js',
-    'lib/modules/events/global/events.js',
     // Hooks.
     'lib/modules/events/hooks/init_schema.js',
     'lib/modules/events/hooks/init_definition.js',
