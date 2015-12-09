@@ -12,11 +12,16 @@ Tinytest.add('Storage - Init', function(test) {
     name: 'Storage',
     collection: Storages,
     nested: {
-      'nested': {
+      'one': {
         count: 'one',
+        class: 'NestedStorage',
+        default: null
+      },
+      'many': {
+        count: 'many',
         class: 'NestedStorage'
       },
-      'array': {
+      'numbers': {
         count: 'many',
         type: 'number'
       }

@@ -2,32 +2,38 @@ Tinytest.add('Storage - Reload', function(test) {
   reset();
 
   let storage = new Storage({
-    string: 'abc',
-    number: 123,
-    boolean: true,
-    date: new Date(2000, 0, 1, 0, 0, 0, 0),
-    array: [1, 2, 3],
-    anything: {
-      string: 'abc'
+    'one': {
+      'string': 'abc'
     },
-    nested: {
-      string: 'abc'
-    }
+    'many': [{
+      'string': 'abc'
+    }],
+    'anything': {
+      'string': 'abc'
+    },
+    'numbers': [1, 2, 3],
+    'string': 'abc',
+    'number': 123,
+    'boolean': true,
+    'date': new Date(2000, 0, 1, 0, 0, 0, 0)
   });
   storage.save();
 
   // Modify document.
+  storage.one = {
+    string: 'cba'
+  };
+  storage.many = [{
+    string: 'cba'
+  }]
+  storage.numbers = [3, 2, 1];
+  storage.anything = {
+    string: 'cba'
+  };
   storage.string = 'cba';
   storage.number = 321;
   storage.boolean = false;
   storage.date = new Date(2001, 0, 1, 0, 0, 0, 0);
-  storage.array = [3, 2, 1];
-  storage.anything = {
-    string: 'cba'
-  };
-  storage.nested = {
-    string: 'cba'
-  };
   storage.reload();
 
   test.isTrue(EJSON.equals(storage, Storage.findOne()),

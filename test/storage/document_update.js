@@ -3,8 +3,9 @@ Tinytest.add('Storage - Document update', function(test) {
   let storage = Storage.findOne(id);
 
   // Update a document.
-  storage.nested.string = 'cba'
-  storage.array.push(4);
+  storage.one.string = 'cba'
+  storage.many[0].string = 'cba';
+  storage.numbers.push(4);
   storage.anything.number = 123;
   storage.string = 'cba';
   storage.number = 321;
@@ -14,10 +15,13 @@ Tinytest.add('Storage - Document update', function(test) {
 
   let expected = {
     '_id': id,
-    'nested': {
+    'one': {
       'string': 'cba'
     },
-    'array': [1, 2, 3, 4],
+    'many': [{
+      'string': 'cba'
+    }],
+    'numbers': [1, 2, 3, 4],
     'anything': {
       'string': 'abc',
       'number': 123

@@ -1,34 +1,42 @@
-Tinytest.add('Storage - Direct update', function(test) {
-  // Get the "_id" property of the inserted document.
-  var id = Storages.findOne({}, {
-    transform: null
-  })._id;
+Tinytest.add('Storage - Class update', function(test) {
+  let id = Storages.findOne()._id;
 
   Storage.update(id, {
     $set: {
-      string: 'cba',
-      number: '321',
-      boolean: false
+      'one': {},
+      'numbers': [1, 2, 3],
+      'anything': {
+        'string': 'abc'
+      },
+      'string': 'abc',
+      'number': 123,
+      'boolean': true,
+      'date': new Date(2000, 0, 1)
     },
     $push: {
-      array: 'abc'
+      'many': {}
     }
   });
 
-  var expected = {
-    _id: id,
-    nested: null,
-    object: {},
-    array: ['abc'],
-    string: 'cba',
-    number: 321,
-    boolean: false,
-    date: null
+  let expected = {
+    '_id': id,
+    'one': {
+      'string': null
+    },
+    'many': [{
+      'string': null
+    }],
+    'numbers': [1, 2, 3],
+    'anything': {
+      'string': 'abc'
+    },
+    'string': 'abc',
+    'number': 123,
+    'boolean': true,
+    'date': new Date(2000, 0, 1)
   };
-  var storage = Storages.findOne(id, {
-    transform: null
-  });
-  test.equal(storage, expected,
-    'A document has not been updated properly'
+
+  test.equal(Storages.findOne(id), expected,
+    'Document has not been updated properly'
   );
 });

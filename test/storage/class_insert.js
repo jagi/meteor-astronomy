@@ -1,23 +1,21 @@
-Tinytest.add('Storage - Direct insert', function(test) {
-  // Remove all previously stored documents.
-  removeAll(Storages);
+Tinytest.add('Storage - Class insert', function(test) {
+  reset();
 
   Storage.insert({});
 
-  storage = _.omit(Storages.findOne({}, {
-    transform: null
-  }), '_id');
-
-  var expected = {
-    'nested': null,
-    'object': {},
-    'array': [],
-    'string': 'abc',
-    'number': 123,
-    'boolean': true,
-    'date': null,
+  let storage = _.omit(Storages.findOne(), '_id');
+  let expected = {
+    'one': null,
+    'many': null,
+    'numbers': null,
+    'anything': null,
+    'string': null,
+    'number': null,
+    'boolean': null,
+    'date': null
   };
+
   test.equal(storage, expected,
-    'A document has not been inserted properly'
+    'Document has not been inserted properly'
   );
 });

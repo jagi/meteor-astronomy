@@ -2,10 +2,13 @@ Tinytest.add('Storage - Document insert', function(test) {
   let id = 'ekfAFb8w5umxaeAPs';
   let storage = new Storage({
     '_id': id,
-    'nested': new NestedStorage({
+    'one': {
       'string': 'abc'
-    }),
-    'array': [1, 2, 3],
+    },
+    'many': [{
+      'string': 'abc'
+    }],
+    'numbers': [1, 2, 3],
     'anything': {
       'string': 'abc'
     },
@@ -18,10 +21,13 @@ Tinytest.add('Storage - Document insert', function(test) {
 
   let expected = {
     '_id': id,
-    'nested': {
+    'one': {
       'string': 'abc'
     },
-    'array': [1, 2, 3],
+    'many': [{
+      'string': 'abc'
+    }],
+    'numbers': [1, 2, 3],
     'anything': {
       'string': 'abc',
     },

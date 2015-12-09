@@ -282,12 +282,12 @@ Package.onTest(function(api) {
     'test/storage/document_insert.js',
     'test/storage/document_update.js',
     'test/storage/document_remove.js',
-    'test/storage/reload.js',
-    // 'test/storage/copy.js',
-    // 'test/storage/class_insert.js',
-    // 'test/storage/class_update.js',
+    'test/storage/class_insert.js',
+    'test/storage/class_update.js',
     // 'test/storage/class_upsert.js',
-    // 'test/storage/class_remove.js'
+    'test/storage/class_remove.js',
+    'test/storage/reload.js',
+    'test/storage/copy.js'
   ], ['client', 'server']);
   // Events.
   api.addFiles([
