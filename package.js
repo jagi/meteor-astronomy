@@ -290,9 +290,9 @@ Package.onTest(function(api) {
   ], ['client', 'server']);
   // Events.
   api.addFiles([
-    // 'test/events/events_order.js',
-    // 'test/events/events_propagation.js',
-    // 'test/events/events_prevent_default.js'
+    'test/events/order.js',
+    'test/events/propagation.js',
+    'test/events/cancelable.js'
   ], ['client', 'server']);
   // Fields.
   api.addFiles([
