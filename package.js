@@ -284,6 +284,7 @@ Package.onTest(function(api) {
     'test/storage/class_insert.js',
     'test/storage/class_update.js',
     // 'test/storage/class_upsert.js',
+    // 'test/fields/modified.js',
     'test/storage/class_remove.js',
     'test/storage/reload.js',
     'test/storage/copy.js'
@@ -296,18 +297,14 @@ Package.onTest(function(api) {
   ], ['client', 'server']);
   // Fields.
   api.addFiles([
-    // 'test/fields/fields_definition.js',
-    // 'test/fields/fields_default.js',
-    // 'test/fields/fields_casting.js',
-    // 'test/fields/fields_set.js',
-    // 'test/fields/fields_get.js',
-    // 'test/fields/fields_raw.js',
-    // 'test/fields/fields_push.js',
-    // 'test/fields/fields_pop.js',
-    // 'test/fields/fields_inc.js',
-    // 'test/fields/fields_modified.js',
-    // 'test/fields/fields_immutable.js',
-    // 'test/fields/fields_transient.js'
+    'test/fields/definition.js',
+    'test/fields/default.js',
+    'test/fields/casting.js',
+    'test/fields/set.js',
+    'test/fields/get.js',
+    'test/fields/raw.js',
+    'test/fields/transient.js',
+    'test/fields/immutable.js'
   ], ['client', 'server']);
   // Indexes.
   api.addFiles([

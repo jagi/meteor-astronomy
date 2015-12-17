@@ -10,4 +10,6 @@ reset = function() {
       Collection.remove(doc._id);
     });
   });
+
+  Astro.Class.classes = {};
 };

@@ -32,7 +32,7 @@ Tinytest.add('Storage - Document update', function(test) {
     'date': new Date(2001, 0, 1, 0, 0, 0, 0),
   };
 
-  test.equal(Storages.findOne(), expected,
+  test.equal(Storages.findOne(id), expected,
     'The document has not been updated properly'
   );
 });

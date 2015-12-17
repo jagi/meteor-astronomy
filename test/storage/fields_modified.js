@@ -1,5 +1,4 @@
 Tinytest.add('Fields - Modified', function(test) {
-  // Reset Astro.
   reset();
 
   var ModifiedCollection = new Mongo.Collection(null);

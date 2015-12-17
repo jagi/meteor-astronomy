@@ -1,9 +1,8 @@
 Tinytest.add('Storage - Class insert', function(test) {
-  reset();
+  let id = 'ekfAFb8w5umxaeAPs';
+  Storage.insert({_id: id});
 
-  Storage.insert({});
-
-  let storage = _.omit(Storages.findOne(), '_id');
+  let storage = _.omit(Storages.findOne(id), '_id');
   let expected = {
     'one': null,
     'many': null,

@@ -1,4 +1,6 @@
 Tinytest.add('Storage - Init', function(test) {
+  reset();
+
   Storages = new Mongo.Collection(null);
 
   NestedStorage = Astro.Class.create({
@@ -34,6 +36,4 @@ Tinytest.add('Storage - Init', function(test) {
       'date': 'date'
     }
   });
-
-  reset();
 });

@@ -128,7 +128,13 @@ Tinytest.add('Events - Order', function(test) {
     'ONE.beforeSave',
     'OE.beforeUpdate',
     'ONE.beforeUpdate',
-    'ONE.beforeUpdate'
+    'ONE.beforeUpdate',
+    'OE.beforeInit',
+    'ONE.beforeInit',
+    'ONE.afterInit',
+    'ONE.beforeInit',
+    'ONE.afterInit',
+    'OE.afterInit'
   ];
   event.save();
   test.equal(executedEvents, expectedEvents,
@@ -144,12 +150,19 @@ Tinytest.add('Events - Order', function(test) {
     'OE.beforeUpdate',
     'ONE.beforeUpdate',
     'ONE.beforeUpdate',
+    'OE.beforeInit',
+    'ONE.beforeInit',
+    'ONE.afterInit',
+    'ONE.beforeInit',
+    'ONE.afterInit',
+    'OE.afterInit',
     'OE.afterUpdate',
     'ONE.afterUpdate',
     'ONE.afterUpdate',
     'OE.afterSave',
     'ONE.afterSave',
     'ONE.afterSave'
+
   ];
   event.anything = 'anything';
   event.save();

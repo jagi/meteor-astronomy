@@ -1,6 +1,4 @@
 Tinytest.add('Storage - Reload', function(test) {
-  reset();
-
   let storage = new Storage({
     'one': {
       'string': 'abc'

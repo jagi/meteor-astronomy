@@ -1,6 +1,4 @@
 Tinytest.add('Storage - Transform', function(test) {
-  reset();
-
   let Transforms = new Mongo.Collection(null);
 
   // Insert a document.

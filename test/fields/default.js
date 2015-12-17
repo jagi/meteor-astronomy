@@ -1,25 +1,15 @@
 Tinytest.add('Fields - Default', function(test) {
-  // Reset Astro.
   reset();
 
-  // Class for usage as a nested field.
-  var NestedDefault = Astro.Class.create({
-    name: 'NestedDefault',
+  let DefaultNested = Astro.Class.create({
+    name: 'DefaultNested',
     fields: {
-      'object': {
-        type: 'object',
+      'anything': {
         default: function() {
-          return {};
+          return {
+            'string': 'string'
+          };
         }
-      },
-      'array': {
-        type: 'array',
-        default: function() {
-          return [];
-        }
-      },
-      'null': {
-        type: null
       },
       'string': {
         type: 'string',
@@ -43,31 +33,31 @@ Tinytest.add('Fields - Default', function(test) {
   });
 
   // Define simple class to work with.
-  var Default = Astro.Class.create({
+  let Default = Astro.Class.create({
     name: 'Default',
+    nested: {
+      'one': {
+        count: 'one',
+        class: 'DefaultNested',
+        default: function() {
+          return new DefaultNested();
+        }
+      },
+      'many': {
+        count: 'many',
+        class: 'DefaultNested',
+        default: function() {
+          return [new DefaultNested()];
+        }
+      },
+    },
     fields: {
-      'nested': {
-        type: 'object',
-        nested: 'NestedDefault',
+      'anything': {
         default: function() {
-          return {};
+          return {
+            'string': 'string'
+          };
         }
-      },
-      'object': {
-        type: 'object',
-        default: function() {
-          return {};
-        }
-      },
-      'array': {
-        type: 'array',
-        default: function() {
-          return [];
-        }
-      },
-      'null': {
-        type: null,
-        default: null
       },
       'string': {
         type: 'string',
@@ -90,30 +80,27 @@ Tinytest.add('Fields - Default', function(test) {
     }
   });
 
-  var def = new Default();
+  let doc = new Default();
 
-  test.isNull(def.null,
-    'The default value of the "null" field is not correct'
+  test.equal(doc.anything, {'string': 'string'},
+    'The default value of the "anything" field is not correct'
   );
-  test.equal(def.string, 'string',
+  test.equal(doc.string, 'string',
     'The default value of the "string" field is not correct'
   );
-  test.equal(def.number, 123,
+  test.equal(doc.number, 123,
     'The default value of the "number" field is not correct'
   );
-  test.equal(def.boolean, true,
+  test.equal(doc.boolean, true,
     'The default value of the "boolean" field is not correct'
   );
-  test.equal(def.date, new Date(2000, 0, 1),
+  test.equal(doc.date, new Date(2000, 0, 1),
     'The default value of the "date" field is not correct'
   );
-  test.equal(def.object, {},
-    'The default value of the "object" field is not correct'
+  test.equal(doc.one, new DefaultNested(),
+    'The default value of the "one" field is not correct'
   );
-  test.equal(def.array, [],
-    'The default value of the "array" field is not correct'
-  );
-  test.instanceOf(def.nested, NestedDefault,
-    'The default value of the "nested" field is not correct'
+  test.equal(doc.many, [new DefaultNested()],
+    'The default value of the "many" field is not correct'
   );
 });

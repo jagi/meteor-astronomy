@@ -36,7 +36,7 @@ Tinytest.add('Storage - Document insert', function(test) {
     'boolean': true,
     'date': new Date(2000, 0, 1, 0, 0, 0, 0)
   };
-  test.equal(Storages.findOne(), expected,
+  test.equal(Storages.findOne(id), expected,
     'Document has not been saved properly'
   );
 });
