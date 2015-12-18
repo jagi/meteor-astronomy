@@ -185,7 +185,10 @@ Package.onUse(function(api) {
     // Global.
     // Global - Fields.
     'lib/modules/fields/global/fields/field.js',
+    'lib/modules/fields/global/fields/plain_field.js',
     'lib/modules/fields/global/fields/nested_field.js',
+    'lib/modules/fields/global/fields/one_nested_field.js',
+    'lib/modules/fields/global/fields/many_nested_field.js',
     // Global - Types.
     'lib/modules/fields/global/types/type.js',
     'lib/modules/fields/global/types/types.js',
@@ -222,6 +225,9 @@ Package.onUse(function(api) {
   // Validators module.
   api.addFiles([
     'lib/modules/validators/module.js',
+    // Utils.
+    'lib/modules/validators/utils/utils.js',
+    'lib/modules/validators/utils/validate.js',
     // Class prototype methods.
     'lib/modules/validators/class_prototype_methods/class_prototype_methods.js',
     'lib/modules/validators/class_prototype_methods/validate.js',
@@ -237,7 +243,16 @@ Package.onUse(function(api) {
     'lib/modules/validators/class_events/before_init.js',
     'lib/modules/validators/class_events/before_save.js',
     // Global.
-    'lib/modules/validators/global/validation_error.js',
+    'lib/modules/validators/global/validator.js',
+    'lib/modules/validators/global/validators/validators.js',
+    'lib/modules/validators/global/validators/required.js',
+    'lib/modules/validators/global/validators/string.js',
+    'lib/modules/validators/global/validators/number.js',
+    'lib/modules/validators/global/validators/boolean.js',
+    'lib/modules/validators/global/validators/date.js',
+    'lib/modules/validators/global/validators/array.js',
+    'lib/modules/validators/global/validators/instance_of.js',
+    'lib/modules/validators/global/validators/max_length.js',
     // Hooks.
     'lib/modules/validators/hooks/init_schema.js',
     'lib/modules/validators/hooks/init_definition.js',

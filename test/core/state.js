@@ -5,10 +5,7 @@ Tinytest.add('Core - State', function(test) {
 
   let State = Astro.Class.create({
     name: 'State',
-    collection: States,
-    fields: {
-      'name': 'string'
-    }
+    collection: States
   });
 
   let core = new State();

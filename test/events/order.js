@@ -54,7 +54,10 @@ Tinytest.add('Events - Order', function(test) {
       }
     },
     fields: {
-      'anything': null
+      'anything': {
+        type: null,
+        optional: true
+      }
     },
     events: {
       beforeInit: function(e) {

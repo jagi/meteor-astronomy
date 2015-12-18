@@ -2,8 +2,8 @@ Tinytest.add('Storage - Class insert', function(test) {
   let id = 'ekfAFb8w5umxaeAPs';
   Storage.insert({_id: id});
 
-  let storage = _.omit(Storages.findOne(id), '_id');
   let expected = {
+    '_id': id,
     'one': null,
     'many': null,
     'numbers': null,
@@ -14,7 +14,7 @@ Tinytest.add('Storage - Class insert', function(test) {
     'date': null
   };
 
-  test.equal(storage, expected,
+  test.equal(Storages.findOne(id), expected,
     'Document has not been inserted properly'
   );
 });

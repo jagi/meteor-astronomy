@@ -6,7 +6,10 @@ Tinytest.add('Storage - Init', function(test) {
   NestedStorage = Astro.Class.create({
     name: 'NestedStorage',
     fields: {
-      'string': 'string'
+      'string': {
+        type: 'string',
+        optional: true
+      }
     }
   });
 
@@ -17,23 +20,40 @@ Tinytest.add('Storage - Init', function(test) {
       'one': {
         count: 'one',
         class: 'NestedStorage',
-        default: null
+        optional: true
       },
       'many': {
         count: 'many',
-        class: 'NestedStorage'
+        class: 'NestedStorage',
+        optional: true
       },
       'numbers': {
         count: 'many',
-        type: 'number'
+        type: 'number',
+        optional: true
       }
     },
     fields: {
-      'anything': null,
-      'string': 'string',
-      'number': 'number',
-      'boolean': 'boolean',
-      'date': 'date'
+      'anything': {
+        type: null,
+        optional: true
+      },
+      'string': {
+        type: 'string',
+        optional: true
+      },
+      'number': {
+        type: 'number',
+        optional: true
+      },
+      'boolean': {
+        type: 'boolean',
+        optional: true
+      },
+      'date': {
+        type: 'date',
+        optional: true
+      }
     }
   });
 });
