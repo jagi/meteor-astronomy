@@ -1,3 +1,8 @@
+# 1.2.8 (2015-12-19)
+
+- Improve backward compatibility with 1.2.6
+- Don't get plain value when saving value of the "null" type field
+
 # 1.2.7 (2015-12-16)
 
 - Performance improvements
