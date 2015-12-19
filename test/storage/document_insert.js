@@ -3,10 +3,12 @@ Tinytest.add('Storage - Document insert', function(test) {
   let storage = new Storage({
     '_id': id,
     'one': {
-      'string': 'abc'
+      'string': 'abc',
+      'transient': 'transient'
     },
     'many': [{
-      'string': 'abc'
+      'string': 'abc',
+      'transient': 'transient'
     }],
     'numbers': [1, 2, 3],
     'anything': {
@@ -15,7 +17,8 @@ Tinytest.add('Storage - Document insert', function(test) {
     'string': 'abc',
     'number': 123,
     'boolean': true,
-    'date': new Date(2000, 0, 1, 0, 0, 0, 0)
+    'date': new Date(2000, 0, 1, 0, 0, 0, 0),
+    'transient': 'transient'
   });
   storage.save();
 

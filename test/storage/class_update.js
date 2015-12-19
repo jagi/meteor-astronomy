@@ -3,10 +3,13 @@ Tinytest.add('Storage - Class update', function(test) {
 
   Storage.update(id, {
     $set: {
-      'one': {},
+      'one': {
+        'string': 'abc',
+        'transient': 'transient'
+      },
       'numbers': [1, 2, 3],
       'anything': {
-        'string': 'abc'
+        'string': 'abc',
       },
       'string': 'abc',
       'number': 123,
@@ -14,17 +17,20 @@ Tinytest.add('Storage - Class update', function(test) {
       'date': new Date(2000, 0, 1)
     },
     $push: {
-      'many': {}
+      'many': {
+        'string': 'abc',
+        'transient': 'transient'
+      }
     }
   });
 
   let expected = {
     '_id': id,
     'one': {
-      'string': null
+      'string': 'abc'
     },
     'many': [{
-      'string': null
+      'string': 'abc'
     }],
     'numbers': [1, 2, 3],
     'anything': {

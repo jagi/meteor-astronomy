@@ -1,6 +1,9 @@
 Tinytest.add('Storage - Class insert', function(test) {
   let id = 'ekfAFb8w5umxaeAPs';
-  Storage.insert({_id: id});
+  Storage.insert({
+    '_id': id,
+    'transient': 'transient'
+  });
 
   let expected = {
     '_id': id,

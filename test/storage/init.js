@@ -9,6 +9,10 @@ Tinytest.add('Storage - Init', function(test) {
       'string': {
         type: 'string',
         optional: true
+      },
+      'transient': {
+        type: 'string',
+        transient: true
       }
     }
   });
@@ -53,6 +57,10 @@ Tinytest.add('Storage - Init', function(test) {
       'date': {
         type: 'date',
         optional: true
+      },
+      'transient': {
+        type: 'string',
+        transient: true
       }
     }
   });
