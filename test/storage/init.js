@@ -13,6 +13,10 @@ Tinytest.add('Storage - Init', function(test) {
       'transient': {
         type: 'string',
         transient: true
+      },
+      'immutable': {
+        type: 'string',
+        immutable: true
       }
     }
   });
@@ -61,6 +65,10 @@ Tinytest.add('Storage - Init', function(test) {
       'transient': {
         type: 'string',
         transient: true
+      },
+      'immutable': {
+        type: 'string',
+        immutable: true
       }
     }
   });

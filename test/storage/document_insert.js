@@ -4,11 +4,13 @@ Tinytest.add('Storage - Document insert', function(test) {
     '_id': id,
     'one': {
       'string': 'abc',
-      'transient': 'transient'
+      'transient': 'transient',
+      'immutable': 'immutable'
     },
     'many': [{
       'string': 'abc',
-      'transient': 'transient'
+      'transient': 'transient',
+      'immutable': 'immutable'
     }],
     'numbers': [1, 2, 3],
     'anything': {
@@ -18,17 +20,20 @@ Tinytest.add('Storage - Document insert', function(test) {
     'number': 123,
     'boolean': true,
     'date': new Date(2000, 0, 1, 0, 0, 0, 0),
-    'transient': 'transient'
+    'transient': 'transient',
+    'immutable': 'immutable'
   });
   storage.save();
 
   let expected = {
     '_id': id,
     'one': {
-      'string': 'abc'
+      'string': 'abc',
+      'immutable': 'immutable'
     },
     'many': [{
-      'string': 'abc'
+      'string': 'abc',
+      'immutable': 'immutable'
     }],
     'numbers': [1, 2, 3],
     'anything': {
@@ -37,7 +42,8 @@ Tinytest.add('Storage - Document insert', function(test) {
     'string': 'abc',
     'number': 123,
     'boolean': true,
-    'date': new Date(2000, 0, 1, 0, 0, 0, 0)
+    'date': new Date(2000, 0, 1, 0, 0, 0, 0),
+    'immutable': 'immutable'
   };
   test.equal(Storages.findOne(id), expected,
     'Document has not been saved properly'

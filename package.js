@@ -318,8 +318,7 @@ Package.onTest(function(api) {
     'test/fields/casting.js',
     'test/fields/set.js',
     'test/fields/get.js',
-    'test/fields/raw.js',
-    'test/fields/immutable.js'
+    'test/fields/raw.js'
   ], ['client', 'server']);
   // Indexes.
   api.addFiles([

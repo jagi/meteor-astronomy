@@ -2,19 +2,47 @@ Tinytest.add('Storage - Class insert', function(test) {
   let id = 'ekfAFb8w5umxaeAPs';
   Storage.insert({
     '_id': id,
-    'transient': 'transient'
+    'one': {
+      'string': 'abc',
+      'transient': 'transient',
+      'immutable': 'immutable'
+    },
+    'many': [{
+      'string': 'abc',
+      'transient': 'transient',
+      'immutable': 'immutable'
+    }],
+    'numbers': [1, 2, 3],
+    'anything': {
+      'string': 'abc',
+    },
+    'string': 'abc',
+    'number': 123,
+    'boolean': true,
+    'date': new Date(2000, 0, 1),
+    'transient': 'transient',
+    'immutable': 'immutable'
   });
 
   let expected = {
     '_id': id,
-    'one': null,
-    'many': null,
-    'numbers': null,
-    'anything': null,
-    'string': null,
-    'number': null,
-    'boolean': null,
-    'date': null
+    'one': {
+      'string': 'abc',
+      'immutable': 'immutable'
+    },
+    'many': [{
+      'string': 'abc',
+      'immutable': 'immutable'
+    }],
+    'numbers': [1, 2, 3],
+    'anything': {
+      'string': 'abc',
+    },
+    'string': 'abc',
+    'number': 123,
+    'boolean': true,
+    'date': new Date(2000, 0, 1),
+    'immutable': 'immutable'
   };
 
   test.equal(Storages.findOne(id), expected,
