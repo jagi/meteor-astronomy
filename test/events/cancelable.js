@@ -61,7 +61,7 @@ Tinytest.add('Events - Cancelable', function(test) {
     function() {
       event.save();
     },
-    'Operation prevented [403]'
+    'Operation prevented [prevented]'
   );
 
   // Prevent.
@@ -71,7 +71,7 @@ Tinytest.add('Events - Cancelable', function(test) {
     function() {
       event.save();
     },
-    'Operation prevented [403]'
+    'Operation prevented [prevented]'
   );
 
   // Do not prevent.
