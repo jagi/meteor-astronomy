@@ -28,6 +28,11 @@ Package.onUse(function(api) {
     'lib/core/global/config.js',
     'lib/core/global/ejson.js',
     'lib/core/global/non_enabled.js',
+    // Utils.
+    'lib/core/utils/utils.js',
+    'lib/core/utils/warn.js',
+    'lib/core/utils/override_method.js',
+    'lib/core/utils/throw_parse_error.js',
     // Astro.Module.
     'lib/core/module/module.js',
     'lib/core/module/modules.js',
