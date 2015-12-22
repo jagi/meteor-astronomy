@@ -1,3 +1,8 @@
+# 1.2.9 (2015-12-22)
+
+- Clear unnecessary modifiers before calling the "getModified" method
+- Fix bug when getting modifiers of the document with the "\_id" field but without collection
+
 # 1.2.8 (2015-12-19)
 
 - Improve backward compatibility with 1.2.6
