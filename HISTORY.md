@@ -1,3 +1,7 @@
+# 1.2.10 (2015-12-23)
+
+- Get modifiers even if the field's value returned to the default value.
+
 # 1.2.9 (2015-12-22)
 
 - Clear unnecessary modifiers before calling the "getModified" method
