@@ -9,6 +9,7 @@ Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
 
   api.use('jagi:reactive-map@2.0.0');
+  api.use('mdg:validation-error@0.3.0');
   api.use('mongo');
   api.use('minimongo');
   api.use('underscore');
