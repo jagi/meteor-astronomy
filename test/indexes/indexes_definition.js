@@ -40,7 +40,7 @@ Tinytest.add('Indexes - Add', function(test) {
         index: 1
       },
       'field': {
-        type: 'string',
+        type: String,
         index: 1
       },
       'string': 'string',

@@ -10,7 +10,6 @@ Tinytest.add('Storage - Document update', function(test) {
   storage.many[0].transient = 'transient';
   storage.many[0].immutable = 'IMMUTABLE';
   storage.numbers = [3, 2, 1];
-  storage.anything.number = 123;
   storage.string = 'cba';
   storage.number = 321;
   storage.boolean = false;
@@ -30,10 +29,6 @@ Tinytest.add('Storage - Document update', function(test) {
       'immutable': 'immutable'
     }],
     'numbers': [3, 2, 1],
-    'anything': {
-      'string': 'abc',
-      'number': 123
-    },
     'string': 'cba',
     'number': 321,
     'boolean': false,

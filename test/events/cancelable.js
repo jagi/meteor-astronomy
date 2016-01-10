@@ -16,29 +16,25 @@ Tinytest.add('Events - Cancelable', function(test) {
   let CancelableEvent = Astro.Class.create({
     name: 'CancelableEvent',
     collection: CancelableEvents,
-    nested: {
-      'one': {
-        count: 'one',
-        class: 'CancelableNestedEvent',
+    fields: {
+      one: {
+        type: CancelableNestedEvent,
         default: function() {
           return new CancelableNestedEvent();
         }
       },
-      'many': {
-        count: 'many',
-        class: 'CancelableNestedEvent',
+      many: {
+        type: [CancelableNestedEvent],
         default: function() {
           return [new CancelableNestedEvent()];
         }
-      }
-    },
-    fields: {
-      'prevent': {
-        type: 'boolean',
+      },
+      prevent: {
+        type: Boolean,
         default: false
       },
-      'preventNested': {
-        type: 'boolean',
+      preventNested: {
+        type: Boolean,
         default: false
       }
     },

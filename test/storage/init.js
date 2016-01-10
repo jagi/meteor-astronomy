@@ -6,16 +6,16 @@ Tinytest.add('Storage - Init', function(test) {
   NestedStorage = Astro.Class.create({
     name: 'NestedStorage',
     fields: {
-      'string': {
-        type: 'string',
+      string: {
+        type: String,
         optional: true
       },
-      'transient': {
-        type: 'string',
+      transient: {
+        type: String,
         transient: true
       },
-      'immutable': {
-        type: 'string',
+      immutable: {
+        type: String,
         immutable: true
       }
     }
@@ -24,50 +24,41 @@ Tinytest.add('Storage - Init', function(test) {
   Storage = Astro.Class.create({
     name: 'Storage',
     collection: Storages,
-    nested: {
-      'one': {
-        count: 'one',
-        class: 'NestedStorage',
-        optional: true
-      },
-      'many': {
-        count: 'many',
-        class: 'NestedStorage',
-        optional: true
-      },
-      'numbers': {
-        count: 'many',
-        type: 'number',
-        optional: true
-      }
-    },
     fields: {
-      'anything': {
-        type: null,
+      one: {
+        type: NestedStorage,
         optional: true
       },
-      'string': {
-        type: 'string',
+      many: {
+        type: [NestedStorage],
         optional: true
       },
-      'number': {
-        type: 'number',
+      numbers: {
+        type: [Number],
         optional: true
       },
-      'boolean': {
-        type: 'boolean',
+      string: {
+        type: String,
         optional: true
       },
-      'date': {
-        type: 'date',
+      number: {
+        type: Number,
         optional: true
       },
-      'transient': {
-        type: 'string',
+      boolean: {
+        type: Boolean,
+        optional: true
+      },
+      date: {
+        type: Date,
+        optional: true
+      },
+      transient: {
+        type: String,
         transient: true
       },
-      'immutable': {
-        type: 'string',
+      immutable: {
+        type: String,
         immutable: true
       }
     }

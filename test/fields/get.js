@@ -4,77 +4,55 @@ Tinytest.add('Fields - Get', function(test) {
   let GetClassNested = Astro.Class.create({
     name: 'GetClassNested',
     fields: {
-      'anything': null
+      string: String
     }
   });
 
   // Define simple class to work with.
   let GetClass = Astro.Class.create({
     name: 'GetClass',
-    nested: {
-      'one': {
-        count: 'one',
-        class: 'GetClassNested'
+    fields: {
+      one: {
+        type: GetClassNested
       },
-      'many': {
-        count: 'many',
-        class: 'GetClassNested'
+      many: {
+        type: [GetClassNested]
       }
     }
   });
 
   let doc = new GetClass({
     one: new GetClassNested({
-      anything: {
-        string: 'string'
-      }
+      string: 'abc'
     }),
     many: [
       new GetClassNested({
-        anything: {
-          string: 'string'
-        }
+        string: 'abc'
       })
     ]
   });
 
   test.equal(doc.get('one'), new GetClassNested({
-    anything: {
-      string: 'string'
-    }
+    string: 'abc'
   }),
     'Wrong value get from the "one" field'
   );
-  test.equal(doc.get('one.anything'), {
-    string: 'string'
-  },
-    'Wrong value get from the "one.anything" field'
-  );
-  test.equal(doc.get('one.anything.string'), 'string',
-    'Wrong value get from the "one.anything.string" field'
+  test.equal(doc.get('one.string'), 'abc',
+    'Wrong value get from the "one.string" field'
   );
   test.equal(doc.get('many'), [
     new GetClassNested({
-      anything: {
-        string: 'string'
-      }
+      string: 'abc'
     })
   ],
     'Wrong value get from the "many" field'
   );
   test.equal(doc.get('many.0'), new GetClassNested({
-    anything: {
-      string: 'string'
-    }
+    string: 'abc'
   }),
     'Wrong value get from the "many.0" field'
   );
-  test.equal(doc.get('many.0.anything'), {
-    string: 'string'
-  },
-    'Wrong value get from the "many.0.anything" field'
-  );
-  test.equal(doc.get('many.0.anything.string'), 'string',
-    'Wrong value get from the "many.0.anything.string" field'
+  test.equal(doc.get('many.0.string'), 'abc',
+    'Wrong value get from the "many.0.string" field'
   );
 });

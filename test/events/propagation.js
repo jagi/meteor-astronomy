@@ -21,18 +21,15 @@ Tinytest.add('Events - Propagation', function(test) {
   let PropagationEvent = Astro.Class.create({
     name: 'PropagationEvent',
     collection: PropagationEvents,
-    nested: {
-      'one': {
-        count: 'one',
-        class: 'PropagationNestedEvent',
+    fields: {
+      one: {
+        type: PropagationNestedEvent,
         default: function() {
           return new PropagationNestedEvent();
         }
-      }
-    },
-    fields: {
-      'stopPropagation': 'boolean',
-      'stopImmediatePropagation': 'boolean',
+      },
+      stopPropagation: Boolean,
+      stopImmediatePropagation: Boolean,
     },
     events: {
       beforeSave: [

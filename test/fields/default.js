@@ -4,27 +4,20 @@ Tinytest.add('Fields - Default', function(test) {
   let DefaultNested = Astro.Class.create({
     name: 'DefaultNested',
     fields: {
-      'anything': {
-        default: function() {
-          return {
-            'string': 'string'
-          };
-        }
+      string: {
+        type: String,
+        default: 'abc'
       },
-      'string': {
-        type: 'string',
-        default: 'string'
-      },
-      'number': {
-        type: 'number',
+      number: {
+        type: Number,
         default: 123
       },
-      'boolean': {
-        type: 'boolean',
+      boolean: {
+        type: Boolean,
         default: true
       },
-      'date': {
-        type: 'date',
+      date: {
+        type: Date,
         default: function() {
           return new Date(2000, 0, 1);
         }
@@ -35,44 +28,33 @@ Tinytest.add('Fields - Default', function(test) {
   // Define simple class to work with.
   let Default = Astro.Class.create({
     name: 'Default',
-    nested: {
-      'one': {
-        count: 'one',
-        class: 'DefaultNested',
+    fields: {
+      one: {
+        type: DefaultNested,
         default: function() {
           return new DefaultNested();
         }
       },
-      'many': {
-        count: 'many',
-        class: 'DefaultNested',
+      many: {
+        type: [DefaultNested],
         default: function() {
           return [new DefaultNested()];
         }
       },
-    },
-    fields: {
-      'anything': {
-        default: function() {
-          return {
-            'string': 'string'
-          };
-        }
+      string: {
+        type: String,
+        default: 'abc'
       },
-      'string': {
-        type: 'string',
-        default: 'string'
-      },
-      'number': {
-        type: 'number',
+      number: {
+        type: Number,
         default: 123
       },
-      'boolean': {
-        type: 'boolean',
+      boolean: {
+        type: Boolean,
         default: true
       },
-      'date': {
-        type: 'date',
+      date: {
+        type: Date,
         default: function() {
           return new Date(2000, 0, 1);
         }
@@ -82,10 +64,7 @@ Tinytest.add('Fields - Default', function(test) {
 
   let doc = new Default();
 
-  test.equal(doc.anything, {'string': 'string'},
-    'The default value of the "anything" field is not correct'
-  );
-  test.equal(doc.string, 'string',
+  test.equal(doc.string, 'abc',
     'The default value of the "string" field is not correct'
   );
   test.equal(doc.number, 123,

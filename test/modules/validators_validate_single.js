@@ -56,7 +56,7 @@ Tinytest.add('Validators - Validate single', function(test) {
         validator: Validators.number()
       },
       'numberCast': {
-        type: 'number',
+        type: Number,
         validator: Validators.number()
       },
       'boolean': {
@@ -66,7 +66,7 @@ Tinytest.add('Validators - Validate single', function(test) {
         validator: Validators.date()
       },
       'dateCast': {
-        type: 'date',
+        type: Date,
         validator: Validators.date()
       },
       'email': {

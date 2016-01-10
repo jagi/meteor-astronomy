@@ -37,25 +37,21 @@ Tinytest.add('Events - Order', function(test) {
   let OrderEvent = Astro.Class.create({
     name: 'OrderEvent',
     collection: OrderEvents,
-    nested: {
-      'one': {
-        count: 'one',
-        class: 'OrderNestedEvent',
+    fields: {
+      one: {
+        type: OrderNestedEvent,
         default: function() {
           return new OrderNestedEvent();
         }
       },
-      'many': {
-        count: 'many',
-        class: 'OrderNestedEvent',
+      many: {
+        type: [OrderNestedEvent],
         default: function() {
           return [new OrderNestedEvent()];
         }
-      }
-    },
-    fields: {
-      'anything': {
-        type: null,
+      },
+      string: {
+        type: String,
         optional: true
       }
     },
@@ -167,7 +163,7 @@ Tinytest.add('Events - Order', function(test) {
     'ONE.afterSave'
 
   ];
-  event.anything = 'anything';
+  event.string = 'abc';
   event.save();
   test.equal(executedEvents, expectedEvents,
     'Wrong events order on a document update with changes'

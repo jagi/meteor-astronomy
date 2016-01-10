@@ -13,9 +13,6 @@ Tinytest.add('Storage - Class insert', function(test) {
       'immutable': 'immutable'
     }],
     'numbers': [1, 2, 3],
-    'anything': {
-      'string': 'abc',
-    },
     'string': 'abc',
     'number': 123,
     'boolean': true,
@@ -35,9 +32,6 @@ Tinytest.add('Storage - Class insert', function(test) {
       'immutable': 'immutable'
     }],
     'numbers': [1, 2, 3],
-    'anything': {
-      'string': 'abc',
-    },
     'string': 'abc',
     'number': 123,
     'boolean': true,

@@ -4,7 +4,7 @@ Tinytest.add('Core - Extend', function(test) {
   let Extended = Astro.Class.create({
     name: 'Extended',
     fields: {
-      originalField: 'string'
+      originalField: String
     },
     methods: {
       originalMethod: function() {}
@@ -16,7 +16,7 @@ Tinytest.add('Core - Extend', function(test) {
 
   Extended.extend({
     fields: {
-      extendField: 'string'
+      extendField: String
     },
     methods: {
       extendMethod: function() {}

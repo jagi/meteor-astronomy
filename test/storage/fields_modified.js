@@ -9,15 +9,15 @@ Tinytest.add('Fields - Modified', function(test) {
     collection: ModifiedCollection,
     fields: {
       'string': {
-        type: 'string',
+        type: String,
         default: 'string'
       },
       'number': {
-        type: 'number',
+        type: Number,
         default: 123
       },
       'boolean': {
-        type: 'boolean',
+        type: Boolean,
         default: true
       }
     }

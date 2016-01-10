@@ -14,9 +14,6 @@ Tinytest.add('Storage - Class update', function(test) {
         'immutable': 'IMMUTABLE'
       },
       'numbers': [3, 2, 1],
-      'anything': {
-        'string': 'cba',
-      },
       'string': 'cba',
       'number': 321,
       'boolean': false,
@@ -36,9 +33,6 @@ Tinytest.add('Storage - Class update', function(test) {
       'immutable': 'immutable'
     }],
     'numbers': [3, 2, 1],
-    'anything': {
-      'string': 'cba'
-    },
     'string': 'cba',
     'number': 321,
     'boolean': false,

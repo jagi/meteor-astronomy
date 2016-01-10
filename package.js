@@ -182,8 +182,8 @@ Package.onUse(function(api) {
     'lib/modules/fields/class_static_methods/get_field.js',
     'lib/modules/fields/class_static_methods/get_fields_names.js',
     'lib/modules/fields/class_static_methods/get_fields.js',
-    'lib/modules/fields/class_static_methods/get_nested_fields_names.js',
-    'lib/modules/fields/class_static_methods/get_nested_fields.js',
+    'lib/modules/fields/class_static_methods/get_object_fields.js',
+    'lib/modules/fields/class_static_methods/get_list_fields.js',
     'lib/modules/fields/class_static_methods/has_field.js',
     // Class events.
     'lib/modules/fields/class_events/class_events.js',
@@ -192,10 +192,9 @@ Package.onUse(function(api) {
     // Global.
     // Global - Fields.
     'lib/modules/fields/global/fields/field.js',
-    'lib/modules/fields/global/fields/plain_field.js',
-    'lib/modules/fields/global/fields/nested_field.js',
-    'lib/modules/fields/global/fields/one_nested_field.js',
-    'lib/modules/fields/global/fields/many_nested_field.js',
+    'lib/modules/fields/global/fields/scalar_field.js',
+    'lib/modules/fields/global/fields/object_field.js',
+    'lib/modules/fields/global/fields/list_field.js',
     // Global - Types.
     'lib/modules/fields/global/types/type.js',
     'lib/modules/fields/global/types/types.js',
@@ -321,7 +320,6 @@ Package.onTest(function(api) {
   api.addFiles([
     'test/fields/definition.js',
     'test/fields/default.js',
-    'test/fields/casting.js',
     'test/fields/set.js',
     'test/fields/get.js',
     'test/fields/raw.js'

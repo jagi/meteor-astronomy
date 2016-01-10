@@ -1,30 +1,22 @@
 Tinytest.add('Fields - Definition', function(test) {
   reset();
 
-  let DefinitionA = Astro.Class.create({
-    name: 'DefinitionA',
-    // No definition provided.
-    fields: ['null']
-  });
-  test.isNull(DefinitionA.getField('null').type,
-    'The type of the "null" should not be defined'
-  );
-
-  let DefinitionB = Astro.Class.create({
-    name: 'DefinitionB',
+  let Definition = Astro.Class.create({
+    name: 'Definition',
     fields: {
       // Field type provided.
-      'string': 'string',
+      string: String,
       // Field definition provided.
-      'number': {
-        type: 'number'
+      number: {
+        type: Number
       }
     }
   });
-  test.equal(DefinitionB.getField('string').type, Astro.Type.types.string,
+
+  test.equal(Definition.getField('string').type.name, 'String',
     'The type of the "string" field should be "string"'
   );
-  test.equal(DefinitionB.getField('number').type, Astro.Type.types.number,
+  test.equal(Definition.getField('number').type.name, 'Number',
     'The type of the "number" field should be "number"'
   );
 });

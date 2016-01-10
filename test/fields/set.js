@@ -4,21 +4,19 @@ Tinytest.add('Fields - Set', function(test) {
   let SetClassNested = Astro.Class.create({
     name: 'SetClassNested',
     fields: {
-      'anything': null
+      string: String
     }
   });
 
   // Define simple class to work with.
   let SetClass = Astro.Class.create({
     name: 'SetClass',
-    nested: {
-      'one': {
-        count: 'one',
-        class: 'SetClassNested'
+    fields: {
+      one: {
+        type: SetClassNested
       },
-      'many': {
-        count: 'many',
-        class: 'SetClassNested'
+      many: {
+        type: [SetClassNested]
       }
     }
   });
@@ -30,14 +28,9 @@ Tinytest.add('Fields - Set', function(test) {
     'Wrong value set in the "one" field'
   );
 
-  doc.set('one.anything', {});
-  test.equal(doc.one.anything, {},
-    'Wrong value set in the "one.anything" field'
-  );
-
-  doc.set('one.anything.string', 'string');
-  test.equal(doc.one.anything.string, 'string',
-    'Wrong value set in the "one.anything.string" field'
+  doc.set('one.string', 'abc');
+  test.equal(doc.one.string, 'abc',
+    'Wrong value set in the "one.string" field'
   );
 
   doc.set('many', []);
@@ -50,13 +43,8 @@ Tinytest.add('Fields - Set', function(test) {
     'Wrong value set in the "many.0" field'
   );
 
-  doc.set('many.0.anything', {});
-  test.equal(doc.many[0].anything, {},
-    'Wrong value set in the "many.0.anything" field'
-  );
-
-  doc.set('many.0.anything.string', 'string');
-  test.equal(doc.many[0].anything.string, 'string',
-    'Wrong value set in the "many.0.anything.string" field'
+  doc.set('many.0.string', 'abc');
+  test.equal(doc.many[0].string, 'abc',
+    'Wrong value set in the "many.0.string" field'
   );
 });
