@@ -233,7 +233,7 @@ Package.onUse(function(api) {
     'lib/modules/validators/module.js',
     // Utils.
     'lib/modules/validators/utils/utils.js',
-    'lib/modules/validators/utils/validate.js',
+    'lib/modules/validators/utils/parse_validators.js',
     // Class prototype methods.
     'lib/modules/validators/class_prototype_methods/class_prototype_methods.js',
     'lib/modules/validators/class_prototype_methods/validate.js',
@@ -243,6 +243,7 @@ Package.onUse(function(api) {
     'lib/modules/validators/class_prototype_methods/has_error.js',
     // Static class methods.
     'lib/modules/validators/class_static_methods/class_static_methods.js',
+    'lib/modules/validators/class_static_methods/get_validation_order.js',
     'lib/modules/validators/class_static_methods/get_validators.js',
     // Class events.
     'lib/modules/validators/class_events/class_events.js',
@@ -251,14 +252,22 @@ Package.onUse(function(api) {
     // Global.
     'lib/modules/validators/global/validator.js',
     'lib/modules/validators/global/validators/validators.js',
-    'lib/modules/validators/global/validators/required.js',
-    'lib/modules/validators/global/validators/string.js',
-    'lib/modules/validators/global/validators/number.js',
-    'lib/modules/validators/global/validators/boolean.js',
-    'lib/modules/validators/global/validators/date.js',
-    'lib/modules/validators/global/validators/array.js',
-    'lib/modules/validators/global/validators/instance_of.js',
-    'lib/modules/validators/global/validators/max_length.js',
+    'lib/modules/validators/global/validators/existence/empty.js',
+    'lib/modules/validators/global/validators/existence/required.js',
+    'lib/modules/validators/global/validators/logical/and.js',
+    'lib/modules/validators/global/validators/size/gt.js',
+    'lib/modules/validators/global/validators/size/gte.js',
+    'lib/modules/validators/global/validators/size/length.js',
+    'lib/modules/validators/global/validators/size/lt.js',
+    'lib/modules/validators/global/validators/size/lte.js',
+    'lib/modules/validators/global/validators/size/max_length.js',
+    'lib/modules/validators/global/validators/size/min_length.js',
+    'lib/modules/validators/global/validators/type/array.js',
+    'lib/modules/validators/global/validators/type/boolean.js',
+    'lib/modules/validators/global/validators/type/class.js',
+    'lib/modules/validators/global/validators/type/date.js',
+    'lib/modules/validators/global/validators/type/number.js',
+    'lib/modules/validators/global/validators/type/string.js',
     // Hooks.
     'lib/modules/validators/hooks/init_schema.js',
     'lib/modules/validators/hooks/init_definition.js',
