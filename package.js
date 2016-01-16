@@ -10,9 +10,9 @@ Package.onUse(function(api) {
 
   api.use('jagi:reactive-map@2.0.0');
   api.use('mdg:validation-error@0.3.0');
+  api.use('stevezhu:lodash@3.10.1');
   api.use('mongo');
   api.use('minimongo');
-  api.use('underscore');
   api.use('ejson');
   api.use('check');
   api.use('ecmascript');
