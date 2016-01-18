@@ -256,6 +256,7 @@ Package.onUse(function(api) {
     'lib/modules/validators/global/validators/existence/empty.js',
     'lib/modules/validators/global/validators/existence/required.js',
     'lib/modules/validators/global/validators/logical/and.js',
+    'lib/modules/validators/global/validators/logical/or.js',
     'lib/modules/validators/global/validators/size/gt.js',
     'lib/modules/validators/global/validators/size/gte.js',
     'lib/modules/validators/global/validators/size/length.js',
