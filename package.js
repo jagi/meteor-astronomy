@@ -9,7 +9,6 @@ Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
 
   api.use('jagi:reactive-map@2.0.0');
-  api.use('mdg:validation-error@0.3.0');
   api.use('stevezhu:lodash@3.10.1');
   api.use('mongo');
   api.use('minimongo');
@@ -243,6 +242,7 @@ Package.onUse(function(api) {
     'lib/modules/validators/class_prototype_methods/has_error.js',
     // Static class methods.
     'lib/modules/validators/class_static_methods/class_static_methods.js',
+    'lib/modules/validators/class_static_methods/get_resolve_error.js',
     'lib/modules/validators/class_static_methods/get_validation_order.js',
     'lib/modules/validators/class_static_methods/get_validators.js',
     // Class events.
@@ -251,7 +251,8 @@ Package.onUse(function(api) {
     'lib/modules/validators/class_events/before_save.js',
     // Global.
     'lib/modules/validators/global/validator.js',
-    'lib/modules/validators/global/validators/validators.js',
+    'lib/modules/validators/global/validation_error.js',
+    'lib/modules/validators/global/validators.js',
     'lib/modules/validators/global/validators/existence/empty.js',
     'lib/modules/validators/global/validators/existence/required.js',
     'lib/modules/validators/global/validators/logical/and.js',
