@@ -6,12 +6,12 @@ Package.describe({
 });
 
 Package.onUse(function(api) {
-  api.versionsFrom('1.1.0.2');
+  api.versionsFrom('1.2.1');
 
   api.use('jagi:reactive-map@2.0.0');
   api.use('stevezhu:lodash@3.10.1');
-	api.use('ecmascript@0.3.0');
-  api.use('es5-shim@4.3.1');
+	api.use('ecmascript');
+  api.use('es5-shim');
   api.use('mongo');
   api.use('minimongo');
   api.use('ejson');
