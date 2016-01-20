@@ -10,12 +10,12 @@ Package.onUse(function(api) {
 
   api.use('jagi:reactive-map@2.0.0');
   api.use('stevezhu:lodash@3.10.1');
+	api.use('ecmascript@0.3.0');
+  api.use('es5-shim@4.3.1');
   api.use('mongo');
   api.use('minimongo');
   api.use('ejson');
   api.use('check');
-  api.use('ecmascript');
-  api.use('es5-shim');
 
   api.imply('mongo');
   api.imply('underscore');
