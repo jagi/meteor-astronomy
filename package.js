@@ -30,9 +30,10 @@ Package.onUse(function(api) {
     'lib/core/global/non_enabled.js',
     // Utils.
     'lib/core/utils/utils.js',
+		'lib/core/utils/override_method.js',
+		'lib/core/utils/throw_parse_error.js',
     'lib/core/utils/warn.js',
-    'lib/core/utils/override_method.js',
-    'lib/core/utils/throw_parse_error.js',
+		'lib/core/utils/wrap_callback.js',
     // Astro.Module.
     'lib/core/module/module.js',
     'lib/core/module/modules.js',
@@ -46,7 +47,6 @@ Package.onUse(function(api) {
     'lib/modules/storage/module.js',
     // Utils.
     'lib/modules/storage/utils/utils.js',
-    'lib/modules/storage/utils/wrap_callback.js',
     'lib/modules/storage/utils/throw_if_selector_is_not_id.js',
     'lib/modules/storage/utils/get_modified.js',
     'lib/modules/storage/utils/apply_modifier.js',
@@ -232,6 +232,7 @@ Package.onUse(function(api) {
     'lib/modules/validators/module.js',
     // Utils.
     'lib/modules/validators/utils/utils.js',
+		'lib/modules/validators/utils/document_validate.js',
     'lib/modules/validators/utils/parse_validators.js',
     // Class prototype methods.
     'lib/modules/validators/class_prototype_methods/class_prototype_methods.js',
@@ -245,6 +246,9 @@ Package.onUse(function(api) {
     'lib/modules/validators/class_static_methods/get_resolve_error.js',
     'lib/modules/validators/class_static_methods/get_validation_order.js',
     'lib/modules/validators/class_static_methods/get_validators.js',
+		// Meteor methods.
+    'lib/modules/validators/meteor_methods/meteor_methods.js',
+    'lib/modules/validators/meteor_methods/document_validate.js',
     // Class events.
     'lib/modules/validators/class_events/class_events.js',
     'lib/modules/validators/class_events/before_init.js',
@@ -276,7 +280,9 @@ Package.onUse(function(api) {
     'lib/modules/validators/hooks/parse_definition.js',
     'lib/modules/validators/hooks/merge_definitions.js',
     'lib/modules/validators/hooks/apply_definition.js',
-    'lib/modules/validators/hooks/init_class.js'
+    'lib/modules/validators/hooks/init_class.js',
+		// Init.
+		'lib/modules/validators/init.js'
   ], ['client', 'server']);
 
   api.export(['Astro', 'Validators'], ['client', 'server']);
