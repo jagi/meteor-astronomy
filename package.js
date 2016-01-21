@@ -252,7 +252,6 @@ Package.onUse(function(api) {
     // Class events.
     'lib/modules/validators/class_events/class_events.js',
     'lib/modules/validators/class_events/before_init.js',
-    'lib/modules/validators/class_events/before_save.js',
     // Global.
     'lib/modules/validators/global/validator.js',
     'lib/modules/validators/global/validation_error.js',
