@@ -257,6 +257,9 @@ Package.onUse(function(api) {
 		// Validators.
 		'lib/modules/validators/validators/validator.js',
 		'lib/modules/validators/validators/validators.js',
+    'lib/modules/validators/validators/comparison/choice.js',
+    'lib/modules/validators/validators/comparison/equal.js',
+    'lib/modules/validators/validators/comparison/regexp.js',
     'lib/modules/validators/validators/existence/empty.js',
     'lib/modules/validators/validators/existence/required.js',
     'lib/modules/validators/validators/logical/and.js',
