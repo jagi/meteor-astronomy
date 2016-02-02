@@ -300,7 +300,7 @@ Package.onTest(function(api) {
     'insecure',
     'ecmascript',
     'es5-shim',
-    'jagi:astronomy@2.0.0-rc.1',
+    'jagi:astronomy@2.0.0-rc.2',
     // 'jagi:astronomy-timestamp-behavior',
     // 'jagi:astronomy-slug-behavior',
     // 'jagi:astronomy-softremove-behavior',
