@@ -1,6 +1,6 @@
 Package.describe({
 	summary: 'Model layer for Meteor',
-	version: '2.0.0-rc.2',
+	version: '2.0.0-rc.3',
 	name: 'jagi:astronomy',
 	git: 'https://github.com/jagi/meteor-astronomy.git'
 });
@@ -18,7 +18,6 @@ Package.onUse(function(api) {
 	api.use('check');
 
 	api.imply('mongo');
-	api.imply('underscore');
 	api.imply('ejson');
 	api.imply('check');
 
