@@ -10,15 +10,15 @@ Package.onUse(function(api) {
 
 	api.use('jagi:reactive-map@2.0.0');
 	api.use('stevezhu:lodash@3.10.1');
+	api.imply('stevezhu:lodash');
 	api.use('ecmascript');
 	api.use('es5-shim');
 	api.use('mongo');
+	api.imply('mongo');
 	api.use('minimongo');
 	api.use('ejson');
-	api.use('check');
-
-	api.imply('mongo');
 	api.imply('ejson');
+	api.use('check');
 	api.imply('check');
 
 	api.addFiles([
