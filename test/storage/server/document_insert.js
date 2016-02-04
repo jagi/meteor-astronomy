@@ -1,5 +1,7 @@
 Tinytest.add('Storage - Document insert', function(test) {
-  let id = 'ekfAFb8w5umxaeAPs';
+	resetDatabase();
+
+  let id = '6tMS79Kx6WhqTEwaC';
   let storage = new Storage({
     '_id': id,
     'one': {
@@ -20,9 +22,9 @@ Tinytest.add('Storage - Document insert', function(test) {
     'transient': 'transient',
     'immutable': 'immutable'
   });
-  storage.save();
 
-  let expected = {
+	storage.save();
+	let expected = {
     '_id': id,
     'one': {
       'string': 'abc',

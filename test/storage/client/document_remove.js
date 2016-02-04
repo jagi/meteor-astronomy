@@ -1,10 +1,8 @@
 Tinytest.add('Storage - Document remove', function(test) {
-  let id = 'ekfAFb8w5umxaeAPs';
-  let storage = Storage.findOne();
+  let id = '6tMS79Kx6WhqTEwaC';
+  let storage = Storage.findOne(id);
 
-  // Remove a document.
   storage.remove();
-
   test.equal(Storages.find(id).count(), 0,
     'The document has not been removed properly'
   );

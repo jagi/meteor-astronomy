@@ -1,6 +1,6 @@
 Package.describe({
 	summary: 'Model layer for Meteor',
-	version: '2.0.0-rc.3',
+	version: '2.0.0-rc.4',
 	name: 'jagi:astronomy',
 	git: 'https://github.com/jagi/meteor-astronomy.git'
 });
@@ -13,6 +13,8 @@ Package.onUse(function(api) {
 	api.imply('stevezhu:lodash');
 	api.use('ecmascript');
 	api.use('es5-shim');
+	api.use('ddp');
+	api.imply('ddp');
 	api.use('mongo');
 	api.imply('mongo');
 	api.use('minimongo');
@@ -313,19 +315,38 @@ Package.onTest(function(api) {
 	], ['client', 'server']);
 	// Storage
 	api.addFiles([
-		'test/storage/init.js',
-		'test/storage/transform.js',
-		'test/storage/document_insert.js',
-		'test/storage/document_update.js',
-		'test/storage/document_remove.js',
-		'test/storage/class_insert.js',
-		'test/storage/class_update.js',
+
 		// 'test/storage/class_upsert.js',
 		// 'test/fields/modified.js',
-		'test/storage/class_remove.js',
-		'test/storage/reload.js',
-		'test/storage/copy.js'
 	], ['client', 'server']);
+	api.addFiles([
+		'test/storage/client/init.js',
+	], ['client', 'server']);
+	api.addFiles([
+		'test/storage/client/transform.js',
+		'test/storage/client/document_insert.js',
+		'test/storage/client/document_update.js',
+		'test/storage/client/document_remove.js',
+		'test/storage/client/class_insert.js',
+		'test/storage/client/class_update.js',
+		'test/storage/client/class_remove.js',
+		'test/storage/client/reload.js',
+		'test/storage/client/copy.js'
+	], 'client');
+	api.addFiles([
+		'test/storage/server/init.js',
+	], ['client', 'server']);
+	api.addFiles([
+		'test/storage/server/transform.js',
+		'test/storage/server/document_insert.js',
+		'test/storage/server/document_update.js',
+		'test/storage/server/document_remove.js',
+		'test/storage/server/class_insert.js',
+		'test/storage/server/class_update.js',
+		'test/storage/server/class_remove.js',
+		'test/storage/server/reload.js',
+		'test/storage/server/copy.js'
+	], 'server');
 	// Events.
 	api.addFiles([
 		'test/events/order.js',

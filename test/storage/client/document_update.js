@@ -1,5 +1,5 @@
 Tinytest.add('Storage - Document update', function(test) {
-  let id = 'ekfAFb8w5umxaeAPs';
+  let id = '6tMS79Kx6WhqTEwaC';
   let storage = Storage.findOne(id);
 
   // Update a document.
@@ -16,8 +16,8 @@ Tinytest.add('Storage - Document update', function(test) {
   storage.date = new Date(2001, 0, 1, 0, 0, 0, 0);
   storage.transient = 'transient';
   storage.immutable = 'IMMUTABLE';
-  storage.save();
 
+  storage.save();
   let expected = {
     '_id': id,
     'one': {

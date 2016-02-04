@@ -1,7 +1,7 @@
-Tinytest.add('Storage - Init', function(test) {
+Tinytest.add('Storage - Init (Client)', function(test) {
   reset();
 
-  Storages = new Mongo.Collection(null);
+  Storages = new Mongo.Collection('storages_client');
 
   NestedStorage = Astro.Class.create({
     name: 'NestedStorage',

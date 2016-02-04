@@ -1,5 +1,9 @@
 Tinytest.add('Storage - Reload', function(test) {
+	resetDatabase();
+
+	let id = '6tMS79Kx6WhqTEwaC';
   let storage = new Storage({
+		_id: id,
     one: {
       string: 'abc',
       immutable: 'immutable'
@@ -37,7 +41,7 @@ Tinytest.add('Storage - Reload', function(test) {
   storage.immutable = 'IMMUTABLE';
   storage.reload();
 
-  test.isTrue(EJSON.equals(storage, Storage.findOne()),
+  test.isTrue(EJSON.equals(storage, Storage.findOne(id)),
     'Document should be reloaded to the original state'
   );
 });

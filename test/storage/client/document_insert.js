@@ -1,6 +1,8 @@
-Tinytest.add('Storage - Class insert', function(test) {
-  let id = 'ekfAFb8w5umxaeAPs';
-  Storage.insert({
+Tinytest.add('Storage - Document insert', function(test) {
+	resetDatabase();
+
+  let id = '6tMS79Kx6WhqTEwaC';
+  let storage = new Storage({
     '_id': id,
     'one': {
       'string': 'abc',
@@ -16,12 +18,13 @@ Tinytest.add('Storage - Class insert', function(test) {
     'string': 'abc',
     'number': 123,
     'boolean': true,
-    'date': new Date(2000, 0, 1),
+    'date': new Date(2000, 0, 1, 0, 0, 0, 0),
     'transient': 'transient',
     'immutable': 'immutable'
   });
 
-  let expected = {
+	storage.save();
+	let expected = {
     '_id': id,
     'one': {
       'string': 'abc',
@@ -35,11 +38,10 @@ Tinytest.add('Storage - Class insert', function(test) {
     'string': 'abc',
     'number': 123,
     'boolean': true,
-    'date': new Date(2000, 0, 1),
+    'date': new Date(2000, 0, 1, 0, 0, 0, 0),
     'immutable': 'immutable'
   };
-
   test.equal(Storages.findOne(id), expected,
-    'Document has not been inserted properly'
+    'Document has not been saved properly'
   );
 });

@@ -1,6 +1,5 @@
 Tinytest.add('Storage - Class update', function(test) {
-  let id = 'ekfAFb8w5umxaeAPs';
-
+  let id = '6tMS79Kx6WhqTEwaC';
   Storage.update(id, {
     $set: {
       'one': {
