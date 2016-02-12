@@ -49,6 +49,8 @@ Package.onUse(function(api) {
 		'lib/modules/storage/utils/utils.js',
 		'lib/modules/storage/utils/throw_if_selector_is_not_id.js',
 		'lib/modules/storage/utils/get_modified.js',
+		'lib/modules/storage/utils/is_modified.js',
+		'lib/modules/storage/utils/get_modifier.js',
 		'lib/modules/storage/utils/apply_modifier.js',
 		'lib/modules/storage/utils/transform_to_class.js',
 		'lib/modules/storage/utils/document_insert.js',
@@ -118,6 +120,16 @@ Package.onUse(function(api) {
 	// Events module.
 	api.addFiles([
 		'lib/modules/events/module.js',
+		// Utils.
+		'lib/modules/events/utils/utils.js',
+		'lib/modules/events/utils/trigger_before_save.js',
+		'lib/modules/events/utils/trigger_before_insert.js',
+		'lib/modules/events/utils/trigger_before_update.js',
+		'lib/modules/events/utils/trigger_before_remove.js',
+		'lib/modules/events/utils/trigger_after_save.js',
+		'lib/modules/events/utils/trigger_after_insert.js',
+		'lib/modules/events/utils/trigger_after_update.js',
+		'lib/modules/events/utils/trigger_after_remove.js',
 		// Static class methods.
 		'lib/modules/events/class_static_methods/class_static_methods.js',
 		'lib/modules/events/class_static_methods/get_events.js',
@@ -315,12 +327,7 @@ Package.onTest(function(api) {
 	], ['client', 'server']);
 	// Storage
 	api.addFiles([
-
-		// 'test/storage/class_upsert.js',
-		// 'test/fields/modified.js',
-	], ['client', 'server']);
-	api.addFiles([
-		'test/storage/client/init.js',
+		'test/storage/init.js',
 	], ['client', 'server']);
 	api.addFiles([
 		'test/storage/client/transform.js',
@@ -333,9 +340,6 @@ Package.onTest(function(api) {
 		'test/storage/client/reload.js',
 		'test/storage/client/copy.js'
 	], 'client');
-	api.addFiles([
-		'test/storage/server/init.js',
-	], ['client', 'server']);
 	api.addFiles([
 		'test/storage/server/transform.js',
 		'test/storage/server/document_insert.js',
