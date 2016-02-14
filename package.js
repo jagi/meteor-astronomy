@@ -107,7 +107,6 @@ Package.onUse(function(api) {
 		// Global.
 		'lib/modules/behaviors/global/behavior.js',
 		'lib/modules/behaviors/global/behaviors.js',
-		'lib/modules/behaviors/global/class_behavior.js',
 		// Hooks.
 		'lib/modules/behaviors/hooks/init_schema.js',
 		'lib/modules/behaviors/hooks/init_definition.js',
