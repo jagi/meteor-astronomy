@@ -1,4 +1,4 @@
-Tinytest.add('Fields - Definition', function(test) {
+Tinytest.add('Fields - Modules - Definition', function(test) {
   reset();
 
   let Definition = Astro.Class.create({

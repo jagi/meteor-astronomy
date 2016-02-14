@@ -1,4 +1,4 @@
-Tinytest.add('Methods - Definition', function(test) {
+Tinytest.add('Methods - Modules - Definition', function(test) {
   // Reset Astro.
   reset();
 

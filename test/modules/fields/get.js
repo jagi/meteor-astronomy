@@ -1,4 +1,4 @@
-Tinytest.add('Fields - Get', function(test) {
+Tinytest.add('Fields - Modules - Get', function(test) {
   reset();
 
   let GetClassNested = Astro.Class.create({

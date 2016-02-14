@@ -1,4 +1,4 @@
-Tinytest.add('Events - Propagation', function(test) {
+Tinytest.add('Events - Modules - Propagation', function(test) {
   // Reset Astro.
   reset();
 

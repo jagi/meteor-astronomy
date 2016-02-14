@@ -308,12 +308,7 @@ Package.onTest(function(api) {
 		'insecure',
 		'ecmascript',
 		'es5-shim',
-		'jagi:astronomy@2.0.0-rc.2',
-		// 'jagi:astronomy-timestamp-behavior',
-		// 'jagi:astronomy-slug-behavior',
-		// 'jagi:astronomy-softremove-behavior',
-		// 'jagi:astronomy-validators',
-		// 'jagi:astronomy-simple-validators'
+		'jagi:astronomy@2.0.0-rc.2'
 	]);
 
 	api.addFiles('test/utils.js', ['client', 'server']);
@@ -324,45 +319,50 @@ Package.onTest(function(api) {
 		'test/core/state.js',
 		'test/core/ejson.js'
 	], ['client', 'server']);
+	// Modues.
+	api.addFiles([
+		'test/modules/behaviors/create.js',
+		'test/modules/behaviors/apply.js'
+	], ['client', 'server']);
 	// Storage
 	api.addFiles([
-		'test/storage/init.js',
+		'test/modules/storage/init.js',
 	], ['client', 'server']);
 	api.addFiles([
-		'test/storage/client/transform.js',
-		'test/storage/client/document_insert.js',
-		'test/storage/client/document_update.js',
-		'test/storage/client/document_remove.js',
-		'test/storage/client/class_insert.js',
-		'test/storage/client/class_update.js',
-		'test/storage/client/class_remove.js',
-		'test/storage/client/reload.js',
-		'test/storage/client/copy.js'
+		'test/modules/storage/client/transform.js',
+		'test/modules/storage/client/document_insert.js',
+		'test/modules/storage/client/document_update.js',
+		'test/modules/storage/client/document_remove.js',
+		'test/modules/storage/client/class_insert.js',
+		'test/modules/storage/client/class_update.js',
+		'test/modules/storage/client/class_remove.js',
+		'test/modules/storage/client/reload.js',
+		'test/modules/storage/client/copy.js'
 	], 'client');
 	api.addFiles([
-		'test/storage/server/transform.js',
-		'test/storage/server/document_insert.js',
-		'test/storage/server/document_update.js',
-		'test/storage/server/document_remove.js',
-		'test/storage/server/class_insert.js',
-		'test/storage/server/class_update.js',
-		'test/storage/server/class_remove.js',
-		'test/storage/server/reload.js',
-		'test/storage/server/copy.js'
+		'test/modules/storage/server/transform.js',
+		'test/modules/storage/server/document_insert.js',
+		'test/modules/storage/server/document_update.js',
+		'test/modules/storage/server/document_remove.js',
+		'test/modules/storage/server/class_insert.js',
+		'test/modules/storage/server/class_update.js',
+		'test/modules/storage/server/class_remove.js',
+		'test/modules/storage/server/reload.js',
+		'test/modules/storage/server/copy.js'
 	], 'server');
 	// Events.
 	api.addFiles([
-		'test/events/order.js',
-		'test/events/propagation.js',
-		'test/events/cancelable.js'
+		'test/modules/events/order.js',
+		'test/modules/events/propagation.js',
+		'test/modules/events/cancelable.js'
 	], ['client', 'server']);
 	// Fields.
 	api.addFiles([
-		'test/fields/definition.js',
-		'test/fields/default.js',
-		'test/fields/set.js',
-		'test/fields/get.js',
-		'test/fields/raw.js'
+		'test/modules/fields/definition.js',
+		'test/modules/fields/default.js',
+		'test/modules/fields/set.js',
+		'test/modules/fields/get.js',
+		'test/modules/fields/raw.js'
 	], ['client', 'server']);
 	// Indexes.
 	api.addFiles([
