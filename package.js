@@ -256,7 +256,7 @@ Package.onUse(function(api) {
 		'lib/modules/validators/class_static_methods/get_validators.js',
 		// Meteor methods.
 		'lib/modules/validators/meteor_methods/meteor_methods.js',
-		'lib/modules/validators/meteor_methods/document_validate.js',
+		'lib/modules/validators/meteor_methods/validate.js',
 		// Class events.
 		'lib/modules/validators/class_events/class_events.js',
 		'lib/modules/validators/class_events/before_init.js',
