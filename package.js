@@ -10,7 +10,6 @@ Package.onUse(function(api) {
 
 	api.use('jagi:reactive-map@2.0.0');
 	api.use('stevezhu:lodash@4.5.0');
-	api.imply('stevezhu:lodash');
 	api.use('ecmascript');
 	api.use('es5-shim');
 	api.use('ddp');
