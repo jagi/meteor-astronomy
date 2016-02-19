@@ -8,19 +8,17 @@ Package.describe({
 Package.onUse(function(api) {
 	api.versionsFrom('1.2.1');
 
-	api.use('jagi:reactive-map@2.0.0');
-	api.use('stevezhu:lodash@4.5.0');
-	api.use('ecmascript');
-	api.use('es5-shim');
-	api.use('ddp');
-	api.imply('ddp');
-	api.use('mongo');
-	api.imply('mongo');
-	api.use('minimongo');
-	api.use('ejson');
-	api.imply('ejson');
-	api.use('check');
-	api.imply('check');
+	api.use([
+		'jagi:reactive-map@2.0.0',
+		'stevezhu:lodash@4.5.0',
+		'ecmascript',
+		'es5-shim',
+		'ddp',
+		'mongo',
+		'check',
+		'minimongo',
+		'ejson'
+	]);
 
 	api.addFiles([
 		'lib/core/global/astro.js',
@@ -304,10 +302,13 @@ Package.onUse(function(api) {
 Package.onTest(function(api) {
 	api.use([
 		'tinytest',
-		'insecure',
 		'ecmascript',
 		'es5-shim',
-		'jagi:astronomy@2.0.0-rc.2'
+		'insecure',
+		'mongo',
+		'ejson',
+		'jagi:astronomy@2.0.0-rc.2',
+		'stevezhu:lodash@4.5.0'
 	]);
 
 	api.addFiles('test/utils.js', ['client', 'server']);
