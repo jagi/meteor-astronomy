@@ -1,23 +1,23 @@
 resetDatabase = function() {
 	_.each(Astro.Class.classes, function(Class) {
-    let Collection = Class.getCollection();
-    if (!Collection) {
-      return;
-    }
+		let Collection = Class.getCollection();
+		if (!Collection) {
+			return;
+		}
 
-    // Remove documents from the collection.
-    Collection.find().forEach(function(doc) {
-      Collection.remove(doc._id);
-    });
-  });
+		// Remove documents from the collection.
+		Collection.find().forEach(function(doc) {
+			Collection.remove(doc._id);
+		});
+	});
 };
 
 resetMethods = function() {
 	_.each(Astro.Class.classes, function(Class) {
-    let Collection = Class.getCollection();
-    if (!Collection) {
-      return;
-    }
+		let Collection = Class.getCollection();
+		if (!Collection) {
+			return;
+		}
 
 		let methodHandlers;
 		if (Meteor.connection) {
@@ -37,8 +37,9 @@ resetMethods = function() {
 };
 
 reset = function() {
-  resetDatabase();
+	resetDatabase();
 	resetMethods();
 
-  Astro.Class.classes = {};
+	Astro.Class.classes = {};
+	Astro.Behavior.behaviors = {};
 };

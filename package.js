@@ -319,12 +319,19 @@ Package.onTest(function(api) {
 		'test/core/state.js',
 		'test/core/ejson.js'
 	], ['client', 'server']);
-	// Modues.
+	// Modules.
+	// Modules - Behaviors.
 	api.addFiles([
 		'test/modules/behaviors/create.js',
 		'test/modules/behaviors/apply.js'
 	], ['client', 'server']);
-	// Storage
+	// Modules - Validators.
+	api.addFiles([
+		'test/modules/validators/create.js',
+		'test/modules/validators/apply.js',
+		'test/modules/validators/validate.js'
+	], ['client', 'server']);
+	// Modules - Storage.
 	api.addFiles([
 		'test/modules/storage/init.js',
 	], ['client', 'server']);
@@ -350,13 +357,13 @@ Package.onTest(function(api) {
 		'test/modules/storage/server/reload.js',
 		'test/modules/storage/server/copy.js'
 	], 'server');
-	// Events.
+	// Modules - Events.
 	api.addFiles([
 		'test/modules/events/order.js',
 		'test/modules/events/propagation.js',
 		'test/modules/events/cancelable.js'
 	], ['client', 'server']);
-	// Fields.
+	// Modules - Fields.
 	api.addFiles([
 		'test/modules/fields/definition.js',
 		'test/modules/fields/default.js',
@@ -364,27 +371,12 @@ Package.onTest(function(api) {
 		'test/modules/fields/get.js',
 		'test/modules/fields/raw.js'
 	], ['client', 'server']);
-	// Indexes.
+	// Modules - Indexes.
 	api.addFiles([
 		// 'test/indexes/indexes_definition.js'
 	], 'server');
-	// Methods.
+	// Modules - Methods.
 	api.addFiles([
 		// 'test/methods/methods_definition.js'
-	], ['client', 'server']);
-	// Modules.
-	api.addFiles([
-		// // Validators
-		// 'test/modules/validators_validate_single.js',
-		// 'test/modules/validators_validate_multiple.js',
-		// 'test/modules/validators_order.js',
-		// // Simple Validators.
-		// 'test/modules/simple_validators_parser.js'
-	], ['client', 'server']);
-	// Behaviors.
-	api.addFiles([
-		// 'test/behaviors/behaviors_timestamp.js',
-		// 'test/behaviors/behaviors_slug.js',
-		// 'test/behaviors/behaviors_softremove.js'
 	], ['client', 'server']);
 });

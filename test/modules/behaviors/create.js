@@ -1,4 +1,6 @@
 Tinytest.add('Modules - Behaviors - Create', function(test) {
+	reset();
+
 	let CustomBehavior = Astro.Behavior.create({
 		name: 'custom',
 		options: {
