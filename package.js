@@ -291,7 +291,7 @@ Package.onUse(function(api) {
 		'lib/modules/validators/hooks/apply_definition.js',
 		'lib/modules/validators/hooks/init_class.js',
 		// Init.
-		'lib/modules/validators/init.js'
+		'lib/modules/validators/add_meteor_methods.js',
 	], ['client', 'server']);
 
 	api.export(['Astro', 'Validators'], ['client', 'server']);
