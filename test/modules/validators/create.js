@@ -17,7 +17,7 @@ Tinytest.add('Modules - Validators - Create', function(test) {
   );
 
 	test.instanceOf(
-		Validators.custom, Function,
+		Astro.Validators.custom, Function,
 		'Validation function not created'
 	);
 
