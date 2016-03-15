@@ -4,7 +4,9 @@ Tinytest.add('Fields - Modules - Raw', function(test) {
   let RawClassNested = Astro.Class.create({
     name: 'RawClassNested',
     fields: {
-      string: String
+      string: {
+        type: String
+      }
     }
   });
 
@@ -33,21 +35,21 @@ Tinytest.add('Fields - Modules - Raw', function(test) {
   });
 
   test.equal(doc.raw('one'), {
-    string: 'abc'
-  },
+      string: 'abc'
+    },
     'Wrong raw value get from the "one" field'
   );
   test.equal(doc.raw('one.string'), 'abc',
     'Wrong raw value get from the "one.tring" field'
   );
   test.equal(doc.raw('many'), [{
-    string: 'abc'
-  }],
+      string: 'abc'
+    }],
     'Wrong raw value get from the "many" field'
   );
   test.equal(doc.raw('many.0'), {
-    string: 'abc'
-  },
+      string: 'abc'
+    },
     'Wrong raw value get from the "many.0" field'
   );
   test.equal(doc.raw('many.0.string'), 'abc',

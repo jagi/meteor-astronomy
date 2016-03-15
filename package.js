@@ -11,13 +11,13 @@ Package.onUse(function(api) {
   api.use([
     'ecmascript',
     'es5-shim',
-    'ddp',
+    'ddp@1.2.2-beta.16',
     'mongo',
     'check',
     'minimongo',
     'ejson',
     'mdg:validation-error@0.5.1',
-    'stevezhu:lodash@4.5.1',
+    'stevezhu:lodash@4.6.1',
   ], ['client', 'server']);
 
   api.mainModule('lib/main.js', ['client', 'server']);
@@ -37,7 +37,7 @@ Package.onTest(function(api) {
     'mongo',
     'ejson',
     'jagi:astronomy@2.0.0-rc.6',
-    'stevezhu:lodash@4.5.0'
+    'stevezhu:lodash@4.6.1'
   ], ['client', 'server']);
 
   api.addFiles('test/utils.js', ['client', 'server']);

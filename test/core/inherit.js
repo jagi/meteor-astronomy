@@ -4,7 +4,9 @@ Tinytest.add('Core - Inherit', function(test) {
   let Parent = Astro.Class.create({
     name: 'Parent',
     fields: {
-      parentField: String
+      parentField: {
+        type: String
+      }
     },
     methods: {
       parentMethod: function() {}
@@ -17,7 +19,9 @@ Tinytest.add('Core - Inherit', function(test) {
   let Child = Parent.inherit({
     name: 'Child',
     fields: {
-      childField: String
+      childField: {
+        type: String
+      }
     },
     methods: {
       childMethod: function() {}

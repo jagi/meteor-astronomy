@@ -4,8 +4,12 @@ Tinytest.add('Core - EJSON', function(test) {
   let NestedEJSON = Astro.Class.create({
     name: 'NestedEJSON',
     fields: {
-      string: String,
-      number: Number
+      string: {
+        type: String
+      },
+      number: {
+        type: Number
+      }
     }
   });
 
@@ -18,10 +22,18 @@ Tinytest.add('Core - EJSON', function(test) {
       many: {
         type: [NestedEJSON]
       },
-      string: String,
-      number: Number,
-      boolean: Boolean,
-      date: Date
+      string: {
+        type: String
+      },
+      number: {
+        type: Number
+      },
+      boolean: {
+        type: Boolean
+      },
+      date: {
+        type: Date
+      }
     }
   });
 

@@ -5,7 +5,9 @@ Tinytest.add('Fields - Modules - Definition', function(test) {
     name: 'Definition',
     fields: {
       // Field type provided.
-      string: String,
+      string: {
+        type: String
+      },
       // Field definition provided.
       number: {
         type: Number

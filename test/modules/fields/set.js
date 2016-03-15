@@ -4,7 +4,9 @@ Tinytest.add('Fields - Modules - Set', function(test) {
   let SetClassNested = Astro.Class.create({
     name: 'SetClassNested',
     fields: {
-      string: String
+      string: {
+        type: String
+      }
     }
   });
 

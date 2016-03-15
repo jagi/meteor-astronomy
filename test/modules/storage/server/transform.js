@@ -11,7 +11,9 @@ Tinytest.add('Storage - Transform', function(test) {
     name: 'DefaultTransform',
     collection: Transforms,
     fields: {
-      name: String
+      name: {
+        type: String
+      }
     }
   });
 
@@ -28,7 +30,9 @@ Tinytest.add('Storage - Transform', function(test) {
       return new CustomClass(values);
     },
     fields: {
-      name: String
+      name: {
+        type: String
+      }
     }
   });
 
@@ -38,7 +42,9 @@ Tinytest.add('Storage - Transform', function(test) {
     collection: Transforms,
     transform: null,
     fields: {
-      name: String
+      name: {
+        type: String
+      }
     }
   });
 

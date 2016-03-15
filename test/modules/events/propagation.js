@@ -28,8 +28,12 @@ Tinytest.add('Events - Modules - Propagation', function(test) {
           return new PropagationNestedEvent();
         }
       },
-      stopPropagation: Boolean,
-      stopImmediatePropagation: Boolean,
+      stopPropagation: {
+        type: Boolean
+      },
+      stopImmediatePropagation: {
+        type: Boolean
+      },
     },
     events: {
       beforeSave: [
@@ -38,7 +42,8 @@ Tinytest.add('Events - Modules - Propagation', function(test) {
           executedEvents.push('PE.beforeSave1');
           if (doc.stopImmediatePropagation) {
             e.stopImmediatePropagation();
-          } else if (doc.stopPropagation) {
+          }
+          else if (doc.stopPropagation) {
             e.stopPropagation();
           }
         },
