@@ -1,0 +1,120 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "utf-8";
+
+
+
+// Our variables
+$base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$base-font-size:   16px;
+$base-font-weight: 400;
+$small-font-size:  $base-font-size * 0.875;
+$base-line-height: 1.5;
+
+$spacing-unit:     30px;
+
+$text-color:       #111;
+$background-color: #fdfdfd;
+$brand-color:      #2a7ae2;
+
+$grey-color:       #828282;
+$grey-color-light: lighten($grey-color, 40%);
+$grey-color-dark:  darken($grey-color, 25%);
+
+// Width of the content area
+$content-width:    800px;
+
+$on-palm:          600px;
+$on-laptop:        800px;
+
+
+
+// Use media queries like this:
+// @include media-query($on-palm) {
+//     .wrapper {
+//         padding-right: $spacing-unit / 2;
+//         padding-left: $spacing-unit / 2;
+//     }
+// }
+@mixin media-query($device) {
+    @media screen and (max-width: $device) {
+        @content;
+    }
+}
+
+
+
+// Import partials from `sass_dir` (defaults to `_sass`)
+@import
+        "base",
+        "layout",
+        "syntax-highlighting"
+;
+
+#sidebar {
+  display: block;
+  position: fixed;
+  background-color: #e9e9e9;
+  width: 270px;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2000;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  -webkit-transition: transform 0.2s ease-out;
+  -moz-transition: transform 0.2s ease-out;
+  -ms-transition: transform 0.2s ease-out;
+  -o-transition: transform 0.2s ease-out;
+  transition: transform 0.2s ease-out;
+
+  a {
+    white-space: nowrap;
+  }
+
+  a, a:link, a:hover, a:active, a:visited {
+    text-decoration: none;
+    color: #3c3c3c;
+  }
+
+  a:hover, a:active {
+    color: #de4f4f;
+  }
+
+  ul {
+    list-style: none;
+    margin: 25px;
+    padding: 0;
+
+    a {
+      cursor: pointer;
+    }
+
+    .selected > a {
+      font-weight: 400;
+      color: #de4f4f;
+    }
+
+    .depth-1 {
+      margin-left: 0px;
+    }
+
+    .depth-2 {
+      margin-left: 15px;
+    }
+
+    .depth-3 {
+      margin-left: 30px;
+    }
+
+    .depth-4 {
+      margin-left: 45px;
+    }
+
+    .depth-5 {
+      margin-left: 64px;
+    }
+  }
+}
