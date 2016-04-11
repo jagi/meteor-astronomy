@@ -8,7 +8,7 @@ The [Astronomy](https://atmospherejs.com/jagi/astronomy) package introduces the 
 
 ## Documentation
 
-Astronomy documentation can be found [here](http://astronomy.jagi.io).
+Astronomy documentation can be found [here](http://jagi.github.io/meteor-astronomy/v1).
 
 ## Installation
 
