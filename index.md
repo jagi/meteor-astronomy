@@ -1,4 +1,4 @@
 ---
 layout: page
 ---
-Choose a version
+{% include v1.md %}
