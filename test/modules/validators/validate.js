@@ -1,6 +1,10 @@
 Tinytest.add('Modules - Validators - Validate', function(test) {
+
+  let ValidatorCollection = new Mongo.Collection("ClassValidators");
+
   let ClassValidator = Astro.Class.create({
     name: 'ClassValidator',
+    collection: ValidatorCollection,
     fields: {
       nameA: {
         type: String,
@@ -102,6 +106,34 @@ Tinytest.add('Modules - Validators - Validate', function(test) {
     test.equal(
       errors[1].name, 'nameB',
       'Wrong validation error'
+    );
+  }
+  
+  // Check that _id is properly validated when it is provided
+  docValidator._id = {};
+  try {
+    docValidator.validate();
+  }
+  catch (e) {
+    test.instanceOf(
+      e, Meteor.Error,
+      'Should throw Meteor.Error'
+    );
+
+    test.equal(
+      e.error, Astro.ValidationError.ERROR_CODE,
+      'Should throw validation error'
+    );
+    
+    test.equal(
+      e.details.length, 1,
+      'Should throw one error'
+    );
+
+    let error = e.details[0];
+    test.equal(
+      error.name, '_id',
+      'has to be a string'
     );
   }
 });
