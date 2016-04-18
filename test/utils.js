@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 resetDatabase = function() {
 	_.each(Astro.Class.classes, function(Class) {
 		let Collection = Class.getCollection();

@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 Tinytest.add('Behaviors - Slug', function(test) {
   // Reset Astro.
   reset();

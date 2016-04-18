@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 Tinytest.add('Storage - Copy', function(test) {
 	resetDatabase();
 

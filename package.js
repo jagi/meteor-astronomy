@@ -5,6 +5,10 @@ Package.describe({
   git: 'https://github.com/jagi/meteor-astronomy.git'
 });
 
+Npm.depends({
+  lodash: '4.11.1'
+});
+
 Package.onUse(function(api) {
   api.versionsFrom('1.3');
 
@@ -16,8 +20,7 @@ Package.onUse(function(api) {
     'check',
     'minimongo',
     'ejson',
-    'mdg:validation-error@0.5.1',
-    'stevezhu:lodash@4.6.1',
+    'mdg:validation-error@0.5.1'
   ], ['client', 'server']);
 
   api.mainModule('lib/main.js', ['client', 'server']);
@@ -36,8 +39,7 @@ Package.onTest(function(api) {
     'insecure',
     'mongo',
     'ejson',
-    'jagi:astronomy@2.0.0-rc.6',
-    'stevezhu:lodash@4.6.1'
+    'jagi:astronomy@2.0.0-rc.6'
   ], ['client', 'server']);
 
   api.addFiles('test/utils.js', ['client', 'server']);

@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 Tinytest.add('Storage - Transform', function(test) {
   let Transforms = new Mongo.Collection(null);
 
