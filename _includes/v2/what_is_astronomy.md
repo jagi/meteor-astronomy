@@ -35,18 +35,16 @@ if (post.title.length < 3) {
 }
 ```
 
-With Astronomy and a defined schema your code would look like follows:
+With Astronomy and defined schema your code would look like follows:
 
 ```js
 var post = Posts.findOne(id);
 // Auto convert a string input value to a number.
-post.set('title', tmpl.find('input[name=title]').value);
-post.set('publishedAt', tmpl.find('input[name=publishedAt]').value);
-// Check if all fields are valid.
-if (post.validate()) {
-  // Update document with with only the fields that have changed.
-  post.save();
-}
+post.title = tmpl.find('input[name=title]').value;
+post.publishedAt = new Date(tmpl.find('input[name=publishedAt]').value);
+// Check if all fields are valid and update document with only the fields that
+// have changed.
+post.save();
 ```
 
 What approach is simpler? I think the choice is obvious.
