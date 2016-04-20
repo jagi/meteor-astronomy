@@ -38,26 +38,57 @@ if (post.title.length < 3) {
 With Astronomy and defined schema your code would look like follows:
 
 ```js
-var post = Posts.findOne(id);
+// Notice that we call the "findOne" method
+// from the "Post" class not from the "Posts" collection.
+var post = Post.findOne(id);
 // Auto convert a string input value to a number.
 post.title = tmpl.find('input[name=title]').value;
 post.publishedAt = new Date(tmpl.find('input[name=publishedAt]').value);
-// Check if all fields are valid and update document with only the fields that
-// have changed.
+// Check if all fields are valid and update document
+// with only the fields that have changed.
 post.save();
 ```
 
 What approach is simpler? I think the choice is obvious.
 
-**Why should I use it?**
+For clarity, here is a sample schema that allows that. May seem to be a lot of
+code but have in mind that you write it only once.
+
+```js
+import { class } from 'meteor/jagi:astronomy';
+
+const Posts = new Mongo.Collection('posts');
+const Post = Class.create({
+  name: 'Post',
+  collection: Posts,
+  fields: {
+    title: {
+      type: String,
+      validators: [{
+        type: 'gte',
+        param: 3
+      }]
+    },
+    userId: String,
+    publishedAt: Date
+  },
+  behaviors: {
+    timestamp: {}
+  }
+});
+```
+
+**Why should I use Astronomy?**
 
 There are many other packages that implement some of the functionalities present in Astronomy. I will try to point out here the main benefits of using Astronomy over other solutions, besides having many features that are listed in the [Features](#features) section.
 
-- Astronomy is highly modularized. This was one of the main principles when creating it. Consequently, anyone can easily hook into almost every process that happens in Astronomy. Developers can create their own modules, behaviors and validators.
+- Astronomy is highly modularized. This was one of the main principles when creating it. As a result, anyone can easily hook into almost every process that happens in Astronomy. Developers can create their own modules, behaviors and validators.
 - It's easy to learn and use. Astronomy does not reinvent the wheel. It takes the best from the tools you are already familiar with, not only from the JavaScript world, but also from other languages.
 - When using Astronomy, you can easily replace three to five packages that you already use with a single one that follows the same pattern across all its modules. The main principle is simplicity.
-- It follows quite different principles to do the job that other packages do. As a result, the amount of code you have to write to setup your classes and create application logic is significantly lower.
-- There are many developers who already use it and are very happy that they switched to Astronomy. Here are some of their comments:
+- It follows quite different principles to do the job than other packages do. As a result, the amount of code you have to write to setup your classes and create application logic is significantly lower.
+- There are many developers and companies that are already using Astronomy in production.
+
+Here are some comments from developers using Astronomy:
 
 > If this package were around when I created SimpleSchema, I would have used it instead of creating SimpleSchema.
 
