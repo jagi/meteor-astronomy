@@ -60,7 +60,8 @@ Package.onTest(function(api) {
   api.addFiles([
     'test/modules/validators/create.js',
     'test/modules/validators/apply.js',
-    'test/modules/validators/validate.js'
+    'test/modules/validators/validate.js',
+    'test/modules/validators/validate_callback.js'
   ], ['client', 'server']);
   // Modules - Storage.
   api.addFiles([
