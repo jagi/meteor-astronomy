@@ -1,12 +1,8 @@
 <div id="sidebar">
-  <div id="logo">
-    <a href="{{site.baseurl}}/">
-      <img src="{{site.baseurl}}/images/logo.png" alt="Meteor Astronomy Logo" />
-    </a>
-    <div class="versions">
-      <a href="{{site.baseurl}}/v1">{{site.v1}}</a><span> / </span>
-      <a href="{{site.baseurl}}/v2">{{site.v2}}</a>
-    </div>
-  </div>
-  {% include v2/table_of_content.html %}
+  {% include logo.html %}
+  {% if page.name == "v1.md" %}
+    {% include v1/table_of_content.html %}
+  {% elsif page.name == "v2.md" %}
+    {% include v2/table_of_content.html %}
+  {% endif %}
 </div>

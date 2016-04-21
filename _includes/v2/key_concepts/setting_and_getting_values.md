@@ -1,6 +1,6 @@
-# Accessing fields
+# Setting and getting values
 
-Once you have defined a list of fields, you may want to set and get some values from a document. Let's check how to set values on a document.
+Once you have defined a list of fields, you may want to set and get some values from a document. Let's check how to set values of a document.
 
 **Settings values**
 

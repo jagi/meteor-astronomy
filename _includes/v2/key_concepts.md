@@ -2,7 +2,7 @@
 
 {% include v2/key_concepts/fields_definition.md %}
 
-{% include v2/key_concepts/documents_modification.md %}
+{% include v2/key_concepts/setting_and_getting_values.md %}
 
 {% include v2/key_concepts/storing_documents.md %}
 
