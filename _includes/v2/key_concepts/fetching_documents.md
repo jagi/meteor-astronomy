@@ -1,40 +1,36 @@
 # Fetching documents
 
-Once you bind an Astronomy class to a Collection, objects returned from that collection will automatically be converted to instances of the given class. Let's take a look at an example:
+Once we have Astronomy documents stored in a collection, we may want to retrieve them. The old/standard way of fetching documents does not change when using Astronomy. So calling `Collection.findOne()` will just return plain JavaScript object. In Astronomy 1.0 it used to transform documents to Astronomy class instances. In Astronomy 2.0, we use `Class.findOne()` to retrieve Astronomy documents. It works the same way as `Collection.findOne()` but documents are transformed. Let's take a look at an example.
 
 ```js
-Users = new Mongo.CollectionName = new Mongo.Collection('users');
-User = Astro.Class({
+import { Class } from 'meteor/jagi:astronomy';
+import { Mongo } from 'meteor/mongo';
+
+const Users = new Mongo.Collection('users');
+const User = Class.create({
   name: 'User',
   collection: Users,
-  fields: {
-    firstName: 'string',
-    lastName: 'string'
-  }
+  /* ... */
 });
-
 var user = new User();
 user.save();
 
 /* ... */
 
 // Fetching document from the collection.
-var user = Users.findOne();
 // It's not a plain JavaScript object, it's an instance of the User class.
-user.set('firstName', 'John');
+var user = User.findOne(); // Get single document.
+var users = User.find(); // Get cursor.
+user.firstName = 'John';
 user.save();
 ```
 
-As you can see, by binding the `User` class with the `Users` collection using the `collection` property in the class definition, we automatically created a transformation function for the collection.
+**Find options**
 
-**Fetching plain JavaScript objects**
-
-However, there are situation when you need a plain JavaScript object. You can do that by passing `null` as the `transform` option.
+The same as in `find` and `findOne` methods from `Mongo.Collection`, the Astronomy versions can take options as the second argument. Beside the all standard Mongo options Astronomy introduces one more, which is `disableEvents`. By setting it to true, we turn off `beforeFind` and `afterFind` events, about which we will talk more in the [Events](#events) section.
 
 ```js
-var user = Users.findOne({}, {
-  transform: null
+var user = User.findOne({}, {
+  disableEvents: true
 });
-
-user.save(); // TypeError: user.save is not a function.
 ```

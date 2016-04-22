@@ -1,4 +1,4 @@
 ---
 layout: page
 ---
-{% include v1.md %}
+{% include v2.md %}

@@ -1,24 +1,24 @@
 # Preventing default
 
-There are processes you may want to prevent from occurring. The example of such process may be saving a document. You won't probably use it on a regular basis. It's more common to use it during the behaviors or modules implementation. Let's take a look at the example:
+There are processes you may want to prevent from occurring. The example of such process may be preventing the save operation, however it's more likely that you will use it in some custom behavior or module with your custom events. For the proof of concept let's take a look at the example.
 
 ```js
-User = Astro.Class({
+import { Class } from 'meteor/jagi:astronomy';
+
+const User = Class.create({
   name: 'User',
   /* */
   events: {
-    'beforeSave': function(e) {
-      if (true) {
-        e.preventDefault(); // Prevent saving a document.
-      }
+    beforeSave(e) {
+      // Prevent document save.
+      e.preventDefault();
     }
   }
 });
 
 var user = new User();
-user.save(); // The document won't be saved.
+// Document won't be saved.
+user.save();
 ```
 
-In the `beforeSave` event handler, we used the `preventDefault()` method on the event object. Our condition in the `if` statement is always `true` so the operation will always be prevented. In a real use case you would probably change it to depend on a document state.
-
-*NOTE: It's worth noting that the `preventDefault()` method does not stop events propagation.*
+*NOTE: It's worth noting that the `preventDefault()` method does not stop event propagation.*

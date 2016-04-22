@@ -2,6 +2,8 @@
   {% include logo.html %}
   {% if page.name == "v1.md" %}
     {% include v1/table_of_content.html %}
+  {% elsif page.name == "index.md" %}
+    {% include v2/table_of_content.html %}
   {% elsif page.name == "v2.md" %}
     {% include v2/table_of_content.html %}
   {% endif %}

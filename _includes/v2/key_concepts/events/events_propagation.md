@@ -1,31 +1,60 @@
 # Events propagation
 
-When you add an event handler for the same event on two levels: on the class level and on the global level, then which event handler will be called first? You have to look for the answer in the events propagation.
+Events propagation is a mechanism of propagating an event from the top document level down to the level of the most nested document. When you consider the `User` class that has the `address` nested property of the `Address` type, then an event triggered on the level of the `User` class will go down to the `Address` class and down if the `Address` class has any nested fields.
 
-Here is the order in which events are triggered:
-
-1. Parent class event
-2. Child class event
-3. Global event
-
-You will learn about inheritance in the following sections of this documentation. For know, you have to know that events are triggered in the order showed above.
-
-In any moment, we can stop execution of event handlers to come by calling the `stopPropagation()` method on an event object passed to the event handler. The example below shows how to stop execution of the global event during the execution of the event handler on the class level.
+In any moment, we can stop execution of the further event handlers by calling the `e.stopPropagation()` method on an event object passed to the event handler. Thanks to that, event will not propagate to the nested documents.
 
 ```js
-User = Astro.Class({
+import { Class } from 'meteor/jagi:astronomy';
+
+const User = Class.create({
   name: 'User',
   /* */
+  fields: {
+    address: {
+      type: 'Address'
+    }
+  },
   events: {
-    'eventName': function(e) {
-      alert('Class event handler');
+    beforeSave(e) {
       e.stopPropagation();
     }
   }
 });
 
-Astro.eventManager.on('eventName', function(e) {
-  // This event will never be called, because propagation was stopped.
-  alert('Global event handler');
+const Address = Class.create({
+  name: 'Address',
+  /* ... */
+  events: {
+    beforeSave(e) {
+      // This event will never get called because we stopped propagation.
+    }
+  }
+});
+```
+
+There is also the `e.stopImmediatePropagation()` method on the event object that not only stops propagation but also prevent from executing other events of the same type and on the same level.
+
+```js
+import { Class } from 'meteor/jagi:astronomy';
+
+const User = Class.create({
+  name: 'User',
+  /* */
+  fields: {
+    address: {
+      type: 'Address'
+    }
+  },
+  events: {
+    beforeSave: [
+      function(e) {
+        e.stopImmediatePropagation();
+      },
+      function() {
+        // This event will never get called.
+      }
+    ]
+  }
 });
 ```

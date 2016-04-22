@@ -1,6 +1,6 @@
 # What is Astronomy?
 
-The [Astronomy](https://atmospherejs.com/jagi/astronomy) package introduces the [Model Layer](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) for Meteor collections. It can also be named the Object Document Mapping system (ODM) or for people coming from relational database environments the Object-Relational Mapping system (ORM).
+The [Astronomy 1.x](https://atmospherejs.com/jagi/astronomy) package introduces the [Model Layer](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) for Meteor collections. It can also be named the Object Document Mapping system (ODM) or for people coming from relational database environments the Object-Relational Mapping system (ORM).
 
 Leaving terminology aside, Astronomy gives you a possibility to define a document's schema that includes field definitions, methods, events, validators and many more. As a result, programming is much easier and the amount of code you have to write much smaller. But a picture is worth a thousand words, so let's take a look at a simple example.
 
