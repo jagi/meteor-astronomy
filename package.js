@@ -1,6 +1,6 @@
 Package.describe({
   name: 'jagi:astronomy',
-  version: '2.0.0-rc.8',
+  version: '2.0.0-rc.9',
   summary: 'Model layer for Meteor',
   git: 'https://github.com/jagi/meteor-astronomy.git'
 });
@@ -15,7 +15,7 @@ Package.onUse(function(api) {
   api.use([
     'ecmascript',
     'es5-shim',
-    'ddp@1.2.2-beta.16',
+    'ddp',
     'mongo',
     'check',
     'minimongo',
