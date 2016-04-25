@@ -1,267 +1,264 @@
-# Validators
+# Validators list
+
+Here is a list of all validators predefined in Astronomy and information about params that they take.
 
 **string**
 
-```js
-Validators.string();
-```
+Checks if value is a string.
 
-The `string` validator doesn't take any options as the first argument and its function is to check whether a value of the field is a string.
+```js
+{
+  type: 'string'
+  // No param.
+}
+```
 
 **number**
 
-```js
-Validators.number();
-```
+Checks if value is a number.
 
-The `number` validator doesn't take any options as the first argument and its function is to check whether a value of the field is a number.
+```js
+{
+  type: 'number'
+  // No param.
+}
+```
 
 **boolean**
 
-```js
-Validators.boolean();
-```
+Checks if value is a boolean.
 
-The `boolean` validator doesn't take any options as the first argument and its function is to check whether a value of the field is a boolean.
+```js
+{
+  type: 'boolean'
+  // No param.
+}
+```
 
 **array**
 
-```js
-Validators.array();
-```
+Checks if value is an array.
 
-The `array` validator doesn't take any options as the first argument and its function is to check whether a value of the field is an array.
+```js
+{
+  type: 'array'
+  // No param.
+}
+```
 
 **object**
 
+Checks if value is an object.
+
 ```js
-Validators.object();
+{
+  type: 'object'
+  // No param.
+}
 ```
-
-The `object` validator doesn't take any options as the first argument and its function is to check whether a value of the field is an object.
-
 **date**
 
-```js
-Validators.date();
-```
+Checks if value is a date.
 
-The `date` validator doesn't take any options as the first argument and its function is to check whether a value of the field is a date.
+```js
+{
+  type: 'date'
+  // No param.
+}
+```
 
 **required**
 
-```js
-Validators.required();
-```
+Checks if value is not `null` or `undefined`.
 
-The `required` validator doesn't take any options as the first argument and its function is to check whether a value of the field is not an empty value like `null` or `""` (empty string).
+```js
+{
+  type: 'required'
+  // No param.
+}
+```
 
 **null**
 
-```js
-Validators.null();
-```
+Checks if value is `null`.
 
-The `null` validator doesn't take any options as the first argument and its function is to check whether a value of the field is `null`.
+```js
+{
+  type: 'null'
+  // No param.
+}
+```
 
 **notNull**
 
-```js
-Validators.notNull();
-```
+Checks if value is not `null`.
 
-The `notNull` validator doesn't take any options as the first argument and its function is to check whether a value of the field is not `null`.
+```js
+{
+  type: 'notNull'
+  // No param.
+}
+```
 
 **length**
 
-```js
-Validators.length(size);
-```
+Checks length of value. Works with any value having the `length` property like arrays or strings.
 
-The `length` validator takes a number as the first argument and its function is to check whether the length of a value of a field is exactly `size` characters long. Where `size` is the first argument of the validator. It can also works with fields of the `Array` type. In such situation, it checks number of elements in an array.
+```js
+{
+  type: 'length'
+  param: 5
+}
+```
 
 **minLength**
 
-```js
-Validators.minLength(size);
-```
+Checks minimal length of value. Works with any value having the `length` property like arrays or strings.
 
-The `minLength` validator takes a number as the first argument and its function is to check whether the length of a value of a field is at least `size` characters long. Where `size` is the first argument of the validator. It can also works with fields of the `Array` type. In such situation, it checks number of elements in an array.
+```js
+{
+  type: 'minLength'
+  param: 5
+}
+```
 
 **maxLength**
 
-```js
-Validators.maxLength(size);
-```
+Checks maximum length of value. Works with any value having the `length` property like arrays or strings.
 
-The `maxLength` validator takes a number as the first argument and its function is to check whether the length of a value of a field is at most `size` characters long. Where `size` is the first argument of the validator. It can also works with fields of the `Array` type. In such situation, it checks number of elements in an array.
+```js
+{
+  type: 'maxLength'
+  param: 5
+}
+```
 
 **gt**
 
-```js
-Validators.gt(size);
-```
+Checks if value is greater than param. Works with any value which casts to numbers like number, dates and strings.
 
-The `gt` validator takes a number as the first argument and its function is to check whether a value of a field is greater than the `size`. Where `size` is the first argument of the validator. It can also works with fields of the `Date` type and other types that are comparable with numbers.
+```js
+{
+  type: 'gt'
+  param: 5
+}
+```
 
 **gte**
 
-```js
-Validators.gte(size);
-```
+Checks if value is greater than or equal to param. Works with any value which casts to numbers like number, dates and strings.
 
-The `gte` validator takes a number as the first argument and its function is to check whether a value of a field is greater than or equal the `size`. Where `size` is the first argument of the validator. It can also works with fields of the `Date` type and other types that are comparable with numbers.
+```js
+{
+  type: 'gte'
+  param: 5
+}
+```
 
 **lt**
 
-```js
-Validators.lt(size);
-```
+Checks if value is less than param. Works with any value which casts to numbers like number, dates and strings.
 
-The `lt` validator takes a number as the first argument and its function is to check whether a value of a field is less than the `size`. Where `size` is the first argument of the validator. It can also works with fields of the `Date` type and other types that are comparable with numbers.
+```js
+{
+  type: 'lt'
+  param: 5
+}
+```
 
 **lte**
 
-```js
-Validators.lte(size);
-```
+Checks if value is less than or equal to param. Works with any value which casts to numbers like number, dates and strings.
 
-The `lte` validator takes a number as the first argument and its function is to check whether a value of a field is less than or equal the `size`. Where `size` is the first argument of the validator. It can also works with fields of the `Date` type and other types that are comparable with numbers.
+```js
+{
+  type: 'lte'
+  param: 5
+}
+```
 
 **email**
 
-```js
-Validators.email();
-```
-
-The `email` validator doesn't take any options as the first argument and its function is to check whether a value of the field is a string with a valid email address.
+Checks if value is a correct email address.
 
 ```js
-// Example:
-validators: {
-  email: Validators.email()
+{
+  type: 'email'
+  // No param.
 }
 ```
+
 
 **choice**
 
-```js
-Validators.choice(choices);
-```
+Checks if value of the field is one of the values provided as a param.
 
-The `choice` validator takes a list of valid values as the first argument and its function is to check whether a value of the field is one of them.
 
 ```js
-// Example:
 validators: {
-  sex: Validators.choice(['male', 'female'])
+  sex: {
+    type: 'choice',
+    param: ['male', 'female']
+  }
 }
 ```
-
-**unique**
-
-```js
-Validators.unique();
-```
-
-The `unique` validator takes no arguments and checks whether the value of the field is unique.
-Currently the `unique` validator should only be used to validate top level fields. It will not work with nested fields.
-
-```js
-// Example:
-validators: {
-  // Each document has to have unique email address.
-  email: Validators.unique()
-}
-```
-
-*NOTICE: The `unique` validator should be used on the server because on the client we can be subscribed to not entire set of documents and checking uniqueness in such situation may not be reliable.*
 
 **equal**
 
-```js
-Validators.equal(comparisonValue);
-```
-
-The `equal` validator takes a comparison value as the first argument and its function is to check whether a value of the field is equal to the comparison value.
+Checks if value is equal to the one in a param.
 
 ```js
-// Example:
-validators: {
-  captcha: Validators.equal('aBcDeFg')
-}
-```
-
-**equalTo**
-
-```js
-Validators.equalTo(fieldName);
-```
-
-The `equalTo` validator takes a field name as the first argument and its function is to check whether a value of the field is equal to the value of a field passed as the argument.
-
-```js
-// Example:
-validators: {
-  // Check if values of `password1` and `password2` fields are equal.
-  password1: Validators.equalTo('password2')
+{
+  type: 'equal'
+  resolveParam() {
+    return 'Should be equal to this value';
+  }
 }
 ```
 
 **regexp**
 
-```js
-Validators.regexp(regularExpression);
-```
-
-The `regexp` validator takes a regular expression as the first argument and its function is to check whether a value of the field is matches the regular expression passed as the argument.
+Checks if value matches regular expression passed as a param.
 
 ```js
-// Example:
-validators: {
-  login: Validators.regexp(/^[a-zA-Z0-9]+$/)
+{
+  type: 'regexp',
+  param /^[a-zA-Z0-9]+$/
 }
 ```
 
 **and**
 
-```js
-Validators.and(validatorsList);
-```
-
-The `and` validator takes a list of validators as the first argument and its function is to check whether a value of the field passes validation of all validators from the list.
+Checks if all of validators passed as a param passes validation.
 
 ```js
-validators: {
-  firstName: Validators.and([
-    Validators.string(),
-    Validators.minLength(3)
-  ])
-}
+{
+  type: 'and',
+  param: [{
+    type: 'gt',
+    param: 6
+  }, {
+    type: 'lt',
+    param: 9
+  }]
+]
 ```
 
 **or**
 
-```js
-Validators.or(validatorsList);
-```
-
-The `or` validator takes a list of validators as the first argument and its function is to check whether a value of the field passes validation of any validator from the list.
+Checks if any of validators passed as a param passes validation.
 
 ```js
-validators: {
-  // Age has to be between 18 and 30 or between 45 and 60
-  age: Validators.or([
-    Validators.and([
-      Validators.minLength(18),
-      Validators.maxLength(30)
-    ]),
-    Validators.and([
-      Validators.minLength(45),
-      Validators.maxLength(60)
-    ])
-  ])
-}
+{
+  type: 'or',
+  param: [{
+    type: 'lt',
+    param: 6
+  }, {
+    type: 'gt',
+    param: 9
+  }]
+]
 ```
 
 **if**

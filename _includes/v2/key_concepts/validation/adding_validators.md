@@ -1,151 +1,118 @@
 # Adding validators
 
-There are two ways of adding validators to the class. You can define them on the level of the class or on the level of the field definition. Let's take a look at the example of both.
-
-**Validators on the class level**
-
-Validators of the class level have to be defined under the `validators` property in the class schema.
-
-```js
-User = Astro.Class({
-  name: 'User',
-  /* ... */
-  validators: {
-    firstName: Validators.minLength(3)
-  }
-});
-```
-
-As you can see, we've added the `minLength` validator for the `firstName` field. We will write more about available validators and their options.
+There are two ways of adding validators to the class. You can define them on the class level on the field's definition level. Let's take a look at the example of both.
 
 **Validators on the field level**
 
-You can also define validators with a field definition, to keep them together and make it more readable. To do that you have to define validator under the `validator` property.
+You can define validator on a field level to keep field definition together with its validators. It's much more readable that way. You define validators for a field by providing the `validators` property.
 
 ```js
-User = Astro.Class({
+import { Class } from 'meteor/jagi:astronomy';
+
+const User = Class.create({
   name: 'User',
   /* ... */
   fields: {
     firstName: {
-      type: 'string',
-      validator: Validators.minLength(3)
+      type: String,
+      validators: [{
+        type: 'minLength',
+        param: 3
+      }]
     }
   }
 });
 ```
 
-*NOTICE: In a field definition the correct property name is `validator` (singular) and in the class definition it `validators` (plural).*
+As you can see, for the `validators` property we provide array of objects, where each one has one mandatory attribute `type`. In this example, we used the `minLength` validator, which checks if a string is at least X characters long. The `param` attribute tells how long a given text should be.
 
-**Passing array of validators**
+There are validators that does not take any param like type validators (`string`, `number`, `data`) so it's not mandatory for each validator. However, the `minLength` validator requires this parameter to be passed.
 
-As a value of the `validators` or `validator` property you can pass array of validators. In such situation array of validators will be replaced with the `and` validator. The `and` validator means that all sub-validators has to pass validation test to mark field's value as valid. The two following examples are equivalent.
+**Validators on the class level**
 
-The `and` validator:
+This type of defining validators is much less used. This time, you define validators on the class level under the `validators` property. Let's take a look at the example.
 
 ```js
-User = Astro.Class({
+import { Class } from 'meteor/jagi:astronomy';
+
+const User = Class.create({
   name: 'User',
-  /* */
-  validators: {
-    firstName: Validators.and([
-      Validators.required(),
-      Validators.string()
-    ])
-  }
+  /* ... */
+  validators: [
+    firsName: [{
+      type: 'minLength',
+      param: 3
+    }]
+  ]
 });
 ```
 
-Array of validators:
-
-```js
-User = Astro.Class({
-  name: 'User',
-  /* */
-  validators: {
-    firstName: [
-      Validators.required(),
-      Validators.string()
-    ]
-  }
-});
-```
+This situation is similar to previous one, however we only have here section dedicated to validation. We don't provide any field properties beside validators data.
 
 **Reusing validators**
 
 Sometimes you may notice that you repeat the same set of validators over and over again. There is a possibility to reuse validators.
 
 ```js
-var reqStrMin3 = Validators.and([
-  Validators.required(),
-  Validators.string(),
-  Validators.minLength(3)
-]);
+import { Class } from 'meteor/jagi:astronomy';
 
-User = Astro.Class({
+var min3max10 = [{
+  type: 'minLength',
+  param: 3
+}, {
+  type: 'maxLength',
+  param: 10
+}];
+
+const User = Class.create({
   name: 'User',
   /* */
   validators: {
-    firstName: reqStrMin3,
-    lastName: reqStrMin3
+    firstName: min3max10,
+    lastName: min3max10
   }
 });
 ```
 
-**Types of validator params**
+**Function as a validator param**
 
-Most of the validators take a param as the first argument. The param may differ from validator to validator. Let's examine some cases.
-
-Array of validators. They `and` and `or` validators are the only two predefined validators that take an array of validators as a param. We will write more about them in next sections.
+There are situations when you may want resolve param value on runtime as you may not know the actual param value on the schema definition time. For such cases there is a special `resolveParam` validator property. You can provide function that will be resolved on validation. Let's take a look at the example.
 
 ```js
-Validators.and([
-  Validators.string(),
-  Validators.minLength(3)
-]);
+import { Class } from 'meteor/jagi:astronomy';
 
-Validators.or([
-  Validators.string(),
-  Validators.minLength(3)
-]);
-```
-
-There are validators that take a single plain value (string, number) as a param. The examples of them are: `minLength`, `equal`, `contains`. We will write more about them in next sections.
-
-```js
-Validators.minLength(3);
-Validators.equal('mustBeEqualToThisString');
-Validators.contains('mustContainThisString');
-```
-
-There are validators that take array of some values or object with some validator details. The examples of them are: `choice`, `if`. We will write more about them in next sections.
-
-```js
-Validators.choice(['value', 'has', 'to', 'match', 'one', 'of', 'these']);
-Validators.if({
-  condition: function() {
-    return this.lastName > 5;
-  },
-  true: Validators.maxLength(10),
-  false: Validators.minLength(2)
+const User = Class.create({
+  name: 'User',
+  /* ... */
+  fields: {
+    birthDate: {
+      type: Date,
+      validators: [{
+        type: 'lte',
+        resolveParam: function() {
+          let date = new Date();
+          return date.setFullYear(date.getFullYear() - 18);
+        }
+      }]
+    },
+    firstName: {
+      type: String,
+      validators: [{
+        type: 'maxLength',
+        resolveParam(args) {
+          return args.doc.lastName.length - 1;
+        }
+      }]
+    }
+  }
 });
 ```
 
-There are also validators that does not take any param. The example of them are: `string`, `number`, `boolean`.
+We have here two examples of usage of the `resolveParam` function. In the `birthDate` field, we used it for the `lte` validator, which stands for `less than or equal`. We just calculate at which date should at least given user be born to be 18 years old. So, this param depends on the current date.
 
-**Function as a validator param**
+In the second example, in the `firstName` field we used the `resolveParam` function in the `maxLength` validator to tell that the `firstName` has to be shorter than the `lastName` (I know it's bad example). So, we have to access document's another field. We can do so, by accessing arguments object passed to the `resolveParam` method. It contains such properties like.
 
-There is a special type of a param. If a validator takes parameter, you can also pass a function as a param. In such situation, the param value will be calculated on validation execution. It's very useful when we want to depend validation of one field on the value of another field.
-
-```js
-validators: {
-  firstName: Validators.string(),
-  lastName: Validators.minLength(function() {
-    // A value of the "lastName" field has to be at least as long as a value of
-    // the "firstName" field.
-    return this.firstName.length;
-  });
-}
-```
-
-*NOTICE: It's important to remember that a function param works with every validator that takes param as the first argument.*
+- `args.doc` - Document being validated
+- `args.name` - Field name being validated
+- `args.nestedName` - Nested field name being validated
+- `args.value` - Current field's value

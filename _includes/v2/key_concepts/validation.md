@@ -1,6 +1,6 @@
 # Validation
 
-Validators allows checking validity of fields' values. For instance, we can check whether a value of a given field is a correct email string or if it matches a regular expression.
+Validators allows checking validity of fields' values. For instance, we can check whether a value of a given field is a correct email string or if it matches a regular expression. By default Astronomy checks validity of fields' types.
 
 **Validating document**
 

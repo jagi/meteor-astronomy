@@ -37,3 +37,5 @@ const User = Class.create({
   }
 });
 ```
+
+As you can see in both examples, we perform fields mapping by providing the `resolve()` method in the field's definition. As the first argument, it receives raw data from a collection. Your responsibility is to return a new value for a field. It's worth noting that, if we're dealing with nested class, the the resolve method for such class will receive only data for a nested field.
