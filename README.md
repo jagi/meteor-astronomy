@@ -2,29 +2,19 @@
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jagi/meteor-astronomy?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge)
 
-<img src="http://astronomy.jagi.io/logo.png" />
+<img src="http://jagi.github.io/meteor-astronomy/images/logo.png" />
 
-The [Astronomy](https://atmospherejs.com/jagi/astronomy) package introduces the [Model Layer](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) for Meteor collections. It can also be named the Object Document Mapping system (ODM) or for people coming from relational database environments the Object-Relational Mapping system (ORM). Astronomy extends MongoDB documents with functionalities defined in a schema.
+The [Astronomy](https://atmospherejs.com/jagi/astronomy) package introduces the [Model Layer](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) into Meteor applications. It can also be named the Object Document Mapping system (ODM) or for people coming from relational database environments the Object-Relational Mapping system (ORM). Astronomy extends MongoDB documents with functionalities defined in a schema.
 
 ## Documentation
 
-Astronomy documentation can be found [here](http://astronomy.jagi.io).
+Astronomy documentation can be found [here](http://jagi.github.io/meteor-astronomy/).
 
 ## Installation
 
 ```sh
 $ meteor add jagi:astronomy
 ```
-
-## Moving to 1.0.0
-
-If your working project is using Astronomy in version 0.12.1 then it's recommended to move to version 1.0.0. You can find information about changes in 1.0.0 in the [HISTORY.md](https://github.com/jagi/meteor-astronomy/blob/master/HISTORY.md) file. However, if you are not able to upgrade your project, you have to specify Astronomy version you want to use.
-
-```js
-meteor add jagi:astronomy@0.12.1
-```
-
-Support for the 0.12.1 version will not be continued.
 
 ## Introduction
 
@@ -57,21 +47,52 @@ if (post.title.length < 3) {
 }
 ```
 
-With Astronomy and a defined schema your code would look like follows:
+With Astronomy and defined schema your code would look like follows:
 
 ```js
-var post = Posts.findOne(id);
+// Notice that we call the "findOne" method
+// from the "Post" class not from the "Posts" collection.
+var post = Post.findOne(id);
 // Auto convert a string input value to a number.
-post.set('title', tmpl.find('input[name=title]').value);
-post.set('publishedAt', tmpl.find('input[name=publishedAt]').value);
-// Check if all fields are valid.
-if (post.validate()) {
-  // Update document with with only the fields that have changed.
-  post.save();
-}
+post.title = tmpl.find('input[name=title]').value;
+post.publishedAt = new Date(tmpl.find('input[name=publishedAt]').value);
+// Check if all fields are valid and update document
+// with only the fields that have changed.
+post.save();
 ```
 
 What approach is simpler? I think the choice is obvious.
+
+For clarity, here is a sample schema that allows that. May seem to be a lot of
+code but have in mind that you write it only once.
+
+```js
+import { class } from 'meteor/jagi:astronomy';
+
+const Posts = new Mongo.Collection('posts');
+const Post = Class.create({
+  name: 'Post',
+  collection: Posts,
+  fields: {
+    title: {
+      type: String,
+      validators: [{
+        type: 'gte',
+        param: 3
+      }]
+    },
+    userId: String,
+    publishedAt: Date
+  },
+  behaviors: {
+    timestamp: {}
+  }
+});
+```
+
+## Supporters
+
+[<img src="http://jagi.github.io/meteor-astronomy/images/usefulio.png" />](http://useful.io/)
 
 ## Contribution
 
