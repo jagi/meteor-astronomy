@@ -19,7 +19,3 @@
 {% include v2/key_concepts/extending_class.md %}
 
 {% include v2/key_concepts/validation.md %}
-
-{% include v2/key_concepts/relations.md %}
-
-{% include v2/key_concepts/troubleshooting.md %}
