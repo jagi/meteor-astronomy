@@ -33,6 +33,23 @@ u.validate(function(err) {
 });
 ```
 
+The error object coming from the server may not always has be a validation error, so we need some mechanism of determining what error type it is. We can do it by checking the `err.error` property of the error object. It should be equal `"validation-error"`. The other way of checking it is using the `ValidationError.is()` method. Let's see example using both approaches.
+
+```js
+import { ValidationError } from 'meteor/jagi:astronomy';
+
+// On the client.
+var user = new User();
+u.validate(function(err) {
+  // First approach.
+  if (err && err.error === 'validation-error') {
+  }
+  // Second approach.
+  if (ValidationError.is(err)) {
+  }
+});
+```
+
 {% include v2/key_concepts/validation/adding_validators.md %}
 
 {% include v2/key_concepts/validation/generating_errors.md %}
