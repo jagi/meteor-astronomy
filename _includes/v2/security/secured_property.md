@@ -42,7 +42,7 @@ user.save(); // Throw error: Inserting from the client is not allowed
 
 **Securing application using events**
 
-If you set the `secured` property to `true` then you have to very careful securing your application. By default, it will allow anyone to insert, update or remove documents from collections. To secure class, we have to define some security rules in events. Let's take a look at the example.
+If you set the `secured` property to `false` (or do not provide value) then you have to be very careful about securing your application. By default, it will allow anyone to insert, update or remove documents from the client. In such situation, we have to secure a class by defining some security rules in events. Let's take a look at the example.
 
 ```js
 import { Class } from 'meteor/jagi:astronomy';
