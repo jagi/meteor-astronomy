@@ -1,14 +1,12 @@
 # Slug
 
-You can add the `slug` behavior to your project by executing the following command.
+You can add the `slug` behavior to your project by executing the following command in your Meteor project directory.
 
 ```sh
 meteor add jagi:astronomy-slug-behavior
 ```
 
-The `slug` behavior adds a slug field for storing an URL friendly value of a chosen field. The slug field can be used in the routing for generating URLs `http://localhost:3000/post/to-jest-test-polskich-znakow-aszclonz`.
-
-The `slug` behavior comes with following options.
+The `slug` behavior adds a slug field for storing an URL friendly value of a chosen field. The slug field can be used in the routing for generating URLs `http://localhost:3000/post/to-jest-test-polskich-znakow-aszclonz`. The behavior comes with following options.
 
 ```js
 behaviors: {
@@ -52,10 +50,12 @@ If we want to generate a slug from multiple fields or from a manually generated 
 Let's take a look at the example of generating a slug using a method.
 
 ```js
-User = Astro.Class({
+import { Class } from 'meteor/jagi:astronomy';
+
+const User = Class.create({
   /* ... */
   methods: {
-    fullName: function() {
+    fullName() {
       // Slug will be generated from the returned value.
       return this.firstName + ' ' + this.lastName;
     }
@@ -65,41 +65,6 @@ User = Astro.Class({
       // You have to set null here if you want to use "methodName" option
       fieldName: null,
       // The method name that generates a value for the slug-ification process.
-      methodName: 'fullName'
-    }
-  }
-});
-```
-
-**The generateSlug() method**
-
-You can also use the `generateSlug()` method to manually generate a slug in any moment no only on a document save. Let's take a look at the example usage.
-
-```js
-User = Astro.Class({
-  /* ... */
-  methods: {
-    fullName: function() {
-      return this.firstName + ' ' + this.lastName;
-    }
-  },
-  events: {
-    afterInit: function() {
-      // We can generate a slug after initialization of a document.
-      this.generateSlug();
-    },
-    afterSet: function(e) {
-      var fieldName = e.data.fieldName;
-      if (fieldName === 'firstName' || fieldName === 'lastName') {
-        // We can also generate a slug when one of the fields that creates a
-        // slug has changed.
-        this.generateSlug();
-      }
-    }
-  },
-  behaviors: {
-    slug: {
-      fieldName: null,
       methodName: 'fullName'
     }
   }

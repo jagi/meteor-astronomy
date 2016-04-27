@@ -1,16 +1,15 @@
 # Timestamp
 
-You can add the `timestamp` behavior to your project by executing the following command.
+You can add the `timestamp` behavior to your project by executing the following command in your Meteor project directory.
 
 ```sh
 meteor add jagi:astronomy-timestamp-behavior
 ```
 
-The `timestamp` behavior adds two fields that store information about document creation and update dates.
-
-The `timestamp` behavior comes with following options. Options names are self explanatory.
+The `timestamp` behavior adds two fields that store information about document's creation and update dates. The behavior comes with following options. Options names are self explanatory.
 
 ```js
+
 behaviors: {
   timestamp: {
     hasCreatedField: true,
