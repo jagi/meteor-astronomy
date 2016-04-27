@@ -195,10 +195,13 @@ Checks if value of the field is one of the values provided as a param.
 
 
 ```js
-validators: {
+fields: {
   sex: {
-    type: 'choice',
-    param: ['male', 'female']
+    type: String,
+    validators: [{
+      type: 'choice',
+      param: ['male', 'female']
+    }]
   }
 }
 ```
@@ -261,122 +264,59 @@ Checks if any of validators passed as a param passes validation.
 ]
 ```
 
-**if**
-
-```js
-Validators.if({
-  condition: function(fieldValue, fieldName) {},
-  true: validator
-  false: validator /* Optional */
-});
-```
-
-The `if` validator takes an object with some options as the first argument. The available options are `condition`, `true` and `false`. The `false` option is not obligatory. In the `condition` function, you have to return `true` or `false` value which will determine usage of the `true` or `false` validator accordingly. The `condition` function is executed in the context of the given document, so you can base condition on values of other fields in a document. The `condition` function also receives two arguments. The first one is a current field value and the second one is a current field name.
-
-```js
-// Example:
-validators: {
-  someField: Validators.if({
-    condition: function(fieldValue, fieldName) {
-      return this.otherField.length > fieldValue.length
-    },
-    true: Validators.and([
-      Validators.string(),
-      Validators.email()
-    ])
-  })
-}
-```
-
-**switch**
-
-```js
-Validators.switch({
-  expression: function(fieldValue, fieldName) {},
-  cases: {
-    value1: validator,
-    value2: validator,
-    value3: validator
-    /* ... */
-  }
-});
-```
-
-The `switch` validator takes an object with some options as the first argument. The available options are `expression` and `cases`. Both options are obligatory. In the `expression` function, you have to return one of the keys in the `cases` object. It will take the returned value and validate a value of a field using proper validator from the `cases` object.
-
-```js
-// Example:
-validators: {
-  someField: Validators.switch({
-    expression: function(fieldValue, fieldName) {
-      return fieldValue.length
-    },
-    cases: {
-      4: Validators.regexp(/^d+$/),
-      6: Validators.regexp(/^[a-z]+$/)
-    }
-  })
-}
-```
-
 **every**
 
-The `every` validator takes a validator as the first argument. The validator function is to check whether every element of a field's value, which should be an array, passes validation using the validator passed as the first argument.
+Checks if any value in an array passes validation.
 
 ```js
-// Example:
-Post = Astro.Class({
-  name: 'Post',
-  /* ... */
-  fields: {
-    tags: {
-      type: 'array',
-      nested: 'string',
-      default: function() {
-        return [];
-      },
-      validator: [
-        // Up to 100 tags per post.
-        Validators.maxLength(100),
-        // Each tag has to...
-        Validators.every(
-          Validators.and([
-            // ... be a string and...
-            Validators.string(),
-            // ... at least 3 characters long
-            Validators.minLength(3)
-          ])
-        )
-      ]
-    }
-  }
-});
+fields: {
+  tags: [String],
+  validators: [{
+    // Each tag in an array...
+    type: 'every',
+    param: [{
+      // ... has to be at least 3 characters long and...
+      type: 'minLength',
+      param: 3
+    }, {
+      // ... up to 40 characters long.
+      type: 'maxLength',
+      param: 40
+    }]
+  }]
+}
 ```
 
 **has**
 
-```js
-Validators.has(propertyName);
-```
-
-The `has` validator takes a property name as the first argument. Its function is to check whether a value of a field, which should be an object, has the property property.
+Checks if a property is present in an object.
 
 ```js
-validators: {
-  address: Validators.has('city')
+fields: {
+  address: {
+    type: Object,
+    validators: [{
+      // The non-schema address object has to have the "city" property.
+      type: 'has',
+      param: 'city'
+    }]
+  }
 }
 ```
 
-**contains**
+**includes**
+
+Checks if an array or object contains a given value.
 
 ```js
-Validators.contains(soughtArrayElement);
-```
-
-The `contains` validator takes a sought element as the first argument. Its function is to check whether a value of a field, which should be an array, contains the sought element.
-
-```js
-validators: {
-  tags: Validators.contains('meteor')
+fields: {
+  tags: {
+    type: [String],
+    validators: [{
+      // The "tags" array has to contain the "test" tag.
+      type: 'includes',
+      param: 'test'
+    }]
+  }
 }
 ```
