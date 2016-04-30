@@ -30,7 +30,7 @@ Here is a list of all objects that you can import:
 V1
 
 ```js
-var User = Astro.Class.create({});
+var User = Astro.Class({});
 ```
 
 V2

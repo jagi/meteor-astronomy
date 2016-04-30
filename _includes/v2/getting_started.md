@@ -20,7 +20,7 @@ You're ready to go.
 We'll start by showing the simplest possible class implementation.
 
 ```js
-import { class } from 'meteor/jagi:astronomy';
+import { Class } from 'meteor/jagi:astronomy';
 
 const Posts = new Mongo.Collection('posts');
 
@@ -41,7 +41,7 @@ var post = new Post();
 Our class is very simple and right now. It doesn't have any fields, so let's change that.
 
 ```js
-import { class } from 'meteor/jagi:astronomy';
+import { Class } from 'meteor/jagi:astronomy';
 
 const Post = Class.create({
   name: 'Post',
@@ -83,7 +83,7 @@ In the example above, we fetched previously saved document and modified its titl
 Let's define some validation rules in our class.
 
 ```js
-import { class } from 'meteor/jagi:astronomy';
+import { Class } from 'meteor/jagi:astronomy';
 
 const Post = Class.create({
   name: 'Post',
