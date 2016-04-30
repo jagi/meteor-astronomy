@@ -48,6 +48,55 @@ user.get('address.city'); // Get nested field with helper method.
 user.get(['firstName', 'lastName']); // Get multiple fields.
 ```
 
+**Getting modified values**
+
+There are four methods that help with getting modified fields/values.
+
+- `isModified([fieldName])`
+
+When called without arguments `doc.isModified()` will tell you if a document was modified. However, you can pass a field name `user.isModified('firstName')` to determine if a single field was modified. You can also pass nested field name `user.isModified('address.city')`.
+
+- `getModified([old])`
+
+Returns list of all fields that have been modified (including nested fields).
+
+- `getModifiedValues([options])`
+
+Returns values of all modified fields as an object with keys being fields names and values being fields values. The method can take an optional `options` object where you can specify if you want to retrieve `old` values before modification. You can also retrieve `raw` values of nested classes if they were modified.
+
+```js
+user.getModifiedValues({ old: true, raw: true });
+/*
+{
+  address: {
+    city: "San Francisco",
+    state: "CA"
+  }
+}
+*/
+```
+
+- `getModifier()`
+
+Returns a modifier for modifications that were performed from the last document save.
+
+```js
+var user = User.findOne();
+user.firstName = 'John';
+user.lastName = undefined;
+user.getModified();
+/*
+{
+  $set: {
+    firstName: 'John'
+  },
+  $unset: {
+    lastName: ''
+  }
+}
+*/
+```
+
 **Getting raw values**
 
 The `raw()` method is responsible for getting a plain value from a nested field. This means that even if a given field is defined as a nested Astronomy class, it will return a plain JavaScript object instead.
