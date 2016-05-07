@@ -24,7 +24,7 @@ behaviors: {
 Let's take a look at the behavior usage.
 
 ```js
-var user = Users.findOne();
+var user = User.findOne();
 // Sets the "removed" flag to true and saves it into the collection
 user.softRemove();
 ```
@@ -35,7 +35,9 @@ Ok, but how to exclude removed document from being fetched. You have to use the 
 // Get only not removed users.
 var onlyNotRemovedUsers = User.find();
 // Get all users.
-var allUsers = Users.find();
+var allUsers = User.find({}, {
+  disableEvents: true
+});
 ```
 
 *NOTICE: In the first line, we call the `find()` method from the `User` class and in the second line from the `Users` collection. The `slug` behavior uses the `beforeFind` event to modify selector that will cause fetching only non-removed documents.*
@@ -43,7 +45,7 @@ var allUsers = Users.find();
 You can also restore a soft removed document.
 
 ```js
-var user = Users.findOne();
+var user = User.findOne();
 // Sets the "removed" flag to true and saves it into the collection
 user.softRemove();
 
