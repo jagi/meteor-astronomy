@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 resetDatabase = function() {
-	_.each(Astro.Class.classes, function(Class) {
+	_.forOwn(Astro.Class.classes, function(Class) {
 		let Collection = Class.getCollection();
 		if (!Collection) {
 			return;
@@ -15,7 +15,7 @@ resetDatabase = function() {
 };
 
 resetMethods = function() {
-	_.each(Astro.Class.classes, function(Class) {
+	_.forOwn(Astro.Class.classes, function(Class) {
 		let Collection = Class.getCollection();
 		if (!Collection) {
 			return;
