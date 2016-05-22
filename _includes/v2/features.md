@@ -92,4 +92,4 @@ The Slug Behavior adds a slug field for storing a URL friendly value of a chosen
 
 **Softremove behavior**
 
-The Softremove Behavior adds the `softRemove()` method to your class which prevents a document a document from being removed. Instead, it will flag the document as removed and you will be able to omit such documents on documents fetch. To use this behavior you have to add it to your project `meteor add jagi:astronomy-softremove-behavior`.
+The Softremove Behavior adds the `softRemove()` method to your class which prevents a document from being removed. Instead, it will flag the document as removed and you will be able to omit such documents on documents fetch. To use this behavior you have to add it to your project `meteor add jagi:astronomy-softremove-behavior`.
