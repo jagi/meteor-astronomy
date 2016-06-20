@@ -104,4 +104,72 @@ Tinytest.add('Modules - Validators - Validate', function(test) {
       'Wrong validation error'
     );
   }
+
+  let ClassWithDynamicOptionalField = Astro.Class.create({
+    name: 'ClassWithDynamicOptionalField',
+    fields: {
+      nameA: {
+        type: String
+      },
+      nameB: {
+        type: String,
+        optional: function(doc) {
+          return doc.nameA !== 'specialValue';
+        }
+      }
+    }
+  });
+
+  let docWithDynamicOptionalField = new ClassWithDynamicOptionalField();
+  
+  docWithDynamicOptionalField.nameA = 'abc';
+  
+  test.isUndefined(
+    docWithDynamicOptionalField.validate(),
+    'Document not validated properly'
+  );
+
+  docWithDynamicOptionalField.nameA = 'specialValue';
+  docWithDynamicOptionalField.nameB = 'must be set';
+  test.isUndefined(
+    docWithDynamicOptionalField.validate(),
+    'Document not validated properly'
+  );
+
+  docWithDynamicOptionalField.nameA = 'specialValue';
+  docWithDynamicOptionalField.nameB = null;
+
+  let exceptionHandlerCalled = false;
+
+  try {
+    docWithDynamicOptionalField.validate();
+  }
+  catch (e) {
+    exceptionHandlerCalled = true;
+    test.instanceOf(
+      e, Meteor.Error,
+      'Should throw Meteor.Error'
+    );
+
+    test.equal(
+      e.error, Astro.ValidationError.ERROR_CODE,
+      'Should throw validation error'
+    );
+
+    test.equal(
+      e.details.length, 1,
+      'Should throw one error'
+    );
+
+    let error = e.details[0];
+    test.equal(
+      error.name, 'nameB',
+      'Wrong validation error'
+    );
+  }
+
+  // Test that the validation has really failed
+  test.equal(exceptionHandlerCalled,
+    true,
+    'Validation did not throw an error');
 });

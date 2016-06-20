@@ -39,7 +39,7 @@ Package.onTest(function(api) {
     'insecure',
     'mongo',
     'ejson',
-    'jagi:astronomy@2.0.0'
+    'jagi:astronomy@2.0.1'
   ], ['client', 'server']);
 
   api.addFiles('test/utils.js', ['client', 'server']);
@@ -101,7 +101,8 @@ Package.onTest(function(api) {
     'test/modules/fields/default.js',
     'test/modules/fields/set.js',
     'test/modules/fields/get.js',
-    'test/modules/fields/raw.js'
+    'test/modules/fields/raw.js',
+    'test/modules/fields/optional.js'
   ], ['client', 'server']);
   // Modules - Indexes.
   api.addFiles([
