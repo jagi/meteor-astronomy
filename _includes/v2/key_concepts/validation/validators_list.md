@@ -226,7 +226,7 @@ Checks if value matches regular expression passed as a param.
 ```js
 {
   type: 'regexp',
-  param /^[a-zA-Z0-9]+$/
+  param: /^[a-zA-Z0-9]+$/
 }
 ```
 
