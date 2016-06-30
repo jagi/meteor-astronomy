@@ -1,4 +1,4 @@
-Tinytest.add('Fields - Modules - Default', function(test) {
+Tinytest.add('Modules - Fields - Default', function(test) {
   reset();
 
   let DefaultNested = Astro.Class.create({

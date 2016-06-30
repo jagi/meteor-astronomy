@@ -1,4 +1,4 @@
-Tinytest.add('Events - Modules - Cancelable', function(test) {
+Tinytest.add('Modules - Events - Cancelable', function(test) {
   let CancelableNestedEvent = Astro.Class.create({
     name: 'CancelableNestedEvent',
     events: {

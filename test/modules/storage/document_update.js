@@ -1,6 +1,10 @@
-Tinytest.add('Storage - Document update', function(test) {
-  let id = '6tMS79Kx6WhqTEwaC';
-  let storage = Storage.findOne(id);
+import { Class } from 'meteor/jagi:astronomy';
+
+Tinytest.add('Modules - Storage - Document update', function(test) {
+  const Storage = Class.get('Storage');
+
+  const id = '6tMS79Kx6WhqTEwaC';
+  const storage = Storage.findOne(id);
 
   // Update a document.
   storage.one.string = 'cba'
@@ -16,27 +20,28 @@ Tinytest.add('Storage - Document update', function(test) {
   storage.date = new Date(2001, 0, 1, 0, 0, 0, 0);
   storage.transient = 'transient';
   storage.immutable = 'IMMUTABLE';
-
   storage.save();
-  let expected = {
+
+  const expected = {
     '_id': id,
     'one': {
       'string': 'cba',
-      'immutable': 'immutable'
+      'immutable': 'immutable',
     },
     'many': [{
       'string': 'cba',
-      'immutable': 'immutable'
+      'immutable': 'immutable',
     }],
     'numbers': [3, 2, 1],
     'string': 'cba',
     'number': 321,
     'boolean': false,
     'date': new Date(2001, 0, 1, 0, 0, 0, 0),
-    'immutable': 'immutable'
+    'immutable': 'immutable',
   };
-
-  test.equal(Storages.findOne(id), expected,
+  test.equal(Storage.findOne(id, {
+    transform: null,
+  }), expected,
     'The document has not been updated properly'
   );
 });

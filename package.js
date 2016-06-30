@@ -66,29 +66,17 @@ Package.onTest(function(api) {
   // Modules - Storage.
   api.addFiles([
     'test/modules/storage/init.js',
+    'test/modules/storage/type_field.js',
+    'test/modules/storage/transform.js',
+    'test/modules/storage/document_insert.js',
+    'test/modules/storage/document_update.js',
+    'test/modules/storage/document_remove.js',
+    'test/modules/storage/class_insert.js',
+    'test/modules/storage/class_update.js',
+    'test/modules/storage/class_remove.js',
+    'test/modules/storage/reload.js',
+    'test/modules/storage/copy.js',
   ], ['client', 'server']);
-  api.addFiles([
-    'test/modules/storage/client/transform.js',
-    'test/modules/storage/client/document_insert.js',
-    'test/modules/storage/client/document_update.js',
-    'test/modules/storage/client/document_remove.js',
-    'test/modules/storage/client/class_insert.js',
-    'test/modules/storage/client/class_update.js',
-    'test/modules/storage/client/class_remove.js',
-    'test/modules/storage/client/reload.js',
-    'test/modules/storage/client/copy.js'
-  ], 'client');
-  api.addFiles([
-    'test/modules/storage/server/transform.js',
-    'test/modules/storage/server/document_insert.js',
-    'test/modules/storage/server/document_update.js',
-    'test/modules/storage/server/document_remove.js',
-    'test/modules/storage/server/class_insert.js',
-    'test/modules/storage/server/class_update.js',
-    'test/modules/storage/server/class_remove.js',
-    'test/modules/storage/server/reload.js',
-    'test/modules/storage/server/copy.js'
-  ], 'server');
   // Modules - Events.
   api.addFiles([
     'test/modules/events/order.js',

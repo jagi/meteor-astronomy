@@ -1,34 +1,74 @@
 import _ from 'lodash';
+import { Class, ValidationError } from 'meteor/jagi:astronomy';
 
-Tinytest.add('Fields - Modules - Optional', function(test) {
+Tinytest.add('Modules - Fields - Optional', function(test) {
   reset();
 
   // Define simple class to work with.
-  let Default = Astro.Class.create({
-    name: 'Default',
+  const Optional = Class.create({
+    name: 'Optional',
     fields: {
-      firstField: {
+      optional: {
         type: String,
-        default: ''
+        optional: true,
       },
-      secondField: {
+      resolveOptional: {
         type: String,
-        optional: function(doc) {
-          return this.firstField.length;
-        }
-      }
+        optional(doc) {
+          return true;
+        },
+      },
+      required: {
+        type: String,
+      },
     }
   });
 
-  let doc = new Default();
+  const optional = new Optional();
+  let error;
 
-  test.equal(Default.getField('firstField').optional, 
-     false,
-    'optional for "firstField" should return false'
-  );
+  try {
+    optional.validate({
+      fields: ['optional'],
+    });
+  }
+  catch (err) {
+    error = err;
+  }
+  finally {
+    test.isUndefined(
+      error,
+      'The "optional" field should be optional',
+    );
+  }
 
-  test.equal(_.isFunction(Default.getField('secondField').optional), 
-     true,
-    'optional for field "secondField" should be a function'
-  );
+  try {
+    optional.validate({
+      fields: ['resolveOptional'],
+    });
+  }
+  catch (err) {
+    error = err;
+  }
+  finally {
+    test.isUndefined(
+      error,
+      'The "resolveOptional" field should be resolved as optional',
+    );
+  }
+
+  try {
+    optional.validate({
+      fields: ['required'],
+    });
+  }
+  catch (err) {
+    error = err;
+  }
+  finally {
+    test.isTrue(
+      ValidationError.is(error),
+      'The "required" field should be required',
+    );
+  }
 });

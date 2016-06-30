@@ -1,4 +1,4 @@
-Tinytest.add('Events - Modules - Order', function(test) {
+Tinytest.add('Modules - Events - Order', function(test) {
 	let executedEvents = [];
 	let expectedEvents = [];
 

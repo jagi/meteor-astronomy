@@ -1,15 +1,17 @@
 import _ from 'lodash';
+import { Mongo } from 'meteor/mongo';
+import { Class } from 'meteor/jagi:astronomy';
 
-Tinytest.add('Storage - Transform', function(test) {
-  let Transforms = new Mongo.Collection(null);
+Tinytest.add('Modules - Storage - Transform', function(test) {
+  const Transforms = new Mongo.Collection(null);
 
   // Insert a document.
   Transforms.insert({
-    name: 'name'
+    name: 'name',
   });
 
   // Default transform function.
-  let DefaultTransform = Astro.Class.create({
+  const DefaultTransform = Class.create({
     name: 'DefaultTransform',
     collection: Transforms,
     fields: {
@@ -20,12 +22,12 @@ Tinytest.add('Storage - Transform', function(test) {
   });
 
   // Custom transform function.
-  let CustomClass = class {
+  const CustomClass = class {
     constructor(values) {
       _.extend(this, values);
     }
   };
-  let CustomTransform = Astro.Class.create({
+  const CustomTransform = Class.create({
     name: 'CustomTransform',
     collection: Transforms,
     transform: function(values) {
@@ -39,7 +41,7 @@ Tinytest.add('Storage - Transform', function(test) {
   });
 
   // No transform function.
-  let NoTransform = Astro.Class.create({
+  const NoTransform = Class.create({
     name: 'NoTransform',
     collection: Transforms,
     transform: null,
@@ -53,11 +55,9 @@ Tinytest.add('Storage - Transform', function(test) {
   test.instanceOf(DefaultTransform.findOne(), DefaultTransform,
     'Default transform function should be applied to the fetched documents'
   );
-
   test.instanceOf(CustomTransform.findOne(), CustomClass,
     'Custom transform function should be applied to the fetched documents'
   );
-
   test.equal(NoTransform.findOne().constructor, Object,
     'No transform function should be applied to the fetched documents'
   );

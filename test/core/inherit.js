@@ -1,7 +1,9 @@
+import { Class } from 'meteor/jagi:astronomy';
+
 Tinytest.add('Core - Inherit', function(test) {
   reset();
 
-  let Parent = Astro.Class.create({
+  const Parent = Class.create({
     name: 'Parent',
     fields: {
       parentField: {
@@ -9,14 +11,14 @@ Tinytest.add('Core - Inherit', function(test) {
       }
     },
     methods: {
-      parentMethod: function() {}
+      parentMethod() {}
     },
     events: {
-      afterInit: function() {}
+      afterInit() {}
     }
   });
 
-  let Child = Parent.inherit({
+  const Child = Parent.inherit({
     name: 'Child',
     fields: {
       childField: {
@@ -24,10 +26,10 @@ Tinytest.add('Core - Inherit', function(test) {
       }
     },
     methods: {
-      childMethod: function() {}
+      childMethod() {}
     },
     events: {
-      afterInit: function() {}
+      afterInit() {}
     }
   });
 
@@ -53,7 +55,7 @@ Tinytest.add('Core - Inherit', function(test) {
   );
 
   // Instance check.
-  let child = new Child();
+  const child = new Child();
   test.instanceOf(child, Parent,
     'An instance of the child class should be also instance of the parent class'
   );

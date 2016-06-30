@@ -1,5 +1,7 @@
+import { Class } from 'meteor/jagi:astronomy';
+
 Tinytest.add('Modules - Validators - Validate', function(test) {
-  let ClassValidator = Astro.Class.create({
+  const ClassValidator = Class.create({
     name: 'ClassValidator',
     fields: {
       nameA: {
@@ -105,7 +107,7 @@ Tinytest.add('Modules - Validators - Validate', function(test) {
     );
   }
 
-  let ClassWithDynamicOptionalField = Astro.Class.create({
+  const ClassWithDynamicOptionalField = Class.create({
     name: 'ClassWithDynamicOptionalField',
     fields: {
       nameA: {
@@ -121,9 +123,9 @@ Tinytest.add('Modules - Validators - Validate', function(test) {
   });
 
   let docWithDynamicOptionalField = new ClassWithDynamicOptionalField();
-  
+
   docWithDynamicOptionalField.nameA = 'abc';
-  
+
   test.isUndefined(
     docWithDynamicOptionalField.validate(),
     'Document not validated properly'
@@ -168,7 +170,7 @@ Tinytest.add('Modules - Validators - Validate', function(test) {
     );
   }
 
-  // Test that the validation has really failed
+  // Test that the validation has really failed.
   test.equal(exceptionHandlerCalled,
     true,
     'Validation did not throw an error');

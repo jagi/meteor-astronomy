@@ -1,7 +1,8 @@
 import _ from 'lodash';
+import { Class, Behavior } from 'meteor/jagi:astronomy';
 
 resetDatabase = function() {
-	_.forOwn(Astro.Class.classes, function(Class) {
+	_.forOwn(Class.classes, function(Class) {
 		let Collection = Class.getCollection();
 		if (!Collection) {
 			return;
@@ -15,7 +16,7 @@ resetDatabase = function() {
 };
 
 resetMethods = function() {
-	_.forOwn(Astro.Class.classes, function(Class) {
+  _.forOwn(Class.classes, function(Class) {
 		let Collection = Class.getCollection();
 		if (!Collection) {
 			return;
@@ -42,6 +43,6 @@ reset = function() {
 	resetDatabase();
 	resetMethods();
 
-	Astro.Class.classes = {};
-	Astro.Behavior.behaviors = {};
+	Class.classes = {};
+	Behavior.behaviors = {};
 };

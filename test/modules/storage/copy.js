@@ -1,25 +1,28 @@
 import _ from 'lodash';
+import { Class } from 'meteor/jagi:astronomy';
 
-Tinytest.add('Storage - Copy', function(test) {
-	resetDatabase();
+Tinytest.add('Modules - Storage - Copy', function(test) {
+  resetDatabase();
 
-	let id = '6tMS79Kx6WhqTEwaC';
-  let storage = new Storage({
+  const Storage = Class.get('Storage');
+
+	const id = '6tMS79Kx6WhqTEwaC';
+  const storage = new Storage({
 		_id: id,
     one: {
       string: 'abc',
-      immutable: 'immutable'
+      immutable: 'immutable',
     },
     many: [{
       string: 'abc',
-      immutable: 'immutable'
+      immutable: 'immutable',
     }],
     numbers: [1, 2, 3],
     string: 'abc',
     number: 123,
     boolean: true,
     date: new Date(2000, 0, 1, 0, 0, 0, 0),
-    immutable: 'immutable'
+    immutable: 'immutable',
   });
   storage.save();
 
@@ -27,7 +30,6 @@ Tinytest.add('Storage - Copy', function(test) {
   test.isNull(clone._id,
     'In the cloned document a value of the "_id" field should be null'
   );
-
   clone = storage.copy(true);
   test.isNotNull(clone._id,
     'In the saved cloned document a value of the "_id" field should not be null'

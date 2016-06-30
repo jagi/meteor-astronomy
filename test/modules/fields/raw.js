@@ -1,4 +1,4 @@
-Tinytest.add('Fields - Modules - Raw', function(test) {
+Tinytest.add('Modules - Fields - Raw', function(test) {
   reset();
 
   let RawClassNested = Astro.Class.create({

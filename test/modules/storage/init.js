@@ -1,9 +1,9 @@
-Tinytest.add('Storage - Init (Client)', function(test) {
+import { Class } from 'meteor/jagi:astronomy';
+
+Tinytest.add('Modules - Storage - Init', function(test) {
   reset();
 
-  Storages = new Mongo.Collection('storages_client');
-
-  NestedStorage = Astro.Class.create({
+  const NestedStorage = Class.create({
     name: 'NestedStorage',
     fields: {
       string: {
@@ -21,7 +21,9 @@ Tinytest.add('Storage - Init (Client)', function(test) {
     }
   });
 
-  Storage = Astro.Class.create({
+  const Storages = new Mongo.Collection(null);
+
+  const Storage = Class.create({
     name: 'Storage',
     collection: Storages,
     fields: {
