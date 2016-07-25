@@ -18,11 +18,12 @@ const User = Class.create({
     }
   },
   events: {
-    afterInit: function() {
-      var birthDate = this.birthDate;
+    afterInit(e) {
+      const doc = e.currentTarget;
+      var birthDate = doc.birthDate;
       if (birthDate) {
         var diff = Date.now() - birthDate.getTime();
-        this.age = Math.abs((new Date(diff)).getUTCFullYear() - 1970);
+        doc.age = Math.abs((new Date(diff)).getUTCFullYear() - 1970);
       }
     }
   }
