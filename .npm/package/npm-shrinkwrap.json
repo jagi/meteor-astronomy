@@ -1,9 +1,9 @@
 {
   "dependencies": {
     "lodash": {
-      "version": "4.11.1",
-      "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.11.1.tgz",
-      "from": "https://registry.npmjs.org/lodash/-/lodash-4.11.1.tgz"
+      "version": "4.14.0",
+      "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.14.0.tgz",
+      "from": "lodash@4.14.0"
     }
   }
 }
