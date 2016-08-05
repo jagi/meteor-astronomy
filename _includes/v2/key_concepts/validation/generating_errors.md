@@ -54,6 +54,7 @@ const User = Class.create({
 
 As you can see, we have access to some parameters when using the `resolveError` method. In our example we used `name` and `param` and composed error message using them. Remember to always return an error message. Beside two mentioned params there are more to work with.
 
+- `className` - a class name of a document being validated,
 - `doc` - a document being validated,
 - `name` - a field name being validated,
 - `nestedName` - a nested field name being validate,
