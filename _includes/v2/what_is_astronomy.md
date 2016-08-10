@@ -65,7 +65,7 @@ const Post = Class.create({
     title: {
       type: String,
       validators: [{
-        type: 'gte',
+        type: 'minLength',
         param: 3
       }]
     },
