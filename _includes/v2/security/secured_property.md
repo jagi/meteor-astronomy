@@ -1,6 +1,6 @@
 # Secured property
 
-Every Astronomy class is not "secured" by default and any operation from the client is allowed. It's similar to having the `insecure` package added to your Meteor project. In most cases it's exactly what you want because you will be adding some rules in events that will secure your application. However, it may vary depending on the style of your programming. In this section, we will discuss two approaches. However, let's first talk about the class level `secured` property that turns on and off class security.
+Every Astronomy class is "secured" by default and no operations from the client are allowed. It's similar to removing the `insecure` package from your Meteor project. In most cases it's exactly what you want. However, you may turn off security and provide some rules in events. Everything depends on your programming style. Let's talk about the class level `secured` property in more details.
 
 **The "secured" property**
 
@@ -10,8 +10,8 @@ import { Class } from 'meteor/jagi:astronomy';
 const User = Class.create({
   name: 'User',
   /* ... */
-  // Secure insert, update and remove operations.
-  secured: true
+  // Turn off security for insert, update and remove operations.
+  secured: false
 });
 ```
 
