@@ -23,15 +23,15 @@ import { Class } from 'meteor/jagi:astronomy';
 const User = Class.create({
   name: 'User',
   /* ... */
-  // Secure insert, update and remove operations.
+  // Turn off security for insert and update operations.
   secured: {
-    insert: true,
-    update: true
+    insert: false,
+    update: false
   }
 });
 ```
 
-In the example above, we secured only insert and update operations. Of course, if you don't want to secure your class, you can omit the `secured` property.
+In the example above, we turned off security only for insert and update operations.
 
 Now let's see what will happen if you try insert something with secured inserts turned on.
 
@@ -42,7 +42,7 @@ user.save(); // Throw error: Inserting from the client is not allowed
 
 **Securing application using events**
 
-If you set the `secured` property to `false` (or do not provide value) then you have to be very careful about securing your application. By default, it will allow anyone to insert, update or remove documents from the client. In such situation, we have to secure a class by defining some security rules in events. Let's take a look at the example.
+If you set the `secured` property to `false` then you have to be very careful about your application security. It will allow anyone to insert, update or remove documents from the client. In such situation, we have to secure a class by defining some security rules in events. Let's take a look at the example.
 
 ```js
 import { Class } from 'meteor/jagi:astronomy';
@@ -50,7 +50,7 @@ import { Class } from 'meteor/jagi:astronomy';
 const User = Class.create({
   name: 'User',
   /* ... */
-  secured: false, // It's default value, so you can omit it.
+  secured: false,
   events: {
     beforeUpdate(e) {
       // Get a document being saved.
