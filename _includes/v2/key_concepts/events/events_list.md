@@ -66,7 +66,7 @@ User.findOne(); // Both events triggered
 
 An event object passed to the `beforeFind` event handler contains two additional properties `selector` and `options`. They are two arguments passed to the `findOne()` or `find()` method. In an event handler you can modify selector or passed options. The **softremove** behavior is using it to limit fetching documents to only those that were not soft removed.
 
-An event object passed to the `beforeFind` event handler contains three additional properties `selector`, `options` and `result`. So, in this event handler you can additionally modify result of a find operation.
+An event object passed to the `afterFind` event handler contains three additional properties `selector`, `options` and `result`. So, in this event handler you can additionally modify result of a find operation.
 
 **EJSON events**
 

@@ -15,7 +15,7 @@ const User = Class.create({
 });
 ```
 
-As you can see, we switched on security for every operation on this class. Now let's see how to secure only certain operations.
+As you can see, we switched security off for every operation on this class. Now let's see how to secure only certain operations.
 
 ```js
 import { Class } from 'meteor/jagi:astronomy';
@@ -23,17 +23,16 @@ import { Class } from 'meteor/jagi:astronomy';
 const User = Class.create({
   name: 'User',
   /* ... */
-  // Turn off security for insert and update operations.
+  // Turn off security for update operations.
   secured: {
-    insert: false,
     update: false
   }
 });
 ```
 
-In the example above, we turned off security only for insert and update operations.
+In the example above, we turned off security only for update operations.
 
-Now let's see what will happen if you try insert something with secured inserts turned on.
+Now let's see what will happen if you try insert something.
 
 ```js
 var user = new User();

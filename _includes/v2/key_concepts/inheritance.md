@@ -75,7 +75,7 @@ var child = new Child();
 child.type; // "Child"
 
 var parent = new Parent();
-child.type; // "Parent"
+parent.type; // "Parent"
 ```
 
 As you can see in both classes Astronomy added the `type` field which stores "Child" and "Parent" strings for `Child` and `Parent` parent classes accordingly. A value of this field will be stored with an instance and when fetching the given document from the collection, the transform function will automatically fetch an instance of proper class.
