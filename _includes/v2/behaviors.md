@@ -36,6 +36,8 @@ const User = Class.create({
 });
 ```
 
+It's important to note that if you're using inheritance, behaviors must be defined on the child classes, not the parent class.
+
 Let's talk about predefined behaviors.
 
 {% include v2/behaviors/timestamp.md %}
