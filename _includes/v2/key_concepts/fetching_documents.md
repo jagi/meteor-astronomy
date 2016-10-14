@@ -34,3 +34,18 @@ var user = User.findOne({}, {
   disableEvents: true
 });
 ```
+
+If you are fetching documents from the class that has some child classes, then you can decide if you want to fetch children or not. You can read more about inheritance in the [Inheritance](#inheritance) section. By default all children are fetched however you can tell Astronomy how many levels deep it should look for children.
+
+```js
+Parent.find(); // Fetch children, grand children and so on
+Parent.find({}, {
+  children: false // Do not fetch children
+});
+Parent.find({}, {
+  children: 1 // Only fetch direct children
+});
+Parent.find({}, {
+  children: 2 // Fetch direct children and grand children
+});
+```
