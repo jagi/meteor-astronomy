@@ -136,78 +136,37 @@ const Post = Class.create({
   secured: true,
   fields: {
     title: String,
-    published: Boolean,
-    /* ... */
-  }
-});
-
-Meteor.methods({
-  renamePost(postId, title) {
-    const post = Post.findOne(postId);
-    // Check if a given user can rename a post.
-    if (!RolesHelpers.canRename(post, this.userId)) {
-      throw new Meteor.Error(403, 'You can not rename this post');
+    published: {
+      type: Boolean,
+      default: false
     }
-    post.title = title;
-    post.save();
-  },
-  publish(postId) {
-    const post = Post.findOne(postId);
-    // Check if a given user can rename a post.
-    if (!RolesHelpers.canPublish(post, this.userId)) {
-      throw new Meteor.Error(403, 'You can not publish this post');
-    }
-    post.published = true;
-    post.save();
-  }
-});
-```
-
-You can go even further and create class level methods for such operations. Let's see how it would look like.
-
-```js
-import { Class } from 'meteor/jagi:astronomy';
-
-const Post = Class.create({
-  name: 'Post',
-  /* ... */
-  secured: true,
-  fields: {
-    title: String,
-    published: Boolean,
     /* ... */
   },
-  methods: {
-    rename(title) {
-      // Check if a given user can rename this post.
-      if (this.ownerId !== Meteor.userId()) {
-        throw new Meteor.Error(403, 'You are not an owner');
+  meteorMethods: {
+    rename(title, invocation) {
+      // Check if a given user can rename a post.
+      if (!Permissions.canRenamePost(this, invocation.userId)) {
+        throw new Meteor.Error(403, 'You can not rename this post');
       }
-      this.title = this;
+      this.title = title;
       this.save();
     },
-    publish() {
-      // Check if a given user can publish this post.
-      if (this.ownerId !== Meteor.userId()) {
-        throw new Meteor.Error(403, 'You are not an owner');
-      }
-      if (this.published) {
-        throw new Meteor.Error(403, 'Post is already published');
+    publish(invocation) {
+      // Check if a given user can rename a post.
+      if (!Permissions.canPublishPost(this, invocation.userId)) {
+        throw new Meteor.Error(403, 'You can not publish this post');
       }
       this.published = true;
       this.save();
     }
   }
 });
+```
 
-Meteor.methods({
-  renamePost(postId, title) {
-    const post = Post.findOne(postId);
-    post.rename(title);
-  },
-  publish(postId) {
-    const post = Post.findOne(postId);
-    post.publish();
-  }
-});
+Now let's use these methods.
+
+```js
+const post = Post.findOne();
+post.rename('New post name');
+post.publish();
 ```
