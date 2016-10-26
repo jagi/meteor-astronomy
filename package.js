@@ -98,6 +98,6 @@ Package.onTest(function(api) {
   ], 'server');
   // Modules - Methods.
   api.addFiles([
-    // 'test/methods/methods_definition.js'
+    'test/modules/helpers/definition.js'
   ], ['client', 'server']);
 });

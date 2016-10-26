@@ -1,18 +1,18 @@
 Tinytest.add('Core - Extend', function(test) {
   reset();
 
-  let Extended = Astro.Class.create({
+  const Extended = Astro.Class.create({
     name: 'Extended',
     fields: {
       originalField: {
         type: String
       }
     },
-    methods: {
-      originalMethod: function() {}
+    helpers: {
+      originalHelper() {}
     },
     events: {
-      afterInit: function() {}
+      afterInit() {}
     }
   });
 
@@ -22,11 +22,11 @@ Tinytest.add('Core - Extend', function(test) {
         type: String
       }
     },
-    methods: {
-      extendMethod: function() {}
+    helpers: {
+      extendHelper() {}
     },
     events: {
-      afterInit: function() {}
+      afterInit() {}
     }
   });
 
@@ -38,11 +38,11 @@ Tinytest.add('Core - Extend', function(test) {
     'Class should contain extended fields'
   );
 
-  // Methods.
-  test.instanceOf(Extended.getMethod('originalMethod'), Function,
+  // Helpers.
+  test.instanceOf(Extended.getHelper('originalHelper'), Function,
     'Class should contain original methods'
   );
-  test.instanceOf(Extended.getMethod('extendMethod'), Function,
+  test.instanceOf(Extended.getHelper('extendHelper'), Function,
     'Class should contain extended methods'
   );
 
