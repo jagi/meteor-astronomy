@@ -10,6 +10,8 @@
 
 {% include v2/key_concepts/helpers.md %}
 
+{% include v2/key_concepts/meteor_methods.md %}
+
 {% include v2/key_concepts/events.md %}
 
 {% include v2/key_concepts/indexes.md %}
