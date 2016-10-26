@@ -165,7 +165,7 @@ const Conversation = Class.create({
       );
     }
   },
-  methods: {
+  helpers: {
     /**
      * Get all the messages for this conversation, sorted by most recent.
      */
@@ -180,7 +180,7 @@ const Conversation = Class.create({
       });
     },
     /**
-     * Convenience method for sending a message to everyone in this conversation.
+     * Convenience helper for sending a message to everyone in this conversation.
      **/
     send(content, callback) {
       var message = new Message({

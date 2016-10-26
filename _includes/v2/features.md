@@ -32,7 +32,7 @@ There are situations when you may want to mark a field as immutable so it won't 
 
 **Methods**
 
-You can define methods, so your document is not only a data storage but a "live" thing. A dog can bark `dog.bark();` and a user can greet you `user.sayHello();`.
+You can define helpers, so your document is not only a data storage but a "live" thing. A dog can bark `dog.bark();` and a user can greet you `user.sayHello();`.
 
 **Events**
 

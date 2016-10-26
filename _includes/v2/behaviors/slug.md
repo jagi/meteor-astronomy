@@ -13,7 +13,7 @@ behaviors: {
   slug: {
     // The field name from which a slug will be created.
     fieldName: 'title',
-    // The method name that generates a value for the slug-ification process.
+    // The helper name that generates a value for the slug-ification process.
     methodName: null,
     // The field name where a slug will be stored.
     slugFieldName: 'slug',
@@ -39,22 +39,22 @@ post.slug; // "to-jest-test-polskich-znakow-aszclonz"
 
 **The fieldName and methodName**
 
-There are two possible ways of generating a slug: from the value of a field or from the value returned by a method.
+There are two possible ways of generating a slug: from the value of a field or from the value returned by a helper.
 
 If we want to generate a slug from a single field then we have to provide a field name in the `fieldName` option.
 
-If we want to generate a slug from multiple fields or from a manually generated value then we have to provide a method name in the `methodName` option.
+If we want to generate a slug from multiple fields or from a manually generated value then we have to provide a helper name in the `methodName` option.
 
 *NOTICE: You can't use both ways of generating slug. You have to choose between the `fieldName` option or the `methodName` option.*
 
-Let's take a look at the example of generating a slug using a method.
+Let's take a look at the example of generating a slug using a helper.
 
 ```js
 import { Class } from 'meteor/jagi:astronomy';
 
 const User = Class.create({
   /* ... */
-  methods: {
+  helpers: {
     fullName() {
       // Slug will be generated from the returned value.
       return this.firstName + ' ' + this.lastName;
@@ -64,7 +64,7 @@ const User = Class.create({
     slug: {
       // You have to set null here if you want to use "methodName" option
       fieldName: null,
-      // The method name that generates a value for the slug-ification process.
+      // The helper name that generates a value for the slug-ification process.
       methodName: 'fullName'
     }
   }

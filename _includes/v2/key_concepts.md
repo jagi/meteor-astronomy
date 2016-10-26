@@ -8,7 +8,7 @@
 
 {% include v2/key_concepts/fetching_documents.md %}
 
-{% include v2/key_concepts/methods.md %}
+{% include v2/key_concepts/helpers.md %}
 
 {% include v2/key_concepts/events.md %}
 

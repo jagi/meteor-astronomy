@@ -1,6 +1,6 @@
 # Extending class
 
-There are situations, when we want to have some differences in a class (additional fields, methods or events) depending on an environment. For example, we may want to have some fields that are only available on the server. Let's take a look at how we can extend a class to achieve that.
+There are situations, when we want to have some differences in a class (additional fields, helpers, methods or events) depending on an environment. For example, we may want to have some fields that are only available on the server. Let's take a look at how we can extend a class to achieve that.
 
 ```js
 // Client and server.
