@@ -20,7 +20,7 @@ $ meteor add jagi:astronomy
 
 <img src="https://www.patreon.com/images/patreon_navigation_logo_mini_orange.png" width="100" />
 
-I've decided to start [Patreon](https://www.patreon.com/jagi) page. If you enjoy using Astronomy and want support development of future versions, then any donation will be welcome :).
+I've decided to start [Patreon](https://www.patreon.com/jagi) page. If you enjoy using Astronomy and want to support development of future versions, then any donation will be welcome :).
 
 ## Introduction
 
