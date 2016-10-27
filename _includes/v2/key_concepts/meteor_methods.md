@@ -14,7 +14,7 @@ const User = Class.create({
     lastName: String
   },
   meteorMethods: {
-    rename(firstName, lastName, invocation) {
+    rename(firstName, lastName) {
       this.firstName = firstName;
       this.lastName = lastName;
       return this.save();
@@ -56,7 +56,7 @@ const User = Class.create({
 // server.js
 User.extend({
   meteorMethods: {
-    rename(firstName, lastName, invocation) {
+    rename(firstName, lastName) {
       this.firstName = firstName;
       this.lastName = lastName;
       return this.save();
@@ -95,12 +95,15 @@ The `this` context in method is a document instance. Astronomy methods does not 
 
 **Method invocation object**
 
-In a method definition, the last argument is a Meteor method invocation object. Using this object you can access such properties like `isSimulation`, `userId` or `unblock()` method which are available in Meteor methods as the `this` context.
+Sometimes you may need to get method's invocation object, giving you access to such properties like `isSimulation`, `userId` or `unblock()` method which are available in Meteor methods in the `this` context. To get the current invocation object you have to call `DDP._CurrentInvocation.get()`.
 
 ```js
+import { DDP } from 'meteor/ddp-client';
+
 User.extend({
   meteorMethods: {
-    rename(firstName, lastName, invocation) {
+    rename(firstName, lastName) {
+      const invocation = DDP._CurrentInvocation.get();
       invocation.isSimulation;
       invocation.unblock();
       invocation.userId;
