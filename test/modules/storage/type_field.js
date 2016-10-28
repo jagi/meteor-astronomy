@@ -1,4 +1,7 @@
-import { Class } from 'meteor/jagi:astronomy';
+import {
+  Class
+}
+from 'meteor/jagi:astronomy';
 
 Tinytest.add('Modules - Storage - Type field', function(test) {
   const Part = Class.create({
@@ -6,13 +9,13 @@ Tinytest.add('Modules - Storage - Type field', function(test) {
     typeField: 'type',
     fields: {
       name: {
-        type: String,
-      },
-    },
+        type: String
+      }
+    }
   });
 
   const Engine = Part.inherit({
-    name: 'Engine',
+    name: 'Engine'
   });
 
   const Wheel = Part.inherit({
@@ -27,45 +30,45 @@ Tinytest.add('Modules - Storage - Type field', function(test) {
     typeField: 'type',
     fields: {
       name: {
-        type: String,
+        type: String
       },
       parts: {
         type: [Part],
-        default() {
+        default () {
           return [];
-        },
-      },
-    },
+        }
+      }
+    }
   });
 
   const Car = Vehicle.inherit({
-    name: 'Car',
+    name: 'Car'
   });
 
   const Plane = Vehicle.inherit({
-    name: 'Plane',
+    name: 'Plane'
   });
 
   let vehicle = new Vehicle({
     name: 'Vehicle',
     parts: [
       new Engine({
-        name: 'Engine',
+        name: 'Engine'
       }),
       new Wheel({
-        name: 'Wheel',
-      }),
-    ],
+        name: 'Wheel'
+      })
+    ]
   });
   vehicle.save();
 
   let plane = new Plane({
-    name: 'Plane',
+    name: 'Plane'
   });
   plane.save();
 
   let car = new Car({
-    name: 'Car',
+    name: 'Car'
   });
   car.save();
 
