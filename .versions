@@ -23,9 +23,9 @@ html-tools@1.0.10
 htmljs@1.0.10
 id-map@1.0.8
 insecure@1.0.7
-jagi:astronomy@2.2.2
+jagi:astronomy@2.2.3
 jquery@1.11.9
-local-test:jagi:astronomy@2.2.2
+local-test:jagi:astronomy@2.2.3
 logging@1.0.13_1
 mdg:validation-error@0.5.1
 meteor@1.1.15_1
