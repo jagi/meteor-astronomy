@@ -22,7 +22,6 @@ Tinytest.addAsync(
     docValidatorAsync.validate({
       fields: 'nameA'
     }, function(validationError) {
-      console.log(docValidatorAsync);
       test.isNotUndefined(
         validationError, 'Document not validated properly'
       );
