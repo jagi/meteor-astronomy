@@ -33,6 +33,7 @@ Package.onUse(function(api) {
 
 Package.onTest(function(api) {
   api.use([
+    'practicalmeteor:mocha',
     'tinytest',
     'ecmascript',
     'es5-shim',
@@ -90,7 +91,9 @@ Package.onTest(function(api) {
     'test/modules/fields/set.js',
     'test/modules/fields/get.js',
     'test/modules/fields/raw.js',
-    'test/modules/fields/optional.js'
+    'test/modules/fields/optional.js',
+    'test/modules/fields/cast.js',
+    'test/modules/fields/merge.js'
   ], ['client', 'server']);
   // Modules - Indexes.
   api.addFiles([
