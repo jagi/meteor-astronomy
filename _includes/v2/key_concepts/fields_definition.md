@@ -17,3 +17,5 @@ In Astronomy we can define a class/schema and provide list of fields. Let's exam
 {% include v2/key_concepts/fields_definition/optional_fields.md %}
 
 {% include v2/key_concepts/fields_definition/mapping_fields.md %}
+
+{% include v2/key_concepts/fields_definition/casting_values.md %}
