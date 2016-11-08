@@ -52,12 +52,40 @@ It's important to note here that the `fields` option does not work with the inse
 
 **Stoping validation on the first error**
 
-The `save()` method as the first argument can also take a list of options and one of them is `stopOnFirstError`. By default it's set to `true`, so it will stop further validation on the first validation error. However, if you want to get all validation errors, then you can set it to `false`.
+The `save()` method can also take a list of options as the first argument and one of them is `stopOnFirstError`. By default it's set to `true`, so it will stop further validation on the first validation error. However, if you want to get all validation errors, then you can set it to `false`.
 
 ```js
-var user = User.findOne();;
+var user = User.findOne();
 user.save({
   stopOnFirstError: false // Don't stop on the first validation error.
+});
+```
+
+**Casting fields on save**
+
+The `save()` method can also take a list of options as the first argument and one of them is `cast`. By default it's set to `false`, so it will not cast values using casting functions. There may be situations when you want to postpone casting values until the save operation. Let's take adding a new phone number to the user document.
+
+```js
+const user = User.findOne();
+user.phones.push(phoneFormData);
+```
+
+As you can see in the example above, we've just used the `push()` method of the Array object. It will not cast values from the `phoneFormData` variable. In Astronomy to do so, we would have to use the `set()` method, so we would need to know an index of the newly added phone document. Sample code could look like in the example below.
+
+```js
+const user = User.findOne();
+user.set(`phones.${user.phones.length}`, phoneFormData, {
+  cast: true
+});
+```
+
+As you can see, it's not perfect solution. So instead of casting values on assignment, we can postpone it to the save operation.
+
+```js
+const user = User.findOne();
+user.phones.push(phoneFormData);
+user.save({
+  cast: true
 });
 ```
 
