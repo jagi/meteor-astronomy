@@ -11,7 +11,8 @@ var user = new User();
 user.validate({
   fields: ['firstName'],
   stopOnFirstError: false,
-  simulation: false
+  simulation: false,
+  cast: true
 });
 ```
 
@@ -20,6 +21,23 @@ As you can, see the set of options is similar to the set of option in the `save(
 - `fields` - List of fields to validate.
 - `stopOnFirstError` - Validation should stop after the first validation error. It's `true` by default.
 - `simulation` - Validation should be also simulated on the client. It's `true` by default.
+- `cast` - Values should be casted on validation. It's `false` by default.
+
+**Casting values of validation**
+
+There may be a need for postponing casting values until the validate or save operation. If you values are coming from the form, then number values will probably be in a form of the string. In such cases, you may want to cast values to numbers and later only throw validation errors when this number does not meet defined validation rules. Let's take a look at the example usage.
+
+```js
+var user = User.findOne();
+user.phones.push(phoneFormData);
+user.validate({
+  cast: true
+}, function(err) {
+  // Do something with the error if any.
+});
+```
+
+**Callback function**
 
 The second argument in the `validate()` method is a callback function, which behave in the same way as the one in the `save()` method.
 
