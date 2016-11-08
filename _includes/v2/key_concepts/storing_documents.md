@@ -61,7 +61,7 @@ user.save({
 });
 ```
 
-**Casting fields on save**
+**Casting values on save**
 
 The `save()` method can also take a list of options as the first argument and one of them is `cast`. By default it's set to `false`, so it will not cast values using casting functions. There may be situations when you want to postpone casting values until the save operation. Let's take adding a new phone number to the user document.
 
