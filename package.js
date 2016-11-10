@@ -1,12 +1,12 @@
 Package.describe({
   name: 'jagi:astronomy',
-  version: '2.3.0',
+  version: '2.3.1',
   summary: 'Model layer for Meteor',
   git: 'https://github.com/jagi/meteor-astronomy.git'
 });
 
 Npm.depends({
-  lodash: '4.14.1'
+  lodash: '4.16.6'
 });
 
 Package.onUse(function(api) {
