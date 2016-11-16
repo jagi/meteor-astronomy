@@ -10,17 +10,17 @@ Tinytest.add('Core - State', function(test) {
 
   let core = new State();
   test.isTrue(core._isNew,
-    'A newly created document should have the "_isNew" flag set to true'
+    'Newly created document should have the "_isNew" flag set to true'
   );
 
   core.save();
   test.isFalse(core._isNew,
-    'The saved document should have the "_isNew" flag set to false'
+    'Saved document should have the "_isNew" flag set to false'
   );
 
   core = States.findOne();
   test.isFalse(core._isNew,
-    'A document fetched from the collection should have the "_isNew" flag ' +
+    'Aocument fetched from the collection should have the "_isNew" flag ' +
     'set to false'
   );
 });
