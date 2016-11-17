@@ -17,7 +17,7 @@ user.lastName = 'Jagodziński';
 user.save(); // Update document.
 ```
 
-As you can see, we've used the `save()` method for both insertion and modification of a document. Every Astronomy document has a private `_isNew` property that tells Astronomy if it should be inserted or updated.
+As you can see, we've used the `save()` method for both insertion and modification of a document. Every Astronomy document knows whether it should be inserted or updated, so you only need to call `save()`.
 
 **Server only call**
 
