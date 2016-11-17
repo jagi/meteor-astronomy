@@ -19,6 +19,25 @@ user.save(); // Update document.
 
 As you can see, we've used the `save()` method for both insertion and modification of a document. Every Astronomy document knows whether it should be inserted or updated, so you only need to call `save()`.
 
+**Is a document new or not?**
+
+There maybe situations when you would like to know whether a document is new (not stored in collection yet) or not new (already stored in collection). Before version 2.3.4 you could use `doc._isNew` property for that purpose. From version 2.3.4 this property is deprecated and will be removed in version 3.0. From know there is a new way of telling whether a document is new. Let's take a look at the example below.
+
+```js
+const Item = Class.create({
+  name: 'Item',
+  collection: new Mongo.Collection('items'),
+  events: {
+    afterInsert(e) {
+      const doc = e.target;
+      Item.isNew(doc);
+    }
+  }
+});
+```
+
+As you can see, from now every class has the `isNew()` method to which you pass a document that you want to check.
+
 **Server only call**
 
 By default, when you execute the `save()` method on the client, it will perform the save operation in both environments client and server. Thanks to that you don't have to create Meteor methods, however it's highly recommended for security reason. But more about that in the [Security](#security) section.
