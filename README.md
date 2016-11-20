@@ -18,7 +18,7 @@ $ meteor add jagi:astronomy
 
 ## Support Astronomy development
 
-<img src="https://www.patreon.com/images/patreon_navigation_logo_mini_orange.png" width="100" />
+[<img src="https://www.patreon.com/images/patreon_navigation_logo_mini_orange.png" width="100" />](https://www.patreon.com/jagi)
 
 I've decided to start [Patreon](https://www.patreon.com/jagi) page. If you enjoy using Astronomy and want to support development of future versions, then any donation will be welcome :).
 
@@ -54,7 +54,6 @@ if (post.title.length < 3) {
 ```
 
 With Astronomy and defined schema your code would look like follows:
-
 ```js
 // Notice that we call the "findOne" method
 // from the "Post" class not from the "Posts" collection.
