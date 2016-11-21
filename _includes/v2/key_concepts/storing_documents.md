@@ -123,7 +123,7 @@ user.save(function(err, id) {
 Removing documents is as simple as saving them. It works the same way as the `save()` method - it executes removal operation in both client and server. Let's take a look at an example.
 
 ```js
-var user = Users.findOne();
+var user = User.findOne();
 user.remove();
 // Or with callback function.
 user.remove(function(err, result) {
