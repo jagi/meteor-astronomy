@@ -11,7 +11,8 @@ const NestedItem = Class.create({
   name: 'NestedItem',
   fields: {
     string: String,
-    number: Number
+    number: Number,
+    date: Date
   }
 });
 
@@ -30,53 +31,65 @@ describe('Module', function() {
         const item = new Item({
           one: {
             string: '123',
-            number: 321
+            number: 123,
+            date: new Date(1988, 1, 18)
           },
           many: [{
-            string: '456',
-            number: 654
+            string: '123',
+            number: 123,
+            date: new Date(1988, 1, 18)
           }]
         });
         item.set('one', {
-          string: '321'
+          string: '321',
+          date: new Date(2000, 0, 1)
         }, {
           merge: true
         });
         item.set('many.0', {
-          string: '654'
+          string: '321',
+          date: new Date(2000, 0, 1)
         }, {
           merge: true
         });
         assert.deepEqual(item.one.string, '321');
-        assert.deepEqual(item.one.number, 321);
-        assert.deepEqual(item.many[0].string, '654');
-        assert.deepEqual(item.many[0].number, 654);
+        assert.deepEqual(item.one.number, 123);
+        assert.deepEqual(item.one.date, new Date(2000, 0, 1));
+        assert.deepEqual(item.many[0].string, '321');
+        assert.deepEqual(item.many[0].number, 123);
+        assert.deepEqual(item.many[0].date, new Date(2000, 0, 1));
       });
       it('merges objects on setting multiple values', function() {
         const item = new Item({
           one: {
             string: '123',
-            number: 321
+            number: 123,
+            date: new Date(1988, 1, 18)
           },
           many: [{
-            string: '456',
-            number: 654
+            string: '123',
+            number: 123,
+            date: new Date(1988, 1, 18)
           }]
         });
         item.set({
           one: {
-            string: '321'
+            string: '321',
+            date: new Date(2000, 0, 1)
           },
           'many.0': {
-            string: '654'
+            string: '321',
+            date: new Date(2000, 0, 1)
           }
         }, {
           merge: true
         });
         assert.deepEqual(item.one.string, '321');
-        assert.deepEqual(item.one.number, 321);
-        assert.deepEqual(item.many[0].string, '654');
-        assert.deepEqual(item.many[0].number, 654);
+        assert.deepEqual(item.one.number, 123);
+        assert.deepEqual(item.one.date, new Date(2000, 0, 1));
+        assert.deepEqual(item.many[0].string, '321');
+        assert.deepEqual(item.many[0].number, 123);
+        assert.deepEqual(item.many[0].date, new Date(2000, 0, 1));
       });
     });
   });
