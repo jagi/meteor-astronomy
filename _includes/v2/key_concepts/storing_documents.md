@@ -69,7 +69,7 @@ user.save({
 
 It's important to note here that the `fields` option does not work with the insert operation.
 
-**Stoping validation on the first error**
+**Stopping validation on the first error**
 
 The `save()` method can also take a list of options as the first argument and one of them is `stopOnFirstError`. By default it's set to `true`, so it will stop further validation on the first validation error. However, if you want to get all validation errors, then you can set it to `false`.
 
