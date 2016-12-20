@@ -66,6 +66,7 @@ Package.onTest(function(api) {
   ], ['client', 'server']);
   // Modules - Storage.
   api.addFiles([
+    'test/modules/storage/is_new.js',
     'test/modules/storage/init.js',
     'test/modules/storage/type_field.js',
     'test/modules/storage/transform.js',
