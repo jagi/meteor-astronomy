@@ -60,6 +60,24 @@ const user = new User({
 });
 ```
 
+**Cloning values**
+
+When setting values using the `set` method or constructor all values will be cloned by default. In most cases it's expected behavior as it makes sure that you don't copy references, which might cause hard to find bugs. However, if you know what you're doing and you want to improve performance of your application you can turn off this option.
+
+```js
+const user = new User({
+  firstName: 'John'
+}, {
+  clone: false // It's not needed to clone values being set as they are defined inline.
+});
+
+user.set({
+  lastName: 'Smith'
+}, {
+  clone: false // It's not needed to clone values being set as they are defined inline.
+}
+```
+
 **Merging values**
 
 When setting value for a field, the old value will be overridden by a new one. It's not always expected behavior in a fields of the object/class type. Let's take the `address` field as an example and try updating the `state` field.
@@ -108,6 +126,17 @@ user.set(userData, {
 ```
 
 It will merge objects at all levels.
+
+**Default values**
+
+When you try to set some field's value to `undefined` using the `set` method but the field has default value defined, it will using default value for this field (it won't use default value if you're doing direct assignment). You might want to turn off this option.
+
+```js
+// Default value for the "address" field is "new Address()".
+const user = User.findOne();
+user.set('address', undefined); // It will set field to "new Address".
+user.set('address', undefined, {defaults: false}); // It will set field to "undefined".
+```
 
 **Getting values**
 
