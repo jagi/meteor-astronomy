@@ -1,12 +1,12 @@
 Package.describe({
   name: 'jagi:astronomy',
-  version: '2.1.2',
+  version: '2.3.11',
   summary: 'Model layer for Meteor',
   git: 'https://github.com/jagi/meteor-astronomy.git'
 });
 
 Npm.depends({
-  lodash: '4.14.1'
+  lodash: '4.17.2'
 });
 
 Package.onUse(function(api) {
@@ -33,13 +33,14 @@ Package.onUse(function(api) {
 
 Package.onTest(function(api) {
   api.use([
+    'practicalmeteor:mocha',
     'tinytest',
     'ecmascript',
     'es5-shim',
     'insecure',
     'mongo',
     'ejson',
-    'jagi:astronomy@2.1.1'
+    'jagi:astronomy@2.3.11'
   ], ['client', 'server']);
 
   api.addFiles('test/utils.js', ['client', 'server']);
@@ -65,6 +66,7 @@ Package.onTest(function(api) {
   ], ['client', 'server']);
   // Modules - Storage.
   api.addFiles([
+    'test/modules/storage/is_new.js',
     'test/modules/storage/init.js',
     'test/modules/storage/type_field.js',
     'test/modules/storage/transform.js',
@@ -90,7 +92,9 @@ Package.onTest(function(api) {
     'test/modules/fields/set.js',
     'test/modules/fields/get.js',
     'test/modules/fields/raw.js',
-    'test/modules/fields/optional.js'
+    'test/modules/fields/optional.js',
+    'test/modules/fields/cast.js',
+    'test/modules/fields/merge.js'
   ], ['client', 'server']);
   // Modules - Indexes.
   api.addFiles([
@@ -98,6 +102,6 @@ Package.onTest(function(api) {
   ], 'server');
   // Modules - Methods.
   api.addFiles([
-    // 'test/methods/methods_definition.js'
+    'test/modules/helpers/definition.js'
   ], ['client', 'server']);
 });
