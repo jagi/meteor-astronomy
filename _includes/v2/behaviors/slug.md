@@ -16,7 +16,7 @@ behaviors: {
     // The field name from which a slug will be created.
     fieldName: null,
     // The helper name that generates a value for the slug-ification process.
-    methodName: null,
+    helperName: null,
     // The field name where a slug will be stored.
     slugFieldName: 'slug',
     // A flag indicating if we can update a slug.
@@ -39,7 +39,7 @@ post.save();
 post.slug; // "to-jest-test-polskich-znakow-aszclonz"
 ```
 
-**The fieldName vs methodName**
+**The fieldName vs helperName**
 
 There are two possible ways of generating a slug: from a value of the field or a the value returned by the helper.
 
@@ -64,11 +64,11 @@ const User = Class.create({
   },
   behaviors: {
     slug: {
-      // You can't use the "fieldName option when using the "methodName" option.
+      // You can't use the "fieldName option when using the "helperName" option.
       // fieldName: 'lastName',
 
       // The helper name that generates a value for the slug-ification process.
-      methodName: 'fullName'
+      helperName: 'fullName'
     }
   }
 });
