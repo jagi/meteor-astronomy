@@ -60,3 +60,34 @@ As you can see, we have access to some parameters when using the `resolveError` 
 - `nestedName` - a nested field name being validate,
 - `value` - value of a field being validated,
 - `param` - param passed to the validator
+
+**Generating error message for required fields**
+
+When a field is required, then it has the `required` validator assigned to it. In such case, you can't just provided another `required` validator for such a field and provide custom error message. In this section we will describe process of generating error messages for fields that already have some validators assigned.
+
+For that purpose, there is special `resolveError` property declared on the class level which can generate error message for any field in a class. Let's take a look at the example below.
+
+```js
+const i18n = {
+  messages: {
+    'firstName-required': 'Это обязательное поле.'
+  },
+  get(key) {
+    return this.messages[key];
+  }
+};
+
+const User = Class.create({
+  name: 'User',
+  fields: {
+    firstName: {
+      type: String
+    }
+  },
+  resolveError({nestedName, validator}) {
+    return i18n.get(`${nestedName}-${validator}`);
+  }
+});
+```
+
+As you can see, the `resolveError` property works the same way as its equivalent in field's definition. So you can access the same properties of a field being validated. We just need to return error message from the function. We also introduced simple mechanism for i18n messages. You can improve it to add another languages.
