@@ -2,7 +2,7 @@
 
 Once you have defined a list of fields, you may want to set and get some values from a document. Let's check how to set values of a document.
 
-**Settings values**
+**Setting values**
 
 There is nothing special about setting values of a document. You may do it in a way you would do it with any JavaScript object.
 
@@ -34,6 +34,27 @@ const user = new User({
     state: 'CA'
   }
 });
+```
+
+**Pulling values from arrays**
+
+To modify data in Astronomy documents you don't have to use the `set()` method. The `set()` method is only required when you want to perform some additional operation on a data being set like for example casting. It's very common to remove elements from arrays, so we will provide two examples of how to implement it. In the first example we will use pure JS and in the second one the [lodash](https://lodash.com/) library.
+
+```js
+// Pure JS
+const post = Post.findOne();
+// Delete comment which author is Jagi
+const index = post.comments.findIndex((comment) => comment.author === 'Jagi');
+post.comments.splice(index, 1);
+post.save();
+```
+
+```js
+// Using lodash
+const post = Post.findOne();
+// Delete comment which author is Jagi
+post.comments = _.remove(post.comments, (comment) => comment.author === 'Jagi');
+post.save();
 ```
 
 **Casting values**
