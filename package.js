@@ -87,14 +87,14 @@ Package.onTest(function(api) {
   ], ['client', 'server']);
   // Modules - Fields.
   api.addFiles([
-    'test/modules/fields/definition.js',
-    'test/modules/fields/default.js',
-    'test/modules/fields/set.js',
-    'test/modules/fields/get.js',
-    'test/modules/fields/raw.js',
-    'test/modules/fields/optional.js',
     'test/modules/fields/cast.js',
-    'test/modules/fields/merge.js'
+    'test/modules/fields/default.js',
+    'test/modules/fields/definition.js',
+    'test/modules/fields/get.js',
+    'test/modules/fields/merge.js',
+    'test/modules/fields/optional.js',
+    'test/modules/fields/raw.js',
+    'test/modules/fields/set.js'
   ], ['client', 'server']);
   // Modules - Indexes.
   api.addFiles([
