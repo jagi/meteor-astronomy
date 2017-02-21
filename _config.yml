@@ -11,6 +11,6 @@ email: luke.jagodzinski@gmail.com
 baseurl: "/meteor-astronomy" # the subpath of your site, e.g. /blog
 url: "http://astronomy.jagi.io" # the base hostname & protocol for your site
 v1: "1.2.10"
-v2: "2.3.12"
+v2: "2.4.0"
 # Build settings
 markdown: kramdown
