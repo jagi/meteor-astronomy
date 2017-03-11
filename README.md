@@ -12,7 +12,7 @@ Astronomy documentation can be found [here](http://jagi.github.io/meteor-astrono
 
 ## Tutorials
 
-You can learn more about Astronomy by watching video tutorials that I'm creating. I'm trying to add a new one every week. You can access them here https://www.youtube.com/playlist?list=PLfUywoHHSTqLHnFxwSs62YcYJqrCuaTVV
+You can learn more about Astronomy by watching video tutorials that I'm creating. I'm trying to add a new one every week. You can access them here https://goo.gl/9gnrav
 
 ## Installation
 
