@@ -22,6 +22,30 @@ const Item = Class.create({
     date: Date,
     one: NestedItem,
     many: [NestedItem],
+    numbers: {
+      type: [Number],
+      default() {
+        return [];
+      }
+    },
+    strings: {
+      type: [String],
+      default() {
+        return [];
+      }
+    },
+    booleans: {
+      type: [Boolean],
+      default() {
+        return [];
+      }
+    },
+    dates: {
+      type: [Date],
+      default() {
+        return [];
+      }
+    },
     custom: {
       type: String,
       cast(value) {
@@ -44,7 +68,11 @@ describe('Module', function() {
           },
           many: [{
             string: 2
-          }]
+          }],
+          numbers: ['1', '2'],
+          strings: [1, 2],
+          booleans: [0, 1],
+          dates: [572137200000]
         }, {
           cast: true
         });
@@ -53,6 +81,10 @@ describe('Module', function() {
         assert.deepEqual(item.date, new Date(1988, 1, 18));
         assert.deepEqual(item.one.string, '2');
         assert.deepEqual(item.many[0].string, '2');
+        assert.deepEqual(item.numbers, [1, 2]);
+        assert.deepEqual(item.strings, ['1', '2']);
+        assert.deepEqual(item.booleans, [false, true]);
+        assert.deepEqual(item.dates, [new Date(1988, 1, 18)]);
       });
       it('casts values using the "set()" method with the "cast" option set', function() {
         const item = new Item();
@@ -65,7 +97,11 @@ describe('Module', function() {
           },
           many: [{
             string: 2
-          }]
+          }],
+          numbers: ['1', '2'],
+          strings: [1, 2],
+          booleans: [0, 1],
+          dates: [572137200000]
         }, {
           cast: true
         });
@@ -74,6 +110,29 @@ describe('Module', function() {
         assert.deepEqual(item.date, new Date(1988, 1, 18));
         assert.deepEqual(item.one.string, '2');
         assert.deepEqual(item.many[0].string, '2');
+        assert.deepEqual(item.numbers, [1, 2]);
+        assert.deepEqual(item.strings, ['1', '2']);
+        assert.deepEqual(item.booleans, [false, true]);
+        assert.deepEqual(item.dates, [new Date(1988, 1, 18)]);
+      });
+      it('casts values using the "set()" method for the embedded fields with the "cast" option set', function() {
+        const item = new Item();
+        item.set('numbers.0', '2', {
+          cast: true
+        });
+        item.set('strings.0', 2, {
+          cast: true
+        });
+        item.set('booleans.0', 1, {
+          cast: true
+        });
+        item.set('dates.0', 946681200000, {
+          cast: true
+        });
+        assert.deepEqual(item.numbers[0], 2);
+        assert.deepEqual(item.strings[0], '2');
+        assert.deepEqual(item.booleans[0], true);
+        assert.deepEqual(item.dates[0], new Date(2000, 0, 1));
       });
       it('casts values using custom casting function', function() {
         const item = new Item();
