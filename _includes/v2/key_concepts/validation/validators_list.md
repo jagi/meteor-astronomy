@@ -24,6 +24,17 @@ Checks if value is a number.
 }
 ```
 
+**integer**
+
+Checks if value is an integer.
+
+```js
+{
+  type: 'integer'
+  // No param.
+}
+```
+
 **boolean**
 
 Checks if value is a boolean.
