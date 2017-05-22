@@ -143,7 +143,8 @@ const Post = Class.create({
     /* ... */
   },
   meteorMethods: {
-    rename(title, invocation) {
+    rename(title) {
+      const invocation = DDP._CurrentInvocation.get();
       // Check if a given user can rename a post.
       if (!Permissions.canRenamePost(this, invocation.userId)) {
         throw new Meteor.Error(403, 'You can not rename this post');
@@ -151,7 +152,8 @@ const Post = Class.create({
       this.title = title;
       this.save();
     },
-    publish(invocation) {
+    publish() {
+      const invocation = DDP._CurrentInvocation.get();
       // Check if a given user can rename a post.
       if (!Permissions.canPublishPost(this, invocation.userId)) {
         throw new Meteor.Error(403, 'You can not publish this post');
