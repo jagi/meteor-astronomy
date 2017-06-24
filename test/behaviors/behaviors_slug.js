@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import contains from 'lodash/contains';
 
 Tinytest.add('Behaviors - Slug', function(test) {
   // Reset Astro.
@@ -82,10 +82,10 @@ Tinytest.add('Behaviors - Slug', function(test) {
   test.isNotUndefined(slugB1.get('slugged'),
     'The name of a field for the slug storage should be "slugged"'
   );
-  test.isTrue(_.isString(slugB1.get('slugged')),
+  test.isTrue(typeof slugB1.get('slugged') === 'string'),
     'The slug should be created from the value of the "title" field'
   );
-  test.isTrue(_.contains(slugB1.get('slugged'), '_'),
+  test.isTrue(contains(slugB1.get('slugged'), '_'),
     'The prefix character should be "_"'
   );
 
