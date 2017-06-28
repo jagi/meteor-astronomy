@@ -90,6 +90,7 @@ Package.onTest(function(api) {
     'test/modules/fields/cast.js',
     'test/modules/fields/default.js',
     'test/modules/fields/definition.js',
+    'test/modules/fields/enum.js',
     'test/modules/fields/get.js',
     'test/modules/fields/merge.js',
     'test/modules/fields/optional.js',
