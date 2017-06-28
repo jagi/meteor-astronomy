@@ -79,3 +79,18 @@ parent.type; // "Parent"
 ```
 
 As you can see in both classes Astronomy added the `type` field which stores "Child" and "Parent" strings for `Child` and `Parent` parent classes accordingly. A value of this field will be stored with an instance and when fetching the given document from the collection, the transform function will automatically fetch an instance of proper class.
+
+**Executing parent helpers from the child ones**
+
+It's not super easy and intuitive to call parent helper from the child one. We can't just call `super.helperOnParent([arguments]);`. Here is an example of how to achieve that using Astronomy:
+
+```js
+Child.inherits({
+  name: 'Child',
+  helpers: {
+    helperName() {
+      Parent.getHelper('helperName').apply(this, arguments);
+    }
+  }
+});
+```
