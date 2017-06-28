@@ -1,4 +1,4 @@
-import contains from 'lodash/contains';
+import _contains from 'lodash/contains';
 
 Tinytest.add('Behaviors - Slug', function(test) {
   // Reset Astro.
@@ -85,7 +85,7 @@ Tinytest.add('Behaviors - Slug', function(test) {
   test.isTrue(typeof slugB1.get('slugged') === 'string'),
     'The slug should be created from the value of the "title" field'
   );
-  test.isTrue(contains(slugB1.get('slugged'), '_'),
+  test.isTrue(_contains(slugB1.get('slugged'), '_'),
     'The prefix character should be "_"'
   );
 

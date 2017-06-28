@@ -1,4 +1,4 @@
-import extend from 'lodash/extend';
+import _extend from 'lodash/extend';
 import { Mongo } from 'meteor/mongo';
 import { Class } from 'meteor/jagi:astronomy';
 
@@ -24,7 +24,7 @@ Tinytest.add('Modules - Storage - Transform', function(test) {
   // Custom transform function.
   const CustomClass = class {
     constructor(values) {
-      extend(this, values);
+      _extend(this, values);
     }
   };
   const CustomTransform = Class.create({

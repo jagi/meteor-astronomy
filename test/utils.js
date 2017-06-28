@@ -1,8 +1,8 @@
-import forOwn from 'lodash/forOwn';
+import _forOwn from 'lodash/forOwn';
 import { Class, Behavior } from 'meteor/jagi:astronomy';
 
 resetDatabase = function() {
-  forOwn(Class.classes, (Class) => {
+  _forOwn(Class.classes, (Class) => {
     let Collection = Class.getCollection();
     if (!Collection) {
       return;
@@ -16,7 +16,7 @@ resetDatabase = function() {
 };
 
 resetMethods = function() {
-  forOwn(Class.classes, (Class) => {
+  _forOwn(Class.classes, (Class) => {
     let Collection = Class.getCollection();
     if (!Collection) {
       return;
