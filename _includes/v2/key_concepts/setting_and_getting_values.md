@@ -222,7 +222,7 @@ user.getModified();
 
 **Getting raw values**
 
-The `raw()` method is responsible for getting a plain value from a nested field. This means that even if a given field is defined as a nested Astronomy class, it will return a plain JavaScript object instead.
+The `raw()` method is responsible for getting plain values. You can use it to get a raw copy of the entire class, or a copy of a nested field. This means that even if a given field is defined as a nested Astronomy class, it will return a plain JavaScript object instead.
 
 ```js
 import { Class } from 'meteor/jagi:astronomy';
@@ -231,6 +231,7 @@ const User = Class.create({
   name: 'User',
   /* ... */
   fields: {
+    name: String,
     address: {
       type: Address,
     }
@@ -240,4 +241,6 @@ const User = Class.create({
 const user = User.findOne();
 // Getting a plain value of the "address" field.
 user.raw('address'); // {city: 'San Francisco', state: 'CA'}
+// Getting a plain copy of the entire document.
+user.raw(); // { _id: 'DFoBDDh433YFBbqEp', name: 'John Smith', address: {city: 'San Francisco', state: 'CA'} }
 ```
