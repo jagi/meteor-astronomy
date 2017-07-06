@@ -222,7 +222,7 @@ user.getModified();
 
 **Getting raw values**
 
-The `raw()` method is responsible for getting plain values. You can use it to get a raw copy of the entire class, or a copy of a nested field. This means that even if a given field is defined as a nested Astronomy class, it will return a plain JavaScript object instead.
+The `raw()` method is responsible for getting plain values. You can use it to get a raw copy of the entire document, or a copy of a nested field. This means that even if a given field is defined as a nested Astronomy class, it will return a plain JavaScript object instead.
 
 ```js
 import { Class } from 'meteor/jagi:astronomy';
