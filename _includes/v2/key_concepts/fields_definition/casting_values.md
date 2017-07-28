@@ -42,6 +42,8 @@ Boolean
 
 As you can see, objects are not casted and only plain values goes through the casting function. There are also several nice tricks for easier casting of values coming from the forms, like the `"FALSE"` string will be casted to the `false` value.
 
+The values `undefined` and `null` are not casted.
+
 We also need to discuss how empty strings (`""`) are casted to each type depending on whether a field is optional or required.
 
 ```js
