@@ -240,7 +240,9 @@ const User = Class.create({
 
 const user = User.findOne();
 // Getting a plain value of the "address" field.
-user.raw('address'); // {city: 'San Francisco', state: 'CA'}
+user.raw('address'); // { city: 'San Francisco', state: 'CA' }
+// Getting a plain copy of multiple fields
+user.raw(['name', 'address']); // { name: 'John Smith', address: { city: 'San Francisco', state: 'CA' } }
 // Getting a plain copy of the entire document.
-user.raw(); // { _id: 'uKqB7m2uZWi3zncR2', name: 'John Smith', address: {city: 'San Francisco', state: 'CA'} }
+user.raw(); // { _id: 'uKqB7m2uZWi3zncR2', name: 'John Smith', address: { city: 'San Francisco', state: 'CA' } }
 ```
