@@ -48,7 +48,15 @@ Thanks to the `doc.getModified()` method you can access fields that had been mod
 
 **Cloning document**
 
-It allows making copies of documents. You can automatically save cloned document or modify it before saving `var copy = post.copy();`.
+It allows making copies of documents. You can automatically save cloned document or modify it before saving.
+
+```
+var copy = post.copy(); // Creates a new copy with an empty _id
+copy.title = 'Foobar'; // Make changes before saving
+copy.save(); // Save document
+
+var anotherCopy = post.copy(true); // automatically saved
+```
 
 **Reloading document**
 
