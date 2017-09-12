@@ -24,9 +24,6 @@ Package.onUse(function(api) {
   ], ['client', 'server']);
 
   api.mainModule('lib/main.js', ['client', 'server']);
-
-  // For backward compatibility.
-  api.export('Astro', ['client', 'server']);
 });
 
 ////////////////////////////////////////////////////////////////////////////////
