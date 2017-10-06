@@ -1,7 +1,8 @@
+import { Class } from 'meteor/jagi:astronomy';
 import _contains from 'lodash/contains';
 
 Tinytest.add('Behaviors - Slug', function(test) {
-  // Reset Astro.
+  // Reset Astronomy.
   reset();
 
   var SlugsA = new Mongo.Collection(null);
@@ -19,7 +20,7 @@ Tinytest.add('Behaviors - Slug', function(test) {
     SlugsB.remove(slug._id);
   });
 
-  var SlugA = Astro.Class.create({
+  var SlugA = Class.create({
     name: 'SlugA',
     collection: SlugsA,
     fields: {
@@ -30,7 +31,7 @@ Tinytest.add('Behaviors - Slug', function(test) {
     }
   });
 
-  var SlugB = Astro.Class.create({
+  var SlugB = Class.create({
     name: 'SlugB',
     collection: SlugsB,
     fields: {

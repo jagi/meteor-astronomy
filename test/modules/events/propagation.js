@@ -1,11 +1,13 @@
+import { Class } from 'meteor/jagi:astronomy';
+
 Tinytest.add('Modules - Events - Propagation', function(test) {
-  // Reset Astro.
+  // Reset Astronomy.
   reset();
 
   let expectedEvents = [];
   let executedEvents = [];
 
-  let PropagationNestedEvent = Astro.Class.create({
+  let PropagationNestedEvent = Class.create({
     name: 'PropagationNestedEvent',
     events: {
       beforeSave: [
@@ -18,7 +20,7 @@ Tinytest.add('Modules - Events - Propagation', function(test) {
 
   let PropagationEvents = new Mongo.Collection(null);
 
-  let PropagationEvent = Astro.Class.create({
+  let PropagationEvent = Class.create({
     name: 'PropagationEvent',
     collection: PropagationEvents,
     fields: {

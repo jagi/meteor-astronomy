@@ -1,7 +1,9 @@
+import { Validator, Validators } from 'meteor/jagi:astronomy';
+
 Tinytest.add('Modules - Validators - Create', function(test) {
 	reset();
 
-	let CustomValidator = Astro.Validator.create({
+	let CustomValidator = Validator.create({
 	  name: 'custom',
 	  isValid({ value, param }) {
 			return value === param;
@@ -12,12 +14,12 @@ Tinytest.add('Modules - Validators - Create', function(test) {
 	});
 
   test.instanceOf(
-		Astro.Validator.validators.custom, Astro.Validator,
+		Validator.validators.custom, Validator,
     'Validator not created'
   );
 
 	test.instanceOf(
-		Astro.Validators.custom, Function,
+		Validators.custom, Function,
 		'Validation function not created'
 	);
 

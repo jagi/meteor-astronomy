@@ -1,5 +1,7 @@
+import { Class } from 'meteor/jagi:astronomy';
+
 Tinytest.add('Indexes - Add', function(test) {
-  // Reset Astro.
+  // Reset Astronomy.
   reset();
 
   var Future = Npm.require('fibers/future');
@@ -27,7 +29,7 @@ Tinytest.add('Indexes - Add', function(test) {
     Indexes._dropIndex('indexes');
   } catch (e) {}
 
-  var Index = Astro.Class.create({
+  var Index = Class.create({
     name: 'Index',
     collection: Indexes,
     fields: {

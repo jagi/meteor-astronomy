@@ -1,5 +1,7 @@
+import { Class } from 'meteor/jagi:astronomy';
+
 Tinytest.add('Modules - Events - Cancelable', function(test) {
-  let CancelableNestedEvent = Astro.Class.create({
+  let CancelableNestedEvent = Class.create({
     name: 'CancelableNestedEvent',
     events: {
       beforeSave: function(e) {
@@ -13,7 +15,7 @@ Tinytest.add('Modules - Events - Cancelable', function(test) {
 
   let CancelableEvents = new Mongo.Collection(null);
 
-  let CancelableEvent = Astro.Class.create({
+  let CancelableEvent = Class.create({
     name: 'CancelableEvent',
     collection: CancelableEvents,
     fields: {
