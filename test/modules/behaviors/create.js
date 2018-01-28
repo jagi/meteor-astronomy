@@ -1,7 +1,9 @@
+import { Behavior } from 'meteor/jagi:astronomy';
+
 Tinytest.add('Modules - Behaviors - Create', function(test) {
 	reset();
 
-	let CustomBehavior = Astro.Behavior.create({
+	let CustomBehavior = Behavior.create({
 		name: 'custom',
 		options: {
 			fieldName: 'behaviorField'
@@ -23,7 +25,7 @@ Tinytest.add('Modules - Behaviors - Create', function(test) {
 	});
 
   test.isTrue(
-		Astro.Behavior.prototype.isPrototypeOf(CustomBehavior.prototype),
+		Behavior.prototype.isPrototypeOf(CustomBehavior.prototype),
     'Behavior not created'
   );
 });

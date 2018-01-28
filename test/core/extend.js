@@ -1,7 +1,9 @@
+import { Class, Field } from 'meteor/jagi:astronomy';
+
 Tinytest.add('Core - Extend', function(test) {
   reset();
 
-  const Extended = Astro.Class.create({
+  const Extended = Class.create({
     name: 'Extended',
     fields: {
       originalField: {
@@ -31,10 +33,10 @@ Tinytest.add('Core - Extend', function(test) {
   });
 
   // Fields.
-  test.instanceOf(Extended.getField('originalField'), Astro.Field,
+  test.instanceOf(Extended.getField('originalField'), Field,
     'Class should contain original fields'
   );
-  test.instanceOf(Extended.getField('extendField'), Astro.Field,
+  test.instanceOf(Extended.getField('extendField'), Field,
     'Class should contain extended fields'
   );
 

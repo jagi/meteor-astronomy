@@ -1,9 +1,11 @@
+import { Class } from 'meteor/jagi:astronomy';
+
 Tinytest.add('Core - State', function(test) {
   reset();
 
   const States = new Mongo.Collection(null);
 
-  const State = Astro.Class.create({
+  const State = Class.create({
     name: 'State',
     collection: States
   });

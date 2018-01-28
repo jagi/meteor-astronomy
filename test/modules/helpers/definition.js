@@ -1,8 +1,10 @@
+import { Class } from 'meteor/jagi:astronomy';
+
 Tinytest.add('Modules - Helpers - Definition', function(test) {
-  // Reset Astro.
+  // Reset Astronomy.
   reset();
 
-  const Helper = Astro.Class.create({
+  const Helper = Class.create({
     name: 'Helper',
     helpers: {
       helperA() {

@@ -1,4 +1,4 @@
-import { Class } from 'meteor/jagi:astronomy';
+import { Class, ValidationError } from 'meteor/jagi:astronomy';
 
 Tinytest.add('Modules - Validators - Validate', function(test) {
   const ClassValidator = Class.create({
@@ -58,7 +58,7 @@ Tinytest.add('Modules - Validators - Validate', function(test) {
     );
 
     test.equal(
-      e.error, Astro.ValidationError.ERROR_CODE,
+      e.error, ValidationError.ERROR_CODE,
       'Should throw validation error'
     );
 
@@ -86,7 +86,7 @@ Tinytest.add('Modules - Validators - Validate', function(test) {
     );
 
     test.equal(
-      e.error, Astro.ValidationError.ERROR_CODE,
+      e.error, ValidationError.ERROR_CODE,
       'Should throw validation error'
     );
 
@@ -154,7 +154,7 @@ Tinytest.add('Modules - Validators - Validate', function(test) {
     );
 
     test.equal(
-      e.error, Astro.ValidationError.ERROR_CODE,
+      e.error, ValidationError.ERROR_CODE,
       'Should throw validation error'
     );
 

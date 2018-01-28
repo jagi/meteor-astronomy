@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { Class, ValidationError } from 'meteor/jagi:astronomy';
 
 Tinytest.add('Modules - Fields - Optional', function(test) {

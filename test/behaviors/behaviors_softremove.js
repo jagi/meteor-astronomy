@@ -1,5 +1,7 @@
+import { Class } from 'meteor/jagi:astronomy';
+
 Tinytest.add('Behaviors - Softremove', function(test) {
-  // Reset Astro.
+  // Reset Astronomy.
   reset();
 
   SoftremovesA = new Mongo.Collection(null);
@@ -24,7 +26,7 @@ Tinytest.add('Behaviors - Softremove', function(test) {
     SoftremovesC.remove(item._id);
   });
 
-  var SoftremoveA = Astro.Class.create({
+  var SoftremoveA = Class.create({
     name: 'SoftremoveA',
     collection: SoftremovesA,
     fields: {
@@ -35,7 +37,7 @@ Tinytest.add('Behaviors - Softremove', function(test) {
     }
   });
 
-  var SoftremoveB = Astro.Class.create({
+  var SoftremoveB = Class.create({
     name: 'SoftremoveB',
     collection: SoftremovesB,
     fields: {
@@ -50,7 +52,7 @@ Tinytest.add('Behaviors - Softremove', function(test) {
     }
   });
 
-  var SoftremoveC = Astro.Class.create({
+  var SoftremoveC = Class.create({
     name: 'SoftremoveC',
     collection: SoftremovesC,
     fields: {

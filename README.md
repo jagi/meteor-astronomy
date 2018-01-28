@@ -10,6 +10,10 @@ The [Astronomy](https://atmospherejs.com/jagi/astronomy) package introduces the 
 
 Astronomy documentation can be found [here](http://jagi.github.io/meteor-astronomy/).
 
+## Tutorials
+
+You can learn more about Astronomy by watching video tutorials that I'm creating. I'm trying to add a new one every week. You can access them here https://goo.gl/9gnrav
+
 ## Installation
 
 ```sh

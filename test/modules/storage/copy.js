@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _omit from 'lodash/omit';
 import { Class } from 'meteor/jagi:astronomy';
 
 Tinytest.add('Modules - Storage - Copy', function(test) {
@@ -37,7 +37,7 @@ Tinytest.add('Modules - Storage - Copy', function(test) {
   test.notEqual(clone._id, storage._id,
     'The "_id" fields of the original and cloned documents should not be equal'
   );
-  test.equal(_.omit(clone.raw(), '_id'), _.omit(storage.raw(), '_id'),
+  test.equal(_omit(clone.raw(), '_id'), _omit(storage.raw(), '_id'),
     'All values (except the "_id" field) of the original and cloned ' +
     'documents should be equal'
   );

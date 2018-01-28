@@ -1,12 +1,12 @@
 Package.describe({
   name: 'jagi:astronomy',
-  version: '2.3.11',
+  version: '2.5.2',
   summary: 'Model layer for Meteor',
   git: 'https://github.com/jagi/meteor-astronomy.git'
 });
 
 Npm.depends({
-  lodash: '4.17.2'
+  lodash: '4.17.4'
 });
 
 Package.onUse(function(api) {
@@ -24,9 +24,6 @@ Package.onUse(function(api) {
   ], ['client', 'server']);
 
   api.mainModule('lib/main.js', ['client', 'server']);
-
-  // For backward compatibility.
-  api.export('Astro', ['client', 'server']);
 });
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -40,7 +37,7 @@ Package.onTest(function(api) {
     'insecure',
     'mongo',
     'ejson',
-    'jagi:astronomy@2.3.11'
+    'jagi:astronomy@2.5.2'
   ], ['client', 'server']);
 
   api.addFiles('test/utils.js', ['client', 'server']);
@@ -87,14 +84,15 @@ Package.onTest(function(api) {
   ], ['client', 'server']);
   // Modules - Fields.
   api.addFiles([
-    'test/modules/fields/definition.js',
-    'test/modules/fields/default.js',
-    'test/modules/fields/set.js',
-    'test/modules/fields/get.js',
-    'test/modules/fields/raw.js',
-    'test/modules/fields/optional.js',
     'test/modules/fields/cast.js',
-    'test/modules/fields/merge.js'
+    'test/modules/fields/default.js',
+    'test/modules/fields/definition.js',
+    'test/modules/fields/enum.js',
+    'test/modules/fields/get.js',
+    'test/modules/fields/merge.js',
+    'test/modules/fields/optional.js',
+    'test/modules/fields/raw.js',
+    'test/modules/fields/set.js'
   ], ['client', 'server']);
   // Modules - Indexes.
   api.addFiles([
