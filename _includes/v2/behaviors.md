@@ -43,3 +43,5 @@ Let's talk about predefined behaviors.
 {% include v2/behaviors/slug.md %}
 
 {% include v2/behaviors/softremove.md %}
+
+{% include v2/behaviors/community_behaviors.md %}
