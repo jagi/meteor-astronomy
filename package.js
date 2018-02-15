@@ -1,6 +1,6 @@
 Package.describe({
   name: 'jagi:astronomy',
-  version: '2.5.3',
+  version: '2.5.4',
   summary: 'Model layer for Meteor',
   git: 'https://github.com/jagi/meteor-astronomy.git'
 });
@@ -37,7 +37,7 @@ Package.onTest(function(api) {
     'insecure',
     'mongo',
     'ejson',
-    'jagi:astronomy@2.5.3'
+    'jagi:astronomy@2.5.4'
   ], ['client', 'server']);
 
   api.addFiles('test/utils.js', ['client', 'server']);
