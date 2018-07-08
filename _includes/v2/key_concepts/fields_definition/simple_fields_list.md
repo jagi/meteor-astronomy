@@ -24,3 +24,8 @@ In the example above, we passed an object with the fields' names as keys and the
 - Mongo.ObjectID
 
 You can also create your own types.
+
+
+**Characters allowed in field name**
+
+You can't use the `.` sign in the field name. Actually, it's a good practice to only use letters, digits and `_`, `-` characters.
