@@ -53,7 +53,7 @@ post.save();
 // Using lodash
 const post = Post.findOne();
 // Delete comment which author is Jagi
-post.comments = _.remove(post.comments, (comment) => comment.author === 'Jagi');
+_.remove(post.comments, (comment) => comment.author === 'Jagi');
 post.save();
 ```
 
