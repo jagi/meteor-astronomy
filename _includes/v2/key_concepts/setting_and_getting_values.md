@@ -43,7 +43,7 @@ To modify data in Astronomy documents you don't have to use the `set()` method. 
 ```js
 // Pure JS
 const post = Post.findOne();
-// Delete comment which author is Jagi
+// Delete comment whose author is Jagi
 const index = post.comments.findIndex((comment) => comment.author === 'Jagi');
 post.comments.splice(index, 1);
 post.save();
@@ -52,7 +52,7 @@ post.save();
 ```js
 // Using lodash
 const post = Post.findOne();
-// Delete comment which author is Jagi
+// Delete comment whose author is Jagi
 _.remove(post.comments, (comment) => comment.author === 'Jagi');
 post.save();
 ```
