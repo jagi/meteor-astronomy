@@ -1,4 +1,4 @@
-import { Class } from 'meteor/jagi:astronomy';
+import { Class, Field } from 'meteor/jagi:astronomy';
 
 Tinytest.add('Core - Inherit', function(test) {
   reset();
@@ -10,8 +10,8 @@ Tinytest.add('Core - Inherit', function(test) {
         type: String
       }
     },
-    methods: {
-      parentMethod() {}
+    helpers: {
+      parentHelper() {}
     },
     events: {
       afterInit() {}
@@ -25,8 +25,8 @@ Tinytest.add('Core - Inherit', function(test) {
         type: String
       }
     },
-    methods: {
-      childMethod() {}
+    helpers: {
+      childHelper() {}
     },
     events: {
       afterInit() {}
@@ -34,19 +34,19 @@ Tinytest.add('Core - Inherit', function(test) {
   });
 
   // Fields.
-  test.instanceOf(Child.getField('parentField'), Astro.Field,
+  test.instanceOf(Child.getField('parentField'), Field,
     'The child class should inherit parent fields'
   );
-  test.instanceOf(Child.getField('childField'), Astro.Field,
+  test.instanceOf(Child.getField('childField'), Field,
     'The child class should have its own fields'
   );
 
-  // Methods.
-  test.instanceOf(Child.getMethod('parentMethod'), Function,
-    'The child class should inherit parent methods'
+  // Helpers.
+  test.instanceOf(Child.getHelper('parentHelper'), Function,
+    'The child class should inherit parent helpers'
   );
-  test.instanceOf(Child.getMethod('childMethod'), Function,
-    'The child class should have its own methods'
+  test.instanceOf(Child.getHelper('childHelper'), Function,
+    'The child class should have its own helpers'
   );
 
   // Events.

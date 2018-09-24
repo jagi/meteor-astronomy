@@ -10,11 +10,21 @@ The [Astronomy](https://atmospherejs.com/jagi/astronomy) package introduces the 
 
 Astronomy documentation can be found [here](http://jagi.github.io/meteor-astronomy/).
 
+## Tutorials
+
+You can learn more about Astronomy by watching video tutorials that I'm creating. I'm trying to add a new one every week. You can access them here https://goo.gl/9gnrav
+
 ## Installation
 
 ```sh
 $ meteor add jagi:astronomy
 ```
+
+## Support Astronomy development
+
+[<img src="https://www.patreon.com/images/patreon_navigation_logo_mini_orange.png" width="100" />](https://www.patreon.com/jagi)
+
+I've decided to start [Patreon](https://www.patreon.com/jagi) page. If you enjoy using Astronomy and want to support development of future versions, then any donation will be welcome :).
 
 ## Introduction
 
@@ -48,7 +58,6 @@ if (post.title.length < 3) {
 ```
 
 With Astronomy and defined schema your code would look like follows:
-
 ```js
 // Notice that we call the "findOne" method
 // from the "Post" class not from the "Posts" collection.
@@ -95,6 +104,13 @@ const Post = Class.create({
 [<img src="http://jagi.github.io/meteor-astronomy/images/usefulio.png" />](http://useful.io/)
 
 ## Contribution
+
+Bigs thanks for all the [contributions](https://github.com/jagi/meteor-astronomy/graphs/contributors) in form of commits and bug reports. Without you it would not be possible to improve Astronomy. Special thanks to:
+- [Faberle](https://github.com/Faberle) - for help with Meteor methods feature
+- [Ben305](https://github.com/Ben305) - for several PRs
+- [peterchoo](https://github.com/peterchoo) - for several PRs
+- [talha-asad](https://github.com/talha-asad) - for updating History of changes
+- all other commiters that I forgot to mention
 
 If you have any suggestions or want to write new features or behaviors please contact me, or just create an issue or a pull request. If you found any error please create a reproduction repository and create an issue. Thanks to that it will be easier for me to tell what is wrong. Please, don't use CoffeeScript for creating a reproduction.
 

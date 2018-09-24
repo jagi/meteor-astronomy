@@ -1,5 +1,7 @@
+import { Class } from 'meteor/jagi:astronomy';
+
 Tinytest.addAsync('Behaviors - Timestamp', function(test, next) {
-  // Reset Astro.
+  // Reset Astronomy.
   reset();
 
   var TimestampsA = new Mongo.Collection(null);
@@ -24,7 +26,7 @@ Tinytest.addAsync('Behaviors - Timestamp', function(test, next) {
     TimestampsC.remove(item._id);
   });
 
-  var TimestampA = Astro.Class.create({
+  var TimestampA = Class.create({
     name: 'TimestampA',
     collection: TimestampsA,
     fields: {
@@ -35,7 +37,7 @@ Tinytest.addAsync('Behaviors - Timestamp', function(test, next) {
     }
   });
 
-  var TimestampB = Astro.Class.create({
+  var TimestampB = Class.create({
     name: 'TimestampB',
     collection: TimestampsB,
     fields: {
@@ -49,7 +51,7 @@ Tinytest.addAsync('Behaviors - Timestamp', function(test, next) {
     }
   });
 
-  var TimestampC = Astro.Class.create({
+  var TimestampC = Class.create({
   name: 'TimestampC',
   collection: TimestampsC,
   fields: {

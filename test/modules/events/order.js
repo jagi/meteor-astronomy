@@ -1,8 +1,10 @@
+import { Class } from 'meteor/jagi:astronomy';
+
 Tinytest.add('Modules - Events - Order', function(test) {
 	let executedEvents = [];
 	let expectedEvents = [];
 
-	let OrderNestedEvent = Astro.Class.create({
+	let OrderNestedEvent = Class.create({
 		name: 'OrderNestedEvent',
 		events: {
 			beforeInit: function(e) {
@@ -34,7 +36,7 @@ Tinytest.add('Modules - Events - Order', function(test) {
 
 	let OrderEvents = new Mongo.Collection(null);
 
-	let OrderEvent = Astro.Class.create({
+	let OrderEvent = Class.create({
 		name: 'OrderEvent',
 		collection: OrderEvents,
 		fields: {

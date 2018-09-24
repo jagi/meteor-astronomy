@@ -1,9 +1,10 @@
 {
+  "lockfileVersion": 1,
   "dependencies": {
     "lodash": {
-      "version": "4.14.0",
-      "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.14.0.tgz",
-      "from": "lodash@4.14.0"
+      "version": "4.17.4",
+      "resolved": "http://registry.npmjs.org/lodash/-/lodash-4.17.4.tgz",
+      "integrity": "sha1-eCA6TRwyiuHYbcpkYONptX9AVa4="
     }
   }
 }

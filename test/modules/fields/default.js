@@ -1,85 +1,89 @@
-Tinytest.add('Modules - Fields - Default', function(test) {
-  reset();
+import {
+  assert
+}
+from 'meteor/practicalmeteor:chai';
+import {
+  Class
+}
+from 'meteor/jagi:astronomy';
 
-  let DefaultNested = Astro.Class.create({
-    name: 'DefaultNested',
-    fields: {
-      string: {
-        type: String,
-        default: 'abc'
-      },
-      number: {
-        type: Number,
-        default: 123
-      },
-      boolean: {
-        type: Boolean,
-        default: true
-      },
-      date: {
-        type: Date,
-        default: function() {
-          return new Date(2000, 0, 1);
-        }
+const DefaultNested = Class.create({
+  name: 'DefaultNested',
+  fields: {
+    string: {
+      type: String,
+      default: 321
+    },
+    number: {
+      type: Number,
+      default: '123'
+    },
+    boolean: {
+      type: Boolean,
+      default: 1
+    },
+    date: {
+      type: Date,
+      default: 572137200000
+    }
+  }
+});
+
+const Default = Class.create({
+  name: 'Default',
+  fields: {
+    one: {
+      type: DefaultNested,
+      default() {
+        return {};
+      }
+    },
+    many: {
+      type: [DefaultNested],
+      default() {
+        return [{}];
+      }
+    },
+    string: {
+      type: String,
+      default: 'abc'
+    },
+    number: {
+      type: Number,
+      default: 123
+    },
+    boolean: {
+      type: Boolean,
+      default: true
+    },
+    date: {
+      type: Date,
+      default() {
+        return new Date(1988, 1, 18);
       }
     }
+  }
+});
+
+describe('Module', function() {
+  describe('Fields', function() {
+    describe('Default', function() {
+      it('sets default values on construction', function() {
+        const doc = new Default();
+        assert.deepEqual(doc.string, 'abc');
+        assert.deepEqual(doc.number, 123);
+        assert.deepEqual(doc.boolean, true);
+        assert.deepEqual(doc.date, new Date(1988, 1, 18));
+      });
+      it('sets default values and cast them on construction', function() {
+        const doc = new Default();
+        assert.instanceOf(doc.one, DefaultNested);
+        assert.instanceOf(doc.many[0], DefaultNested);
+        assert.deepEqual(doc.one.string, '321');
+        assert.deepEqual(doc.one.number, 123);
+        assert.deepEqual(doc.one.boolean, true);
+        assert.deepEqual(doc.one.date, new Date(1988, 1, 18));
+      });
+    });
   });
-
-  // Define simple class to work with.
-  let Default = Astro.Class.create({
-    name: 'Default',
-    fields: {
-      one: {
-        type: DefaultNested,
-        default: function() {
-          return new DefaultNested();
-        }
-      },
-      many: {
-        type: [DefaultNested],
-        default: function() {
-          return [new DefaultNested()];
-        }
-      },
-      string: {
-        type: String,
-        default: 'abc'
-      },
-      number: {
-        type: Number,
-        default: 123
-      },
-      boolean: {
-        type: Boolean,
-        default: true
-      },
-      date: {
-        type: Date,
-        default: function() {
-          return new Date(2000, 0, 1);
-        }
-      }
-    }
-  });
-
-  let doc = new Default();
-
-  test.equal(doc.string, 'abc',
-    'The default value of the "string" field is not correct'
-  );
-  test.equal(doc.number, 123,
-    'The default value of the "number" field is not correct'
-  );
-  test.equal(doc.boolean, true,
-    'The default value of the "boolean" field is not correct'
-  );
-  test.equal(doc.date, new Date(2000, 0, 1),
-    'The default value of the "date" field is not correct'
-  );
-  test.equal(doc.one, new DefaultNested(),
-    'The default value of the "one" field is not correct'
-  );
-  test.equal(doc.many, [new DefaultNested()],
-    'The default value of the "many" field is not correct'
-  );
 });

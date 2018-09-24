@@ -1,7 +1,9 @@
+import { Class } from 'meteor/jagi:astronomy';
+
 Tinytest.add('Modules - Fields - Definition', function(test) {
   reset();
 
-  let Definition = Astro.Class.create({
+  let Definition = Class.create({
     name: 'Definition',
     fields: {
       // Field type provided.

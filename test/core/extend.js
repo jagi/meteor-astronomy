@@ -1,18 +1,20 @@
+import { Class, Field } from 'meteor/jagi:astronomy';
+
 Tinytest.add('Core - Extend', function(test) {
   reset();
 
-  let Extended = Astro.Class.create({
+  const Extended = Class.create({
     name: 'Extended',
     fields: {
       originalField: {
         type: String
       }
     },
-    methods: {
-      originalMethod: function() {}
+    helpers: {
+      originalHelper() {}
     },
     events: {
-      afterInit: function() {}
+      afterInit() {}
     }
   });
 
@@ -22,27 +24,27 @@ Tinytest.add('Core - Extend', function(test) {
         type: String
       }
     },
-    methods: {
-      extendMethod: function() {}
+    helpers: {
+      extendHelper() {}
     },
     events: {
-      afterInit: function() {}
+      afterInit() {}
     }
   });
 
   // Fields.
-  test.instanceOf(Extended.getField('originalField'), Astro.Field,
+  test.instanceOf(Extended.getField('originalField'), Field,
     'Class should contain original fields'
   );
-  test.instanceOf(Extended.getField('extendField'), Astro.Field,
+  test.instanceOf(Extended.getField('extendField'), Field,
     'Class should contain extended fields'
   );
 
-  // Methods.
-  test.instanceOf(Extended.getMethod('originalMethod'), Function,
+  // Helpers.
+  test.instanceOf(Extended.getHelper('originalHelper'), Function,
     'Class should contain original methods'
   );
-  test.instanceOf(Extended.getMethod('extendMethod'), Function,
+  test.instanceOf(Extended.getHelper('extendHelper'), Function,
     'Class should contain extended methods'
   );
 
