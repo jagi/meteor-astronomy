@@ -1,6 +1,8 @@
 # Astronomy for Meteor
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jagi/meteor-astronomy?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge)
+[![Code Quality: Javascript](https://img.shields.io/lgtm/grade/javascript/g/jagi/meteor-astronomy.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/jagi/meteor-astronomy/context:javascript)
+[![Total Alerts](https://img.shields.io/lgtm/alerts/g/jagi/meteor-astronomy.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/jagi/meteor-astronomy/alerts)
 
 <img src="http://jagi.github.io/meteor-astronomy/images/logo.png" />
 
