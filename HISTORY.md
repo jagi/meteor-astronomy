@@ -1,3 +1,23 @@
+# [2.6.3](/releases/tag/2.6.3) (2018-10-19)
+- Workaround for the issue #694. From now all the storage operation options are being passed to the event object. For example when calling the `save` method:
+```js
+user.save({ fields: ["firstName"] });
+```
+The fields option will be available in the event handler.
+```js
+events: {
+  beforeSave(e) {
+    if (
+      e.fields &&
+      e.fields.includes("firstName") &&
+      e.doc.isModified("firstName")
+    ) {
+      // Do something...
+    }
+  }
+}
+```
+
 # [2.6.2](/releases/tag/2.6.2) (2018-10-19)
 - Revert to previous behavior before fix #689
 
@@ -110,7 +130,7 @@ User.findOne(); // Default values won't be set
 ```
 
 # [2.3.12](/releases/tag/2.3.12) (2017-01-12)
-- Fix console.warn error in MS Edge 
+- Fix console.warn error in MS Edge
 - Add missing lodash import
 
 # [2.3.11](/releases/tag/2.3.11) (2016-12-20)
