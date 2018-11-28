@@ -10,7 +10,7 @@ events: {
     if (
       e.fields &&
       e.fields.includes("firstName") &&
-      e.doc.isModified("firstName")
+      e.currentTarget.isModified("firstName")
     ) {
       // Do something...
     }
