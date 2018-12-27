@@ -1,3 +1,14 @@
+# [2.7.0](/releases/tag/2.7.0) (2018-12-27)
+- Fix issue #694
+You can limit list of modified fields from the `getModified` and `getModifiedValues` methods to only include fields that will actually be saved using the `save({ fields: [/* list of fields */] })` option.
+```js
+beforeSave(e) {
+  const doc = e.target;
+  console.log(doc.getModified({ fields: e.fields }));
+  console.log(doc.getModifiedValues({ fields: e.fields }));
+}
+```
+
 # [2.6.3](/releases/tag/2.6.3) (2018-10-19)
 - Workaround for the issue #694. From now all the storage operation options are being passed to the event object. For example when calling the `save` method:
 ```js
