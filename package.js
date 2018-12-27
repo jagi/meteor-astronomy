@@ -1,6 +1,6 @@
 Package.describe({
   name: "jagi:astronomy",
-  version: "2.6.3",
+  version: "2.7.0",
   summary: "Model layer for Meteor",
   git: "https://github.com/jagi/meteor-astronomy.git"
 });
