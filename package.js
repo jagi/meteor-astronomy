@@ -6,7 +6,7 @@ Package.describe({
 });
 
 Npm.depends({
-  lodash: "4.17.4"
+  lodash: "4.17.11"
 });
 
 Package.onUse(function(api) {
