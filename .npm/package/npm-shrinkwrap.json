@@ -3,7 +3,7 @@
     "lodash": {
       "version": "4.17.11",
       "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.11.tgz",
-      "from": "lodash@4.17.11"
+      "from": "lodash@https://registry.npmjs.org/lodash/-/lodash-4.17.11.tgz"
     }
   }
 }
