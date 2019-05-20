@@ -1,3 +1,14 @@
+# [2.7.1](/releases/tag/2.7.1) (2019-01-05)
+- Fix #671 by introducing several logging flags:
+```js
+import { config } from "meteor/jagi:astronomy";
+
+config.logs.deprecation = false; // Turn off deprecation warnings.
+config.logs.nonExistingField = false; // Turn off warnings about non existing fields.
+config.logs.classDuplicate = false; // Turn off class duplication warnings.
+config.logs.typeDuplicate = false; // Turn off type duplication warnings.
+```
+
 # [2.7.0](/releases/tag/2.7.0) (2018-12-27)
 - Fix issue #694
 You can limit list of modified fields from the `getModified` and `getModifiedValues` methods to only include fields that will actually be saved using the `save({ fields: [/* list of fields */] })` option.
