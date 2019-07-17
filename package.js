@@ -41,7 +41,8 @@ Package.onTest(function(api) {
       "insecure",
       "mongo",
       "ejson",
-      "jagi:astronomy@2.5.8"
+      "jagi:astronomy",
+      "promise"
     ],
     ["client", "server"]
   );

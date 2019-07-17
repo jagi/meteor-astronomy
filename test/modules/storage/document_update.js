@@ -1,4 +1,6 @@
 import { Class } from 'meteor/jagi:astronomy';
+import { MongoInternals } from 'meteor/mongo';
+import { Promise } from 'meteor/promise';
 
 Tinytest.add('Modules - Storage - Document update', function(test) {
   const Storage = Class.get('Storage');
@@ -45,3 +47,49 @@ Tinytest.add('Modules - Storage - Document update', function(test) {
     'The document has not been updated properly'
   );
 });
+
+if (Meteor.isServer) {
+  Tinytest.add('Modules - Storage - Document update with Mongo Transactions', function(test) {
+    const Storage = Class.get('PersistentStorage');
+    const expected = 'Initial string';
+    const id = Storage.insert({string: expected, immutable: 'dummy'})
+    const storage = Storage.findOne(id);
+
+    const { client } = MongoInternals.defaultRemoteCollectionDriver().mongo
+    session = Promise.await(client.startSession())
+    Promise.await(session.startTransaction())
+    try {
+      storage.string = 'Changed string'
+      storage.save({session})
+      Promise.await(session.commitTransaction())
+    } catch (e) {
+      Promise.await(session.abortTransaction())
+    } finally {
+      Promise.await(session.endSession())
+    }
+    test.equal(Storage.findOne(id).string, 'Changed string', 'The document has not been updated')
+  });
+
+  Tinytest.add('Modules - Storage - Document update with Mongo Transactions (Rollback)', function(test) {
+    const Storage = Class.get('PersistentStorage');
+    const expected = 'Initial string';
+    const id = Storage.insert({string: expected, immutable: 'dummy'})
+    const storage = Storage.findOne(id);
+
+    const { client } = MongoInternals.defaultRemoteCollectionDriver().mongo
+    session = Promise.await(client.startSession())
+    Promise.await(session.startTransaction())
+    try {
+      storage.string = 'Changed string'
+      storage.save({session})
+      throw new Meteor.Error(500, 'Throw error for testing purpose')
+      Promise.await(session.commitTransaction())
+    } catch (e) {
+      Promise.await(session.abortTransaction())
+    } finally {
+      Promise.await(session.endSession())
+    }
+    test.equal(Storage.findOne(id).string, 'Initial string', 'The document has been updated')
+  });
+
+}

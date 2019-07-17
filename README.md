@@ -99,6 +99,33 @@ const Post = Class.create({
 });
 ```
 
+## Mongo Transactions Support
+
+```js
+import Post from './post'
+import User from './user'
+import { MongoInternals } from 'meteor/mongo';
+
+let post = Post.find(postQuery);
+let user = User.find(userQuery);
+
+post.userId = user._id;
+user.posts.push(post);
+
+const { client } = MongoInternals.defaultRemoteCollectionDriver().mongo;
+const session = await client.startSession();
+await session.startTransaction();
+try {
+  post.save({session});
+  user.save({session});
+  await session.commitTransaction();
+} catch (e) {
+  await session.abortTransaction();
+} finally {
+  session.endSession();
+}
+```
+
 ## Supporters
 
 [<img src="http://jagi.github.io/meteor-astronomy/images/usefulio.png" />](http://useful.io/)
