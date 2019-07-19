@@ -1,8 +1,8 @@
 Package.describe({
-  name: "jagi:astronomy",
-  version: "2.7.2",
+  name: "hubroedu:astronomy",
+  version: "2.7.2_2",
   summary: "Model layer for Meteor",
-  git: "https://github.com/jagi/meteor-astronomy.git"
+  git: "https://github.com/hubroedu/meteor-astronomy.git"
 });
 
 Npm.depends({
