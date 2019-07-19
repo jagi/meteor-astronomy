@@ -1,8 +1,8 @@
 Package.describe({
-  name: "hubroedu:astronomy",
-  version: "2.7.2_1",
+  name: "jagi:astronomy",
+  version: "2.7.2",
   summary: "Model layer for Meteor",
-  git: "https://github.com/hubroedu/meteor-astronomy.git"
+  git: "https://github.com/jagi/meteor-astronomy.git"
 });
 
 Npm.depends({
@@ -41,7 +41,7 @@ Package.onTest(function(api) {
       "insecure",
       "mongo",
       "ejson",
-      "hubroedu:astronomy@2.5.8"
+      "jagi:astronomy@2.5.8"
     ],
     ["client", "server"]
   );
