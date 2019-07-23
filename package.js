@@ -6,7 +6,8 @@ Package.describe({
 });
 
 Npm.depends({
-  lodash: "4.17.11"
+  lodash: "4.17.11",
+  'bignumber.js': '9.0.0'
 });
 
 Package.onUse(function(api) {
