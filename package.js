@@ -1,6 +1,6 @@
 Package.describe({
   name: "hubroedu:astronomy",
-  version: "2.7.2_4",
+  version: "2.7.2_5",
   summary: "Model layer for Meteor",
   git: "https://github.com/hubroedu/meteor-astronomy.git"
 });
