@@ -19,6 +19,7 @@ Package.onUse(function(api) {
       "es5-shim",
       "ddp",
       "mongo",
+      "mongo-decimal",
       "check",
       "minimongo",
       "ejson",
