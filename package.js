@@ -6,7 +6,8 @@ Package.describe({
 });
 
 Npm.depends({
-  lodash: "4.17.11"
+  lodash: "4.17.11",
+  'bignumber.js': '9.0.0'
 });
 
 Package.onUse(function(api) {
@@ -18,6 +19,7 @@ Package.onUse(function(api) {
       "es5-shim",
       "ddp",
       "mongo",
+      "mongo-decimal",
       "check",
       "minimongo",
       "ejson",
@@ -41,7 +43,8 @@ Package.onTest(function(api) {
       "insecure",
       "mongo",
       "ejson",
-      "jagi:astronomy@2.5.8"
+      "jagi:astronomy",
+      "promise"
     ],
     ["client", "server"]
   );

@@ -65,4 +65,18 @@ Tinytest.add('Modules - Storage - Init', function(test) {
       }
     }
   });
+
+  const PersistentStorages = new Mongo.Collection('persistent-storages');
+
+  const PersistentStorage = Class.create({
+    name: 'PersistentStorage',
+    collection: PersistentStorages,
+    fields: {
+      string: {
+        type: String,
+        optional: true
+      }
+    }
+  });
+
 });
